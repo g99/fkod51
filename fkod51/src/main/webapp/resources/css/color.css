@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+table{border-collapse: collapse;}
+.bg_color_blue{background: blue;}
+.bg_color_red{background: red;}
+.bg_color_yellow{background: yellow;}
+.bg_color_white{background: white;}
+.bg_color_green{background: green;}
+.bg_color_orange{background: orange;}
+.bg_color_purple{background: purple;}
+.bg_color_black{background: black;}
+.txt_color_aqua{color:aqua;}
+.txt_color_black{color:black;}
+.txt_color_red{color:red;}
+.txt_color_white{color:white;}
+
+

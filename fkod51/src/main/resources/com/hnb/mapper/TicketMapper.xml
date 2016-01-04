@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	
+ <mapper namespace="com.hnb.mapper.TicketMapper">
+     <select id="getOne" resultType="com.hnb.ticket.TicketVO">
+             SELECT * FROM user WHERE name = #{name}  
+     </select>
+ 
+     <select id="getUser" resultType="com.hnb.ticket.TicketVO">
+             SELECT * FROM user
+     </select>
+ </mapper>

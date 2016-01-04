@@ -1,0 +1,878 @@
+@CHARSET "UTF-8";
+/*=============================================*/
+/*=================팀장 수정부분=================*/
+/*=============================================*/
+.ticket_wrap, .seats_wrap, .rand_wrap, .confirm_wrap {
+	margin-left: 300px;
+}
+
+/*=============================================*/
+/*================ticket.html==================*/
+/*=============================================*/
+/* /// FLEX-CONTAINER */
+.ticket_flex-container {
+	display: -webkit-flex;
+	display: flex;
+	width: 900px;
+	height: 500px;
+	background-image: url("../images/res_bg.jpg");
+}
+
+.ticket_flex-item {
+	/*  background-color: cornflowerblue; */
+	background-color: hsla(30, 30%, 30%, .3);
+	margin: 10px;
+}
+
+.ticket_item1 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-right: 5px;
+}
+
+.ticket_item2 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.ticket_item3 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.ticket_item4 {
+	-webkit-flex: 0.5;
+	flex: 0.5;
+	margin-left: 5px;
+}
+
+.ticket_flex-container h4 {
+	height: 20px;
+	padding: 0 20px;
+	border-bottom: 5px solid hsla(0, 0%, 100%, 1);
+	margin-bottom: 0px;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 0px;
+	text-align: center;
+}
+
+/* /// CONTAINER */
+#ticket_container {
+	position: relative;
+	padding: 0px 0;
+	height: 35px;
+	font-family: sans-serif;
+	color: #666;
+	line-height: normal;
+	-webkit-font-smoothing: antialiased;
+}
+/* /// MENU */
+#ticket_menu {
+	height: 35px;
+	box-shadow: 0 3px #ticket_81B300;
+}
+/* INSET */
+#ticket_menu .inset {
+	position: relative;
+	max-width: 700px;
+	height: 35px;
+	margin: auto;
+}
+/* category */
+#ticket_menu .ticket_inset .ticket_category {
+	float: left;
+	height: 35px;
+	border-right-width: 2px solid hsla(0, 0%, 100%, 1);
+} /* 아이템 다음줄 사이간격 */
+/* LINK */
+#ticket_menu .ticket_inset .ticket_category .ticket_radio {
+	display: none;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_link {
+	cursor: pointer;
+	height: 25px;
+	padding: 5px 5px;
+	display: block;
+	color: #333;
+	font-weight: bold;
+
+	/* line-height: 15px; */
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_link:hover {
+	color: #81B300;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_radio:checked+.ticket_link
+	{
+	background: #81B300;
+	color: #FFF;
+}
+/* SUB */
+#ticket_menu .ticket_inset .ticket_category .ticket_sub {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right: 0;
+	padding: 5px;
+	background: #ticket_81B300;
+	display: none;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_radio:checked+.ticket_link+.ticket_sub
+	{
+	display: table;
+}
+/* LIST category */
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category
+	{
+	min-width: 218px;
+	padding: 10px;
+	padding-right: 5px;
+	display: table-cell;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category a
+	{
+	padding: 5px 10px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category a:hover
+	{
+	background: hsla(0, 0%, 100%, .1);
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category #ticket_form
+	{
+	display: table;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category dl
+	{
+	max-height: 337px;
+	overflow: auto;
+}
+
+#ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category #ticket_form dt
+	{
+	position: relative;
+	display: table-cell;
+	color: #FFF;
+}
+
+.ticket_bookmark .ticket_subtitle {
+	height: 20px;
+	padding: 8px;
+	display: block;
+	color: #333;
+	font-weight: bold;
+	line-height: 15px;
+}
+.ticket_normal .ticket_subtitle {
+	height: 20px;
+	padding: 8px;
+	display: block;
+	color: #333;
+	font-weight: bold;
+	line-height: 15px;
+}
+
+.ticket_bookmark dl {
+	border-top: 3px solid #ticket_81B300;
+	border-bottom: 3px solid #ticket_81B300;
+	min-height: 70px;
+	max-height: 70px;
+	overflow: auto;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.ticket_normal dl {
+	border-top: 3px solid #ticket_81B300;
+	border-bottom: 3px solid #ticket_81B300;
+	min-height: 300px;
+	max-height: 300px;
+	overflow: auto;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.ticket_item2 #ticket_container #ticket_menu .ticket_inset .ticket_category .ticket_sub .ticket_list-category dl
+	{
+	max-height: 205px;
+	overflow: auto;
+}
+
+.ticket_bookmark .ticket_list-category a {
+	padding: 2px 5px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+.ticket_normal .ticket_list-category a {
+	padding: 2px 5px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ticket_bookmark .ticket_list-category a:hover {
+	background: hsla(0, 0%, 100%, .1);
+}
+.ticket_normal .ticket_list-category a:hover {
+	background: hsla(0, 0%, 100%, .1);
+}
+
+.ticket_list-category {
+	background: #81B300;
+}
+
+.ticket_times .ticket_list-category a {
+	padding: 2px 5px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ticket_times .ticket_list-category a:hover {
+	background: hsla(0, 0%, 100%, .1);
+}
+
+.ticket_times .ticket_list-category {
+	background: #81B300;
+	padding: 5px;
+	max-height: 375px;
+}
+
+.ticket_times .ticket_list-category dl {
+	border-top: 3px solid #ticket_FFFFFF;
+	border-bottom: 3px solid #ticket_FFFFFF;
+	overflow: auto;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.ticket_hall {
+	font-size: 15px;
+	height: 25px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.ticket_item4 .ticket_choiceseat {
+	display: none;
+}
+
+.ticket_item4 .ticket_choiceseatlabel {
+	position: absolute;
+	top: 710px;
+	left: 777px;
+	margin-left: 300px;
+	/* vertical-align: middle; */
+	/* top: 140px; */
+	/* margin: auto; */ background-color : #202020;
+	cursor: pointer;
+	width: 111px;
+	height: 40px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 220%;
+	background-color: #202020
+}
+
+.ticket_item4 .ticket_choiceseatlabel:hover {
+	color: #81B300;
+}
+
+/*=============================================*/
+/*================seat.html====================*/
+/*=============================================*/
+
+/* /// FLEX-CONTAINER */
+.seats_flex-container {
+	display: -webkit-flex;
+	display: flex;
+	width: 900px;
+	height: 500px;
+	background-image: url("../images/res_bg.jpg");
+}
+
+.seats_flex-item {
+	/*  background-color: cornflowerblue; */
+	background-color: hsla(30, 30%, 30%, .3);
+	margin: 10px;
+}
+
+.seats_item1 {
+	-webkit-flex: 2.5;
+	flex: 2.5;
+	margin-right: 5px;
+}
+
+.seats_item2 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-left: 5px;
+}
+
+.seats_flex-container h3 {
+	height: 20px;
+	padding: 0 20px;
+	border-bottom: 5px solid hsla(0, 0%, 100%, 1);
+	margin-bottom: 0px;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 0px;
+	text-align: center;
+}
+
+.seats_number {
+	background-color: #81B300;
+	margin: 10px;
+}
+
+.seats_ratelist {
+	width: 100px;
+	height: 20px;
+	padding: 5px 5px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+}
+
+.seats_seats {
+	background-color: #81B300;
+	margin: 10px;
+	padding: 5px;
+	text-align: center;
+}
+
+.seats_seats .seats_screenborder {
+	background: hsla(0, 0%, 100%, .2);
+	border-bottom: 2px solid hsla(0, 0%, 100%, 1);
+}
+
+.seats_seats .seats_screen {
+	width: 100px;
+	height: 15px;
+	padding: 5px 5px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+}
+
+.seats_seatsblock {
+	margin: 10px;
+}
+
+.seats_seatsblock .seats_check {
+	display: none;
+}
+
+.seats_seatsblock .seats_rownum {
+	width: 12px;
+	height: 12px;
+	padding: 5px 5px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+	font-size: 13px;
+}
+
+.seats_seatsblock .seats_empty {
+	width: 12px;
+	height: 12px;
+	padding: 5px 5px;
+	display: inline-block;
+}
+
+.seats_seatsblock .seats_seatnum {
+	background-color: #404020;
+	cursor: pointer;
+	width: 12px;
+	height: 12px;
+	padding: 5px 5px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 70%;
+	font-size: 13px;
+}
+
+.seats_seatsblock .seats_seatnum:hover {
+	background-color: #808020;
+}
+
+.seats_item2 .seats_info {
+	background-color: #81B300;
+	padding-top: 10px;
+	padding-bottom: 15px;
+	margin: 10px;
+}
+
+.seats_infotitle {
+	width: 60px;
+	height: 15px;
+	padding: 3px 3px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+	font-size: 13px;
+	border-right: 2px solid hsla(0, 0%, 100%, 1);
+}
+
+.seats_cal {
+	margin-top: 30px;
+}
+
+.seats_item2 .seats_dores {
+	display: none;
+}
+
+.seats_item2 .seats_doreslabel {
+	position: absolute;
+	top: 448px;
+	left: 650px;
+	background-color: #202020;
+	margin-left: 300px; 
+	cursor : pointer;
+	width: 238px;
+	height: 40px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 220%;
+	cursor: pointer;
+	
+}
+
+.seats_item2 .seats_doreslabel:hover {
+	color: #81B300;
+}
+
+/*=============================================*/
+/*=============randomticket.html===============*/
+/*=============================================*/
+
+/* /// FLEX-CONTAINER */
+.rand_flex-container {
+	display: -webkit-flex;
+	display: flex;
+	width: 900px;
+	height: 500px;
+	background-image: url("../images/res_bg.jpg");
+}
+
+.rand_flex-item {
+	/*  background-color: cornflowerblue; */
+	background-color: hsla(30, 30%, 30%, .3);
+	margin: 10px;
+}
+
+.rand_item1 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-right: 5px;
+}
+
+.rand_item2 {
+	-webkit-flex: 0.5;
+	flex: 0.5;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.rand_item3 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.rand_item4 {
+	-webkit-flex: 1;
+	flex: 1;
+	margin-left: 5px;
+}
+
+.rand_flex-container h4 {
+	height: 20px;
+	padding: 0 20px;
+	border-bottom: 5px solid hsla(0, 0%, 100%, 1);
+	margin-bottom: 0px;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 0px;
+	text-align: center;
+}
+
+.rand_item2 h5 {
+	height: 40px;
+	padding: 0 20px;
+	margin: 0px;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 250%;
+	text-align: center;
+	font-size: 15px;
+}
+
+/* /// CONTAINER */
+#rand_container {
+	position: relative;
+	padding: 0px 0;
+	height: 35px;
+	font-family: sans-serif;
+	color: #666;
+	line-height: normal;
+	-webkit-font-smoothing: antialiased;
+}
+/* /// MENU */
+#rand_menu {
+	height: 35px;
+	box-shadow: 0 3px #81B300;
+}
+/* INSET */
+#rand_menu .rand_inset {
+	position: relative;
+	max-width: 700px;
+	height: 35px;
+	margin: auto;
+}
+/* category */
+#rand_menu .rand_inset .rand_category {
+	float: left;
+	height: 35px;
+	border-right-width: 2px solid hsla(0, 0%, 100%, 1);
+} /* 아이템 다음줄 사이간격 */
+/* LINK */
+#rand_menu .rand_inset .rand_category .rand_radio {
+	display: none;
+}
+
+#rand_menu .rand_inset .rand_category .rand_link {
+	cursor: pointer;
+	height: 25px;
+	padding: 5px 5px;
+	display: block;
+	color: #333;
+	font-weight: bold;
+
+	/* line-height: 15px; */
+}
+
+#rand_menu .rand_inset .rand_category .rand_link:hover {
+	color: #81B300;
+}
+
+#rand_menu .rand_inset .rand_category .rand_radio:checked+.rand_link {
+	background: #81B300;
+	color: #FFF;
+}
+/* SUB */
+#rand_menu .rand_inset .rand_category .rand_sub {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	right: 0;
+	padding: 5px;
+	background: #81B300;
+	display: none;
+}
+
+#rand_menu .rand_inset .rand_category .rand_radio:checked+.rand_link+.rand_sub
+	{
+	display: table;
+}
+
+/* LIST category */
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category {
+	min-width: 218px;
+	padding: 10px;
+	padding-right: 5px;
+	display: table-cell;
+}
+
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category a {
+	padding: 5px 10px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category a:hover
+	{
+	background: hsla(0, 0%, 100%, .1);
+}
+
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category #rand_form
+	{
+	display: table;
+}
+
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category dl {
+	max-height: 337px;
+	overflow: auto;
+}
+
+#rand_menu .rand_inset .rand_category .rand_sub .rand_list-category #rand_form dt
+	{
+	position: relative;
+	display: table-cell;
+	color: #FFF;
+}
+
+.rand_bookmark .rand_subtitle {
+	height: 20px;
+	padding: 8px;
+	display: block;
+	color: #333;
+	font-weight: bold;
+	line-height: 15px;
+}
+
+.rand_bookmark dl {
+	border-top: 3px solid #81B300;
+	border-bottom: 3px solid #81B300;
+	min-height: 70px;
+	max-height: 70px;
+	overflow: auto;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.rand_item1 #rand_container #rand_menu .rand_inset .rand_category .rand_sub .rand_list-category dl
+	{
+	max-height: 205px;
+	overflow: auto;
+}
+
+.rand_bookmark .rand_list-category a {
+	padding: 2px 5px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.rand_bookmark .rand_list-category a:hover {
+	background: hsla(0, 0%, 100%, .1);
+}
+
+.rand_bookmark .rand_list-category {
+	background: #81B300;
+}
+
+.rand_times .rand_list-category a {
+	padding: 2px 5px;
+	display: block;
+	font-size: 90%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.rand_times .rand_list-category a:hover {
+	background: hsla(0, 0%, 100%, .1);
+}
+
+.rand_times .rand_list-category {
+	background: #81B300;
+	padding: 5px;
+	max-height: 338px;
+}
+
+.rand_times .rand_list-category dl {
+	border-top: 3px solid #FFFFFF;
+	border-bottom: 3px solid #FFFFFF;
+	overflow: auto;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.rand_white_15px {
+	font-size: 15px;
+	height: 25px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.rand_basic {
+	background-color: #81B300;
+	margin: 10px;
+}
+
+.rand_ratelist {
+	width: 100px;
+	height: 20px;
+	padding: 5px 5px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+}
+
+.rand_item4 .rand_info {
+	background-color: #81B300;
+	padding: 10px;
+	padding-bottom: 15px;
+	margin: 10px;
+}
+
+.rand_infotitle {
+	width: 60px;
+	height: 15px;
+	padding: 3px 3px;
+	display: inline-block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+	font-size: 13px;
+	border-right: 2px solid hsla(0, 0%, 100%, 1);
+}
+
+.rand_randomtag {
+	width: 60px;
+	height: 15px;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 100%;
+	font-size: 13px;
+}
+
+.rand_cal {
+	margin-top: 30px;
+}
+
+.rand_item4 .rand_choiceseat {
+	display: none;
+}
+
+.rand_item4 .rand_choiceseatlabel {
+	position: absolute;
+	top: 448px;
+	left: 655px;
+	background-color: #202020;
+	cursor: pointer;
+	width: 233px;
+	height: 40px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 220%;
+}
+
+.rand_item4 .rand_choiceseatlabel:hover {
+	color: #81B300;
+}
+
+/*=============================================*/
+/*================confirm.html=================*/
+/*=============================================*/
+
+/* /// FLEX-CONTAINER */
+.confirm_flex-container {
+	display: -webkit-flex;
+	display: flex;
+	width: 900px;
+	height: 500px;
+	background-image: url("../images/res_bg.jpg");
+}
+
+.confirm_flex-item {
+	/*  background-color: cornflowerblue; */
+	background-color: hsla(30, 30%, 30%, .3);
+	margin: 10px;
+}
+
+.confirm_item1 {
+	-webkit-flex: 2.5;
+	flex: 2.5;
+}
+
+.confirm_item2 {
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+.confirm_flex-container h3 {
+	height: 20px;
+	padding: 0 20px;
+	border-bottom: 5px solid hsla(0, 0%, 100%, 1);
+	margin-bottom: 0px;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 0px;
+	text-align: center;
+}
+
+.confirm_infomain {
+	background-color: #81B300;
+	padding-top: 10px;
+	padding-bottom: 15px;
+	margin: 10px;
+}
+
+.confirm_item1 .confirm_resconfirm {
+	display: none;
+}
+
+.confirm_item1 .confirm_resconfirmlabel {
+	position: absolute;
+	top: 448px;
+	left: 777px;
+	background-color: #202020;
+	margin-left: 300px; cursor : pointer;
+	width: 111px;
+	height: 40px;
+	padding: 5px 5px;
+	display: block;
+	color: #FFF;
+	font-weight: bold;
+	text-align: center;
+	line-height: 220%;
+	cursor: pointer;
+}
+
+.confirm_item1 .confirm_resconfirmlabel:hover {
+	color: #81B300;
+}
