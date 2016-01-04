@@ -89,9 +89,9 @@
 		});
 		
 		$("#ticket_btn").click(function() {
-			$("#box").load(context + "/ticket/Ticket.do");
+			$('.mainView').load(context + "/schedule/Ticket");
 		});
-		
+				
 		$("#theater_btn").click(function() {
 			location.href = context + "/global/new";
 		});
