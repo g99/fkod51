@@ -51,7 +51,84 @@
         </div>
     </div>
 </section>
-
+<section id="three" class="no-padding">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d">
+                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d" class="img-responsive" alt="Image 1">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg">
+                        <img src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg" class="img-responsive" alt="Image 2">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4">
+                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4" class="img-responsive" alt="Image 3">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg">
+                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg" class="img-responsive" alt="Image 4">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg">
+                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg" class="img-responsive" alt="Image 5">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg">
+                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg" class="img-responsive" alt="Image 6">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 <section class="container-fluid" id="four">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
@@ -188,20 +265,19 @@
     </div>
     </div>
 </div>
-<div id="aboutModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
     	<div class="modal-body">
-    		<h2 class="text-center">Landing Zero Theme</h2>
+    		<h2 class="text-center">로그인</h2>
     		<h5 class="text-center">
-    		    A free, responsive landing page theme built by BootstrapZero.
+    		    저희 MTB BOX를 방문해주셔서 감사합니다.
     		</h5>
-    		<p class="text-justify">
-    		    This is a single-page Bootstrap template with a sleek dark/grey color scheme, accent color and smooth scrolling.
-    		    There are vertical content sections with subtle animations that are activated when scrolled into view using the jQuery WOW plugin. There is also a gallery with modals
-    		    that work nicely to showcase your work portfolio. Other features include a contact form, email subscribe form, multi-column footer. Uses Questrial Google Font and Ionicons.
-    		</p>
-    		<p class="text-center"><a href="http://www.bootstrapzero.com">Download at BootstrapZero</a></p>
+    		<br />
+    		<label for="id" style="padding-left:10%">아이디</label>
+    		<input type="text" name="id" placeholder="아이디"/> &nbsp;&nbsp;
+    		<label for="password">비밀번호</label>
+    		<input type="password" name="password" placeholder="비밀번호"/>
     		<br/>
     		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
     	</div>

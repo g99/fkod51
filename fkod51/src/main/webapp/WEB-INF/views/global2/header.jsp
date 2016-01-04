@@ -15,24 +15,24 @@
         <div class="navbar-collapse collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="page-scroll" href="#one" style="font-size:1.5em;">Movie</a>
+                    <a class="page-scroll" href="#one" style="font-size:1.5em;">영화</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#two" style="font-size:1.5em;">Ticketing</a>
+                    <a class="page-scroll" href="#two" style="font-size:1.5em;">예매</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#three" style="font-size:1.5em;">Theater</a>
+                    <a class="page-scroll" href="#three" style="font-size:1.5em;">극장</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#four" style="font-size:1.5em;">Event</a>
+                    <a class="page-scroll" href="#four" style="font-size:1.5em;">이벤트</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#last" style="font-size:1.5em;">Sign Up</a>
+                    <a class="page-scroll" href="#last" style="font-size:1.5em;">회원가입</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#aboutModal" style="font-size:1.5em;">Sign In</a>
+                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#loginModal" style="font-size:1.5em;">로그인</a>
                 </li>
             </ul>
         </div>
@@ -45,9 +45,10 @@
              <h1 class="cursive">MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
-             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">Toggle Video</a>
+             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
          </div>
      </div>
+     <div id="poster" style="padding-top:14%;"></div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
          <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
@@ -58,8 +59,10 @@
 		 $("#toggleVideo").click(function() {
 			 	$("#toggleVideo").remove();
 				$(".header-content").animate({
-					"padding-bottom":"33%"
-				},1200)
+					"padding-bottom":"30%"
+				},1200, function() {
+					$("#poster").load(context + "/home");
+				});
 			});
 	});
  </script>
