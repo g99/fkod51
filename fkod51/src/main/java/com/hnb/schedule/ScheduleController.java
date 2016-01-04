@@ -46,6 +46,9 @@ public class ScheduleController {
 		} else if (movie!=null&&theater!=null&&date!=null) {
 			timeList = scheduleService.getTimeList(movie, theater, date);
 		}
+		logger.info("theaterList : {}", theaterList);
+		logger.info("dateList : {}", dateList);
+		logger.info("timeList : {}", timeList);
 		model.addAttribute("theaterList",theaterList);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("timeList",timeList);
