@@ -48,10 +48,10 @@
              <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
          </div>
      </div>
-     <div id="poster" style="padding-top:14%;"></div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
          <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
+     <div id = "open_Wrap"></div>
 </header>
 
 <script>
@@ -59,10 +59,9 @@
 		 $("#toggleVideo").click(function() {
 			 	$("#toggleVideo").remove();
 				$(".header-content").animate({
-					"padding-bottom":"30%"
-				},1200, function() {
-					$("#poster").load(context + "/home");
-				});
+					"padding-bottom":"40%"
+				},1200)
+				$("#open_Wrap").load(context + "/home");
 			});
 	});
  </script>

@@ -26,6 +26,6 @@ public class MainController {
 	@RequestMapping("/home")
 	public String newHome() {
 		logger.info("새로운 홈 진입");
-		return "global2/default.jsp";
+		return "global2/default_seong.jsp";
 	}
 }
