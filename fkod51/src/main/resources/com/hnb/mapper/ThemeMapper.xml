@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.hnb.mapper.ThemeMapper">
+	<select id="getList" resultType="com.hnb.theme.ThemeVO" 
+	parameterType="com.hnb.global.Command">
+	 SELECT 
+	 THEME_NO AS themeNo,
+	 THEME_NAME AS themeName
+	 FROM THEME
+	</select>
+	
+	<select id="searchByKeyword" resultType="com.hnb.theme.ThemeVO" 
+	parameterType="com.hnb.global.Command">
+	SELECT 
+	 THEME_NO AS themeNo,
+	 THEME_NAME AS themeName
+	 FROM THEME WHERE ${column} LIKE '%' || #{keyword} ||'%'
+	</select>
+	<select id="searchById" resultType="com.hnb.theme.ThemeVO"
+	parameterType="int">
+	 SELECT 
+	 THEME_NO AS themeNo,
+	 THEME_NAME AS themeName
+	 FROM THEME WHERE THEME_NO = #{themeNo}
+	
+	</select>
+	<select id="count" parameterType="int">
+	SELECT COUNT(*) AS count FROM THEME
+	</select>
+	
+	<select id="countByKeyword" resultType="int"
+	parameterType="com.hnb.theme.ThemeVO">
+	SELECT COUNT(*) AS count
+	FROM THEME
+	WHERE ${column} LIKE '%' || #{keyword} || '%'
+	</select>
+	
+ 	<insert id="add" parameterType="com.hnb.theme.ThemeVO">
+ 	INSERT INTO THEME(THEME_NO,THEME_NAME)
+	VALUES (SEQ.NEXTVAL, #{themeName});
+ 	</insert>
+ 	
+ 	<update id="change" parameterType="com.hnb.theme.ThemeVO">
+ 	UPDATE THEME SET 
+ 	THEME_NAME = #{themeName} 
+ 	WHERE THEME_NO = #{themeNo}
+ 	
+ 	</update>
+ 	<delete id="remove" parameterType="string">
+ 	DELETE FROM THEME WHERE THEME_MANE = #{themeName} 	
+ 	</delete>
+ </mapper>

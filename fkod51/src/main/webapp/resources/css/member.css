@@ -1,0 +1,392 @@
+@CHARSET "UTF-8";
+.icon-user {
+	color:white;
+}
+.form-2 {
+    /* Size and position */
+    float: right; 
+    width: 250px;
+    height:150px;
+    margin-right: 75px;
+    margin-top: 30px;
+    padding-top: 10px;
+    padding-left: 30px;
+    position: relative;
+
+    /* Styles */
+    background: #333;
+    border-radius: 4px;
+    color: #7e7975;
+    box-shadow:
+        0 2px 2px rgba(0,0,0,0.2),        
+        0 1px 5px rgba(0,0,0,0.2),        
+        0 0 0 12px rgba(255,255,255,0.1); 
+}
+
+.form-2 h1 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #bdb5aa;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EBE6E2;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.form-2 h1 .log-in, .form-2 h1 .sign-up {
+    display: inline;
+    text-transform: uppercase;
+}
+
+.form-2 h1 .log-in {
+    color: #6c6763;
+    padding-right: 2px;
+}
+
+.form-2 h1 .sign-up {
+    color: #ffb347;
+    padding-left: 2px;
+}
+
+.form-2 .float {
+    width: 40%;
+    float: left;
+    border-top: 1px solid rgba(255,255,255,1);
+}
+
+.form-2 .float:first-of-type {
+    padding-right: 7px;
+    margin-right: 13px;
+}
+
+.form-2 .float:last-of-type {
+    padding-left: px;
+}
+
+.form-2 label {
+    display: inline;
+    padding: 0 0 5px 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    font-size: 11px;
+} */
+
+.form-2 label i {
+    margin-right: 5px; Gap between icon and text
+    display: inline;
+    width: 10px;
+}
+
+.form-2 input[type=text],
+.form-2 input[type=password] 
+{
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    display: inline;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 3px solid #ebe6e2;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+} 
+.form-2 input[type=text]{
+	width: 110%;
+}
+
+.form-2 input[type=text]:hover,
+.form-2 input[type=password]:hover {
+    border-color: #CCC;
+}
+
+.form-2 label:hover ~ input {
+    border-color: #CCC;
+}
+
+.form-2 input[type=text]:focus,
+.form-2 input[type=password]:focus {
+    border-color: #BBB;
+    outline: none; /* Remove Chrome's outline */
+}
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+.form-2 input[type=submit],
+.form-2 .log-twitter {
+    /* Size and position */
+    width: 40%;
+    height: 38px;
+    float: left;
+    position: relative;
+    /* Styles */
+    box-shadow: inset 0 1px rgba(255,255,255,0.3);
+    border-radius: 3px;
+    cursor: pointer;
+
+    /* Font styles */
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 38px; /* Same as height */
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-2 input[type=submit] {
+    margin-left: 10px;
+    background: linear-gradient(#fbd568, #ffb347);
+    border: 1px solid #f4ab4c;
+    color: #996319;
+    text-shadow: 0 1px rgba(255,255,255,0.3);
+}
+
+.form-2 .log-twitter {
+    margin-right: 1%;
+    background: #555;
+    border: none;
+    color: #ffffff;
+    text-shadow: 0 -1px rgba(0,0,0,0.3);
+    text-decoration: none;
+}
+
+.form-2 input[type=submit]:hover,
+.form-2 .log-twitter:hover {
+    box-shadow: 
+        inset 0 1px rgba(255,255,255,0.3), 
+        inset 0 20px 40px rgba(255,255,255,0.15);
+}
+
+.form-2 input[type=submit]:active,
+.form-2 .log-twitter:active{
+    top: 1px;
+}
+
+.no-boxshadow .form-2 input[type=submit]:hover {
+    background: #ffb347;
+}
+
+.no-boxshadow .form-2 .log-twitter:hover {
+    background: #2a8ac4;
+}
+
+/* 위의 css 로그인 폼의 css이고, 메인 헤더쪽으로 넘어가 작용을 한다. */
+
+
+
+
+/* 2. 회원가입 첫화면의 CSS*/
+
+.inline{display: inline}
+
+#mainDiv{
+width: 100%;
+margin : auto;
+background: white;
+margin-bottom: 50px;
+}
+
+#subDiv{
+width: 1000px;
+height: 800px;
+margin: auto;
+padding-top: 100px;
+background: rgba(232, 183, 183, 0.14);
+}
+
+#imgDiv{
+width: 160px;
+height: 200px;
+margin: auto;
+}
+#p_f{
+font-size: 11px;
+}
+#main_Html{
+background: white;
+}
+
+
+
+
+
+/* 3. 약관 CSS */
+
+#prov_wrap{
+	background : white;
+	width: 100%; 
+	margin: auto;
+}
+
+#prov_form{
+	padding-top : 30px;
+	background: rgba(232, 183, 183, 0.14);
+	width: 1100px; 
+	height: 1250px; 
+	margin-left: 170px;	
+}
+
+#provOne_Text{
+	padding-left: 20px;
+	font-size: 17px; 
+	font-weight: 500;
+}
+
+#textOne_form{
+	margin: auto;
+}
+
+#textTwo_form{
+	margin: auto;
+}
+
+#textThree_form{
+	margin: auto;
+}
+
+.term_check{
+	float: right; 
+	width: 450px; 
+	height: 50px;
+}
+
+#p_two{
+	padding-left: 20px;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.term_check_second{
+	float: right; 
+	width: 570px; 
+	height: 50px;
+}
+
+#p_three{
+	padding-left: 100px;
+	font-size: 17px; 
+	font-weight: 500;
+}
+
+#tr_One{
+	border:solid 1px #848484; 
+	border-bottom:none;
+}
+#tr_Two{
+	border:solid 1px #848484;
+}
+
+.th_one{
+	border-right:1px solid #848484; 
+	text-align:center; 
+	width:300px;
+}
+.th_two{
+	border-right:1px solid #848484; 
+	text-align:center;
+}
+
+#td_One{
+	border:solid 1px #848484; 
+	padding-left:6px;"
+}
+
+#check_Form{
+	float: right; 
+	width: 630px; 
+	height: 50px;
+}
+
+#check_Form_Two{
+	float: right; 
+	width: 370px; 
+	height: 50px;
+}
+
+#agree{
+	width: 121px; 
+	height: 41px; 
+	margin: auto;
+}
+
+#img_btn{
+	width: 120px;
+	height: 40px;
+}
+
+.maintext{
+font-size: 27px;
+font-weight: bold;
+padding-left: 30px;
+padding-top: 50px;
+display: inline;
+}
+
+.subtext{
+font-size: 16px;
+padding-left: 14px;
+display: inline;
+}
+
+.term_text {
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 900px;
+    height: 157px;
+    padding: 10px;
+    border: 1px solid #e8e7e7;
+    font-size: 12px;
+}
+
+
+
+/* 회원가입 폼 내부 CSS */
+.join_wrap{
+	background: white;
+	height: 850px;
+	margin: auto;
+	margin-top: 70;
+}
+
+.form_Main{
+	background: rgba(232, 183, 183, 0.14);
+	width: 1200px;
+	height: 100%; 
+	padding-top: 100px;
+	padding-left: 25px;
+	margin-left: 200px;
+	margin-right: 200px;
+}
+
+.inline{display: inline}
+
+#form_Join{
+	width: 100%;
+	height: 100%
+}
+
+#join_html{
+	width: 100%;
+	height: 1000px;
+}
+
+/*회원가입 완료창 현재 이 css는 먹지 않음, html 안에서 제작한 div에게는 영향을 끼칠수 없기에 하드코딩 하였음.*/ 
+#join_Suc{
+	padding-top : 50px;
+	padding-left : 50px;
+	width: 900px;
+	height: 600px;
+	margin: auto;
+	background: rgba(232, 183, 183, 0.14);
+	
+}
+#join_Result_Html{
+	height: 100%;
+    width: 100%;
+    background: white;
+}

@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+#table_member td{text-align: center;}
+#table_grade td{text-align: center;}
+#table_food td{text-align: center;}
+#menu {padding: 0;}
+#menu li {display: inline;}
+#menu li a {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+}
+#menu li a:hover {background-color: orange;}

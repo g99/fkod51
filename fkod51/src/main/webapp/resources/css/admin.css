@@ -1,0 +1,301 @@
+@CHARSET "UTF-8";
+
+/*=============================================*/
+/*=================admin.html==================*/
+/*=============================================*/
+
+#admin_nav button {
+	color: white;
+	background : none;
+	border : none;
+}
+#admin_nav button:hover, #admin_nav button:focus {
+	color: #FCCC5F;
+}
+
+#div_admin_movie {
+	padding : 20px;
+	background:white;
+	height:500px;
+	width:400px;
+}
+#tab_admin_movie {
+	height: 450px;
+	width:350px;
+	text-align:center;
+}
+#tab_admin_movie th {
+	width: 100px;
+	text-align:center;
+}
+#tab_admin_movie, #tab_admin_movie tr, #tab_admin_movie td {
+	border : 1px solid black;
+	border-collapse : collapse;
+} 
+
+#div_admin_member {
+	padding : 20px;
+	background:white;
+	height:500px;
+	width:400px;
+}
+#tab_admin_member {
+	height: 450px;
+	width:350px;
+	text-align:center;
+}
+#tab_admin_member th {
+	width: 100px;
+	text-align:center;
+}
+#tab_admin_member, #tab_admin_member tr, #tab_admin_member td {
+	border : 1px solid black;
+	border-collapse : collapse;
+} 
+#admin_nav a:hover, #admin_nav a:focus {
+	color: #FCD063;
+	text-decoration: none;
+}
+.admin_wrap body {
+	margin: 10px auto;
+	padding: 0;
+}
+
+.admin_menu {
+	float: left;
+	width: 200px;
+	text-indent: 10px;
+	padding-top: 200px;
+}
+
+.admin_menu, .admin_menu, .admin_sub {
+	padding: 0;
+	list-style-type: none;
+}
+
+.admin_group .admin_nav {
+	height: 35px;
+	line-height: 35px;
+	background: orange;
+}
+
+.admin_sub li {
+	margin-bottom: 0;
+	height: 35px;
+	line-height: 35px;
+	background: gray;
+}
+
+.admin_sub li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #000;
+}
+
+.admin_sub li:hover {
+	background: #cf0;
+}
+
+.admin_header {
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.admin_group {
+	margin: 10px;
+}
+
+.admin_iframe {
+	float: right;
+	width: 85%;
+	height: 755px;
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.admin_home {
+	background: url("../images/home_alt.png");
+	background-size: 100% 100%;
+}
+
+/*=============================================*/
+/*=================first.html==================*/
+/*=============================================*/
+.first_box_1 {
+	width: 100%;
+	height: 250px;
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.first_box_2 {
+	width: 100%;
+	height: 250px;
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+/*=============================================*/
+/*==================list.html==================*/
+/*=============================================*/
+.list_header {
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.list_list {
+	border: 1px solid orange;
+	width: 100%;
+	height: 500px;
+	margin: 10px;
+}
+
+.list_button_list {
+	float: right;
+	margin: 10px;
+}
+
+/*=============================================*/
+/*=============movie_modify.html===============*/
+/*=============================================*/
+.movie_modify_main {
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+
+.movie_modify_poster {
+	float: left;
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_modify_director {
+	float: left;
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_modify_actor {
+	float: left;
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_modify_genre {
+	float: left;
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_modify_con {
+	float: left;
+	width: 85%;
+	height: 50px;
+	border: 1px solid orange;
+	margin: 20px;
+}
+
+.movie_modify_button {
+	margin: 10px;
+}
+
+/*=============================================*/
+/*================movie_add.html===============*/
+/*=============================================*/
+.movie_add_main {
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.movie_add_poster {
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_add_director {
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_add_actor {
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_add_genre {
+	width: 85%;
+	margin: 20px;
+}
+
+.movie_add_con {
+	width: 85%;
+	height: 50px;
+	border: 1px solid orange;
+	margin: 20px;
+}
+
+/*=============================================*/
+/*==================page.html==================*/
+/*=============================================*/
+.page_wrap body {
+	margin: 10px auto;
+	padding: 0;
+}
+
+.page_menu {
+	width: 200px;
+	text-indent: 10px;
+}
+
+.page_menu, .page_menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+.page_group .page_nav {
+	height: 35px;
+	line-height: 35px;
+	background: orange;
+}
+
+.page_sub li {
+	margin-bottom: 0;
+	height: 35px;
+	line-height: 35px;
+	background: gray;
+}
+
+.page_sub li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #000;
+}
+
+.page_sub li:hover {
+	background: #cf0;
+}
+
+.page_popup {
+	clear: left;
+	width: 30%;
+	height: 50px;
+	margin: 20px;
+}
+
+.page_header {
+	margin: 10px;
+	border: 1px solid orange;
+}
+
+.page_group {
+	margin: 10px;
+}
+
+.page_popup2 {
+	float: left;
+}

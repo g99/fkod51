@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+.txt_left{text-align: left;}
+.txt_right{text-align: right;}
+.txt_center{text-align: center;}
+.txt_font{font-family: "Times New Roman";}
+.txt_size_100{font-size: 100px;}
