@@ -19,8 +19,9 @@
       	STORY AS story,
       	CUT AS cut,
       	TRAILER AS trailer,
-      	COUNTRY AS country
-      	FROM MOVIE
+      	COUNTRY AS country,
+   		T_RATE AS tRate
+      	FROM MOVIE ORDER BY T_RATE DESC
       </select>
       <select id="selectNameBy" resultType="com.hnb.movie.MovieVO" parameterType="string">
       SELECT 
@@ -37,15 +38,16 @@
       	STORY AS story,
       	CUT AS cut,
       	TRAILER AS trailer,
-      	COUNTRY AS country
+      	COUNTRY AS country,
+   		T_RATE AS tRate
       FROM MOVIE WHERE FILM_NUMBER = #{filmNumber}
       </select>
       
       <insert id="insert" parameterType="com.hnb.movie.MovieVO" >
     	INSERT INTO MOVIE
-        (FILM_NUMBER,	FILM_NAME,DIRECTOR,ACTOR,RATE,RUNTIME,PRICE,GENRE,RELEASE_DATE,END_DATE,STORY,CUT,TRAILER,COUNTRY)
+        (FILM_NUMBER,	FILM_NAME,DIRECTOR,ACTOR,RATE,RUNTIME,PRICE,GENRE,RELEASE_DATE,END_DATE,STORY,CUT,TRAILER,COUNTRY,T_RATE)
     	VALUES
-      	(#{filmNumber}, #{filmName}, #{director}, #{actor}, #{rate},  #{runtime}, #{price}, #{genre}, #{releaseDate}, #{endDate}, #{story}, #{cut}, #{trailer}, #{country})
+      	(#{filmNumber}, #{filmName}, #{director}, #{actor}, #{rate},  #{runtime}, #{price}, #{genre}, #{releaseDate}, #{endDate}, #{story}, #{cut}, #{trailer}, #{country},#{tRate})
   </insert>
   
     <update id="update" parameterType="com.hnb.movie.MovieVO">
@@ -62,7 +64,8 @@
       	STORY = #{story},
       	CUT = #{cut},
       	TRAILER = #{trailer},
-      	COUNTRY = #{country}
+      	COUNTRY =#{country},
+   		T_RATE =#{tRate}
     
   </update>
   

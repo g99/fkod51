@@ -15,7 +15,8 @@
 .movie_wrap tr, .movie_wrap th, .movie_wrap td{border : 1px solid white; padding: 5px;}
 .movie_wrap th{ text-align: left; font-size: 15px;}
 .movie_wrap p{font-size: 17px}
-.movie_info{border : 1px solid black;
+.movie_wrap hr{border-top: 1px solid black;}
+.movie_info{
 			width: 1300px;
 			height: 500px;}
 .movie_poster{border : 1px solid black;
@@ -23,7 +24,7 @@
 			height: 350px;
 			float:left;
 			margin = auto;}
-.movie_infonavi{border : 1px solid white;
+.movie_infonavi{
 			width: 700px;
 			height: 70px;	
 			margin: auto;}
@@ -54,44 +55,45 @@
     background-color: #C0C0C0;
 }
 
-.movie_story_lay{border : 1px solid black;
+.movie_story_lay{
 			margin-left: 20px;
 			width: 95%;
 			height: auto;}
-.movie_story{border : 1px solid black;
+.movie_story{
 			margin-left: 20px;
 			width: 92%;
 			height: auto;}
 			
-.movie_tra_lay{border : 1px solid black;
+.movie_tra_lay{
 			margin-left: 20px;
 			width: 95%;
 			height: 320px;}
-.movie_tra{border : 1px solid black;
+.movie_tra{
 			width : 350px;
 			height : 200px;}
-.movie_tra_name{width:340px;
-			border : 1px solid white;
+.movie_tra_name{width:270px;
+			
 			padding : 5px;
 			text-align: center;}
 			
-.movie_cut_lay{border : 1px solid black;
+.movie_cut_lay{
 			margin-left: 20px;
 			width: 95%;
 			height: 300px;}
-.movie_cut{border : 1px solid black;
+.movie_cut{
 			width : 250px;
 			height : 161px;}
 			
-.movie_review_lay{border : 1px solid black;
+.movie_review_lay{
 			margin-left: 20px;
-			width: 1300px;
-			height: 500px;}
+			width: 95%;
+			height: 200px;}
 
 .movie_float{float:left}
 .movie_margin_r30{margin-right : 30px;}
 .movie_margin_r20{margin-right : 20px;}
 .movie_margin_r35{margin-right : 35px;}
+.movie_margin_r75{margin-right : 75px;}
 .movie_margin_t20{margin-top: 20px;}
 .movie_margin_b20{margin-bottom: 20px;}
 .movie_margin_l20{margin-left : 20px;}
