@@ -23,7 +23,9 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="${js}/scripts.js"></script>
-    
+     <!-- 무비  -->
+    <script src="${js}/movie.js"></script>
+    <link rel="stylesheet" href="${css}/movie.css" />
     <!-- css추가 -->
     <link rel="stylesheet" href="" />
 </head>

@@ -23,12 +23,13 @@ public class MovieVO implements Serializable {
 	private String story;
 	private String cut;
 	private String trailer;
+	private int tRate;
 	public MovieVO() {
 		// TODO Auto-generated constructor stub
 	}
 	public MovieVO(String filmNumber, String filmName, String director, String actor, String rate, int runtime,
 			int price, String genre, Date releaseDate, Date endDate, String story, String cut,
-			String trailer) {
+			String trailer, int tRate) {
 		super();
 		this.filmNumber = filmNumber;
 		this.filmName = filmName;
@@ -43,6 +44,7 @@ public class MovieVO implements Serializable {
 		this.story = story;
 		this.cut = cut;
 		this.trailer = trailer;
+		this.tRate = tRate;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -88,6 +90,12 @@ public class MovieVO implements Serializable {
 	}
 	public String getCountry() {
 		return country;
+	}
+	public int gettRate() {
+		return tRate;
+	}
+	public void settRate(int tRate) {
+		this.tRate = tRate;
 	}
 	public void setFilmNumber(String filmNumber) {
 		this.filmNumber = filmNumber;
