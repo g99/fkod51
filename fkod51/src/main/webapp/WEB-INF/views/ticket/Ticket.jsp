@@ -18,6 +18,7 @@
 	}
 </style>
 
+
 <link rel="stylesheet" href="${css}/common.css" type="text/css" />
 	<div class="ticket_wrap">
 		<div class="ticket_flex-container">
