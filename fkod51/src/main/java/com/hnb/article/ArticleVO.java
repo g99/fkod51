@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 public class ArticleVO {
 	private int rcdNo; // 글번호
 	private int grpNo; // 글그룹
-	private int themeNo; // 글그룹
 	private String usrName; // 작성자
-	private String usrMail; // 이메일
 	private String usrSubject; // 제목
 	private String usrContent; // 내용
 	private String usrPass; // 비번
@@ -27,9 +25,6 @@ public class ArticleVO {
 	}
 	public String getUsrName() {
 		return usrName;
-	}
-	public String getUsrMail() {
-		return usrMail;
 	}
 	public String getUsrSubject() {
 		return usrSubject;
@@ -66,9 +61,6 @@ public class ArticleVO {
 	}
 	public void setUsrName(String usrName) {
 		this.usrName = usrName;
-	}
-	public void setUsrMail(String usrMail) {
-		this.usrMail = usrMail;
 	}
 	public void setUsrSubject(String usrSubject) {
 		this.usrSubject = usrSubject;

@@ -134,20 +134,12 @@
 </section>
 
 <!-- 이벤트 -->
-<section class="" id="five">
-	<table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</tr>
-	</table>
+<section class="bg-dark" id="five">
+	
 </section>
 
 <!-- 사용하지 않음 참고용 -->
-<aside class="bg-dark">
+<aside >
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">Get Started</h2>

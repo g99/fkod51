@@ -23,11 +23,20 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="${js}/scripts.js"></script>
+<<<<<<< HEAD
      <!-- 무비  -->
     <script src="${js}/movie.js"></script>
     <link rel="stylesheet" href="${css}/movie.css" />
     <!-- css추가 -->
     <link rel="stylesheet" href="" />
+=======
+    
+    <!-- css추가 준규-->
+    <link rel="stylesheet" href="${css}/new_event.css" />
+    
+    <!-- js추가 준규 -->
+    <script type="text/javascript" src="${js}/new_event.js"></script>
+>>>>>>> refs/remotes/origin/master
 </head>
 <body>
 	<div id="wrop">	
