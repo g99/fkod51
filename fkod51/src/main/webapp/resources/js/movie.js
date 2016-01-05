@@ -11,7 +11,6 @@ var Movie = {
 									+'<img id='+this.filmNumber+' src="'+project+'/resources/images/'+this.filmNumber+'.jpg" alt="" width="250" height="350"><div class="chart_desc chart_bold">'+this.filmName+'</div></div>';
 							arr.push(this.filmNumber);
 						});
-										
 					$('#movie_wrap').empty().append(rank);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
