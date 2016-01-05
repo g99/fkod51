@@ -24,6 +24,27 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="${js}/scripts.js"></script>
     
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="${css}/tab.css" />
+    
+    <!-- 커스텀 js -->
+    <script src="${js}/tab.js"></script>
+    <script src="${js}/ticket.js"></script>
+    
+    <!-- 예매부분 -->
+    <script type="text/javascript">
+		$(function() {
+			tabs.make();
+			Ticket.initList("${context}");
+			$('.ticket_sub').click(function() {
+				Ticket.ticket_sub("${context}");
+			});
+			
+			$('#theater_list').click(function() {Ticket.theater_list("${context}");});
+			$('#date_list').click(function() {Ticket.date_list("${context}");});
+			$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
+		});
+	</script>
 </head>
 <body>
 	<div id="wrop">	

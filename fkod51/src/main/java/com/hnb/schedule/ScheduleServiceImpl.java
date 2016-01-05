@@ -1,6 +1,8 @@
 package com.hnb.schedule;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -55,26 +57,38 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public List<?> getTheaterListByMD(String movie, String date) {
 		logger.info("ScheduleServiceImpl : getTheaterListByMD()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("movie", movie);
+		parameters.put("date", date);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
-		return mapper.getTheaterListByMD(movie, date);
+		return mapper.getTheaterListByMD(parameters);
 	}
 	@Override
 	public List<?> getShowDateListByMT(String movie, String theater) {
 		logger.info("ScheduleServiceImpl : getShowDateListByMT()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("movie", movie);
+		parameters.put("theater", theater);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
-		return mapper.getShowDateListByMT(movie, theater);
+		return mapper.getShowDateListByMT(parameters);
 	}
 	@Override
 	public List<?> getMovieRateByTD(String theater, String date) {
 		logger.info("ScheduleServiceImpl : getMovieRateByTD()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("theater", theater);
+		parameters.put("date", date);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
-		return mapper.getMovieRateByTD(theater, date);
+		return mapper.getMovieRateByTD(parameters);
 	}
 	@Override
 	public List<?> getMovieAscByTD(String theater, String date) {
 		logger.info("ScheduleServiceImpl : getMovieAscByTD()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("theater", theater);
+		parameters.put("date", date);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
-		return mapper.getMovieAscByTD(theater, date);
+		return mapper.getMovieAscByTD(parameters);
 	}
 	@Override
 	public List<?> getMovieRateByT(String theater) {
@@ -115,8 +129,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public List<?> getTimeList(String movie, String theater, String date) {
 		logger.info("ScheduleServiceImpl : getTimeList()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("movie", movie);
+		parameters.put("theater", theater);
+		parameters.put("date", date);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
-		return mapper.getTimeList(movie, theater, date);
+		return mapper.getTimeList(parameters);
 	}
 	@Override
 	public String getFilmNumberBy(String movie) {

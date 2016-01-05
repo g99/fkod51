@@ -33,6 +33,11 @@ public class ScheduleController {
 			Model model
 			){
 		logger.info("ScheduleController-movieSelect() 진입");
+		logger.info("movie : {}", movie);
+		logger.info("theater : {}", theater);
+		logger.info("date : {}", date);
+		logger.info("=================================================================구분==================================");
+		
 		List<?> theaterList = new ArrayList<>();
 		List<?> dateList = new ArrayList<>();
 		List<?> timeList = new ArrayList<>();
@@ -52,6 +57,7 @@ public class ScheduleController {
 		model.addAttribute("theaterList",theaterList);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("timeList",timeList);
+		model.addAttribute("movie",movie);
 		return model;
 	}
 	@RequestMapping("/theaterSelect")
@@ -62,6 +68,9 @@ public class ScheduleController {
 			Model model
 			){
 		logger.info("ScheduleController-theaterSelect() 진입");
+		logger.info("movie : {}", movie);
+		logger.info("theater : {}", theater);
+		logger.info("date : {}", date);
 		List<?> movieListRate = new ArrayList<>();
 		List<?> movieListAsc = new ArrayList<>();
 		List<?> dateList = new ArrayList<>();
@@ -70,6 +79,7 @@ public class ScheduleController {
 			movieListRate = scheduleService.getMovieRateByTD(theater,date);
 			movieListAsc = scheduleService.getMovieAscByTD(theater,date);
 		} else if (movie!=null && date==null) {
+			logger.info("영화, 극장 : {}, {}",movie,theater);
 			dateList = scheduleService.getShowDateListByMT(movie, theater);
 		} else if (movie==null && date==null) {
 			movieListRate = scheduleService.getMovieRateByT(theater);

@@ -9,13 +9,12 @@ var Ticket = {
 				$datelist : null,
 				
 				ticket_sub : function(project) {
-					/* alert(this.movie+", "+this.theater+", "+this.date); */
 					$.ajax(project + '/schedule/movieSelect',{
 						type : 'get',
 						data : {
 							movie : $("input:radio[name=movie]:checked").val(),
 							theater : $("input:radio[name=theater]:checked").val(),
-							date : $("input:radio[name=date]:checked").val(),
+							date : $("input:radio[name=date]:checked").val()
 						},
 						async : true,
 						dataType : 'json',
@@ -23,26 +22,29 @@ var Ticket = {
 							var $tl = null;
 							var $dl = null;
 							var $timel = null;
+							var $movie = null;
 							$.each(data, function(index,val) {
-								alert(index+", "+val);
 								if (index==="theaterList") {
 								$tl = val;
 								} else if (index==="dateList") {
 								$dl = val;
 								} else if (index==="timeList") {
 								$timel = val;
+								} else if (index==="movie") {
+								$movie = val;
 								}
 							});
 							/* alert("$dl"+$dl); */
-							if (Ticket.theater===null || Ticket.$theaterlist!==$tl) {
-								/* alert("기존"+Ticket.movie+"현재선택"+$("input:radio[name=movie]:checked").val()); */
+							/*alert("기존"+Ticket.movie+"현재선택"+$("input:radio[name=movie]:checked").val());*/
+							alert(Ticket.movie+", "+$movie);
+							if (Ticket.theater===null || Ticket.$theaterlist!==$tl || Ticket.movie!==$movie) {
 								var theater_list = 
-									'<div class="ticket_list-category"><dl>';
+									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="theaterList") {
 											Ticket.$theaterlist = val;
 										$.each(val, function() {
-											theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
+											theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
@@ -51,12 +53,12 @@ var Ticket = {
 							}
 							if (Ticket.date===null || Ticket.$datelist!==$dl) {
 								var date_list = 
-									'<div class="ticket_list-category"><dl>';
+									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="dateList") {
 											Ticket.$datelist = val;
 										$.each(val, function() {
-											date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
+											date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
@@ -65,11 +67,11 @@ var Ticket = {
 							}
 							if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
 								var times_list = 
-									'<div class="ticket_list-category"><dl>';
+									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="timeList") {
 										$.each(val, function() {
-											times_list += '<dt><input type="radio" name="time" value="'+this+'"/>'+this+'</dt>';
+											times_list += '<dt><input id="'+this+'" type="radio" name="time" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
@@ -86,13 +88,12 @@ var Ticket = {
 				},
 			theater_list: function(project) {
 				/* alert(this.movie+", "+this.theater+", "+this.date); */
-				$.ajax(project + '/ticket/Ticket.do',{
+				$.ajax(project + '/schedule/theaterSelect',{
 					type : 'get',
 					data : {
 						movie : $("input:radio[name=movie]:checked").val(),
 						theater : $("input:radio[name=theater]:checked").val(),
-						date : $("input:radio[name=date]:checked").val(),
-						page : "theaterSelect"
+						date : $("input:radio[name=date]:checked").val()
 					},
 					async : true,
 					dataType : 'json',
@@ -102,36 +103,36 @@ var Ticket = {
 						var $dl = null;
 						var $timel = null;
 						$.each(data, function(index,val) {
-							if (index===0) {
+							if (index==="movieListRate") {
 								$mrl = val;
-							} else if (index===1) {
+							} else if (index==="movieListAsc") {
 								$mal = val;
-							} else if (index===2) {
+							} else if (index==="dateList") {
 								$dl = val;
-							} else if (index===3) {
+							} else if (index==="timeList") {
 								$timel = val;
 							}
 						});
 						if (Ticket.movie===null) {
 							var movie_rate_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===0) {
+									if (index==="movieListRate") {
 										Ticket.$movieratelist = val;
 									$.each(val, function() {
-									movie_rate_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+									movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
 								movie_rate_list += '</dl></div>';
 								$(movie_rate_list).appendTo($('#tab1').empty());
 							var movie_asc_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===1) {
+									if (index==="movieListAsc") {
 										Ticket.$movieasclist = val;
 									$.each(val, function() {
-										movie_asc_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+										movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
@@ -140,12 +141,12 @@ var Ticket = {
 						}
 						if (Ticket.date===null) {
 						var date_list = 
-							'<div class="ticket_list-category"><dl>';
+							'<div><dl>';
 							$.each(data, function(index,val) {
-								if (index===2) {
+								if (index==="dateList") {
 									Ticket.$datelist = val;
 								$.each(val, function() {
-									date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
+									date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -154,11 +155,11 @@ var Ticket = {
 						}
 						if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
 							var times_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===3) {
+									if (index==="timeList") {
 									$.each(val, function() {
-										times_list += '<dt><input type="radio" name="time" value="'+this+'"/>'+this+'</dt>';
+										times_list += '<dt><input id="'+this+'" type="radio" name="time" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
@@ -174,15 +175,13 @@ var Ticket = {
 				/* alert(this.movie+", "+this.theater+", "+this.date); */
 			},
 			date_list : function(project) {
-				
 				/* alert(this.movie+", "+this.theater+", "+this.date); */
-				$.ajax(project + '/ticket/Ticket.do',{
+				$.ajax(project + '/schedule/dateSelect',{
 					type : 'get',
 					data : {
 						movie : $("input:radio[name=movie]:checked").val(),
 						theater : $("input:radio[name=theater]:checked").val(),
-						date : $("input:radio[name=date]:checked").val(),
-						page : "dateSelect"
+						date : $("input:radio[name=date]:checked").val()
 					},
 					async : true,
 					dataType : 'json',
@@ -192,36 +191,36 @@ var Ticket = {
 						var $tl = null;
 						var $timel = null;
 						$.each(data, function(index,val) {
-							if (index===0) {
+							if (index==="movieListRate") {
 								$mrl = val;
-							} else if (index===1) {
+							} else if (index==="movieListAsc") {
 								$mal = val;
-							} else if (index===2) {
+							} else if (index==="theaterList") {
 								$tl = val;
-							} else if (index===3) {
+							} else if (index==="timeList") {
 								$timel = val;
 							}
 						});
 						if (Ticket.movie===null) {
 							var movie_rate_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===0) {
+									if (index==="movieListRate") {
 										Ticket.$movieratelist = val;
 									$.each(val, function() {
-									movie_rate_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+									movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
 								movie_rate_list += '</dl></div>';
 								$(movie_rate_list).appendTo($('#tab1').empty());
 							var movie_asc_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===1) {
+									if (index==="movieListAsc") {
 										Ticket.$movieasclist = val;
 									$.each(val, function() {
-										movie_asc_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+										movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
@@ -230,12 +229,12 @@ var Ticket = {
 						}
 						if (Ticket.theater===null) {
 						var theater_list = 
-							'<div class="ticket_list-category"><dl>';
+							'<div><dl>';
 							$.each(data, function(index,val) {
-								if (index===2) {
+								if (index==="theaterList") {
 									Ticket.$theaterlist = val;
 								$.each(val, function() {
-									theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
+									theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -244,11 +243,11 @@ var Ticket = {
 						}
 						if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
 							var times_list = 
-								'<div class="ticket_list-category"><dl>';
+								'<div><dl>';
 								$.each(data, function(index,val) {
-									if (index===3) {
+									if (index==="timeList") {
 									$.each(val, function() {
-										times_list += '<dt><input type="radio" name="time" value="'+this+'"/>'+this+'</dt>';
+										times_list += '<dt><input id="'+this+'" type="radio" name="time" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
@@ -286,36 +285,35 @@ var Ticket = {
 			
 			
 			initList : function(project) {
-				alert("테이블초기화");
 				$.getJSON(project + '/schedule/initList', function(data) {
 					var movie_rate_list = 
-						'<div class="ticket_list-category"><dl>';
+						'<div><dl>';
 						$.each(data, function(index,val) {
 							if (index==="movieListRate") {
 							$.each(val, function() {
-							movie_rate_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+							movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 							});
 							}
 						});
 						movie_rate_list += '</dl></div>';
 						$(movie_rate_list).appendTo($('#tab1').empty());
 					var movie_asc_list = 
-						'<div class="ticket_list-category"><dl>';
+						'<div><dl>';
 						$.each(data, function(index,val) {
 							if (index==="movieListAsc") {
 							$.each(val, function() {
-								movie_asc_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
+								movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 							});
 							}
 						});
 						movie_asc_list += '</dl></div>';
 						$(movie_asc_list).appendTo($('#tab2').empty());
 					var theater_list = 
-						'<div class="ticket_list-category"><dl>';
+						'<div><dl>';
 						$.each(data, function(index,val) {
 							if (index==="theaterList") {
 							$.each(val, function() {
-								theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
+								theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 							});
 							}
 						});
@@ -323,11 +321,11 @@ var Ticket = {
 						$(theater_list).appendTo($('#theater_list').empty());
 						
 					var date_list = 
-						'<div class="ticket_list-category"><dl>';
+						'<div><dl>';
 						$.each(data, function(index,val) {
 							if (index==="dateList") {
 							$.each(val, function() {
-								date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
+								date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 							});
 							}
 						});
