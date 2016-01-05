@@ -35,7 +35,7 @@ var Movie = {
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
 									+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+', '+data.country+'분 '+'</td></tr><tr><th>개봉</th>'
 									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" class="movie_font_20 movie_bold movie_bg_color_purple movie_txt_color_white "></a></td></tr></table>'
-									+'</div><hr/>'
+									+'</div>'
 									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20"><img src="'+project+'/resources//images/'+data.story+'.JPG;" alt="" /></div></div><hr/>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" class="movie_bold movie_bg_color_purple movie_txt_color_white "></h2>'
 									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
@@ -62,34 +62,23 @@ var Movie = {
 								});
 							});
 				},
-				cutMore : function(project,data) {
-					$.getJSON(project + 'movie/movie_Cut/'+data, function(data) {
-						var movieCut = '<div class="cut_allcut_lay">';
-						$.each(data, function(index, value) {
-							movieCut += '<div class="cut_allcut cut_margin_l30 cut_margin_t20 cut_margin_b20  cut_float"><a href="'+project+'resource/images/'+value+'.jpg;">'
-								+'<img src="../images/'+value+'.jpg;" alt="" width="250" height="161" /></a></div>';
-								
-						});
-						movieCut+='</div>' ;
-						$("#movie_wrap").append(movieCut);
-					});
-				},
-			
 				movieBasic : function(project,data) {
-					alert("무비베이직 프로젝트"+data);
 					$.getJSON(project + '/movie/movie_Basic/'+data, function(data) {
-						    var movieBasic ='<div><h1>영화상세<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_orange cut_txt_color_white "></h1></div>'
-							+'<div id="cut_info" class="cut_info cut_margin_b20"><div class="cut_poster cut_margin_r30"><img class="float" src="'+project+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
-							+'<h2>'+data.filmName+'</h2><table style="border: solid 1px white; width: 400; height: 300px"><tr><th style="color: grey; font-size: 18px">예매율</th>'
-							+'<td> '+data.tRate+'%</td></tr><tr><th>감독</th><td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
-							+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+'분 '+', '+data.country+'</td></tr>'
-							+'<tr><th>개봉</th><td>'+data.releaseDate+'<a href="../ticket/ticket.html"><input type="button" value="바로 예매" class="cut_font_20 cut_bold cut_bg_color_green cut_txt_color_white "></a></td></tr></table></div>';
-
-						$('#movie_wrap').html(movieBasic);
-						Movie.cutMore(project,data);
+						    var movieBasic ='<div class="cut_allcut_lay"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+						    $.each(data.cut.split("/"), function(index,value){
+						    	
+						    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
+					    				+'<a href="'+project+'/resources/images/'+value+'.jpg;">'
+					    				+'<img src="'+project+'/resources/images/'+value+'.jpg;" alt="" width="250px" height="161px" />'
+					    				+'</a></div>';
+						    	
+						    });
+						    
+						    movieBasic +='</div><div><br></br></div><br/><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+						$('#modal-body1').html(movieBasic);
 						$('#movie_home').click(function() {
-							$('#movie_wrap').empty();
-							Movie.movieName(project,data);
+							$('#modal-body1').empty();
+							Movie.movieName(project,data.filmNumber);
 						});
 					});
 			

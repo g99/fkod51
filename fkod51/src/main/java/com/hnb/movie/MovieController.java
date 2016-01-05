@@ -68,13 +68,13 @@ public class MovieController {
 		model.addAttribute("arrt", arrt);
 		return "movie/movie_Tra";
 	}
-	@RequestMapping("/movie_Basic")
-	public @ResponseBody MovieVO movieBasic (String filmNumber, Model model){
+	@RequestMapping("/movie_Basic/{filmNumber}")
+	public @ResponseBody MovieVO movieBasic (@PathVariable ("filmNumber")String filmNumber){
 		logger.info("MovieController-movieBasic() 진입");
 		logger.info("movieBasic의 film넘버 : {}", filmNumber);
 		movie = service.searchByName(filmNumber);
 		logger.info("movieBasic컷의영화제목 : {} ", movie.getFilmName());
-		model.addAttribute("movie", movie);
+		/*model.addAttribute("movie", movie);*/
 		return movie;
 	}
 	@RequestMapping("/movie_Chart")
