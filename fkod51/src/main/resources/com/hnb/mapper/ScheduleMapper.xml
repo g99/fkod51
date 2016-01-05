@@ -46,5 +46,6 @@
      
      <select id="getTimeList" resultType="string" parameterType="string">
 		SELECT DISTINCT SCHEDULE.SHOW_TIME AS SHOWTIME, SCHEDULE.ROOM_NAME AS ROOMNAME FROM SCHEDULE, MOVIE WHERE SCHEDULE.FILM_NUMBER = MOVIE.FILM_NUMBER AND MOVIE.FILM_NAME = #{movie} AND SCHEDULE.THEATER_NAME = #{theater} AND SCHEDULE.SHOW_DATE = #{date} AND SEAT_STATUS > 0 ORDER BY SCHEDULE.SHOW_DATE ASC
+>>>>>>> refs/remotes/origin/master
      </select>
  </mapper>

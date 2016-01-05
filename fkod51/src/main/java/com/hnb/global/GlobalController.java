@@ -36,6 +36,7 @@ public class GlobalController {
 	}
 	@RequestMapping("/new")
 	public String home(){
+
 		return "global2/new.new";
 	}
 }

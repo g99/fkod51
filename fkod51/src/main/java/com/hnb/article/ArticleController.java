@@ -25,7 +25,8 @@ import com.hnb.member.MemberVO;
 @RequestMapping("/article")
 public class ArticleController {
 	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
-
+	private String keyword = null;
+	private String column = null;
 	@Autowired MemberServiceImpl service;
 	@Autowired MemberVO member;
 	@Autowired ArticleVO article;
@@ -81,13 +82,15 @@ public class ArticleController {
 		logger.info("넘어온 페이지 번호 : {}", pageNo);
 		logger.info("넘어온 컬럼 : {}", column);
 		logger.info("넘어온  검색어 : {}", keyword);
+		if(keyword != "")
+			this.keyword = keyword;
+		if(column != "")
+			this.column = column;
 		
 		int pageNumber = Integer.parseInt(pageNo);
 		int pageSize = 15;
 		int groupSize = 10;
-		Command command = CommandFactory.seach(column, keyword, pageNo);
-		command.setStart(command.getStart()-1);
-		command.setEnd(command.getEnd()-1);
+		Command command = CommandFactory.seach(this.column, this.keyword, pageNo);
 		int count = articleService.countByKeyword(command);
 		int totalPage = count/pageSize;
 		if (count%pageSize != 0) {
@@ -98,7 +101,7 @@ public class ArticleController {
 		if (lastPage > totalPage) {
 			lastPage = totalPage;
 		}
-		
+		command.setStart(command.getStart()-1);
 		List<ArticleVO> list = articleService.searchByKeyword(command);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("list", list);

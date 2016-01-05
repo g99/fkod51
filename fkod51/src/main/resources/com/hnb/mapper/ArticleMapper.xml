@@ -23,8 +23,9 @@
      		USR_REFER AS usrRefer,
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
-     	FROM BOARD
-     	WHERE RCD_NO BETWEEN #{start} AND #{end}
+     	FROM BOARD ORDER BY rcdNo DESC
+     	LIMIT #{start}, 15
+     	
      </select>
  
      <select id="selectSomeBy" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">
@@ -42,7 +43,7 @@
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
  		FROM BOARD WHERE ${column} LIKE CONCAT('%',#{keyword},'%') 
- 		LIMIT #{start}, #{end}
+ 		ORDER BY rcdNo DESC LIMIT #{start}, 15
      </select>
      
      <select id="selectByRcdNo" parameterType="int" resultType="com.hnb.article.ArticleVO">
