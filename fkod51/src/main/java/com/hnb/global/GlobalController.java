@@ -36,7 +36,8 @@ public class GlobalController {
 	}
 	@RequestMapping("/new")
 	public String home(){
-		return "global/new.jsp";
+
+		return "global2/new.new";
 	}
 }
 

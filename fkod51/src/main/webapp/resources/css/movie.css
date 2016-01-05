@@ -15,6 +15,7 @@
 .movie_wrap tr, .movie_wrap th, .movie_wrap td{border : 1px solid white; padding: 5px;}
 .movie_wrap th{ text-align: left; font-size: 15px;}
 .movie_wrap p{font-size: 17px}
+<<<<<<< HEAD
 .movie_wrap hr{border-top: 1px solid black;}
 .movie_info{
 			width: 1300px;
@@ -94,6 +95,85 @@
 .movie_margin_r20{margin-right : 20px;}
 .movie_margin_r35{margin-right : 35px;}
 .movie_margin_r75{margin-right : 75px;}
+=======
+.movie_info{border : 1px solid black;
+			width: 1300px;
+			height: 500px;}
+.movie_poster{border : 1px solid black;
+			width: 250px;
+			height: 350px;
+			float:left;
+			margin = auto;}
+.movie_infonavi{border : 1px solid white;
+			width: 700px;
+			height: 70px;	
+			margin: auto;}
+.movie_infonavi>ul {
+    list-style-type: none;
+    display : inline;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+}
+.movie_infonavi>ul>li {
+    float: left;
+}
+.movie_infonavi>ul>li>a:link, a:visited {
+    display: block;
+    width: 120px;
+    height : 48px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: orange;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.movie_infonavi>ul>li>a:hover, a:active {
+    background-color: #C0C0C0;
+}
+
+.movie_story_lay{border : 1px solid black;
+			margin-left: 20px;
+			width: 95%;
+			height: auto;}
+.movie_story{border : 1px solid black;
+			margin-left: 20px;
+			width: 92%;
+			height: auto;}
+			
+.movie_tra_lay{border : 1px solid black;
+			margin-left: 20px;
+			width: 95%;
+			height: 320px;}
+.movie_tra{border : 1px solid black;
+			width : 350px;
+			height : 200px;}
+.movie_tra_name{width:340px;
+			border : 1px solid white;
+			padding : 5px;
+			text-align: center;}
+			
+.movie_cut_lay{border : 1px solid black;
+			margin-left: 20px;
+			width: 95%;
+			height: 300px;}
+.movie_cut{border : 1px solid black;
+			width : 250px;
+			height : 161px;}
+			
+.movie_review_lay{border : 1px solid black;
+			margin-left: 20px;
+			width: 1300px;
+			height: 500px;}
+
+.movie_float{float:left}
+.movie_margin_r30{margin-right : 30px;}
+.movie_margin_r20{margin-right : 20px;}
+.movie_margin_r35{margin-right : 35px;}
+>>>>>>> refs/remotes/origin/master
 .movie_margin_t20{margin-top: 20px;}
 .movie_margin_b20{margin-bottom: 20px;}
 .movie_margin_l20{margin-left : 20px;}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
@@ -27,6 +28,10 @@ public class MemberController {
 	MemberServiceImpl service;
 	@Autowired
 	MemberVO member;
+	@Autowired
+	private EmailSender emailSender;
+	@Autowired
+	private Email email;
 	
 	@RequestMapping("/admin_home")
 	public String adminHome(){
@@ -78,6 +83,31 @@ public class MemberController {
 		}
 		return model;
 	}
+	
+	/*@RequestMapping("/join_auth")
+	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
+        ModelAndView mav;
+        String id=(String) paramMap.get("id");
+        String e_mail=(String) paramMap.get("email");
+        String pw=mainService.getPw(paramMap);
+        System.out.println(pw);
+        if(pw!=null) {
+            email.setContent("비밀번호는 "+pw+" 입니다.");
+            email.setReceiver(e_mail);
+            email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
+            emailSender.SendEmail(email);
+            mav= new ModelAndView("redirect:/login.do");
+            return mav;
+        }else {
+            mav=new ModelAndView("redirect:/logout.do");
+            return mav;
+        }
+    }*/
+
+	
+	
+	
+	
 	@RequestMapping("/join_Result")
 	public String joinResult(){
 		logger.info("멤버컨트롤러 joinResult() - 진입");

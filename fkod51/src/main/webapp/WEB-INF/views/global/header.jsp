@@ -89,9 +89,15 @@
 		});
 		
 		$("#ticket_btn").click(function() {
+<<<<<<< HEAD
 			$("#box").load(context + "/ticket/Ticket.do");
 		});
 		
+=======
+			$('.mainView').load(context + "/schedule/Ticket");
+		});
+				
+>>>>>>> refs/remotes/origin/master
 		$("#theater_btn").click(function() {
 			location.href = context + "/global/new";
 		});
