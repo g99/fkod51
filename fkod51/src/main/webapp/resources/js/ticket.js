@@ -24,11 +24,12 @@ var Ticket = {
 							var $dl = null;
 							var $timel = null;
 							$.each(data, function(index,val) {
-								if (index===0) {
+								alert(index+", "+val);
+								if (index==="theaterList") {
 								$tl = val;
-								} else if (index===1) {
+								} else if (index==="dateList") {
 								$dl = val;
-								} else if (index===2) {
+								} else if (index==="timeList") {
 								$timel = val;
 								}
 							});
@@ -38,7 +39,7 @@ var Ticket = {
 								var theater_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===0) {
+										if (index==="theaterList") {
 											Ticket.$theaterlist = val;
 										$.each(val, function() {
 											theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
@@ -52,7 +53,7 @@ var Ticket = {
 								var date_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===1) {
+										if (index==="dateList") {
 											Ticket.$datelist = val;
 										$.each(val, function() {
 											date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
@@ -66,7 +67,7 @@ var Ticket = {
 								var times_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===2) {
+										if (index==="timeList") {
 										$.each(val, function() {
 											times_list += '<dt><input type="radio" name="time" value="'+this+'"/>'+this+'</dt>';
 										});
