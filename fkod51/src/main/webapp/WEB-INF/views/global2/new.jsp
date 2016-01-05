@@ -254,13 +254,20 @@
     </div>
 </div>
 <div id="writeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-   	<div class="modal-content">
-   		<div class="modal-body">
-    		<h2 class="text-center">Nice Job!</h2>
-    		<p class="text-center">You clicked the button, but it doesn't actually go anywhere because this is only a demo.</p>
-    		<p class="text-center"><a href="http://www.bootstrapzero.com">Learn more at BootstrapZero</a></p>
-    		<br/>
+	<div class="modal-dialog" style="margin-right:37%">
+   	<div class="modal-content" style="width:800px;">
+   		<div class="modal-body" style="height:600px;">
+   			<div style="margin-left:10%;">
+   				<label for="title">제목</label>
+    			<input name="title" type="text" size="80" maxlength="100"/>
+    		</div>
+    		<br />
+    		<div style="margin-left:9%">
+   				<label for="content" style="float:left;">내용</label>
+   				<textarea name="content" cols="82" rows="20"></textarea>
+   			</div>
+   			<br />
+   			<br />
     		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
     	</div>
    	</div>
@@ -268,8 +275,8 @@
 </div>
 <script type="text/javascript">
 
-$(function() {
+/* $(function() {
 	Movie.ranking("${context}");
-});
+}); */
 
 </script>
