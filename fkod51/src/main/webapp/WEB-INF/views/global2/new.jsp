@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<!-- 헤더자리 -->
+<!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one">
     <div class="container">
         <div class="row">
@@ -17,6 +17,7 @@
     </div>
 </section>
 
+<!-- 영화차트 -->
 <section id="two" class="no-padding">
         <div class="container-fluid">
             <div class="row no-gutter">
@@ -96,6 +97,7 @@
         </div>
     </section>
 
+<!-- 예매 -->
 <section id="three">
     <div class="container">
         <div class="row">
@@ -132,6 +134,7 @@
     </div>
 </section>
 
+<!-- 극장 -->
 <section class="container-fluid" id="four">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
@@ -189,6 +192,21 @@
         </div>
     </div>
 </section>
+
+<!-- 이벤트 -->
+<section class="" id="five">
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+	</table>
+</section>
+
+<!-- 사용하지 않음 참고용 -->
 <aside class="bg-dark">
     <div class="container text-center">
         <div class="call-to-action">
@@ -219,6 +237,8 @@
         </div>
     </div>
 </aside>
+
+<!-- Contact Us -->
 <section id="last">
     <div class="container">
         <div class="row">
@@ -254,7 +274,8 @@
         </div>
     </div>
 </section>
-<!-- 푸터자리 -->   
+
+<!-- 에이작스 팝업 페이지들 -->   
 <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
     <div class="modal-content">

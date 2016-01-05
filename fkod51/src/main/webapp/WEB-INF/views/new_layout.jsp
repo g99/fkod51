@@ -24,6 +24,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="${js}/scripts.js"></script>
     
+    <!-- css추가 -->
+    <link rel="stylesheet" href="" />
 </head>
 <body>
 	<div id="wrop">	
