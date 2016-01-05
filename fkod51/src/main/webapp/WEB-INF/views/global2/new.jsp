@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<style>
+	.tabs li {
+		list-style:none;
+		display:inline;
+	}
+	.tabs a {
+		padding:5px 10px;
+		display:inline-block;
+		background:#666;
+		color:#fff;
+		text-decoration:none;
+	}
+	.tabs a.active {
+		background:#fff;
+		color:#000;
+	}
+</style>
 
 <!-- 헤더자리 -->
 <section class="bg-primary" id="one">
@@ -100,37 +116,66 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="margin-top-0 text-primary">Flexible Layouts</h2>
+                <h2 class="margin-top-0 text-primary">예매하기</h2>
                 <hr class="primary">
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 text-center">
+            <div class="col-lg-3 col-md-8 text-center">
                 <div class="feature">
-                    <i class="icon-lg ion-android-laptop wow fadeIn" data-wow-delay=".3s"></i>
-                    <h3>Responsive</h3>
+                	<h3>영화</h3>
+                    <ul class='tabs' style="padding-left: 0px;">
+					    <li><a href='#tab1'>예매율</a></li>
+					    <li><a href='#tab2'>가나다</a></li>
+					</ul>
+					<form action="" id="movie_list">
+					  <div id='tab1' class="ticket_sub">
+					  
+					  </div>
+					  <div id='tab2' class="ticket_sub">
+					  
+					  </div>
+					 </form>
                     <p class="text-muted">Your site looks good everywhere</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 text-center">
+            <div class="col-lg-3 col-md-8 text-center">
                 <div class="feature">
                     <i class="icon-lg ion-social-sass wow fadeInUp" data-wow-delay=".2s"></i>
-                    <h3>Customizable</h3>
+                    <h3>극장</h3>
                     <p class="text-muted">Easy to theme and customize with SASS</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 text-center">
+            <div class="col-lg-3 col-md-8 text-center">
                 <div class="feature">
                     <i class="icon-lg ion-ios-star-outline wow fadeIn" data-wow-delay=".3s"></i>
-                    <h3>Consistent</h3>
+                    <h3>날짜</h3>
+                    <p class="text-muted">A mature, well-tested, stable codebase</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-8 text-center">
+                <div class="feature">
+                    <i class="icon-lg ion-ios-star-outline wow fadeIn" data-wow-delay=".3s"></i>
+                    <h3>시간</h3>
                     <p class="text-muted">A mature, well-tested, stable codebase</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script src="${js}/tab.js"></script>
+<script type="text/javascript">
+$(function() {
+	tabs.make();
+	Ticket.initList("${context}");
+	$('.ticket_sub').click(function() {Ticket.ticket_sub("${context}");});
+	$('#theater_list').click(function() {Ticket.theater_list("${context}");});
+	$('#date_list').click(function() {Ticket.date_list("${context}");});
+	$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
+});
+</script>
 
 <section class="container-fluid" id="four">
     <div class="row">
