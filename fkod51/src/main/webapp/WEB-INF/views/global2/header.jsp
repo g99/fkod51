@@ -15,22 +15,22 @@
         <div class="navbar-collapse collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="page-scroll" href="#two" style="font-size:1.5em;">영화</a>
+                    <a class="page-scroll" href="#two" style="font-size:1.5em;" id="movie_btn">영화</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#three" style="font-size:1.5em;">예매</a>
+                    <a class="page-scroll" href="#three" style="font-size:1.5em;" id="ticketing_btn">예매</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#four" style="font-size:1.5em;">극장</a>
+                    <a class="page-scroll" href="#four" style="font-size:1.5em;" id="theater_btn">극장</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#five" style="font-size:1.5em;">이벤트</a>
+                    <a class="page-scroll" href="#five" style="font-size:1.5em;" id="event_btn">이벤트</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#last" style="font-size:1.5em;">Contact us</a>
+                    <a class="page-scroll" href="#last" style="font-size:1.5em;" id="contact_btn">Contact us</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#" style="font-size:1.5em;">회원가입</a>
+                    <a class="page-scroll" href="#" style="font-size:1.5em;" id="join_btn">회원가입</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -66,6 +66,7 @@
 					"padding-bottom":"40%"
 				},1200)
 				$("#open_Wrap").load(context + "/home");
-			});
-	});
+		 });
+		 newEvent.init(1);
+	 });
  </script>

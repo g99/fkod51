@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,16 +39,75 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/list/{pageNo}")
-	public @ResponseBody Map boardList(
+	public @ResponseBody Map<String, Object> boardList(
 			@PathVariable("pageNo")String pageNo,
 			Model model){
+		
+		int pageNumber = Integer.parseInt(pageNo);
+		int pageSize = 15;
+		int groupSize = 10;
+		int count = articleService.count();
+		int totalPage = count/pageSize;
+		if (count%pageSize != 0) {
+			totalPage += 1;
+		}
+		int startPage = pageNumber - ((pageNumber-1) % groupSize);
+		int lastPage = startPage + groupSize -1;
+		if (lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
 		logger.info("boardList() 진입");
 		logger.info("넘어온 페이지 번호 : {}", pageNo);
-		int count = articleService.count();
 		List<ArticleVO> list = articleService.getList(CommandFactory.list(pageNo));
-		Map result = new HashMap();
+		Map<String,Object> result = new HashMap<String,Object>();
 		result.put("count", count);
 		result.put("list", list);
+		result.put("totalPage", totalPage);
+		result.put("pageNo", pageNumber);
+		result.put("startPage", startPage);
+		result.put("lastPage", lastPage);
+		result.put("groupSize", groupSize);
+		return result;
+	}
+	
+	@RequestMapping("/board_search/{pageNo}")
+	public Map<String, Object> boardSearch(
+			@PathVariable("pageNo")String pageNo,
+			@RequestParam("keyword")String keyword,
+			@RequestParam("column")String column,
+			Model model){
+		logger.info("memberSearch() 진입");
+		logger.info("넘어온 페이지 번호 : {}", pageNo);
+		logger.info("넘어온 컬럼 : {}", column);
+		logger.info("넘어온  검색어 : {}", keyword);
+		
+		int pageNumber = Integer.parseInt(pageNo);
+		int pageSize = 15;
+		int groupSize = 10;
+		Command command = CommandFactory.seach(column, keyword, pageNo);
+		command.setStart(command.getStart()-1);
+		command.setEnd(command.getEnd()-1);
+		int count = articleService.countByKeyword(command);
+		int totalPage = count/pageSize;
+		if (count%pageSize != 0) {
+			totalPage += 1;
+		}
+		int startPage = pageNumber - ((pageNumber-1) % groupSize);
+		int lastPage = startPage + groupSize -1;
+		if (lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
+		List<ArticleVO> list = articleService.searchByKeyword(command);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("list", list);
+		result.put("pageNo", pageNo);
+		result.put("count", count);
+		result.put("startPage", startPage);
+		result.put("lastPage", lastPage);
+		result.put("groupSize", groupSize);
+		result.put("totalPage", totalPage);
 		return result;
 	}
 	

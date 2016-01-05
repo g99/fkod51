@@ -13,9 +13,7 @@
      	SELECT
      		RCD_NO AS rcdNo,
      		GRP_NO AS grpNo,
-     		THEME_NO AS themeNo,
      		USR_NAME AS usrName,
-     		USR_MAIL AS usrMail,
      		USR_SUBJECT AS usrSubject,
      		USR_CONTENT AS usrComponent,
      		USR_PASS AS usrPass,
@@ -26,15 +24,14 @@
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
      	FROM BOARD
+     	WHERE RCD_NO BETWEEN #{start} AND #{end}
      </select>
  
      <select id="selectSomeBy" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">
      	SELECT
      		RCD_NO AS rcdNo,
      		GRP_NO AS grpNo,
-     		THEME_NO AS themeNo,
      		USR_NAME AS usrName,
-     		USR_MAIL AS usrMail,
      		USR_SUBJECT AS usrSubject,
      		USR_CONTENT AS usrComponent,
      		USR_PASS AS usrPass,
@@ -44,11 +41,8 @@
      		USR_REFER AS usrRefer,
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
-     	FROM (SELECT ROWNUM AS seq, m.* FROM (
- 		SELECT * FROM BOARD
- 		WHERE ${column} LIKE '%' || #{keyword} || '%' <!-- => WHERE NAME LIKE '%홍%' --> 
- 		) m)
- 		WHERE seq BETWEEN #{start} AND #{end}
+ 		FROM BOARD WHERE ${column} LIKE CONCAT('%',#{keyword},'%') 
+ 		LIMIT #{start}, #{end}
      </select>
      
      <select id="selectByRcdNo" parameterType="int" resultType="com.hnb.article.ArticleVO">
@@ -81,7 +75,7 @@
      
      <select id="countByKeyword" parameterType="com.hnb.global.Command" resultType="int">
      	SELECT COUNT(RCD_NO) FROM BOARD
-     	WHERE ${column} LIKE '%' || #{keyword} || '%'
+     	WHERE ${column} LIKE CONCAT('%',#{keyword},'%')
      </select>
      
      <select id="descSelectByKeyword" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">

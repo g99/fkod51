@@ -3,7 +3,7 @@ package com.hnb.global;
 public class Command implements Orderable {
 	private String column, keyword; 
 	private int pageNo, start, end;
-	public final int PAGESIZE = 5;
+	public final int PAGESIZE = 15;
 	public Command(String pageNo) {
 		this.pageNo = Integer.parseInt(pageNo);
 		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE+1;
