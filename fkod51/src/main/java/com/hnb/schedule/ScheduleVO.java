@@ -1,5 +1,8 @@
-package com.hnb.ticket;
+package com.hnb.schedule;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ScheduleVO {
 	private int seq;
 	private String filmNumber;

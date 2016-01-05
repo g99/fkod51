@@ -1,4 +1,4 @@
- var Ticket = {
+var Ticket = {
 				movie : null,
 				theater : null,
 				date : null,
@@ -10,13 +10,12 @@
 				
 				ticket_sub : function(project) {
 					/* alert(this.movie+", "+this.theater+", "+this.date); */
-					$.ajax(project + '/ticket/Ticket.do',{
+					$.ajax(project + '/schedule/movieSelect',{
 						type : 'get',
 						data : {
 							movie : $("input:radio[name=movie]:checked").val(),
 							theater : $("input:radio[name=theater]:checked").val(),
 							date : $("input:radio[name=date]:checked").val(),
-							page : "movieSelect"
 						},
 						async : true,
 						dataType : 'json',
@@ -25,11 +24,12 @@
 							var $dl = null;
 							var $timel = null;
 							$.each(data, function(index,val) {
-								if (index===0) {
+								alert(index+", "+val);
+								if (index==="theaterList") {
 								$tl = val;
-								} else if (index===1) {
+								} else if (index==="dateList") {
 								$dl = val;
-								} else if (index===2) {
+								} else if (index==="timeList") {
 								$timel = val;
 								}
 							});
@@ -39,7 +39,7 @@
 								var theater_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===0) {
+										if (index==="theaterList") {
 											Ticket.$theaterlist = val;
 										$.each(val, function() {
 											theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
@@ -53,7 +53,7 @@
 								var date_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===1) {
+										if (index==="dateList") {
 											Ticket.$datelist = val;
 										$.each(val, function() {
 											date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
@@ -67,7 +67,7 @@
 								var times_list = 
 									'<div class="ticket_list-category"><dl>';
 									$.each(data, function(index,val) {
-										if (index===2) {
+										if (index==="timeList") {
 										$.each(val, function() {
 											times_list += '<dt><input type="radio" name="time" value="'+this+'"/>'+this+'</dt>';
 										});
@@ -286,11 +286,12 @@
 			
 			
 			initList : function(project) {
-				$.getJSON(project + '/ticket/Ticket.do?page=initList', function(data) {
+				alert("테이블초기화");
+				$.getJSON(project + '/schedule/initList', function(data) {
 					var movie_rate_list = 
 						'<div class="ticket_list-category"><dl>';
 						$.each(data, function(index,val) {
-							if (index===0) {
+							if (index==="movieListRate") {
 							$.each(val, function() {
 							movie_rate_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
 							});
@@ -301,7 +302,7 @@
 					var movie_asc_list = 
 						'<div class="ticket_list-category"><dl>';
 						$.each(data, function(index,val) {
-							if (index===1) {
+							if (index==="movieListAsc") {
 							$.each(val, function() {
 								movie_asc_list += '<dt><input type="radio" name="movie" value="'+this+'"/>'+this+'</dt>';
 							});
@@ -312,7 +313,7 @@
 					var theater_list = 
 						'<div class="ticket_list-category"><dl>';
 						$.each(data, function(index,val) {
-							if (index===2) {
+							if (index==="theaterList") {
 							$.each(val, function() {
 								theater_list += '<dt><input type="radio" name="theater" value="'+this+'"/>'+this+'</dt>';
 							});
@@ -324,7 +325,7 @@
 					var date_list = 
 						'<div class="ticket_list-category"><dl>';
 						$.each(data, function(index,val) {
-							if (index===3) {
+							if (index==="dateList") {
 							$.each(val, function() {
 								date_list += '<dt><input type="radio" name="date" value="'+this+'"/>'+this+'</dt>';
 							});
