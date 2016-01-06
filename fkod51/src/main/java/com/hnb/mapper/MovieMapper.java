@@ -14,5 +14,6 @@ public interface MovieMapper {
 	public int update(MovieVO o);
 	public int delete(String filmNumber);
 	public MovieVO selectNameBy(String movieName);
+	public List<MovieVO> find(String filmName);
 
 }

@@ -50,5 +50,11 @@ public class MovieServiceImpl implements MovieService{
 		MovieMapper mapper = sqlSession.getMapper(MovieMapper.class);
 		return mapper.selectChart();
 	}
+	@Override	//검색
+	public List<MovieVO> find(String filmName) {
+		MovieMapper mapper = sqlSession.getMapper(MovieMapper.class);
+		List<MovieVO> list = mapper.find(filmName);
+		return list;
+	}
 	
 }

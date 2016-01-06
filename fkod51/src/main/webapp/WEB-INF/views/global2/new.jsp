@@ -19,23 +19,29 @@
 
 <!-- 영화차트 -->
 <section id="two" class="no-padding">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d">
-                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d" class="img-responsive" alt="Image 1">
-                        <div class="gallery-box-caption">
-                            <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+	<div id="movielay" class="container-fluid" style="height: 705px;">
+		<div class="row no-gutter">
+			<div class="col-lg-4 col-sm-6">
+				<a href="#galleryModal" class="gallery-box" data-toggle="modal"
+					data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d">
+					<img
+					src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d"
+					class="img-responsive" alt="Image 1">
+					<div class="gallery-box-caption">
+						<div class="gallery-box-content">
+							<div>
+								<i class="icon-lg ion-ios-search"></i>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div style="width: 480px; margin: auto;" id="sWindow">
+	
+	</div>
+</section>
 
 <!-- 예매 -->
 <section id="three">
@@ -210,14 +216,14 @@
 <!-- 에이작스 팝업 페이지들 -->   
 <div id="galleryModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-content1">
     	<div class="modal-body" id="modal-body1">
     		<img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" />
     		<p>
     		    <br/>
     		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
     		</p>
-    	</div>
+    	</div>    	
     </div>
     </div>
 </div>

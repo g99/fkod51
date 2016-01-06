@@ -45,29 +45,15 @@ public class MovieController {
 		logger.info("영화제목 : {}", movie.getFilmName());
 		return movie;
 	} 
-	@RequestMapping("/movie_Cut")
-	public Model movieCut(String filmNumber, Model model){
-		logger.info("MovieController-movieCut() 진입");
-		logger.info("영화 스틸컷 : {}", filmNumber);
-		movie = service.searchByName(filmNumber);
-		String cut = movie.getCut();
-		String[]arr = cut.split("/");
-		logger.info("배열결과 : {}", arr);
-		model.addAttribute("arr", arr);
-		return model;
-	}
-	@RequestMapping("/movie_Tra")
-	public String movieTra(String filmNumber, Model model){
-		logger.info("MovieController-movieTra() 진입");
-		logger.info("영화 트레일러 : {}", filmNumber);
-		movie = service.searchByName(filmNumber);
-		String tra = movie.getTrailer();
-		logger.info("get 트레일러 : {}", tra);
-		String[]arrt = tra.split("/");
-		logger.info("트레일러 : ", arrt);
-		model.addAttribute("arrt", arrt);
-		return "movie/movie_Tra";
-	}
+	@RequestMapping("/film_name/{keyword}")
+	public @ResponseBody List<MovieVO> find(
+			@PathVariable ("keyword")String name){
+		logger.info("MovieController-find() 진입");
+		logger.info("영화 아이디 : {}", name);
+		List<MovieVO> movie = service.find(name);
+		logger.info("검색 list 값 : {}", movie);
+		return movie;
+	} 
 	@RequestMapping("/movie_Basic/{filmNumber}")
 	public @ResponseBody MovieVO movieBasic (@PathVariable ("filmNumber")String filmNumber){
 		logger.info("MovieController-movieBasic() 진입");
