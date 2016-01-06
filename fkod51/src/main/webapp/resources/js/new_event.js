@@ -19,16 +19,18 @@
 							+'<th style="width:15%;">작성일</th>'
 							+'<th style="width:10%;">조회수</th>'
 							+'</tr>';
-					
+					 
+					 var arr = [];
 					$.each(data.list, function(index, value) {
 						table += 
 							'<tr>'
 							+'<td>'+ this.rcdNo +'</td>'
-							+'<td><a href="#readModal" class="page-scroll" data-toggle="modal">'+ this.usrSubject +'</a></td>'
+							+'<td><a id="read'+ this.rcdNo +'" href="#readModal" class="page-scroll" data-toggle="modal" style="color:#9385AD;">'+ this.usrSubject +'</a></td>'
 							+'<td>'+ this.usrName +'</td>'
 							+'<td>'+ this.usrDate +'</td>'
 							+'<td>'+ this.usrRefer +'</td>'
-							+'</tr>'
+							+'</tr>';
+						arr.push(this.rcdNo);
 					});
 					
 					table += '</table>';
@@ -36,7 +38,7 @@
 					var pagination = 
 							'<div style="; ">'
 							+ '<button id="list" class="btn btn-primary" style="float:left; margin-left:80px;">목록</button>'
-							+ '<button class="btn btn-primary" data-toggle="modal" data-target="#writeModal"  style="margin-right:80px; float:right;">글쓰기</button>'
+							+ '<button id="write" class="btn btn-primary" data-toggle="modal" data-target="#writeModal" style="margin-right:80px; float:right;">글쓰기</button>'
 							+ '</div>'
 							+ '<table id="pagination">'
 							+ '<tr>'
@@ -105,9 +107,20 @@
 					});
 					
 					//글쓰기 버튼을 클릭하면
-					$("#write").click(function() {
-						alert("글쓰기 클릭");
-						location.href = "#writeModal";
+					$("#write").click(function(e) {
+						if($(".navbar-right a").text() != "로그인"){
+							$("#write").attr("data-target","#writeModal");
+						} else {
+							alert("로그인을 먼저 해주세요");
+							$("#write").attr("data-target","");
+						}
+					});
+					
+					// 각각의 글을 클릭하면
+					$.each(data.list, function(index, value) {
+						$("#read" + arr[index]).click(function() {
+							newEvent.getData(arr[index]);
+						});
 					});
 				});
 			},
@@ -120,7 +133,6 @@
 					},
 					dataType : "json",
 					success : function(data) {
-						alert("에이작스 성공!!");
 						$("#five").empty(); // 섹션5의 내용을 다비우고 검색용으로 다시그림
 						
 						 var count = data.count;
@@ -141,16 +153,17 @@
 								+'<th style="width:15%;">작성일</th>'
 								+'<th style="width:10%;">조회수</th>'
 								+'</tr>';
-						
+						 var arr = [];
 						$.each(data.list, function(index, value) {
 							table += 
 								'<tr>'
 								+'<td>'+ this.rcdNo +'</td>'
-								+'<td>'+ this.usrSubject +'</td>'
+								+'<td><a id="read'+ this.rcdNo +'" href="#readModal" class="page-scroll" data-toggle="modal" style="color:#9385AD;">'+ this.usrSubject +'</a></td>'
 								+'<td>'+ this.usrName +'</td>'
 								+'<td>'+ this.usrDate +'</td>'
 								+'<td>'+ this.usrRefer +'</td>'
-								+'</tr>'
+								+'</tr>';
+							arr.push(this.rcdNo);
 						});
 						
 						table += '</table>';
@@ -228,7 +241,18 @@
 						
 						//글쓰기 버튼을 클릭하면
 						$("#write").click(function() {
-							location.href = "#writeModal";
+							if($("#login").text() != "로그인"){
+								location.href = "#writeModal";
+							} else {
+								alert("로그인을 먼저 해주세요");
+							}
+						});
+						
+						// 각각의 글을 클릭하면
+						$.each(data.list, function(index, value) {
+							$("#read" + arr[index]).click(function() {
+								newEvent.getData(arr[index]);
+							});
 						});
 					},
 					error : function() {
@@ -251,6 +275,23 @@
 					},
 					error : function() {
 						alert("에이작스 실패");
+					}
+				});
+			},
+			//////////// 글의 내용을 읽어오는 역할 ///////////////
+			//////////// 여기서 data는 rcdNo을 의미함 //////////
+			getData : function(data) {
+				$("#code").html(data);
+				$.ajax(context + "/article/read",{
+					data : {
+						"code" : data
+					},
+					success : function(data) {
+						$("#readModal input:text[name=title]").val(data.writing.usrSubject);
+						$("#readModal textarea[name=content]").val(data.writing.usrContent);
+					},
+					error : function() {
+						alert("ajax 실패");
 					}
 				});
 			}

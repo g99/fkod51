@@ -221,25 +221,55 @@
     </div>
     </div>
 </div>
+
+<!-- 로그인 버튼을 클릭하였을 경우 -->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
     	<div class="modal-body">
     		<h2 class="text-center">로그인</h2>
+    		<hr />
     		<h5 class="text-center">
     		    저희 MTB BOX를 방문해주셔서 감사합니다.
     		</h5>
     		<br />
     		<label for="id" style="padding-left:10%">아이디</label>
-    		<input type="text" name="id" placeholder="아이디"/> &nbsp;&nbsp;
+    		<input type="text" name="id" id="id" placeholder="아이디" style="color: black;"/> &nbsp;&nbsp;
     		<label for="password">비밀번호</label>
-    		<input type="password" name="password" placeholder="비밀번호"/>
+    		<input type="password" name="password" id="password" placeholder="비밀번호" style="color: black;"/>
     		<br/>
-    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
+    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" id="login" > login </button>
     	</div>
     </div>
     </div>
 </div>
+
+
+<!-- 회원가입 버튼을 클릭하였을 경우 -->
+<div id="joinModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<h2 class="text-center">회원가입</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		   저희 사이트에서 제공하는 서비스를 사용하시려면, 회원가입을 먼저 진행해주세요.
+    		</h5>
+    		<br />
+    		<label for="id" style="padding-left:10%">아이디</label>
+    		<input type="text" name="id" id="id" placeholder="아이디" style="color: black;"/> &nbsp;&nbsp;
+    		<label for="password">비밀번호</label>
+    		<input type="password" name="password" id="password" placeholder="비밀번호" style="color: black;"/>
+    		<br/>
+    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" id="login" > 회원가입 </button>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
 <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -253,6 +283,8 @@
     </div>
     </div>
 </div>
+
+<!-- 글쓰기 눌렀을때 -->
 <div id="writeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" style="margin-right:37%">
    	<div class="modal-content" style="width:800px;">
@@ -275,18 +307,22 @@
    	</div>
    	</div>
 </div>
+
+<!-- 글 제목을 눌러 읽을때 -->
 <div id="readModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" style="margin-right:37%">
    	<div class="modal-content" style="width:800px;">
-   		<div class="modal-body" style="height:800px;">
+   		<div class="modal-body" style="min-height:800px;">
    			<div style="margin-left:8%;">
+   				<!-- 보이지는 않지만 데이터처리의 편의를 위해서 글번호를 적어놈 -->
+   				<span id="code" style="visibility:hidden"></span>
    				<label for="title" style="display:block;">제목</label>
-    			<input name="title" type="text" size="80" maxlength="100" style="width:90%; color:black;"/>
+    			<input name="title" type="text" disabled size="80" maxlength="100" style="width:90%; color:black;"/>
     		</div>
     		<br />
     		<div style="margin-left:8%">
    				<label for="content" style="display:block;">내용</label>
-   				<textarea name="content" cols="82" rows="20" style="width:90%; height:40%; color:black;"></textarea>
+   				<textarea name="content" disabled cols="82" rows="20" style="width:90%; height:40%; color:black;"></textarea>
    			</div>
    			<br />
     		<div style="margin-left:8%">
@@ -309,12 +345,23 @@
 $(function() {
 	Movie.ranking();
 	
+	/* 로그인 */
+	$("#login").click(function(){
+		Members.login();
+	});
+	
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
 	//----------------------//
 	// 확인//
 	$("#write_btn").click(function() {
-		newEvent.write();
+		if($("#writeModal input:text[name=title]").val() === ""){
+			$("#write_btn").attr("data-dismiss","");
+			alert("제목을 필수로 입력해주세요.");
+		} else {
+			$("#write_btn").attr("data-dismiss","modal");
+			newEvent.write();
+		}
 	});
 	// 취소 //
 	$("#write_close_btn").click(function() {
@@ -328,10 +375,9 @@ $(function() {
 	// 댓글달기 //
 	var index = 1;
 	$("#reply_btn").click(function() {
-		$("#reply_area").append("<p style='margin-left:'>" + $("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"'>지우기</button></p>");
+		$("#reply_area").append("<p style='border:solid; position:relative;'>" + $("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
 		// 댓글지우기 //
 		$("#remove_reply" + (index-1)).click(function() {
-			alert(this.id + " 입니다.");
 			$("#" + this.id).parent().remove();
 		});	
 		
@@ -339,5 +385,28 @@ $(function() {
 
 	
 }); 
+
+var Members = {
+		login : function() {
+			$.ajax(context + "/member/login",{
+				data : {"id" : $("#id").val(),
+						"password" :$("#password").val()
+				},
+				type : "post",
+				success : function(data) {
+					//로그인 결과가 성공이면
+					if(data.id != null){
+						$("#bs-navbar").load(context + "/member/headerReload #bs-navbar");
+					} else{
+					//로그인 결과가 실패면 (데이터가 널이면,)
+						alert("아이디 혹은 패스워드를 다시한번 확인해주세요");
+					}
+				},
+				error : function() {
+				}
+			});
+		},
+		
+};
 
 </script>

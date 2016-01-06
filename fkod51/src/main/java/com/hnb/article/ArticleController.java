@@ -156,4 +156,12 @@ public class ArticleController {
 		logger.info("save() 진입");
 		articleService.write(article);
 	}
+	@RequestMapping("/read")
+	public void read(
+			Model model,
+			String code
+			) {
+		article = articleService.selectById(Integer.parseInt(code));
+		model.addAttribute("writing", article);
+	}
 }

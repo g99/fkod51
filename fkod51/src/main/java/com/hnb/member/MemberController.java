@@ -1,5 +1,7 @@
 package com.hnb.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,34 +116,40 @@ public class MemberController {
 		
 		return "member/join_Result";
 	}
+	
+	
+	
 	@RequestMapping("/logout")
 	public String logout(Model model, SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
 		status.setComplete();
 		model.addAttribute("result", "success");
-		return "redirect:/"; /* 메인컨트롤러로 감 */ 
+		return "redirect:/"; /* 메인컨트롤러로 간다는 뜻 */ 
 	}
+	
+	
+	
+	/*로그인*/
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public @ResponseBody MemberVO login(
-			@RequestBody MemberVO param,
+			@RequestParam("id")String id,
+ 		    @RequestParam("password")String pw,
+ 		    HttpSession session,
 		    Model model){
 		logger.info("멤버컨트롤러 login() - 진입");
-		logger.info("유저아이디 : {}", param.getId());
-		logger.info("유저 비밀번호: {}", param.getPassword());
-		member = service.login(param.getId(), param.getPassword());
-		model.addAttribute("user", member);
-		if (member.getId().equals(param.getId())) {
-		logger.info("로그인 성공!!!!!!!!!!!!!");
+		logger.info("유저아이디 : {}", id);
+		logger.info("유저 비밀번호: {}", pw);
+		member = service.login(id, pw);
+		if (member != null) {
+		logger.info("로그인 성공!!!!!!!");
+		session.setAttribute("user", member);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}
-			if (member.getId().equals("choa")) {
-				model.addAttribute("admin", "yes");
-			} else {
-				model.addAttribute("admin", "no");
-			}
 		return member;
 	}
+	
+	
 	
 	@RequestMapping("/login_mobile")
 	public String login_mobile(
@@ -151,10 +159,11 @@ public class MemberController {
  		    ){
 		logger.info("아이디 {}",id);
 		logger.info("비이번 {}",pw);
-		member = service.login(id, pw);
-		model.addAttribute("user", member);
 		return "member/mypage.tiles";
 	}	
+	
+	
+	
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(
 			String id,
@@ -211,5 +220,10 @@ public class MemberController {
 			logger.info("업데이트 실패");
 		}
 		return member;
+	}
+	
+	@RequestMapping("/headerReload")
+	public String headerReload() {
+		return "global2/header.jsp";
 	}
 }

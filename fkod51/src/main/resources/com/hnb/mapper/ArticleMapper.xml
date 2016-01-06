@@ -49,7 +49,6 @@
      <select id="selectByRcdNo" parameterType="int" resultType="com.hnb.article.ArticleVO">
      	SELECT
      		USR_NAME AS usrName,
-     		USR_MAIL AS usrMail,
      		USR_SUBJECT AS usrSubject,
      		USR_CONTENT AS usrContent
  		FROM BOARD WHERE RCD_NO = #{rcdNo}
