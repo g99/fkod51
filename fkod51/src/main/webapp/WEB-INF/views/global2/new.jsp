@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<<<<<<< HEAD
 
 <!-- 트레일러&이벤트 -->
-=======
-<!-- 헤더자리 -->
->>>>>>> refs/remotes/origin/top_0_1_2
+
 <section class="bg-primary" id="one">
     <div class="container">
         <div class="row">
