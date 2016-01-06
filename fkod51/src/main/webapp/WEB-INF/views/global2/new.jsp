@@ -289,25 +289,55 @@
     </div>
     </div>
 </div>
+
+<!-- 로그인 버튼을 클릭하였을 경우 -->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
     	<div class="modal-body">
     		<h2 class="text-center">로그인</h2>
+    		<hr />
     		<h5 class="text-center">
     		    저희 MTB BOX를 방문해주셔서 감사합니다.
     		</h5>
     		<br />
     		<label for="id" style="padding-left:10%">아이디</label>
-    		<input type="text" name="id" placeholder="아이디"/> &nbsp;&nbsp;
+    		<input type="text" name="id" id="id" placeholder="아이디" style="color: black;"/> &nbsp;&nbsp;
     		<label for="password">비밀번호</label>
-    		<input type="password" name="password" placeholder="비밀번호"/>
+    		<input type="password" name="password" id="password" placeholder="비밀번호" style="color: black;"/>
     		<br/>
-    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true"> OK </button>
+    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" id="login" > login </button>
     	</div>
     </div>
     </div>
 </div>
+
+
+<!-- 회원가입 버튼을 클릭하였을 경우 -->
+<div id="joinModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<h2 class="text-center">회원가입</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		   저희 사이트에서 제공하는 서비스를 사용하시려면, 회원가입을 먼저 진행해주세요.
+    		</h5>
+    		<br />
+    		<label for="id" style="padding-left:10%">아이디</label>
+    		<input type="text" name="id" id="id" placeholder="아이디" style="color: black;"/> &nbsp;&nbsp;
+    		<label for="password">비밀번호</label>
+    		<input type="password" name="password" id="password" placeholder="비밀번호" style="color: black;"/>
+    		<br/>
+    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" id="login" > 회원가입 </button>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
 <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -321,3 +351,40 @@
     </div>
     </div>
 </div>
+
+
+
+
+
+<script type="text/javascript">
+/* 로그인 */
+
+$("#login").click(function(){
+	Members.login();
+});
+
+var Members = {
+		login : function() {
+			$.ajax(context + "/member/login",{
+				data : {"id" : $("#id").val(),
+						"password" :$("#password").val()
+				},
+				type : "post",
+				success : function(data) {
+					//로그인 결과가 성공이면
+					if(data.id != null){
+						alert(data.id+"님 로그인을 환영합니다");
+					} else{
+					//로그인 결과가 실패면 (데이터가 널이면,)
+						alert("아이디 혹은 패스워드를 다시한번 확인해주세요");
+					}
+				},
+				error : function() {
+				}
+			});
+		},
+		
+};
+
+
+</script>

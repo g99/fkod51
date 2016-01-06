@@ -29,15 +29,42 @@
                 <li>
                     <a class="page-scroll" href="#last" style="font-size:1.5em;">Contact us</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#" style="font-size:1.5em;">회원가입</a>
-                </li>
+                
+                <!-- 로그인을 하지 않았을 때 -->
+                <c:if test= "${empty sessionScope.user}">
+					<li><a class="page-scroll" data-toggle="modal" href="#joinModal" style="font-size: 1.5em;">회원가입</a>
+					</li>
+					
+				<!-- 로그인 한 후, 로그아웃 버튼 (클릭시, 현재 서버의 logout을 타고 완전 메인으로 리다이렉트 하도록 설정함.) -->
+				</c:if>
+				  <c:if test= "${not empty sessionScope.user}">
+					<li><a class="page-scroll" href="${context}/member/logout" 
+					style="font-size: 1.5em;">로그아웃</a>
+					</li>
+				</c:if>
+				
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#loginModal" style="font-size:1.5em;">로그인</a>
-                </li>
-            </ul>
+            <!-- 로그인을 하지 않았을 때 -->
+            <c:if test= "${empty sessionScope.user}">
+            	<ul class="nav navbar-nav navbar-right">
+               		 <li>
+                 	   <a class="page-scroll" data-toggle="modal" title="A free Bootstrap video landing theme" href="#loginModal" style="font-size:1.5em;">로그인</a>
+              	 	</li>
+            	</ul>
+            </c:if>
+            
+             <!-- 로그인을 하였을 때, 현재는 loginModal로 보내고 있으나, 위와는 다른 주소로 보내야함(마이페이지, 내정보수정). -->
+            <c:if test= "${not empty sessionScope.user}">
+            	<ul class="nav navbar-nav navbar-right">
+               		 <li>
+                 	   <a class="page-scroll" data-toggle="modal" 
+                 	   title="A free Bootstrap video landing theme" 
+                 	   href="#loginModal" 
+                 	   style="font-size:1.5em;">${user.name}님</a>
+              	 	</li>
+            	</ul>
+            </c:if>
+            
         </div>
     </div>
 </nav>
@@ -68,4 +95,5 @@
 				$("#open_Wrap").load(context + "/home");
 			});
 	});
+	 
  </script>
