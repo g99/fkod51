@@ -33,6 +33,11 @@ public class ScheduleController {
 			Model model
 			){
 		logger.info("ScheduleController-movieSelect() 진입");
+		logger.info("movie : {}", movie);
+		logger.info("theater : {}", theater);
+		logger.info("date : {}", date);
+		logger.info("=================================================================구분==================================");
+		
 		List<?> theaterList = new ArrayList<>();
 		List<?> dateList = new ArrayList<>();
 		List<?> timeList = new ArrayList<>();
@@ -52,6 +57,7 @@ public class ScheduleController {
 		model.addAttribute("theaterList",theaterList);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("timeList",timeList);
+		model.addAttribute("movie",movie);
 		return model;
 	}
 	@RequestMapping("/theaterSelect")
@@ -62,6 +68,9 @@ public class ScheduleController {
 			Model model
 			){
 		logger.info("ScheduleController-theaterSelect() 진입");
+		logger.info("movie : {}", movie);
+		logger.info("theater : {}", theater);
+		logger.info("date : {}", date);
 		List<?> movieListRate = new ArrayList<>();
 		List<?> movieListAsc = new ArrayList<>();
 		List<?> dateList = new ArrayList<>();
@@ -70,6 +79,7 @@ public class ScheduleController {
 			movieListRate = scheduleService.getMovieRateByTD(theater,date);
 			movieListAsc = scheduleService.getMovieAscByTD(theater,date);
 		} else if (movie!=null && date==null) {
+			logger.info("영화, 극장 : {}, {}",movie,theater);
 			dateList = scheduleService.getShowDateListByMT(movie, theater);
 		} else if (movie==null && date==null) {
 			movieListRate = scheduleService.getMovieRateByT(theater);
@@ -108,6 +118,7 @@ public class ScheduleController {
 		} else if (movie!=null&&theater!=null&&date!=null) {
 			timeList = scheduleService.getTimeList(movie, theater, date);
 		}
+		logger.info("ScheduleController-dateSelect() 진입 timeList: ======== {}",timeList);
 		model.addAttribute("movieListRate", movieListRate);
 		model.addAttribute("movieListAsc", movieListAsc);
 		model.addAttribute("theaterList", theaterList);
@@ -124,18 +135,19 @@ public class ScheduleController {
 			){
 		logger.info("ScheduleController-choiceseat() 진입");
 		String filmNumber = scheduleService.getFilmNumberBy(movie);
-		logger.info("영화번호 : {}", filmNumber);
 		ticket.setFilmNumber(filmNumber);
 		ticket.setTheaterName(theater);
-		ticket.setTheaterName(date);
-		ticket.setTheaterName(time.split(" ")[0]);
-		ticket.setTheaterName(time.split(" ")[1]);
+		ticket.setDate(date);
+		ticket.setRoomName(time.split(" ")[0]);
+		ticket.setStartTime(time.split(" ")[1]);
 		logger.info("영화번호 : {}", ticket.getFilmNumber());
 		logger.info("영화관 : {}", ticket.getTheaterName());
 		logger.info("날짜 : {}", ticket.getDate());
 		logger.info("관번호 : {}", ticket.getRoomName());
 		logger.info("시작시간 : {}", ticket.getStartTime());
-		model.addAttribute("result", "success");
+		model.addAttribute("movie", movie);
+		model.addAttribute("date", date);
+		model.addAttribute("time", time);
 		return model;
 	}
 	
@@ -185,6 +197,14 @@ public class ScheduleController {
 		logger.info("ScheduleController-confirmMain() 진입");
 		model.addAttribute("movie", ticket.getFilmNumber());
 		model.addAttribute("ticket", ticket);
+		return model;
+	}
+	@RequestMapping("/initSeats")
+	public Model initSeats(Model model){
+		logger.info("ScheduleController-initSeats() 진입");
+		logger.info("ScheduleController-initSeats() 진입======seatList : {}",scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
+		model.addAttribute("seatList", scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
+		logger.info("ScheduleController-initSeats() 진입{}",model);
 		return model;
 	}
 }
