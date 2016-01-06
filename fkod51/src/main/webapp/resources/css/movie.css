@@ -195,10 +195,20 @@ div.chart_ranking{ text-align: center;
 	margin:	auto;
 }
 
-.cut_allcut_lay {
+.cut_allcut_lay1 {
 	margin-left: 20px;
 	width: 100%;
-	height: 700px;
+	height: 600px;
+}
+.cut_allcut_lay2 {
+	margin-left: 20px;
+	width: 100%;
+	height: 780px;
+}
+.cut_allcut_lay3 {
+	margin-left: 20px;
+	width: 100%;
+	height: auto;
 }
 
 .cut_allcut {

@@ -4,26 +4,67 @@ var Movie = {
 				},
 				ranking : function() {
 					var arr = [];
+					var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
-						var rank = '<section id="two" class="no-padding"><div class="container-fluid"><div class="row no-gutter">';
+						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
 							rank += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
 									+'<a href="#galleryModal1" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a><div class="chart_desc chart_bold">'+this.filmName+'</div></div></div>';
+									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 							arr.push(this.filmNumber);
 						});
-						rank += '</div></div></section>';
-					$('#two').empty().append(rank);
+						rank += '</div></div>';
+						
+					$('#movielay').empty().append(rank);
+					$('#sWindow').empty().append(fWindow);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
-							
 							Movie.movieName(arr[i]);
 					});
-
 					});
+					$('#search').click(function name() {
+						Movie.find($("input:text[name=search]").val());
+					})
 					});
-
+				},
+				find : function(keyword) {
+					$.ajax(context + "/movie/film_name/"+keyword,{
+						data : {
+							"filmName" : keyword
+						},
+						dataType : "json",
+						success : function(data) {
+							var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
+							var reRank ='<img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="width:55px; height:55px;">';
+							var arr = [];
+							var result = '<div class="container-fluid"><div class="row no-gutter">';
+							$.each(data, function(index, value) {
+								result += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+										+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
+										+'<a href="#galleryModal1" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
+										+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+								arr.push(this.filmNumber);
+							});
+							result += '</div></div>';
+							$('#movielay').empty().append(result);
+							$('#sWindow').empty().append(fWindow).append(reRank);
+							$.each(data, function(i, val) {
+								$('#'+arr[i]).click(function() {
+									Movie.movieName(arr[i]);
+							});
+							});
+							$('#search').click(function name() {
+								Movie.find($("input:text[name=search]").val());
+							});
+							$('#ranking').click(function() {
+								Movie.ranking();
+							})
+						},
+						error : function() {
+							alert("검색어를 입력하세요");
+						}
+					})
 				},
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
@@ -66,14 +107,33 @@ var Movie = {
 				},
 				movieBasic : function(data) {
 					$.getJSON(context + '/movie/movie_Basic/'+data, function(data) {
-						    var movieBasic ='<div class="cut_allcut_lay"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+						if ((data.cut.split("/").length)>6 && (data.cut.split("/").length)<9) {
+							var movieBasic ='<div class="cut_allcut_lay1"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
 						    $.each(data.cut.split("/"), function(index,value){
 						    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
 					    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'
 					    				+'<img src="'+context+'/resources/images/'+value+'.jpg;" alt="" width="250px" height="161px" />'
 					    				+'</a></div>';
 						    });
-						    
+						}
+						    if ((data.cut.split("/").length)>9 && (data.cut.split("/").length)<12) {
+						    	var movieBasic ='<div class="cut_allcut_lay2"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+							    $.each(data.cut.split("/"), function(index,value){
+							    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
+						    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'
+						    				+'<img src="'+context+'/resources/images/'+value+'.jpg;" alt="" width="250px" height="161px" />'
+						    				+'</a></div>';
+							    });
+							}
+						    if ((data.cut.split("/").length)%3 == 0) {
+						    	var movieBasic ='<div class="cut_allcut_lay3"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+							    $.each(data.cut.split("/"), function(index,value){
+							    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
+						    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'
+						    				+'<img src="'+context+'/resources/images/'+value+'.jpg;" alt="" width="250px" height="161px" />'
+						    				+'</a></div>';
+							    });
+							}
 						    movieBasic +='</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
 						
 						$('#modal-body1').html(movieBasic);

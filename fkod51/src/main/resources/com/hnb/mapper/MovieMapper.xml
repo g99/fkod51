@@ -42,6 +42,25 @@
    		T_RATE AS tRate
       FROM MOVIE WHERE FILM_NUMBER = #{filmNumber}
       </select>
+	<select id="find" resultType="com.hnb.movie.MovieVO" parameterType="string">
+      SELECT 
+        FILM_NUMBER AS filmNumber,
+      	FILM_NAME AS filmName,
+      	DIRECTOR AS director,
+      	ACTOR AS actor,
+      	RATE AS rate,
+      	RUNTIME AS runtime,
+      	PRICE AS price,
+      	GENRE AS genre,
+      	RELEASE_DATE AS releaseDate,
+      	END_DATE AS endDate,
+      	STORY AS story,
+      	CUT AS cut,
+      	TRAILER AS trailer,
+      	COUNTRY AS country,
+   		T_RATE AS tRate
+      FROM MOVIE WHERE FILM_NAME LIKE CONCAT ('%',#{filmName},'%')
+      </select>
       
       <insert id="insert" parameterType="com.hnb.movie.MovieVO" >
     	INSERT INTO MOVIE
