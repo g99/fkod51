@@ -20,7 +20,7 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("메인컨트롤러 home 메소드 진입 {}.", locale);
-		return "global/default.tiles";
+		return "global2/new.new";
 	}
 	
 	@RequestMapping("/home")

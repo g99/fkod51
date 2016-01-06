@@ -24,7 +24,7 @@
 						table += 
 							'<tr>'
 							+'<td>'+ this.rcdNo +'</td>'
-							+'<td>'+ this.usrSubject +'</td>'
+							+'<td><a href="#readModal" class="page-scroll" data-toggle="modal">'+ this.usrSubject +'</a></td>'
 							+'<td>'+ this.usrName +'</td>'
 							+'<td>'+ this.usrDate +'</td>'
 							+'<td>'+ this.usrRefer +'</td>'
@@ -233,6 +233,24 @@
 					},
 					error : function() {
 						
+					}
+				});
+			},
+			//////////// 글을쓰고 확인버튼을 누르면 ///////////////
+			write : function() {
+				$.ajax(context + "/article/write",{
+					data : {
+						"title" : $("input:text[name=title]").val(),
+						"content" : $("textarea[name=content]").val()
+					},
+					method : "post",
+					success : function() {
+						$("input:text[name=title]").val("");
+						$("textarea[name=content]").val("");
+						newEvent.init(1);
+					},
+					error : function() {
+						alert("에이작스 실패");
 					}
 				});
 			}

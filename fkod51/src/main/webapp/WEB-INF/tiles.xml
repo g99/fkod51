@@ -24,6 +24,9 @@
 		<put-attribute name="footer" value="/WEB-INF/views/global2/footer.jsp" />
 	</definition>
 	
+	<definition name="*.new" extends="new_layout">
+	</definition>
+	
 	<definition name="*/*.new" extends="new_layout">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

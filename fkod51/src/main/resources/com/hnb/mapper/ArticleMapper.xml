@@ -5,8 +5,8 @@
 
  <mapper namespace="com.hnb.mapper.ArticleMapper">
  	 <insert id="write" parameterType="com.hnb.article.ArticleVO">
- 	 	INSERT INTO BOARD(RCD_NO,USR_SUBJECT,USR_CONTENT,USR_DATE)
- 	 	VALUES(SEQ.NEXTVAL, #{usrSubject}, #{usrContent},SYSDATE)
+ 	 	INSERT INTO BOARD(USR_SUBJECT,USR_CONTENT,USR_NAME,USR_DATE)
+ 	 	VALUES(#{usrSubject}, #{usrContent}, #{usrName}, now())
  	 </insert>
 	 
      <select id="selectAll" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">

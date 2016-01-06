@@ -134,10 +134,19 @@ public class ArticleController {
 		return "article/boardSearch.tiles";
 	}
 	
-	@RequestMapping("/write")
-	public String write() {
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public void write(
+			Model model,
+			String title,
+			String content
+			) {
 		logger.info("write() 진입");
-		return "article/write.jsp";
+		/*System.out.println("title : " + title);
+		System.out.println("content : " + content);*/
+		article.setUsrSubject(title);
+		article.setUsrContent(content);
+		article.setUsrName("임시");
+		articleService.write(article);
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)

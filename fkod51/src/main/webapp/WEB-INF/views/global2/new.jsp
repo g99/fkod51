@@ -257,18 +257,49 @@
 	<div class="modal-dialog" style="margin-right:37%">
    	<div class="modal-content" style="width:800px;">
    		<div class="modal-body" style="height:600px;">
-   			<div style="margin-left:10%;">
-   				<label for="title">제목</label>
-    			<input name="title" type="text" size="80" maxlength="100"/>
+   			<div style="margin-left:8%;">
+   				<label for="title" style="display:block;">제목</label>
+    			<input name="title" type="text" size="80" maxlength="100" style="width:90%; color:black;"/>
     		</div>
     		<br />
-    		<div style="margin-left:9%">
-   				<label for="content" style="float:left;">내용</label>
-   				<textarea name="content" cols="82" rows="20"></textarea>
+    		<div style="margin-left:8%">
+   				<label for="content" style="display:block;">내용</label>
+   				<textarea name="content" cols="82" rows="20" style="width:90%; color:black;"></textarea>
    			</div>
    			<br />
+   			<div>
+   				<button id="write_close_btn" class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" style="float:left; margin-left:37%; margin-right:20px;">취소 <i class="ion-android-close"></i></button>
+    			<button id="write_btn" class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" style="margin:0;">확인 O</button>
+    		</div>
+    	</div>
+   	</div>
+   	</div>
+</div>
+<div id="readModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" style="margin-right:37%">
+   	<div class="modal-content" style="width:800px;">
+   		<div class="modal-body" style="height:800px;">
+   			<div style="margin-left:8%;">
+   				<label for="title" style="display:block;">제목</label>
+    			<input name="title" type="text" size="80" maxlength="100" style="width:90%; color:black;"/>
+    		</div>
+    		<br />
+    		<div style="margin-left:8%">
+   				<label for="content" style="display:block;">내용</label>
+   				<textarea name="content" cols="82" rows="20" style="width:90%; height:40%; color:black;"></textarea>
+   			</div>
    			<br />
-    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">OK <i class="ion-android-close"></i></button>
+    		<div style="margin-left:8%">
+   				<label for="content" style="display:block;">댓글쓰기</label>
+   				<textarea name="reply" cols="82" rows="20" style="width:90%; height:10%; color:black;"></textarea>
+   			</div>
+   			<br />
+   			<div>
+   				<button id="reply_btn" class="btn btn-primary btn-lg center-block" style="margin-left:35%; margin-right:20px; float:left;">댓글달기</button>
+    			<button id="read_btn" class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" style="margin-left:0;">종료</button>
+    		</div>
+    		<div id="reply_area" style="padding-top:10px;">
+    		</div>
     	</div>
    	</div>
    	</div>
@@ -277,6 +308,36 @@
 
 $(function() {
 	Movie.ranking();
+	
+	//----------------------//
+	// 글쓰기 내부에 있는 버튼들 //
+	//----------------------//
+	// 확인//
+	$("#write_btn").click(function() {
+		newEvent.write();
+	});
+	// 취소 //
+	$("#write_close_btn").click(function() {
+		$("input:text[name=title]").val("");
+		$("textarea[name=content]").val("");
+	});
+	
+	//----------------------//
+	//     댓글관련 버튼        //
+	//----------------------//
+	// 댓글달기 //
+	var index = 1;
+	$("#reply_btn").click(function() {
+		$("#reply_area").append("<p style='margin-left:'>" + $("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"'>지우기</button></p>");
+		// 댓글지우기 //
+		$("#remove_reply" + (index-1)).click(function() {
+			alert(this.id + " 입니다.");
+			$("#" + this.id).parent().remove();
+		});	
+		
+	});
+
+	
 }); 
 
 </script>
