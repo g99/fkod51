@@ -275,8 +275,8 @@
 </div>
 <script type="text/javascript">
 
-/* $(function() {
-	Movie.ranking("${context}");
-}); */
+$(function() {
+	Movie.ranking();
+}); 
 
 </script>

@@ -68,7 +68,9 @@
 					"padding-bottom":"40%"
 				},1200);
 				$("#open_Wrap").load(context + "/home");
+
 		 });
 		 newEvent.init(1);
 	 });
+
  </script>
