@@ -15,7 +15,9 @@
         <div class="navbar-collapse collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a class="page-scroll" href="#two" style="font-size:1.5em;" id="movie_btn">영화</a>
+
+                    <a class="page-scroll" href="#two" style="font-size:1.5em;" id="movie_btn" >영화</a>
+
                 </li>
                 <li>
                     <a class="page-scroll" href="#three" style="font-size:1.5em;" id="ticketing_btn">예매</a>
@@ -64,9 +66,11 @@
 			 	$("#toggleVideo").remove();
 				$(".header-content").animate({
 					"padding-bottom":"40%"
-				},1200)
+				},1200);
 				$("#open_Wrap").load(context + "/home");
+
 		 });
 		 newEvent.init(1);
 	 });
+
  </script>

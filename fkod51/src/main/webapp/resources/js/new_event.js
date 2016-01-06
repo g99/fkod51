@@ -9,7 +9,7 @@
                      var groupSize = parseInt(data.groupSize);
 
 					 var table = 
-						 	'<span style="margin-left:47%; font-size:4em; color:#9c27b0;">EVENT</span>'
+						 	'<span style="margin-left:46%; font-size:4em; color:#9c27b0;">EVENT</span>'
 						 	+'<span style="margin-left:30%;">총 게시글: '+ data.count +'개</span>'
 						 	+'<table class="event_tab" style="margin-bottom:10px;">'
 							+'<tr>'
@@ -23,7 +23,7 @@
 					$.each(data.list, function(index, value) {
 						table += 
 							'<tr>'
-							+'<td>'+ (index+1) +'</td>'
+							+'<td>'+ this.rcdNo +'</td>'
 							+'<td>'+ this.usrSubject +'</td>'
 							+'<td>'+ this.usrName +'</td>'
 							+'<td>'+ this.usrDate +'</td>'
@@ -32,10 +32,11 @@
 					});
 					
 					table += '</table>';
-					
+
 					var pagination = 
-							'<div style="float:right; ">'
-							+ '<button id="write" style="margin-right:80px; color:black;">글쓰기</button>'
+							'<div style="; ">'
+							+ '<button id="list" class="btn btn-primary" style="float:left; margin-left:80px;">목록</button>'
+							+ '<button class="btn btn-primary" data-toggle="modal" data-target="#writeModal"  style="margin-right:80px; float:right;">글쓰기</button>'
 							+ '</div>'
 							+ '<table id="pagination">'
 							+ '<tr>'
@@ -97,6 +98,17 @@
 					$("#traverse").click(function() {
 						newEvent.search(1);
 					});
+					
+					//목차 버튼을 클릭하면
+					$("#list").click(function() {
+						newEvent.init(1);
+					});
+					
+					//글쓰기 버튼을 클릭하면
+					$("#write").click(function() {
+						alert("글쓰기 클릭");
+						location.href = "#writeModal";
+					});
 				});
 			},
 			//////////////////////////////////////////////
@@ -133,7 +145,7 @@
 						$.each(data.list, function(index, value) {
 							table += 
 								'<tr>'
-								+'<td>'+ (index+1) +'</td>'
+								+'<td>'+ this.rcdNo +'</td>'
 								+'<td>'+ this.usrSubject +'</td>'
 								+'<td>'+ this.usrName +'</td>'
 								+'<td>'+ this.usrDate +'</td>'
@@ -144,8 +156,9 @@
 						table += '</table>';
 						
 						var pagination = 
-								'<div style="float:right; ">'
-								+ '<button id="write" style="margin-right:80px; color:black;">글쓰기</button>'
+								'<div style="; ">'
+								+ '<button id="list" style="float:left; margin-left:80px; color:black;">목록</button>'
+								+ '<button id="write" style="margin-right:80px; float:right; color:black;">글쓰기</button>'
 								+ '</div>'
 								+ '<table id="pagination">'
 								+ '<tr>'
@@ -206,6 +219,16 @@
 						// 검색버튼을 클릭하면 다음과 같은내용을 수행
 						$("#traverse").click(function() {
 							newEvent.search(1);
+						});
+						
+						//목차 버튼을 클릭하면
+						$("#list").click(function() {
+							newEvent.init(1);
+						});
+						
+						//글쓰기 버튼을 클릭하면
+						$("#write").click(function() {
+							location.href = "#writeModal";
 						});
 					},
 					error : function() {
