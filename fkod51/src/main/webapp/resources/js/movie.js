@@ -51,6 +51,8 @@ var Movie = {
 										+'</div><div id="movie_cut" class="movie_cut_lay movie_margin_b20">'
 										+'<div id="movie_review" class="movie_review_lay"><h2>리뷰</h2></div>'
 										+'</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+								
+								$('#modal-body1').empty();	
 								$('#modal-body1').html(movieInfom);
 								$('#movie_info').css('width', '95%').css('height', '500px').css('margin','20px');
 								$('#movie_poster').css('float', 'left').css('border', '1px solid black').css('width', '250px').css('height', '350px').css('margin', 'auto').css('margin-right','30px');
@@ -66,15 +68,14 @@ var Movie = {
 					$.getJSON(project + '/movie/movie_Basic/'+data, function(data) {
 						    var movieBasic ='<div class="cut_allcut_lay"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
 						    $.each(data.cut.split("/"), function(index,value){
-						    	
 						    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
 					    				+'<a href="'+project+'/resources/images/'+value+'.jpg;">'
-					    				+'<img src="'+project+'/resources/images/'+value+'.jpg;" alt="" width="250px" height="161px" />'
+					    				+'<img src="'+project+'/resources/images/'+value+'.jpg;" alt="" width="250" height="161">'
 					    				+'</a></div>';
-						    	
 						    });
 						    
-						    movieBasic +='</div><div><br></br></div><br/><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+						    movieBasic +='</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+						
 						$('#modal-body1').html(movieBasic);
 						$('#movie_home').click(function() {
 							$('#modal-body1').empty();

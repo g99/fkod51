@@ -210,14 +210,14 @@
 <!-- 에이작스 팝업 페이지들 -->   
 <div id="galleryModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-content1">
     	<div class="modal-body" id="modal-body1">
     		<img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" />
     		<p>
     		    <br/>
     		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
     		</p>
-    	</div>
+    	</div>    	
     </div>
     </div>
 </div>
