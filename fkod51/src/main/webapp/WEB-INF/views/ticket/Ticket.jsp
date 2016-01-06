@@ -83,14 +83,17 @@
 	</div>
 <script src="${js}/tab.js"></script>
 <script type="text/javascript">
-/* $(function() {
+$(function() {
 	tabs.make();
 	Ticket.initList("${context}");
-	$('.ticket_sub').click(function() {Ticket.ticket_sub("${context}");});
+	$('.ticket_sub').click(function() {
+		alert("티켓서브실행전"+Ticket.movie);
+		Ticket.ticket_sub("${context}");
+		alert("티켓서브실행후");
+	});
 	$('#theater_list').click(function() {Ticket.theater_list("${context}");});
 	$('#date_list').click(function() {Ticket.date_list("${context}");});
 	$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
 	
 });
- */
 </script>

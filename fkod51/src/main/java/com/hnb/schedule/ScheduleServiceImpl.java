@@ -142,4 +142,13 @@ public class ScheduleServiceImpl implements ScheduleService {
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
 		return mapper.getFilmNumberBy(movie);
 	}
+	@Override
+	public RoomVO getSeatList(String theater, String room) {
+		logger.info("TicketServiceImpl : getSeatList()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("theater", theater);
+		parameters.put("room", room);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getSeatList(parameters);
+	}
 }

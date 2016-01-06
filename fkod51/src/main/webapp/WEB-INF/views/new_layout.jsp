@@ -30,20 +30,20 @@
     <!-- 커스텀 js -->
     <script src="${js}/tab.js"></script>
     <script src="${js}/ticket.js"></script>
+    <script src="${js}/seats.js"></script>
     
     <!-- 예매부분 -->
     <script type="text/javascript">
-		$(function() {
-			tabs.make();
-			Ticket.initList("${context}");
-			$('.ticket_sub').click(function() {
-				Ticket.ticket_sub("${context}");
-			});
-			
-			$('#theater_list').click(function() {Ticket.theater_list("${context}");});
-			$('#date_list').click(function() {Ticket.date_list("${context}");});
-			$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
-		});
+    $(function() {
+    	tabs.make();
+    	Ticket.main();
+		Ticket.initList("${context}");
+		$('.ticket_sub').click(function() {Ticket.ticket_sub("${context}");});
+		$('#theater_list').click(function() {Ticket.theater_list("${context}");});
+		$('#date_list').click(function() {Ticket.date_list("${context}");});
+		$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
+		
+    });
 	</script>
 </head>
 <body>
