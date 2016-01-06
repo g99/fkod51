@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ public class MemberController {
 	MemberVO member;
 	@Autowired
 	private EmailSender emailSender;
-	@Autowired
-	private Email email;
+	
+	int auth_Num = 0;
 	
 	@RequestMapping("/admin_home")
 	public String adminHome(){
@@ -86,8 +87,35 @@ public class MemberController {
 		return model;
 	}
 	
-	/*@RequestMapping("/join_auth")
-	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
+	@RequestMapping("/join_auth")
+	public Model joinAuth (
+			@RequestParam("id")String id,
+			@RequestParam("e_mail")String e_mail,
+ 		    @RequestParam("name")String name, 
+ 		    Model model) throws Exception {
+			Email email = new Email();
+		logger.info("멤버컨트롤러 joinAuth() - 진입");
+        
+		auth_Num = (int) (Math.random()*9999) + 1000;
+        	String reciver = e_mail;
+        	String subject = "환영합니다.  "+name+"님, 인증번호 메일입니다.";
+        	String content = "가입 인증번호는 "+auth_Num+" 입니다.";
+        			
+        	email.setReciver(reciver);
+            email.setSubject(subject);
+            email.setContent(content);
+            emailSender.sendMail(email);
+            model.addAttribute("success", "success");
+        return model;
+    }
+	
+	/*
+	 * if(service.selectById(id).getId()==null) {} => 이 구문 에러발생.
+	 *  
+	 * @RequestMapping("/join_auth")
+	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) 
+			throws Exception {
+			
         ModelAndView mav;
         String id=(String) paramMap.get("id");
         String e_mail=(String) paramMap.get("email");

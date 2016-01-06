@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class MemberVO implements Serializable{
 
 	private String id; // 아이디  =>hong => 'hong'

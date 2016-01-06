@@ -1,18 +1,18 @@
 package com.hnb.member;
 
 public class Email {
-
-    private String subject;
+	private String subject;
     private String content;
-    private String receiver;
+    private String regdate;
+    private String reciver;
      
-    public String getReceiver() {
-        return receiver;
+    public String getReciver() {
+        return reciver;
     }
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public void setReciver(String reciver) {
+        this.reciver = reciver;
     }
- 
+
     public String getSubject() {
         return subject;
     }
@@ -24,5 +24,11 @@ public class Email {
     }
     public void setContent(String content) {
         this.content = content;
+    }
+    public String getRegdate() {
+        return regdate;
+    }
+    public void setRegdate(String regdate) {
+        this.regdate = regdate;
     }
 }

@@ -49,7 +49,8 @@ public class MemberServiceImpl  implements MemberService{
 	public MemberVO selectById(String id) {
 		logger.info("MemberServiceImpl : selectById");
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		return mapper.selectOneBy(id);
+		MemberVO member = mapper.selectOneBy(id);
+		return member;
 	}
 	
 	// 총 회원 수 검색
