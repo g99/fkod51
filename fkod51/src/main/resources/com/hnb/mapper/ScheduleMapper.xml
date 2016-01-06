@@ -70,7 +70,17 @@
 		SELECT THEATER.THEATER_NAME AS THEATERNAME FROM THEATER, (SELECT DISTINCT THEATER_SEQ FROM SCHEDULE WHERE SHOW_DATE = #{date} AND SEAT_STATUS > 0) AS TS WHERE THEATER.THEATER_SEQ = TS.THEATER_SEQ ORDER BY THEATER.THEATER_NAME
      </select>
      
-     <select id="getTimeList" resultType="string" parameterType="string">
+     <select id="getFilmNumberBy" resultType="string" parameterType="string">
+    	SELECT FILM_NUMBER FROM MOVIE WHERE FILM_NAME = #{movie}
+     </select>
+     
+     <select id="getTimeList" resultType="map" parameterType="map">
 		SELECT DISTINCT SCHEDULE.SHOW_TIME AS SHOWTIME, SCHEDULE.ROOM_NAME AS ROOMNAME FROM SCHEDULE, MOVIE WHERE SCHEDULE.FILM_NUMBER = MOVIE.FILM_NUMBER AND MOVIE.FILM_NAME = #{movie} AND SCHEDULE.THEATER_SEQ = (SELECT DISTINCT THEATER.THEATER_SEQ AS THEATERSEQ FROM THEATER WHERE THEATER.THEATER_NAME = #{theater}) AND SCHEDULE.SHOW_DATE = #{date} AND SEAT_STATUS > 0 ORDER BY SCHEDULE.SHOW_DATE ASC
+     </select>
+     
+     <select id="getSeatList" resultType="com.hnb.schedule.RoomVO" parameterType="map">
+		SELECT ROOM.* 
+		FROM ROOM, THEATER 
+		WHERE THEATER.THEATER_NAME = #{theater} AND ROOM.ROOM_NAME = #{room};
      </select>
  </mapper>

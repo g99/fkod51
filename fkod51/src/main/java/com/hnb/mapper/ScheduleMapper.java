@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.hnb.schedule.RoomVO;
 import com.hnb.schedule.ScheduleVO;
 
 @Repository
@@ -38,6 +39,8 @@ public interface ScheduleMapper {
 		public List<?> getTheaterListByD(String date);
 		public List<?> getTimeList(Map<String, String> parameters);
 		public String getFilmNumberBy(String movie);
+		
+		public RoomVO getSeatList(Map<String, String> parameters);
 		
 		// U
 		public int update(ScheduleVO o);

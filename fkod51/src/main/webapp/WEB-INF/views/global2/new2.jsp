@@ -96,7 +96,68 @@
     </section>
 
 <section id="three">
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="margin-top-0 text-primary">예매하기</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-8 text-center">
+                <div class="feature">
+                	<h3>영화</h3>
+                	<hr class="primary">
+                    <ul class='tabs' style="padding-left: 0px;">
+					    <li><a href='#tab1'>예매율</a></li>
+					    <li><a href='#tab2'>가나다</a></li>
+					</ul>
+					<form action="" id="movie_list" onsubmit="return false;">
+					  <div id='tab1' class="ticket_sub">
+					  	
+					  </div>
+					  <div id='tab2' class="ticket_sub">
+					  
+					  </div>
+					 </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-8 text-center">
+                <div class="feature">
+                    <h3>극장</h3>
+                    <hr class="primary">
+                    <div id="theater_list">
+					
+					</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-8 text-center">
+                <div class="feature">
+                    <h3>날짜</h3>
+                    <hr class="primary">
+                    <div id="date_list">
+					
+					</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-8 text-center">
+                <div class="feature">
+                    <h3>시간</h3>
+                    <hr class="primary">
+                    <div id="times_list">
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-11 text-right">
+            	<label for="choiceseat" class="button" style="font-size: 20px;">좌석선택</label><input id="choiceseat" type="button" value="좌석선택" style="display: none;">
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="container-fluid" id="four">
@@ -267,7 +328,3 @@
     </div>
     </div>
 </div>
-<script type="text/javascript">
-
-
-</script>
