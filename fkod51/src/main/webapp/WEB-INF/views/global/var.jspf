@@ -4,12 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <c:set var="context" value="<%=request.getContextPath()%>"></c:set>
-<c:set var="js" value="${context}/resources/js"></c:set>
-<c:set var="css" value="${context}/resources/css"></c:set>
-<c:set var="img" value="${context}/resources/images"></c:set>
+<c:set var="js2" value="${context}/resources/js2"></c:set>
+<c:set var="css2" value="${context}/resources/css2"></c:set>
+<c:set var="img2" value="${context}/resources/images2"></c:set>
 <script>
 	var context = "${context}";
-	var img = "${img}";
-	var css = "${css}";
-	var js = "${js}";
+	var img2 = "${img2}";
+	var css2 = "${css2}";
+	var js2 = "${js2}";
 </script>

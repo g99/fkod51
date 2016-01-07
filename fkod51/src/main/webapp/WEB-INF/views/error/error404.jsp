@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!doctype html>
+<%-- <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
@@ -10,7 +10,7 @@
 	<img src="${img}/error404.png" alt="error404" />
 	</div>
 </body>
-</html>
+</html> --%>
 <!-- 
 	HTTP 프로토콜에 정의된 에러번호
 	200 : 정상, success
@@ -21,4 +21,4 @@
 	405 : 요청된 메소드는 허용불가(get/post 방식)
 	500 : JSP 문서내에서 오류발생
 	503 : 서버부하, 예) 디도스
- -->
+ --> 
