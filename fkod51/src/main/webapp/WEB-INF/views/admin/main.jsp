@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<a href="" onclick=""></a>
+<h1>하이</h1>
+
+<!-- <a href="" onclick=""></a>
 <script type="text/javascript">
 $(function() {
 	admin.draw("1");
@@ -95,4 +97,4 @@ $(function() {
 				});
 		}
  };
- </script>
+ </script> -->
