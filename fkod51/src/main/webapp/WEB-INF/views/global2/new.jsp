@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    <a href="http://192.168.0.57:9000/app/global/new">새페이지</a>
 </section>
 
 <section id="two" class="no-padding">
@@ -267,7 +268,3 @@
     </div>
     </div>
 </div>
-<script type="text/javascript">
-
-
-</script>
