@@ -63,11 +63,10 @@
                  	   <a class="page-scroll" data-toggle="modal" 
                  	   title="A free Bootstrap video landing theme" 
                  	   href="#loginModal" 
-                 	   style="font-size:1.5em;">${user.name}님</a>
+                 	   style="font-size:1.5em;">${user.id}</a>
               	 	</li>
             	</ul>
             </c:if>
-            
         </div>
     </div>
 </nav>

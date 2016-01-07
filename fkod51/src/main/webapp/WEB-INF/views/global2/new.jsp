@@ -276,9 +276,7 @@
     </div>
 </div>
 
-
-
-
+<!-- alert 경고창은 이걸로 대체할 것 -->
 <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -335,7 +333,7 @@
    			</div>
    			<br />
     		<div style="margin-left:8%">
-   				<label for="content" style="display:block;">댓글쓰기</label>
+   				<label for="reply" style="display:block;">댓글쓰기</label>
    				<textarea name="reply" cols="82" rows="20" style="width:90%; height:10%; color:black;"></textarea>
    			</div>
    			<br />
@@ -384,14 +382,24 @@ $(function() {
 	// 댓글달기 //
 	var index = 1;
 	$("#reply_btn").click(function() {
-		$("#reply_area").append("<p style='border:solid; position:relative;'>" + $("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
-		// 댓글지우기 //
-		$("#remove_reply" + (index-1)).click(function() {
-			$("#" + this.id).parent().remove();
-		});	
-		
+		$.ajax(context + "/article/reply ",{
+			data : {
+				"code" : $("#code").text(),
+				"id" : $(".navbar-right a").text(),
+				"content" : $("#readModal textarea[name=reply]").val()
+			},
+			success : function() {
+				$("#reply_area").append("<p style='border:solid; position:relative;'>" + $(".navbar-right a").text() + " | " +$("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
+				// 댓글지우기 //
+				$("#remove_reply" + (index-1)).click(function() {
+					$("#" + this.id).parent().remove();
+				});	
+			},
+			error : function() {
+				
+			}
+		});
 	});
-
 	
 }); 
 
