@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<html>
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>관리자페이지</title>
 <link rel="stylesheet" href="${css2}/common.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
- 
+
 <!--Icons-->
 <script src="${js2}/lumino.glyphs.js"></script>
 
@@ -50,9 +48,9 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="#"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-home"></use></svg> 메인페이지</a></li>
+			<li class="active"><a href="#"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> 메인페이지</a></li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="#" ><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>회원관리</a></li>
+			<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>회원관리</a></li>
 			<li><a href="#" id="list"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>회원목록</a></li>
 			<li role="presentation" class="divider"></li>
 			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg>영화관리</a></li>
@@ -64,22 +62,13 @@
 
 		</ul>
 
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active">Home</li>
+			</ol>
+		</div><!--/.row-->
 	</div>
-
-<script src="${js2}/bootstrap-datepicker.js"></script>
-	<script src="${js2}/bootstrap-table.js"></script>
-	<script src="${js2}/bootstrap.js"></script>
-	<script src="${js2}/bootstrap.min.js"></script>
-	<script src="${js2}/html5shiv.min.js"></script>
-	<script src="${js2}/respond.min.js"></script>
-	<script type="text/javascript">
-	$('#list').click(function() {
-		alert("성공!!!");
-		location.href = "${context}/admin/main.jsp";
-	});
-	</script>	
-</body>
-
-</html>
-
-

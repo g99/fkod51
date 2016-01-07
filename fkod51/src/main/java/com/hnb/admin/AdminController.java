@@ -34,7 +34,7 @@ public class AdminController {
 	@RequestMapping("/main")
 	public String home(){
 		logger.info("AdminController-home() 진입");
-		return "admin/admin/main.tiles";
+		return "admin/main.admin";
 	}
 	@RequestMapping("/movie_list")
 	public Model movieList(Model model){
