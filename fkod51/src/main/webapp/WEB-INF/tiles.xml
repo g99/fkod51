@@ -37,7 +37,7 @@
 	
 	 <!-- 관리자용 -->
 	<definition name="admin_layout" template="/WEB-INF/views/admin_layout.jsp">
-		<put-attribute name="header" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/admin/header.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="" />
 	</definition>

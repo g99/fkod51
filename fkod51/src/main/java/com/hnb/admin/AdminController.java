@@ -34,7 +34,7 @@ public class AdminController {
 	@RequestMapping("")
 	public String home(){
 		logger.info("AdminController-home() 진입");
-		return "admin/login.admin";
+		return "admin/login.jsp";
 	}
 	
 	@RequestMapping("/main")
@@ -42,6 +42,31 @@ public class AdminController {
 		logger.info("AdminController-home() 진입");
 		return "admin/main.admin";
 	}
+	
+	@RequestMapping("/member")
+	public String member(){
+		logger.info("AdminController-home() 진입");
+		return "admin/member.admin";
+	}
+	
+	@RequestMapping("/movie")
+	public String movie(){
+		logger.info("AdminController-home() 진입");
+		return "admin/movie.admin";
+	}	
+	
+	@RequestMapping("/chart")
+	public String chart(){
+		logger.info("AdminController-home() 진입");
+		return "admin/chart.admin";
+	}
+	
+	@RequestMapping("/board")
+	public String board(){
+		logger.info("AdminController-home() 진입");
+		return "admin/board.admin";
+	}
+	
 	@RequestMapping("/movie_list")
 	public Model movieList(Model model){
 		logger.info("AdminController-movieList() 진입");
