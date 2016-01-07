@@ -149,6 +149,7 @@
     </div>
 </aside>
 
+
 <!-- Contact Us -->
 <section id="last">
     <div class="container">
@@ -185,6 +186,8 @@
         </div>
     </div>
 </section>
+
+
 
 <!-- 에이작스 팝업 페이지들 -->
 <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -236,7 +239,7 @@
 <!-- 회원가입 버튼을 클릭하였을 경우 -->
 <div id="joinModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="height: 570px;">
     	<div class="modal-body">
     		<h2 class="text-center">회원가입</h2>
     		<hr />
@@ -244,12 +247,56 @@
     		   저희 사이트에서 제공하는 서비스를 사용하시려면, 회원가입을 먼저 진행해주세요.
     		</h5>
     		<br />
-    		<label for="id" style="padding-left:10%">아이디</label>
-    		<input type="text" name="id" id="id" placeholder="아이디" style="color: black;"/> &nbsp;&nbsp;
-    		<label for="password">비밀번호</label>
-    		<input type="password" name="password" id="password" placeholder="비밀번호" style="color: black;"/>
-    		<br/>
-    		<button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true" id="login" > 회원가입 </button>
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+                
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="ID" id="join_Id">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="email" class="form-control" placeholder="Email" id="email">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="password" class="form-control" placeholder="password" id="join_Password">
+                   		<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="Name" id="name">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="Phone(  -없이 입력해주세요)" id="phone">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 180px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="인증번호" id="confirm_num"></input>
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <button type="button" id="btn_confirm"
+                    style="margin-top:6px; font-size: 12px; width: 100px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block">인증번호 발송</button>
+                    
+                    <div class="col-md-4 col-md-offset-4" style="padding-top: 25px;">
+                        <label></label>
+                        <button type="button" data-toggle="modal" data-dismiss="modal" class="btn btn-primary btn-block btn-lg" id="join">회원가입 <i class="ion-android-arrow-forward"></i></button>
+                    </div>
+                    
+                </form>
+            </div>
     	</div>
     </div>
     </div>
@@ -390,6 +437,17 @@ $(function() {
 	});
 }); 
 
+$("#btn_confirm").click(function(){
+	Members.join_Auth();
+	$("#btn_confirm").remove();
+});
+
+$("#join").click(function(){
+	Members.join();
+});
+
+
+
 var Members = {
 		login : function() {
 			$.ajax(context + "/member/login",{
@@ -407,6 +465,61 @@ var Members = {
 					}
 				},
 				error : function() {
+				}
+			});
+
+		},
+		
+		join_Auth : function() {
+			$.ajax(context + "/member/join_auth",{
+				data : {"id" : $("#id").val(),
+						"e_mail" :$("#email").val(),
+						"name" :$("#name").val()
+				},
+				type : "post",
+				success : function(data) {
+					//이메일이 발송.
+					if(data.success == "success"){
+						alert("인증번호가 이메일로 발송되었습니다.");
+					} else{
+					//이미 가입되어 있는 아이디일 경우(컨트롤러에서 체크)
+						alert("이미 가입되어 있는 아이디 입니다.");
+					}
+				},
+				error : function() {
+				}
+			});
+		},
+		
+		join : function() {
+			var join_Mem = {
+				"id" :$("#join_Id").val(),
+				"email" :$("#email").val(),
+				"password" :$("#join_Password").val(),
+				"name" :$("#name").val(),
+				"phone" :$("#phone").val(),
+				"confirm_num" :$("#confirm_num").val()
+			};
+			$.ajax(context + "/member/join",{
+				data : JSON.stringify(join_Mem),
+				dataType : "json",
+				type : 'post',
+				contentType : "application/json;",
+				mimeType: "application/json;",
+				async : false,
+				success : function(data) {
+					if(data.result == "success"){
+						alert(data.name+"님 회원가입이 완료되었습니다.");
+						
+					}
+					if(data.result == "fail"){
+						alert("회원가입을 실패하였습니다. 다시 시도해주세요.");
+					}
+					if(data.result == "not_Agreement"){
+						alert("인증번호가 일치하지 않습니다. 인증을 다시 해주세요.");
+					}
+				},
+				error : function(xhr, status, msg) {
 				}
 			});
 		}

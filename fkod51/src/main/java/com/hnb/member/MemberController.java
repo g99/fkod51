@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ public class MemberController {
 	MemberVO member;
 	@Autowired
 	private EmailSender emailSender;
-	@Autowired
-	private Email email;
+	
+	int auth_Num = 0;
 	
 	@RequestMapping("/admin_home")
 	public String adminHome(){
@@ -45,49 +46,72 @@ public class MemberController {
 		logger.info("멤버컨트롤러 provision() - 진입");
 		return "member/provision";
 	}
-	@RequestMapping("/join_member")
+	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public Model joinMember(
-			String id,
-			String password,
-			String name,
-			String birth,
-			String addr,
-			String gender,
-			String email,
-			String phone,
+			@RequestBody MemberVO param,
 			Model model
 			){
-		logger.info("가입 아이디 : {}",id);
-		logger.info("가입 패스워드 : {}",password);
-		logger.info("가입 이름 : {}",name);
-		logger.info("가입 생년 : {}",birth);
-		logger.info("가입 주소 : {}",addr);
-		logger.info("가입 성별 : {}",gender);
-		logger.info("가입 이메일 : {}",email);
-		logger.info("가입 전화번호 : {}",phone);
-		member.setId(id);
-		member.setPassword(password);
-		member.setName(name);
-		member.setBirth(birth);
-		member.setAddr(addr);
-		member.setGender(gender);
-		member.setEmail(email);
-		member.setPhone(phone);
+		logger.info("멤버컨트롤러 joinMember() - 진입");
+		logger.info("가입 아이디 : {}",param.getId());
+		logger.info("가입 이메일 : {}",param.getEmail());
+		logger.info("가입 패스워드 : {}",param.getPassword());
+		logger.info("가입 이름 : {}",param.getName());
+		logger.info("가입 전화번호 : {}",param.getPhone());
+		logger.info("가입 인증번호 : {}",param.getConfirm_num());
+		int confirm_Num = Integer.parseInt(param.getConfirm_num());
+		if (auth_Num == confirm_Num) {
+			member.setId(param.getId());
+			member.setPassword(param.getPassword());
+			member.setName(param.getName());
+			member.setEmail(param.getEmail());
+			member.setPhone(param.getPhone());
+			int result = service.join(member);
+			if (result == 1) {
+				logger.info("회원가입 성공");
+				model.addAttribute("result","success");
+				model.addAttribute("name",member.getName());
+			} else {
+				logger.info("회원가입 실패");
+				model.addAttribute("result", "fail");
+			}
+		} 
 		
-		int result = service.join(member);
-		if (result == 1) {
-			logger.info("회원가입 성공");
-			model.addAttribute("result","success");
-			model.addAttribute("name",member.getName());
-		} else {
-			logger.info("회원가입 실패");
-			model.addAttribute("result", "fail");
+		else {
+			model.addAttribute("result", "not_Agreement");
 		}
+		
 		return model;
 	}
 	
-	/*@RequestMapping("/join_auth")
-	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
+	@RequestMapping("/join_auth")
+	public Model joinAuth (
+			@RequestParam("id")String id,
+			@RequestParam("e_mail")String e_mail,
+ 		    @RequestParam("name")String name, 
+ 		    Model model) throws Exception {
+			Email email = new Email();
+		logger.info("멤버컨트롤러 joinAuth() - 진입");
+        
+		auth_Num = (int) (Math.random()*9999) + 1000;
+        	String reciver = e_mail;
+        	String subject = "환영합니다.  "+name+"님, 인증번호 메일입니다.";
+        	String content = name+" 님의 가입 인증번호는 "+auth_Num+"입니다.";
+        			
+        	email.setReciver(reciver);
+            email.setSubject(subject);
+            email.setContent(content);
+            emailSender.sendMail(email);
+            model.addAttribute("success", "success");
+        return model;
+    }
+	
+	/*
+	 * if(service.selectById(id).getId()==null) {} => 이 구문 에러발생.
+	 *  
+	 * @RequestMapping("/join_auth")
+	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) 
+			throws Exception {
+			
         ModelAndView mav;
         String id=(String) paramMap.get("id");
         String e_mail=(String) paramMap.get("email");

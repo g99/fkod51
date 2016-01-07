@@ -31,8 +31,14 @@ public class AdminController {
 	@Autowired MemberServiceImpl memberService;
 	@Autowired MovieServiceImpl movieService;
 	
-	@RequestMapping("/main")
+	@RequestMapping("")
 	public String home(){
+		logger.info("AdminController-home() 진입");
+		return "admin/login.admin";
+	}
+	
+	@RequestMapping("/main")
+	public String main(){
 		logger.info("AdminController-home() 진입");
 		return "admin/main.admin";
 	}
@@ -136,5 +142,26 @@ public class AdminController {
 		return model;
 	}
 	
-	
+	@RequestMapping("/login")
+	public void login(
+			String id,
+			String password,
+			Model model
+			) {
+		System.out.println("아이디 : " + id );
+		System.out.println("비번 : " + password );
+		member = memberService.login(id, password);
+		if (member == null) {
+			System.out.println("로그인 실패");
+			model.addAttribute("result", "fail");
+		} else {
+			if (member.getId().equals("choa")) {
+				System.out.println("로그인 성공");
+				model.addAttribute("result", "success");
+			} else {
+				System.out.println("로그인 실패");
+				model.addAttribute("result", "fail");
+			}
+		}
+	}
 }
