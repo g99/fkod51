@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<<<<<<< HEAD
-<!-- 트레일러&이벤트 -->
-=======
-
 
 
 <!-- 트레일러&이벤트 -->
->>>>>>> refs/remotes/origin/ad_0_1_3
 <section class="bg-primary" id="one">
     <div class="container" style="padding-right: 200px;">
                 
@@ -305,20 +300,6 @@
     </div>
 </section>
 
-<!-- 에이작스 팝업 페이지들 -->
-<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content" id="modal-content">
-    	<div class="modal-body" id="modal-body">
-    		<img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>    	
-    </div>
-    </div>
-</div>   
 <!-- 영화 팝업 페이지 -->
 <div id="movieGalleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
