@@ -202,6 +202,7 @@
     </div>
     </div>
 </div>   
+<!-- 영화 팝업 페이지 -->
 <div id="movieGalleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
     <div class="modal-content" id="movieModal-content">
