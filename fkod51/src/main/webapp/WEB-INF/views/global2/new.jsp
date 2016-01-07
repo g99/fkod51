@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    <a href="http://192.168.0.57:9000/app/global/new">새페이지</a>
 </section>
 
 <!-- 영화차트 -->
@@ -115,7 +116,6 @@
 
 <!-- 이벤트 -->
 <section class="bg-dark" id="five">
-</section>
 
 <!-- 사용하지 않음 참고용 -->
 <aside >
