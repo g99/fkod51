@@ -25,7 +25,7 @@
 			<li role="presentation" class="divider"></li>
 			
 			<li><a href="#회원관리" ><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>회원관리</a></li>
-			<li><a href="${context}/admin/member"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>회원목록</a></li>
+			<li><a href="${context}/admin/board"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg>회원목록</a></li>
 			
 			<li role="presentation" class="divider"></li>
 			
