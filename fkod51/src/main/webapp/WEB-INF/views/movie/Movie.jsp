@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div id="movie_wrap"  ></div>
+<div id="movie_wrap"  ><h1>테스트 페이지</h1></div>
 
 
 <script type="text/javascript">
