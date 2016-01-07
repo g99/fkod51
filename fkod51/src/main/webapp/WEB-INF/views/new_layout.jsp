@@ -51,11 +51,6 @@
     	tabs.make();
     	Ticket.main();
 		Ticket.initList("${context}");
-		$('.ticket_sub').click(function() {Ticket.ticket_sub("${context}");});
-		$('#theater_list').click(function() {Ticket.theater_list("${context}");});
-		$('#date_list').click(function() {Ticket.date_list("${context}");});
-		$('#ticket_choiceseat').click(function() {Ticket.ticket_choiceseat("${context}");});
-		
     });
 	</script>
 

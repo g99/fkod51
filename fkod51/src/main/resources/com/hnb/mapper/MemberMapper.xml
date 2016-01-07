@@ -35,6 +35,7 @@
  	) m)
  	WHERE seq BETWEEN #{start} AND #{end}
  </select>
+ 
  <select id="selectOneBy" resultType="com.hnb.member.MemberVO" parameterType="string">
  	SELECT
  		ID AS id,
@@ -49,6 +50,7 @@
 	 	PROFILE AS profile
  	FROM MEMBER WHERE ID = #{id}
  </select>
+ 
  <select id="count" resultType="int">
  	SELECT COUNT(*) AS count FROM MEMBER
  </select>
@@ -70,7 +72,7 @@
 	 	#{phone},
 	 	#{addr},
 	 	#{email},
-	 	sysdate
+	 	now()
  	)
  </insert>
  <update id="update" parameterType="com.hnb.member.MemberVO">

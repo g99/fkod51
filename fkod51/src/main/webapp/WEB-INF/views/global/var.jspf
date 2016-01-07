@@ -6,10 +6,14 @@
 <c:set var="context" value="<%=request.getContextPath()%>"></c:set>
 <c:set var="js" value="${context}/resources/js"></c:set>
 <c:set var="css" value="${context}/resources/css"></c:set>
+<c:set var="admin_js" value="${context}/resources/admin_js"></c:set>
+<c:set var="admin_css" value="${context}/resources/admin_css"></c:set>
 <c:set var="img" value="${context}/resources/images"></c:set>
 <script>
 	var context = "${context}";
 	var img = "${img}";
-	var css = "${css}";
 	var js = "${js}";
+	var css = "${css}";
+	var admin_css = "${admin_css}";
+	var admin_js = "${admin_js}";
 </script>

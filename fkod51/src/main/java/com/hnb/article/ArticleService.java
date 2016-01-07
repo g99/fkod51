@@ -23,4 +23,8 @@ public interface ArticleService {
 	// D : 삭제 (회원탈퇴)
 	public int delete(int rcdNo);
 
+	public int reply(ArticleVO article);
+
+	public List<ArticleVO> selectByGrp(int grpNo);
+
 }

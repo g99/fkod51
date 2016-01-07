@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class MemberVO implements Serializable{
 
 	private String id; // 아이디  =>hong => 'hong'
@@ -19,6 +18,7 @@ public class MemberVO implements Serializable{
 	private String regdate;
 	private String my_Theater;
 	private String profile;
+	private String confirm_num;
 	
 	public MemberVO() {
 	}
@@ -108,6 +108,14 @@ public class MemberVO implements Serializable{
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+	
+	public String getConfirm_num() {
+		return confirm_num;
+	}
+
+	public void setConfirm_num(String confirm_num) {
+		this.confirm_num = confirm_num;
 	}
 
 	@Override

@@ -43,21 +43,25 @@ public class ScheduleController {
 		List<?> timeList = new ArrayList<>();
 		if (theater==null && date!=null) {
 			theaterList = scheduleService.getTheaterListByMD(movie,date);
+			dateList = scheduleService.getShowDateListByM(movie);
 		} else if (theater!=null && date==null) {
+			theaterList = scheduleService.getTheaterListByM(movie);
 			dateList = scheduleService.getShowDateListByMT(movie,theater);
 		} else if (theater==null && date==null) {
 			theaterList = scheduleService.getTheaterListByM(movie);
 			dateList = scheduleService.getShowDateListByM(movie);
 		} else if (movie!=null&&theater!=null&&date!=null) {
+			theaterList = scheduleService.getTheaterListByMD(movie, date);
+			dateList = scheduleService.getShowDateListByMT(movie, theater);
 			timeList = scheduleService.getTimeList(movie, theater, date);
 		}
 		logger.info("theaterList : {}", theaterList);
 		logger.info("dateList : {}", dateList);
 		logger.info("timeList : {}", timeList);
+		logger.info("movie : {}", movie);
 		model.addAttribute("theaterList",theaterList);
 		model.addAttribute("dateList",dateList);
 		model.addAttribute("timeList",timeList);
-		model.addAttribute("movie",movie);
 		return model;
 	}
 	@RequestMapping("/theaterSelect")
@@ -78,14 +82,20 @@ public class ScheduleController {
 		if (movie==null && date!=null) {
 			movieListRate = scheduleService.getMovieRateByTD(theater,date);
 			movieListAsc = scheduleService.getMovieAscByTD(theater,date);
+			dateList = scheduleService.getShowDateListByT(theater);
 		} else if (movie!=null && date==null) {
 			logger.info("영화, 극장 : {}, {}",movie,theater);
+			movieListRate = scheduleService.getMovieRateByT(theater);
+			movieListAsc = scheduleService.getMovieAscByT(theater);
 			dateList = scheduleService.getShowDateListByMT(movie, theater);
 		} else if (movie==null && date==null) {
 			movieListRate = scheduleService.getMovieRateByT(theater);
 			movieListAsc = scheduleService.getMovieAscByT(theater);
 			dateList = scheduleService.getShowDateListByT(theater);
 		} else if (movie!=null&&theater!=null&&date!=null) {
+			movieListRate = scheduleService.getMovieRateByTD(theater, date);
+			movieListAsc = scheduleService.getMovieAscByTD(theater, date);
+			dateList = scheduleService.getShowDateListByMT(movie, theater);
 			timeList = scheduleService.getTimeList(movie, theater, date);
 		}
 		model.addAttribute("movieListRate", movieListRate);
@@ -109,13 +119,19 @@ public class ScheduleController {
 		if (movie==null && theater!=null) {
 			movieListRate = scheduleService.getMovieRateByTD(theater,date);
 			movieListAsc = scheduleService.getMovieAscByTD(theater,date);
+			theaterList = scheduleService.getTheaterListByD(date);
 		} else if (movie!=null && theater==null) {
+			movieListRate = scheduleService.getMovieRateByD(date);
+			movieListAsc = scheduleService.getMovieAscByD(date);
 			theaterList = scheduleService.getTheaterListByMD(movie,date);
 		} else if (movie==null && theater==null) {
 			movieListRate = scheduleService.getMovieRateByD(date);
 			movieListAsc = scheduleService.getMovieAscByD(date);
 			theaterList = scheduleService.getTheaterListByD(date);
 		} else if (movie!=null&&theater!=null&&date!=null) {
+			movieListRate = scheduleService.getMovieRateByTD(theater, date);
+			movieListAsc = scheduleService.getMovieAscByTD(theater, date);
+			theaterList = scheduleService.getTheaterListByMD(movie, date);
 			timeList = scheduleService.getTimeList(movie, theater, date);
 		}
 		logger.info("ScheduleController-dateSelect() 진입 timeList: ======== {}",timeList);
@@ -148,6 +164,7 @@ public class ScheduleController {
 		model.addAttribute("movie", movie);
 		model.addAttribute("date", date);
 		model.addAttribute("time", time);
+		model.addAttribute("ticket", ticket);
 		return model;
 	}
 	

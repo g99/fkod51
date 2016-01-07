@@ -55,4 +55,14 @@ public class ArticleServiceImpl implements ArticleService{
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
 		return mapper.delete(rcdNo);
 	}
+	@Override
+	public int reply(ArticleVO article) {
+		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
+		return mapper.reply(article);
+	}
+	@Override
+	public List<ArticleVO> selectByGrp(int grpNo) {
+		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
+		return mapper.readReply(grpNo);
+	}
 }

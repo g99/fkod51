@@ -75,4 +75,6 @@ public interface ScheduleMapper {
 		public List selectTime(String movie, String theater, String date);
 
 		public String selectFilmNumber(String movie);
+
+		
 }

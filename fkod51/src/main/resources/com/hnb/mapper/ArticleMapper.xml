@@ -8,14 +8,19 @@
  	 	INSERT INTO BOARD(USR_SUBJECT,USR_CONTENT,USR_NAME,USR_DATE)
  	 	VALUES(#{usrSubject}, #{usrContent}, #{usrName}, now())
  	 </insert>
+ 	 
+ 	 <insert id="reply" parameterType="com.hnb.article.ArticleVO">
+ 	 	INSERT INTO BOARD(GRP_NO,USR_CONTENT,USR_NAME,USR_DATE,RCD_LEVEL)
+ 	 	VALUES(#{grpNo}, #{usrContent}, #{usrName}, now(), #{rcdLevel})
+ 	 </insert>
 	 
-     <select id="selectAll" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">
-     	SELECT
-     		RCD_NO AS rcdNo,
+	 <select id="readReply" parameterType="int" resultType="com.hnb.article.ArticleVO">
+	 	SELECT
+	 		RCD_NO AS rcdNo,
      		GRP_NO AS grpNo,
      		USR_NAME AS usrName,
      		USR_SUBJECT AS usrSubject,
-     		USR_CONTENT AS usrComponent,
+     		USR_CONTENT AS usrContent,
      		USR_PASS AS usrPass,
      		USR_FILENAME AS usrFileName,
      		USR_FILESIZE AS usrFileSize,
@@ -23,7 +28,28 @@
      		USR_REFER AS usrRefer,
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
-     	FROM BOARD ORDER BY rcdNo DESC
+     	FROM BOARD
+     	WHERE GRP_NO = #{grpNo}
+     	ORDER BY USR_DATE
+	 </select>
+	 
+     <select id="selectAll" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">
+     	SELECT
+     		RCD_NO AS rcdNo,
+     		GRP_NO AS grpNo,
+     		USR_NAME AS usrName,
+     		USR_SUBJECT AS usrSubject,
+     		USR_CONTENT AS usrContent,
+     		USR_PASS AS usrPass,
+     		USR_FILENAME AS usrFileName,
+     		USR_FILESIZE AS usrFileSize,
+     		USR_DATE AS usrDate,
+     		USR_REFER AS usrRefer,
+     		RCD_LEVEL AS rcdLevel,
+     		RCD_ORDER AS rcdOrder
+     	FROM BOARD
+     	WHERE RCD_LEVEL != 1
+     	ORDER BY rcdNo DESC
      	LIMIT #{start}, 15
      	
      </select>
@@ -34,7 +60,7 @@
      		GRP_NO AS grpNo,
      		USR_NAME AS usrName,
      		USR_SUBJECT AS usrSubject,
-     		USR_CONTENT AS usrComponent,
+     		USR_CONTENT AS usrContent,
      		USR_PASS AS usrPass,
      		USR_FILENAME AS usrFileName,
      		USR_FILESIZE AS usrFileSize,
@@ -42,7 +68,9 @@
      		USR_REFER AS usrRefer,
      		RCD_LEVEL AS rcdLevel,
      		RCD_ORDER AS rcdOrder
- 		FROM BOARD WHERE ${column} LIKE CONCAT('%',#{keyword},'%') 
+ 		FROM BOARD 
+ 		WHERE ${column} LIKE CONCAT('%',#{keyword},'%')
+ 		AND RCD_LEVEL != 1
  		ORDER BY rcdNo DESC LIMIT #{start}, 15
      </select>
      
@@ -55,7 +83,8 @@
      </select>
      
      <select id="count" resultType="int">
-     	SELECT COUNT(RCD_NO) FROM BOARD
+     	SELECT COUNT(RCD_NO) FROM BOARD 
+     	WHERE RCD_LEVEL != 1
      </select>
      
      <select id="descSelect" parameterType="com.hnb.article.ArticleVO" resultType="com.hnb.article.ArticleVO">
@@ -76,6 +105,7 @@
      <select id="countByKeyword" parameterType="com.hnb.global.Command" resultType="int">
      	SELECT COUNT(RCD_NO) FROM BOARD
      	WHERE ${column} LIKE CONCAT('%',#{keyword},'%')
+     	AND RCD_LEVEL != 1
      </select>
      
      <select id="descSelectByKeyword" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">

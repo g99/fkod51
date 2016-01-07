@@ -1,5 +1,9 @@
 package com.hnb.mapper;
 
-public interface AdminMapper {
+import java.util.List;
 
+import com.hnb.member.MemberVO;
+
+public interface AdminMapper {
+	public List<MemberVO> memberList();
 }
