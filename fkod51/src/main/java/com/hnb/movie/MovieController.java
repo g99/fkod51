@@ -28,6 +28,11 @@ public class MovieController {
 		logger.info("MovieController-Movie() 진입");
 		return "movie/Movie.jsp";
 	}
+	@RequestMapping("/t1000")
+	public String t1000(){
+		logger.info("MovieController-Movie() 진입");
+		return "movie/t1000.jsp";
+	}
 	@RequestMapping("/movie_info")
 	public Model movieInfo(Model model){
 		logger.info("MovieController-movieInfo() 진입");

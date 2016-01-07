@@ -5,6 +5,7 @@ var Movie = {
 				ranking : function() {
 					var arr = [];
 					var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
+					var test = '<a href="'+context+'/movie/t1000"><button id="test" style="color: black;">검색테스트</button></a>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
@@ -17,7 +18,7 @@ var Movie = {
 						rank += '</div></div>';
 						
 					$('#movielay').empty().append(rank);
-					$('#sWindow').empty().append(fWindow);
+					$('#sWindow').empty().append(test).append(fWindow);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
 							Movie.movieName(arr[i]);
