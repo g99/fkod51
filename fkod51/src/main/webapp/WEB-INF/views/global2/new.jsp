@@ -128,105 +128,9 @@
         </div>
     </section>
 
-
-<!-- 극장 클릭시, 팝업 페이지들 - Popup(view) -->   
-<div id="starium" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/starium.jpg" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-<div id="sound_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/sound_X.jpg" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-<div id="screen_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/screen_X.PNG" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-<div id="i_Max" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/i_Max.jpg" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-<div id="sweetbox" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/sweetbox.jpg" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-<div id="tempur_Cinema" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    	<div class="modal-body">
-    		<img src="${img}/tempur_Cinema.PNG" id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>
-    </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- 이벤트 -->
 <section class="bg-dark" id="five">
+</section>
 
 <!-- 사용하지 않음 참고용 -->
 <aside >
@@ -469,6 +373,92 @@
    	</div>
    	</div>
 </div>
+
+<!-- 극장 클릭시, 팝업 페이지들 - Popup(view) -->   
+<div id="starium" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/starium.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="sound_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/sound_X.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="screen_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/screen_X.PNG" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="i_Max" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/i_Max.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="sweetbox" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/sweetbox.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="tempur_Cinema" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/tempur_Cinema.PNG" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
 $(function() {
