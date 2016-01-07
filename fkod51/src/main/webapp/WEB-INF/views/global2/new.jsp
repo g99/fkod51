@@ -2,21 +2,29 @@
 
 <!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
-                <h2 class="margin-top-0 text-primary">Built On The Bootstrap Grid</h2>
-                <br>
-                <p class="text-faded">
-                    Bootstrap's responsive grid comes in 4 sizes or "breakpoints": tiny (xs), small(sm), medium(md) and large(lg). These 4 grid sizes enable you create responsive layouts that behave accordingly on different devices.
-                </p>
-                <a href="#three" class="btn btn-default btn-xl page-scroll">Learn More</a>
-            </div>
-        </div>
+    <div class="container" style="padding-right: 200px;">
+                
+                <!-- 트레일러 영상 -->
+				<div>
+					<div>
+						<iframe style="width: 80%; height: 75%; float: left; border: none;"
+								src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
+					</div>
+					<div style="width: 10%; height: 75%; float: left; margin-left: 15px;">
+							<!-- 포스터, 이미지에 링크 걸어주기 -->
+							<img src="${img}/naebuja_Main.jpg" alt="sample_img" 
+							style="width: 400%; height: 100%; float: left; display: inline;"/>
+					</div>
+				</div>
+				
+				
     </div>
+    <a href="http://192.168.0.57:9000/app/global/new">새페이지</a>
 </section>
 
-<!-- 영화차트 -->
+
+
+<!-- 극장, 극장별 설명 - main -->
 <section id="two" class="no-padding">
 	<div id="movielay" class="container-fluid" style="height: 705px;">
 		<div class="row no-gutter">
@@ -37,72 +45,80 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d">
-                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1430916273432-273c2db881a0%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3Df047e8284d2fdc1df0fd57a5d294614d" class="img-responsive" alt="Image 1">
+                    <a href="#starium" class="gallery-box" data-toggle="modal" data-src="${img}/starium_main.jpg">
+                        <img src="${img}/starium_main.jpg" class="img-responsive" alt="Image 1" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                                    <i class="icon-lg">STARIUM</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/getrefe/regular/tumblr_nqune4OGHl1slhhf0o1_1280.jpg" class="img-responsive" alt="Image 2">
+                    <a href="#sound_X" class="gallery-box" data-toggle="modal" data-src="${img}/sound_X_Main.PNG">
+                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                               <div>
+                                    <i class="icon-lg">Sound-X</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4">
-                        <img src="//splashbase.s3.amazonaws.com/unsplash/regular/photo-1433959352364-9314c5b6eb0b%3Fq%3D75%26fm%3Djpg%26w%3D1080%26fit%3Dmax%26s%3D3b9bc6caa190332e91472b6828a120a4" class="img-responsive" alt="Image 3">
+                    <a href="#screen_X" class="gallery-box" data-toggle="modal" data-src="${img}/screen_X_Main.PNG">
+                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                                    <i class="icon-lg">Screen-X</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-moto-drawing-illusion-nabeel-1440x960.jpg" class="img-responsive" alt="Image 4">
+                    <a href="#i_Max" class="gallery-box" data-toggle="modal" data-src="${img}/i_Max_Main.jpg">
+                        <img src="${img}/i_Max_Main.jpg" class="img-responsive" alt="Image 4" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                                    <i class="icon-lg">I-MAX</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-new-york-crosswalk-nabeel-1440x960.jpg" class="img-responsive" alt="Image 5">
+                    <a href="#sweetbox" class="gallery-box" data-toggle="modal" data-src="${img}/sweetbox_Main.PNG">
+                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
-                                <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                                 <div>
+                                    <i class="icon-lg">Sweet BOX</i>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg">
-                        <img src="//splashbase.s3.amazonaws.com/lifeofpix/regular/Life-of-Pix-free-stock-photos-clothes-exotic-travel-nabeel-1440x960.jpg" class="img-responsive" alt="Image 6">
+                    <a href="#tempur_Cinema" class="gallery-box" data-toggle="modal" data-src="${img}/tempur_Cinema_Main.PNG">
+                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 527px; height: 340px;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
-                                    <i class="icon-lg ion-ios-search"></i>
+                                    <i class="icon-lg">TEMPUR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;CINEMA</i>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +129,104 @@
     </section>
 
 
+<!-- 극장 클릭시, 팝업 페이지들 - Popup(view) -->   
+<div id="starium" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/starium.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="sound_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/sound_X.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="screen_X" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/screen_X.PNG" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="i_Max" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/i_Max.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="sweetbox" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/sweetbox.jpg" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+<div id="tempur_Cinema" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-body">
+    		<img src="${img}/tempur_Cinema.PNG" id="galleryImage" class="img-responsive" />
+    		<p>
+    		    <br/>
+    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+    		</p>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 이벤트 -->
 <section class="bg-dark" id="five">
-</section>
 
 <!-- 사용하지 않음 참고용 -->
 <aside >
@@ -187,22 +298,6 @@
     </div>
 </section>
 
-
-
-<!-- 에이작스 팝업 페이지들 -->
-<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <div class="modal-content" id="modal-content">
-    	<div class="modal-body" id="modal-body">
-    		<img src="//placehold.it/1200x700/222?text=..." id="galleryImage" class="img-responsive" />
-    		<p>
-    		    <br/>
-    		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-    		</p>
-    	</div>    	
-    </div>
-    </div>
-</div>   
 <!-- 영화 팝업 페이지 -->
 <div id="movieGalleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -212,6 +307,7 @@
     </div>
     </div>
 </div>
+
 
 <!-- 로그인 버튼을 클릭하였을 경우 -->
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

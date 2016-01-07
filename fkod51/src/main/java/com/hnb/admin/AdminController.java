@@ -30,6 +30,7 @@ public class AdminController {
 	@Autowired MovieVO movie;
 	@Autowired MemberServiceImpl memberService;
 	@Autowired MovieServiceImpl movieService;
+	@Autowired AdminServiceImpl adminService;
 	
 	@RequestMapping("")
 	public String home(){
@@ -40,31 +41,33 @@ public class AdminController {
 	@RequestMapping("/main")
 	public String main(){
 		logger.info("AdminController-home() 진입");
-		return "admin/main.admin";
+		return "admin/main.jsp";
 	}
 	
 	@RequestMapping("/member")
-	public String member(){
+	public String member(Model model){
 		logger.info("AdminController-home() 진입");
-		return "admin/member.admin";
+		List<MemberVO> members = adminService.getMemberList();
+		model.addAttribute("list", members);
+		return "admin/member.jsp";
 	}
 	
 	@RequestMapping("/movie")
 	public String movie(){
 		logger.info("AdminController-home() 진입");
-		return "admin/movie.admin";
+		return "admin/movie.jsp";
 	}	
 	
 	@RequestMapping("/chart")
 	public String chart(){
 		logger.info("AdminController-home() 진입");
-		return "admin/chart.admin";
+		return "admin/chart.jsp";
 	}
 	
 	@RequestMapping("/board")
 	public String board(){
 		logger.info("AdminController-home() 진입");
-		return "admin/board.admin";
+		return "admin/board.jsp";
 	}
 	
 	@RequestMapping("/movie_list")
@@ -77,36 +80,12 @@ public class AdminController {
 		return model;
 	}
 	
-	@RequestMapping("/member_list/{pageNo}")
-	public @ResponseBody Map<String,Object> memberList(
-			@PathVariable("pageNo")String pageNo,
-			Model model){
-		
-		int pageNumber = Integer.parseInt(pageNo);
-		int pageSize = 5;
-		int groupSize = 3;
-		int count = memberService.count();
-		int totalPage = count/pageSize;
-		if (count%pageSize != 0) {
-			totalPage += 1;
-		}
-		int startPage = pageNumber - ((pageNumber-1) % groupSize);
-		int lastPage = startPage + groupSize -1;
-		if (lastPage > totalPage) {
-			lastPage = totalPage;
-		}
-		
-		logger.info("EventController memberList()");
-		logger.info("넘어온 페이지번호 : {}",pageNo);
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("list", memberService.getList(CommandFactory.list(pageNo)));
-		map.put("count", count);
-		map.put("totalPage", totalPage);
-		map.put("pageNo", pageNumber);
-		map.put("startPage", startPage);
-		map.put("lastPage", lastPage);
-		map.put("groupSize", groupSize);
-		return map;
+	@RequestMapping("/member_list")
+	public void memberList(
+			Model model
+			){
+		List<MemberVO> members = adminService.getMemberList();
+		model.addAttribute("list", members);
 	}
 	
 	@RequestMapping("/member_profile")

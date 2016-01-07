@@ -147,21 +147,37 @@ var Seats = {
 					var total_cal ='<h5 style="display: inline-block;margin: 0;">'+price+'</h5>';
 					$(total_cal).appendTo($('#total_cal').empty());
 				},
-				reserve : function() {
-					$.ajax('${context}/ticket/Ticket.do',{
+
+				book : function(project,info) {
+					var movie = info.movie;
+					var date = info.date;
+					var time = info.time;
+					var filmNumber = info.ticket.filmNumber;
+					var theater = info.ticket.theaterName;
+					var roomName = info.ticket.rooName;
+					var startTime = info.ticket.startTime;
+					alert(info+"  "+info.movie+""+info.ticket.filmNumber);
+					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
+							movie : movie,
+							date : date,
+							time : time,
+							filmNumber : filmNumber,
+							theater : theater,
+							roomName : roomName,
+							startTime : startTime,
 							adult : Number($("select[name=normal] option:selected").val()),
 							teenager : Number($("select[name=teenager] option:selected").val()),
 							old_man : Number($("select[name=treatment] option:selected").val()),
-							price :Number($("select[name=normal] option:selected").val())*10000 + Number($("select[name=teenager] option:selected").val())*7000 + Number($("select[name=treatment] option:selected").val())*4000,
-							seat_number : $('input:checkbox:checked').map(function() {return this.value;}).get().join(','),
-							page : "infoSave"
+							price :	Number($("select[name=normal] option:selected").val())*10000 + Number($("select[name=teenager] option:selected").val())*7000 + Number($("select[name=treatment] option:selected").val())*4000,
+							seat_number : $('input:checkbox:checked').map(function() {return this.value;}).get().join(',')
 						},
 						async : true,
 						dataType : 'json',
 						success : function(data) {
-							location.href="${context}/ticket/Ticket.do?page=Confirm";
+							alert("예매!!");
+							//location.href="${context}/ticket/Ticket.do?page=Confirm";
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상태 : '+status+',내용:'+msg);
