@@ -282,6 +282,7 @@
 			//////////// 여기서 data는 rcdNo을 의미함 //////////
 			getData : function(data) {
 				$("#code").html(data);
+				var index = 1;
 				$.ajax(context + "/article/read",{
 					data : {
 						"code" : data
@@ -289,6 +290,10 @@
 					success : function(data) {
 						$("#readModal input:text[name=title]").val(data.writing.usrSubject);
 						$("#readModal textarea[name=content]").val(data.writing.usrContent);
+						$.each(data.reply, function(index, value) {
+							$("#reply_area").append("<p style='border:solid; position:relative;'>" + this.usrName + " | " + this.usrContent + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
+						});
+						
 					},
 					error : function() {
 						alert("ajax 실패");

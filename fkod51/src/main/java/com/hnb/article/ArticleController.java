@@ -163,7 +163,9 @@ public class ArticleController {
 			String code
 			) {
 		article = articleService.selectById(Integer.parseInt(code));
+		List<ArticleVO> reply = articleService.selectByGrp(Integer.parseInt(code));
 		model.addAttribute("writing", article);
+		model.addAttribute("reply", reply);
 	}
 	
 	@RequestMapping("/reply")
@@ -176,5 +178,10 @@ public class ArticleController {
 		logger.info("아이디 : {}", id);
 		logger.info("글번호 : {}", code);
 		logger.info("댓글내용 : {}", content);
+		article.setGrpNo(Integer.parseInt(code));
+		article.setUsrName(id);
+		article.setUsrContent(content);
+		article.setRcdLevel(1);
+		articleService.reply(article);
 	}
 }

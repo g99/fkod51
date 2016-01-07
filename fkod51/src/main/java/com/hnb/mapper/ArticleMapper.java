@@ -10,8 +10,10 @@ import com.hnb.global.Command;
 public interface ArticleMapper {
 	//CRUD
 	
-	// C : 추가(회원가입)
+	// C : 추가
 	public int write(ArticleVO article);
+	// 리플달기
+	public int reply(ArticleVO article);
 	
 	// R : 조회
 	public List<ArticleVO> selectAll(Command command); // 전체조회
@@ -27,4 +29,5 @@ public interface ArticleMapper {
 	public int updateRefer(int rcdNo);
 	// D : 삭제 (회원탈퇴)
 	public int delete(int rcdNo);
+	public List<ArticleVO> readReply(int grpNo);
 }

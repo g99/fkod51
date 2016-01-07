@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <!-- 트레일러&이벤트 -->
-
 <section class="bg-primary" id="one">
     <div class="container">
         <div class="row">
@@ -363,25 +361,33 @@ $(function() {
 	// 댓글달기 //
 	var index = 1;
 	$("#reply_btn").click(function() {
-		$.ajax(context + "/article/reply ",{
-			data : {
-				"code" : $("#code").text(),
-				"id" : $(".navbar-right a").text(),
-				"content" : $("#readModal textarea[name=reply]").val()
-			},
-			success : function() {
-				$("#reply_area").append("<p style='border:solid; position:relative;'>" + $(".navbar-right a").text() + " | " +$("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
-				// 댓글지우기 //
-				$("#remove_reply" + (index-1)).click(function() {
-					$("#" + this.id).parent().remove();
-				});	
-			},
-			error : function() {
-				
-			}
-		});
+		if($(".navbar-right a").text() === "로그인"){
+			alert("댓글을 달려면 로그인을 해주세요");
+		}else{
+			$.ajax(context + "/article/reply ",{
+				data : {
+					"code" : $("#code").text(),
+					"id" : $(".navbar-right a").text(),
+					"content" : $("#readModal textarea[name=reply]").val()
+				},
+				success : function() {
+					$("#reply_area").append("<p style='border:solid; position:relative;'>" + $(".navbar-right a").text() + " | " +$("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
+					// 댓글지우기 //
+					$("#remove_reply" + (index-1)).click(function() {
+						$("#" + this.id).parent().remove();
+					});	
+				},
+				error : function() {
+					
+				}
+			});
+		}
 	});
 	
+	/* 읽은글 종료버튼  */
+	$("#read_btn").click(function() {
+		$("#reply_area").empty();
+	});
 }); 
 
 var Members = {
@@ -403,8 +409,6 @@ var Members = {
 				error : function() {
 				}
 			});
-		},
-		
+		}
 };
-
 </script>
