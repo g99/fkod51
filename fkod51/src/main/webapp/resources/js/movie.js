@@ -10,7 +10,7 @@ var Movie = {
 						$.each(data, function(index, value) {
 							rank += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
-									+'<a href="#galleryModal1" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
+									+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
 									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 							arr.push(this.filmNumber);
 						});
@@ -41,8 +41,7 @@ var Movie = {
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
 							$.each(data, function(index, value) {
 								result += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
-										+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
-										+'<a href="#galleryModal1" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
+										+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
 										+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 								arr.push(this.filmNumber);
 							});
@@ -69,8 +68,8 @@ var Movie = {
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
 							function(data) {
-								var movieInfom = ''
-									+'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
+								var movieInfom = 
+									'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'
 									+'<table id="movie_tab"><tr><th style="font-size: 18px">예매율</th><td> '+data.tRate+'%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
@@ -89,12 +88,11 @@ var Movie = {
 								});
 									movieInfom +='<div class="movie_tra_name movie_float movie_margin_r20"><strong>(1차 예고편)</strong></div><div class="movie_tra_name movie_float movie_margin_r20"><strong>(2차 예고편)</strong></div>'
 										+'<div class="movie_tra_name movie_float"><strong>(3차 예고편)</strong></div></div>'
-										+'</div><div id="movie_cut" class="movie_cut_lay movie_margin_b20">'
-										+'<div id="movie_review" class="movie_review_lay"><h2>리뷰</h2></div>'
-										+'</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+										+'</div>'
+										+'<p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
 								
-								$('#modal-body1').empty();	
-								$('#modal-body1').html(movieInfom);
+								$('#movieModal-body').empty();	
+								$('#movieModal-body').html(movieInfom);
 								$('#movie_info').css('width', '95%').css('height', '500px').css('margin','20px');
 								$('#movie_poster').css('float', 'left').css('border', '1px solid black').css('width', '250px').css('height', '350px').css('margin', 'auto').css('margin-right','30px');
 								$('#movie_float').css('float', 'left');
@@ -136,9 +134,9 @@ var Movie = {
 							}
 						    movieBasic +='</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
 						
-						$('#modal-body1').html(movieBasic);
+						$('#movieModal-body').html(movieBasic);
 						$('#movie_home').click(function() {
-							$('#modal-body1').empty();
+							$('#movieModal-body').empty();
 							Movie.movieName(data.filmNumber);
 						});
 					});
