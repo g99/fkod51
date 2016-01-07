@@ -68,8 +68,8 @@ var Movie = {
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
 							function(data) {
-								var movieInfom = ''
-									+'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
+								var movieInfom = 
+									'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'
 									+'<table id="movie_tab"><tr><th style="font-size: 18px">예매율</th><td> '+data.tRate+'%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
@@ -88,9 +88,8 @@ var Movie = {
 								});
 									movieInfom +='<div class="movie_tra_name movie_float movie_margin_r20"><strong>(1차 예고편)</strong></div><div class="movie_tra_name movie_float movie_margin_r20"><strong>(2차 예고편)</strong></div>'
 										+'<div class="movie_tra_name movie_float"><strong>(3차 예고편)</strong></div></div>'
-										+'</div><div id="movie_cut" class="movie_cut_lay movie_margin_b20">'
-										+'<div id="movie_review" class="movie_review_lay"><h2>리뷰</h2></div>'
-										+'</div><p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
+										+'</div>'
+										+'<p><br/><button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button></p>';
 								
 								$('#movieModal-body').empty();	
 								$('#movieModal-body').html(movieInfom);
