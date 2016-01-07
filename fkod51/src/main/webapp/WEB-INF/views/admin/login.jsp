@@ -1,4 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<link href="${admin_css}/bootstrap.min.css" rel="stylesheet">
+<link href="${admin_css}/datepicker3.css" rel="stylesheet">
+<link href="${admin_css}/bootstrap-table.css" rel="stylesheet">
+<link href="${admin_css}/styles.css" rel="stylesheet">
+
+<!--Icons-->
+<script src="${admin_js}/lumino.glyphs.js"></script>
+
 <div style="margin-top:10%; margin-left:45%;">
 	<h1>[ Admin ]</h1>
 	<br />

@@ -12,10 +12,10 @@ import com.hnb.mapper.AdminMapper;
 import com.hnb.mapper.MemberMapper;
 import com.hnb.member.MemberService;
 import com.hnb.member.MemberServiceImpl;
+import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieController;
 
 @Service
-
 public class AdminServiceImpl implements AdminService{
 	private static final Logger logger = LoggerFactory.getLogger(MovieController.class);
 	private static AdminService instance = new AdminServiceImpl();
@@ -28,8 +28,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
-	public List getMemberList() {
-		MemberMapper memberDAO = sqlSession.getMapper(MemberMapper.class);
-		return memberDAO.selectAll(null);
+	public List<MemberVO> getMemberList() {
+		AdminMapper adminDAO = sqlSession.getMapper(AdminMapper.class);
+		return adminDAO.memberList();
 	}
 }
