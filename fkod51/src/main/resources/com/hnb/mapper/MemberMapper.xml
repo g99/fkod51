@@ -72,7 +72,7 @@
 	 	#{phone},
 	 	#{addr},
 	 	#{email},
-	 	sysdate
+	 	now()
  	)
  </insert>
  <update id="update" parameterType="com.hnb.member.MemberVO">

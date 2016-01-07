@@ -332,7 +332,7 @@
                 
                 	<div class="col-md-4" style="width: 300px;">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="ID" id="ID">
+                        <input type="text" class="form-control" placeholder="ID" id="join_Id">
                     	<div style="height:12px;"></div>
                     </div>
                     
@@ -362,7 +362,7 @@
                     
                     <div class="col-md-4" style="width: 180px; float: left;">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="인증번호" id="confirm"></input>
+                        <input type="text" class="form-control" placeholder="인증번호" id="confirm_num"></input>
                         <div style="height:12px;"></div>
                     </div>
                     
@@ -372,7 +372,7 @@
                     
                     <div class="col-md-4 col-md-offset-4" style="padding-top: 25px;">
                         <label></label>
-                        <button type="button" data-toggle="modal" class="btn btn-primary btn-block btn-lg">회원가입 <i class="ion-android-arrow-forward"></i></button>
+                        <button type="button" data-toggle="modal" data-dismiss="modal" class="btn btn-primary btn-block btn-lg" id="join">회원가입 <i class="ion-android-arrow-forward"></i></button>
                     </div>
                     
                 </form>
@@ -415,6 +415,12 @@ $("#btn_confirm").click(function(){
 	$("#btn_confirm").remove();
 });
 
+$("#join").click(function(){
+	Members.join();
+});
+
+
+
 var Members = {
 		login : function() {
 			$.ajax(context + "/member/login",{
@@ -456,6 +462,41 @@ var Members = {
 				}
 			});
 		},
+		
+		join : function() {
+			var join_Mem = {
+				"id" :$("#join_Id").val(),
+				"email" :$("#email").val(),
+				"password" :$("#join_Password").val(),
+				"name" :$("#name").val(),
+				"phone" :$("#phone").val(),
+				"confirm_num" :$("#confirm_num").val()
+			};
+			$.ajax(context + "/member/join",{
+				data : JSON.stringify(join_Mem),
+				dataType : "json",
+				type : 'post',
+				contentType : "application/json;",
+				mimeType: "application/json;",
+				async : false,
+				success : function(data) {
+					if(data.result == "success"){
+						alert(data.name+"님 회원가입이 완료되었습니다.");
+						
+					}
+					if(data.result == "fail"){
+						alert("회원가입을 실패하였습니다. 다시 시도해주세요.");
+					}
+					if(data.result == "not_Agreement"){
+						alert("인증번호가 일치하지 않습니다. 인증을 다시 해주세요.");
+					}
+				},
+				error : function(xhr, status, msg) {
+				}
+			});
+		},
+		
+		
 		
 };
 
