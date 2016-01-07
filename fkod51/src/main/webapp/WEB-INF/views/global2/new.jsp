@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
 <!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one">
     <div class="container" style="padding-right: 200px;">
