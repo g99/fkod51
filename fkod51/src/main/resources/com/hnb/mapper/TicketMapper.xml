@@ -4,12 +4,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	
- <mapper namespace="com.hnb.mapper.TicketMapper">
-     <select id="getOne" resultType="com.hnb.ticket.TicketVO">
-             SELECT * FROM user WHERE name = #{name}  
-     </select>
- 
-     <select id="getUser" resultType="com.hnb.ticket.TicketVO">
-             SELECT * FROM user
-     </select>
- </mapper>
+<mapper namespace="com.hnb.mapper.TicketMapper">
+	<insert id="book" parameterType="com.hnb.ticket.TicketVO">
+		INSERT INTO TICKET (ID,PASSWORD,NAME,BIRTH,GENDER,PHONE,ADDR,EMAIL,REGDATE) 
+		VALUES (
+			#{id},
+			#{password},
+			#{name},
+			#{birth},
+			#{gender},
+			#{phone},
+			#{addr},
+			#{email},
+			now()
+		)
+	</insert>
+</mapper>

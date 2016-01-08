@@ -5,8 +5,22 @@ var Seats = {
 				sum : null,
 				price : null,
 				
-				initSeats : function(project) {
-					$.getJSON(project+'/schedule/initSeats', function(data) {
+				initSeats : function(project,ticket_data) {
+					alert(ticket_data.movie+"|||"+ticket_data.date+"|||"+ticket_data.time+"|||"+ticket_data.ticket.theaterName);
+					$.ajax(project+'/schedule/initSeats', {
+						type : 'get',
+						data : {
+							movie : ticket_data.movie,
+							date : ticket_data.date,
+							time : ticket_data.time,
+							filmNumber : ticket_data.ticket.filmNumber,
+							theater : ticket_data.ticket.theater,
+							roomName : ticket_data.ticket.roomName,
+							startTime : ticket_data.ticket.startTime
+						},
+						async : true,
+						dataType : 'json',
+						success : function(data) {
 						var row = 1;
 						var seat_list = '<br>';
 							$.each(data, function(index,val) {
@@ -115,6 +129,11 @@ var Seats = {
 							});
 							$(seat_list).appendTo($('#seats_seatsblock').empty());
 							$('.seats_check').click(function() {Seats.selectSeats();});
+						},
+						error : function(xhr, status, msg) {
+							alert('에러발생상태 : '+status+',내용:'+msg);
+						}
+
 					});
 				},
 				selectSeats : function() {
@@ -148,7 +167,7 @@ var Seats = {
 					$(total_cal).appendTo($('#total_cal').empty());
 				},
 
-				book : function(project,info) {
+				book : function(project,info,mem_id) {
 					var movie = info.movie;
 					var date = info.date;
 					var time = info.time;
@@ -156,10 +175,12 @@ var Seats = {
 					var theater = info.ticket.theaterName;
 					var roomName = info.ticket.rooName;
 					var startTime = info.ticket.startTime;
+					var id = mem_id;
 					alert(info+"  "+info.movie+""+info.ticket.filmNumber);
 					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
+							id : id,
 							movie : movie,
 							date : date,
 							time : time,

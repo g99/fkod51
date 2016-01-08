@@ -217,9 +217,18 @@ public class ScheduleController {
 		return model;
 	}
 	@RequestMapping("/initSeats")
-	public Model initSeats(Model model){
+	public Model initSeats(
+			String movie,
+			String date,
+			String time,
+			String filmNumber,
+			String theater,
+			String roomName,
+			String startTime,
+			Model model){
 		logger.info("ScheduleController-initSeats() 진입");
 		logger.info("ScheduleController-initSeats() 진입======seatList : {}",scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
+		
 		model.addAttribute("seatList", scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
 		logger.info("ScheduleController-initSeats() 진입{}",model);
 		return model;
