@@ -62,11 +62,11 @@
 				<div class="panel panel-default" style="position:relative;">
 					<div class="panel-heading">회원 목록</div>
 					<div class="panel-body">
-					<div style="position:absolute; top:11%;">
-						<button style="background:#E9ECF2; border:none;">수정</button>&nbsp;
-						<button style="background:#E9ECF2; border:none;">삭제</button>
+					<div id="my_menu" style="position:absolute; top:11%;">
+						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
+						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 							    <tr>
 							        <th data-field="check" data-checkbox="true" ></th>
@@ -118,6 +118,67 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		
+		$(function() {
+			// 수정버튼 클릭시
+			$("#modify").click(function() {
+				var length = $("#member_table input:checkbox:checked").length;
+				for (var i = 0; i < length; i++) {
+					var $a = $("#member_table input:checkbox:checked:first").parent();
+					for (var j = 0; j < 5; j++) {
+						var temp = $a.next().text();
+						$a = $a.next();
+						if (j>1) {
+							$a.html("<input type='text' value='"+ temp +"'>");
+						}
+					}
+					$("#member_table input:checkbox:checked:first").removeAttr("checked");
+				}
+				
+				if ($("#confirm").text() != "확인" && length!=0) {
+					$("#my_menu").append("<button id='confirm' style='background:#E9ECF2; border:none;'>확인</button>");
+				} 
+				
+				$("#confirm").click(function() {
+					var length = $(".selected").length;
+					var arr = [];
+					for (var i = 0; i < length; i++) {
+						var target = $(".selected td:first").next();
+						for (var j = 0; j < 5; j++) {
+							if(j<2){
+								arr.push(target.text());
+							}else {
+								arr.push(target.children().val());
+							}
+							target = target.next();
+						}
+						$.ajax(context + "/admin/insert",{
+                            data : {
+                                 "name" : arr[0],
+                                 "id" : arr[1],
+                                 "password" : arr[2],
+                                 "email" : arr[3],
+                                 "phone" : arr[4]
+                            },
+                            success : function(data) {
+                                arr.length=0;
+                            },
+                            async : false,
+                            error : function() {
+                                
+                            }
+                       });
+						$(".selected:first").removeClass("selected");
+					}
+					location.reload();
+				});
+			});
+			
+			// 삭제버튼 클릭시 
+			$("#delete").click(function() {
+				
+			});
+		});
 	</script>	
 </body>
 

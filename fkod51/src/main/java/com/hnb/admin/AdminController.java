@@ -109,24 +109,21 @@ public class AdminController {
 		return model;
 	}
 	@RequestMapping("/insert")
-	public Model insert(
+	public void insert(
 		@RequestParam("id") String id,
 		@RequestParam("password") String password,
-		String email, String phone, String addr, Model model){
+		String email, String phone, Model model){
 		logger.info("insert 진입");
 		logger.info("id{}",id);
 		logger.info("password{}",password);
 		logger.info("email{}",email);
 		logger.info("phone{}",phone);
-		logger.info("addr{}",addr);
 		member = memberService.selectById(id);
 		member.setPassword(password);
 		member.setEmail(email);
 		member.setPhone(phone);
-		member.setAddr(addr);
 		int result = memberService.change(member);
 		model.addAttribute("result", id + " 님의 정보수정을 완료했습니다.");
-		return model;
 	}
 	@RequestMapping("/insert2")
 	public Model insert2(String filmName,String story,Model model){
