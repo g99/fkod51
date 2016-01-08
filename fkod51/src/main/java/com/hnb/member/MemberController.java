@@ -158,7 +158,7 @@ public class MemberController {
 	public String logout(Model model, SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
 		status.setComplete();
-		model.addAttribute("result", "success");
+		logger.info("멤버컨트롤러 logout() - 로그아웃 완료");
 		return "redirect:/"; /* 메인컨트롤러로 간다는 뜻 */ 
 	}
 	

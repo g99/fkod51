@@ -302,6 +302,83 @@
     </div>
 </div>
 
+
+
+<!-- 마이페이지 -->
+<div id="mypage_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:570px; width:400px; margin-left:100px;">
+    	<div class="modal-body">
+    		<h2 class="text-center">My Page</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		  마이페이지(My Page)
+    		</h5>
+    		<br />
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+                
+                	<div class="col-md-4" style="width: 300px;">
+                        <input type="text" class="form-control" value="${user.id}" id="join_Id" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="email" class="form-control" value="${user.email}" id="email" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="password" class="form-control" value="${user.password}" id="join_Password" readonly="readonly" style="color: black;">
+                   		<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.name}" id="name" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.phone}" id="phone" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <button type="button" id="btn_Logout"
+                    style="margin-top:6px; margin-left: 45px; 
+                    width: 100px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block" data-dismiss="modal">로그아웃</button>
+                    
+                 	  	 <a class="btn btn-primary btn-block" data-toggle="modal"
+                 	  	 data-dismiss="modal"
+                 	  	 style="margin-top:6px; width: 100px; margin-left: 10px;
+                   		 border-radius: 10px; float: left;"
+                 	  	 title="Mypage Update" 
+                 	  	 href="#loginModal">
+                 	  	 내정보수정</a>
+                    
+                    <div class="col-md-4 col-md-offset-4" style="padding-top: 25px;">
+                        <label></label>
+                        <button type="button" data-toggle="modal" data-dismiss="modal" class="btn btn-primary btn-block btn-lg" id="join">회원가입 <i class="ion-android-arrow-forward"></i></button>
+                    </div>
+                    
+                </form>
+            </div>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <!-- alert 경고창은 이걸로 대체할 것 -->
 <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -462,12 +539,8 @@
 <script type="text/javascript">
 
 $(function() {
+	/* 주석해제하기.
 	Movie.ranking();
-	
-	/* 로그인 */
-	$("#login").click(function(){
-		Members.login();
-	});
 	
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
@@ -517,12 +590,24 @@ $(function() {
 		}
 	});
 	
-	/* 읽은글 종료버튼  */
+	/* 읽은글 종료버튼
 	$("#read_btn").click(function() {
 		$("#reply_area").empty();
 	});
+	
+	 주석해제하기 */
+	
 }); 
 
+
+
+/* ======== 멤버 ========= */
+/* 로그인 */
+$("#login").click(function(){
+	Members.login();
+});
+
+/* 이메일 인증 */
 $("#btn_confirm").click(function(){
 	var check_Confirm_Email = $("#email").val();
 	if(check_Confirm_Email === ""){
@@ -533,6 +618,7 @@ $("#btn_confirm").click(function(){
 	}
 });
 
+/* 회원가입 */
 $("#join").click(function(){
 	var check_id = $("#join_Id").val();
 	var check_email = $("#email").val();
@@ -563,6 +649,10 @@ $("#join").click(function(){
 	
 });
 
+
+$("#btn_Logout").click(function(){
+	location.href = context + "/member/logout";
+});
 
 
 var Members = {
