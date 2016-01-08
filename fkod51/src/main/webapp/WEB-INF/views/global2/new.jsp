@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 트레일러&이벤트 -->
-<section class="bg-primary" id="one">
+<section class="bg-primary" id="one" style="height:100%; padding-top:5%;">
     <div class="container" style="padding-right: 200px;">
                 
                 <!-- 트레일러 영상 -->
@@ -41,7 +41,7 @@
 </section>
 
 <!-- 극장 -->
-    <section id="four" class="no-padding">
+    <section id="four" class="no-padding" style="height:100%; padding-top:5%;">
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
@@ -129,7 +129,7 @@
     </section>
 
 <!-- 이벤트 -->
-<section class="bg-dark" id="five">
+<section class="bg-dark" id="five" style="height:100%; padding-top:5%;">
 </section>
 
 <!-- 사용하지 않음 참고용 -->
