@@ -44,14 +44,27 @@ public class MemberServiceImpl  implements MemberService{
 		return mapper.selectSomeBy(command);
 	}
 	
-	// ID로 회원검색
+	// ID로 회원검색 - 유효성 체크 1
 	@Override
-	public MemberVO selectById(String id) {
+	public MemberVO selectById(String id) { // 이부분은 서비스 인터페이스에서 정해준 이름이자, 틀이 됨.
 		logger.info("MemberServiceImpl : selectById");
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		MemberVO member = mapper.selectOneBy(id);
+		MemberVO member = mapper.selectOneBy(id); //실제로 mapper에 담겨있는 sql문을 실행시켜 주는 부분
+		logger.info("selectById는?"+member);
 		return member;
 	}
+	
+	
+	//이메일로 회원검색 - 유효성 체크 2
+	@Override
+	public MemberVO selectByEmail(String email) {
+		logger.info("MemberServiceImpl : selectByEmail");
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		MemberVO member = mapper.selectByEmail(email);
+		logger.info("selectByEmail은?"+member);
+		return member;
+	}
+	
 	
 	// 총 회원 수 검색
 	@Override
