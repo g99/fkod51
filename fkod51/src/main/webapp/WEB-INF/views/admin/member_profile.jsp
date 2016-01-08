@@ -62,10 +62,7 @@
 				<div class="panel panel-default" style="position:relative;">
 					<div class="panel-heading">회원 목록</div>
 					<div class="panel-body">
-					<div style="position:absolute; top:11%;">
-						<button style="background:#E9ECF2; border:none;">수정</button>&nbsp;
-						<button style="background:#E9ECF2; border:none;">삭제</button>
-					</div>
+					<div style="position:absolute; top:11%;"><button style="background:#E9ECF2; border:none;">수정</button>&nbsp;<button style="background:#E9ECF2; border:none;">삭제</button></div>
 						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 							    <tr>
