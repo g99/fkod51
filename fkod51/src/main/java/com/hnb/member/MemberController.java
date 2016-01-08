@@ -58,6 +58,7 @@ public class MemberController {
 		logger.info("가입 이름 : {}",param.getName());
 		logger.info("가입 전화번호 : {}",param.getPhone());
 		logger.info("가입 인증번호 : {}",param.getConfirm_num());
+		
 		int confirm_Num = Integer.parseInt(param.getConfirm_num());
 		if (auth_Num == confirm_Num) {
 			member.setId(param.getId());
@@ -75,7 +76,6 @@ public class MemberController {
 				model.addAttribute("result", "fail");
 			}
 		} 
-		
 		else {
 			model.addAttribute("result", "not_Agreement");
 		}
@@ -91,17 +91,28 @@ public class MemberController {
  		    Model model) throws Exception {
 			Email email = new Email();
 		logger.info("멤버컨트롤러 joinAuth() - 진입");
-        
-		auth_Num = (int) (Math.random()*9999) + 1000;
+		logger.info("넘어온 id는?"+id);
+		logger.info("넘어온 email은?"+e_mail);
+		logger.info("넘어온 name은?"+name);
+        MemberVO member_Id_check = service.selectById(id);
+        MemberVO member_Email_check = service.selectByEmail(e_mail);
+		if (member_Id_check != null) {
+			model.addAttribute("id_fail", "id_fail");
+		}
+		else if (member_Email_check != null) {
+			model.addAttribute("email_fail", "email_fail");
+		}
+		else {
+			auth_Num = (int) (Math.random()*9999) + 1000;
         	String reciver = e_mail;
         	String subject = "환영합니다.  "+name+"님, 인증번호 메일입니다.";
         	String content = name+" 님의 가입 인증번호는 "+auth_Num+"입니다.";
-        			
         	email.setReciver(reciver);
             email.setSubject(subject);
             email.setContent(content);
             emailSender.sendMail(email);
             model.addAttribute("success", "success");
+		}
         return model;
     }
 	

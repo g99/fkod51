@@ -51,6 +51,22 @@
  	FROM MEMBER WHERE ID = #{id}
  </select>
  
+ <select id="selectByEmail" resultType="com.hnb.member.MemberVO" parameterType="string">
+ 	SELECT
+ 		ID AS id,
+	 	PASSWORD AS password,
+	 	NAME AS name,
+	 	BIRTH AS birth,
+	 	GENDER AS gender,
+	 	PHONE AS phone,
+	 	ADDR AS addr,
+	 	EMAIL AS email,
+	 	REGDATE AS regdate,
+	 	PROFILE AS profile
+ 	FROM MEMBER WHERE EMAIL = #{email}
+ </select>
+ 
+ 
  <select id="count" resultType="int">
  	SELECT COUNT(*) AS count FROM MEMBER
  </select>
