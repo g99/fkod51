@@ -21,6 +21,8 @@ public interface ScheduleService {
 	public List<?> getTheaterListByD(String date);
 	public List<?> getTimeList(String movie, String theater, String date);
 	public String getFilmNumberBy(String movie);
+	public String getScheduleSeq(String filmNumber, String theater, String roomName, String date, String startTime);
+	public List<?> getSelectedSeats(String scheduleSeq);
 	
 	public RoomVO getSeatList(String theater, String room);
 }

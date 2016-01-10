@@ -151,4 +151,21 @@ public class ScheduleServiceImpl implements ScheduleService {
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
 		return mapper.getSeatList(parameters);
 	}
+	public String getScheduleSeq(String filmNumber, String theater, String roomName, String date, String startTime) {
+		logger.info("TicketServiceImpl : getScheduleSeq()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("filmNumber", filmNumber);
+		parameters.put("theaterName", theater);
+		parameters.put("roomName", roomName);
+		parameters.put("showDate", date);
+		parameters.put("showTime", startTime);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		logger.info("TicketServiceImpl : getScheduleSeq(), 스케줄번호 : {}",mapper.getScheduleSeq(parameters));
+		return mapper.getScheduleSeq(parameters);
+	}
+	public List<?> getSelectedSeats(String scheduleSeq) {
+		logger.info("ScheduleServiceImpl : getSelectedSeats()");
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getSelectedSeats(scheduleSeq);
+	}
 }
