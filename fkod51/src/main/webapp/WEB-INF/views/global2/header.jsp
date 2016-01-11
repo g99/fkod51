@@ -62,7 +62,6 @@
             	<ul class="nav navbar-nav navbar-right">
                		 <li>
                  	   <a class="page-scroll" data-toggle="modal" 
-                 	   title="A free Bootstrap video landing theme" 
                  	   href="#mypage_Modal" 
                  	   style="font-size:1.5em;">${user.id}</a>
               	 	</li>

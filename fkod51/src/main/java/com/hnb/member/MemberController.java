@@ -214,11 +214,13 @@ public class MemberController {
 		}
 		return model;
 	}
+	
 	@RequestMapping("/mypage")
 	public String mypage(){
 		logger.info("멤버컨트롤러 mypage() - 진입");
 		return "member/mypage.tiles";
 	}
+	
 	@RequestMapping("/detail/{id}")
 	public @ResponseBody MemberVO detail(
 		@PathVariable("id")String id){
@@ -228,8 +230,8 @@ public class MemberController {
 		return member;
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public @ResponseBody MemberVO update(
+	@RequestMapping(value="/file_Update", method=RequestMethod.POST)
+	public @ResponseBody MemberVO file_Update(
 			@RequestParam(value="file", required=false)MultipartFile multipartFile,
 			@RequestParam("password")String password,
 			@RequestParam("addr")String addr,
@@ -237,7 +239,7 @@ public class MemberController {
 			@RequestParam("phone")String phone,
 			@RequestParam("id")String id
 			) {
-		logger.info("update() 진입");
+		logger.info("file_Update() 진입");
 		String path = Constants.IMAGE_DOMAIN + "resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
 		String fileName = multipartFile.getOriginalFilename();
@@ -256,6 +258,53 @@ public class MemberController {
 		}
 		return member;
 	}
+	
+	
+	/*내정보 수정*/
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public @ResponseBody Model update(
+			@RequestBody MemberVO param,
+			Model model
+			) {
+		logger.info("내정보 수정, Controller-update() 진입");
+		member.setPassword(param.getPassword());
+		member.setPhone(param.getPhone());
+		member.setId(param.getId());
+		int result = service.change(member);
+		if (result != 0) {
+			logger.info("회원정보 수정완료");
+			model.addAttribute("result","success");
+		} else {
+			logger.info("회원정보 수정실패");
+			model.addAttribute("result","fail");
+		}
+		return model;
+	}
+	
+	/*회원탈퇴*/
+	@RequestMapping("/delete")
+	public Model delete(
+			@RequestParam("delete_Id")String delete_Id,
+			SessionStatus status,
+			Model model
+			){
+		logger.info("멤버컨트롤러 delete() - 진입");
+		logger.info("삭제할 id는?  "+delete_Id);
+		int result = service.remove(delete_Id);
+		if (result != 0) {
+			logger.info("회원탈퇴 완료");
+			status.setComplete();
+			model.addAttribute("result","success");
+		} else {
+			logger.info("회원탈퇴 실패");
+			model.addAttribute("result","fail");
+		}
+		return model;
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("/headerReload")
 	public String headerReload() {
