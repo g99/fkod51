@@ -27,7 +27,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>MTB</span>관리자</a>
+				<a class="navbar-brand" href="#"><span>MTB</span> 관리자 </a>
 			</div>
 							
 		</div><!-- /.container-fluid -->
@@ -63,24 +63,30 @@
 					<div class="panel-heading">영화 목록</div>
 					<div class="panel-body">
 					<div id="my_menu" style="position:absolute; top:11%;">
+					<button id="enter" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
 						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
 						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
-						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+					<div id="my_menu" style="position:absolute; top:15%;">
+					<input type="file" style="background:#E9ECF2; border:none;">
+					</div>
+
+					</div>
+						<table id="movie_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 							    <tr>
-							        <th data-field="check" data-checkbox="true" ></th>
+							        <th data-field="check" data-checkbox="true"></th>
 							        <th data-field="filmNumber" data-sortable="true">영화번호</th>
 							        <th data-field="filmName" data-sortable="true">영화이름</th>
 							        <th data-field="director" data-sortable="true">감독</th>
 							        <th data-field="actor" data-sortable="true">배우</th>
-							        <th data-field="rate" data-sortable="true">날짜</th>
+							        <th data-field="rate" data-sortable="true">등급</th>
 							        <th data-field="runtime" data-sortable="true">상영시간</th>
-							        <th data-field="price" data-sortable="true">등급</th>
+							        <th data-field="price" data-sortable="true">가격</th>
 							        <th data-field="genre" data-sortable="true">장르</th>
-							        <th data-field="country" data-sortable="true">나라</th>
-							        <th data-field="releaseDate" data-sortable="true">시작시간</th>
-							        <th data-field="endDate" data-sortable="true">종료시간</th>
+							        <th data-field="country" data-sortable="true">국가</th>
+							        <th data-field="releaseDate" data-sortable="true">개봉일</th>
+							        <th data-field="endDate" data-sortable="true">종료일</th>
 							        <th data-field="story" data-sortable="true">스토리</th>
 							        <th data-field="cut" data-sortable="true">스틸컷</th>
 							        <th data-field="trailer" data-sortable="true">트레일러</th>
@@ -140,6 +146,9 @@
 		})
 		
 		$(function() {
+			$("#enter").click(function() {
+				alert("등록!!!");
+			});
 			// 수정버튼 클릭시
 			$("#modify").click(function() {
 				var length = $(".selected").length;
@@ -147,19 +156,38 @@
 				if (length != 0) {
 					/* 선택된 갯수만큼 반복수행 */
 					for (var i = 0; i < length; i++) {
-						var id = $(".selected:first .member_id").text();
-						var name = $(".selected:first .member_name").text();
-						var password = $(".selected:first .member_password").text();
-						var email = $(".selected:first .member_email").text();
-						var phone = $(".selected:first .member_phone").text();
-						console.log(id + name + password + email + phone);
-						$(".selected:first .member_password").html('<input type="text" value="'+ password +'">');
-						$(".selected:first .member_email").html('<input type="text" value="'+ email +'">');
-						$(".selected:first .member_phone").html('<input type="text" value="'+ phone +'">');
+						var filmNumber = $(".selected:first .movie.filmNumber").text();
+						var filmName = $(".selected:first .movie.filmName").text();
+						var password = $(".selected:first .movie_password").text();
+						var director = $(".selected:first .movie.director").text();
+						var actor = $(".selected:first .movie.actor").text();
+						var rate = $(".selected:first .movie.rate").text();
+						var runtime = $(".selected:first .movie.runtime").text();
+						var price = $(".selected:first .movie.price").text();
+						var genre = $(".selected:first .movie.genre").text();
+						var country = $(".selected:first .movie.country").text();
+						var releaseDate = $(".selected:first .movie.releaseDate").text();
+						var endDate = $(".selected:first .movie.endDate").text();
+						var story = $(".selected:first .movie.story").text();
+						var cut = $(".selected:first .movie.cut").text();
+						var trailer = $(".selected:first .movie.trailer").text();
+						console.log(filmNumber + filmName + password + director + actor + rate + runtime + price + genre + country 
+								  + releaseDate + endDate + story + cut + trailer);
+						$(".selected:first .movie_actor").html('<input type="text" value="'+ actor +'">');
+						$(".selected:first .movie_rate").html('<input type="text" value="'+ rate +'">');
+						$(".selected:first .movie_runtime").html('<input type="text" value="'+ runtime +'">');
+						$(".selected:first .movie_price").html('<input type="text" value="'+ price +'">');
+						$(".selected:first .movie_genre").html('<input type="text" value="'+ genre +'">');
+						$(".selected:first .movie_country").html('<input type="text" value="'+ country +'">');
+						$(".selected:first .movie_releaseDate").html('<input type="text" value="'+ releaseDate +'">');
+						$(".selected:first .movie_endDate").html('<input type="text" value="'+ endDate +'">');
+						$(".selected:first .movie_story").html('<input type="text" value="'+ story +'">');
+						$(".selected:first .movie_cut").html('<input type="text" value="'+ cut +'">');
+						$(".selected:first .movie_trailer").html('<input type="text" value="'+ trailer +'">');
 						$(".selected:first").removeClass("selected");
 					}
 					
-					$("#member_table input:checkbox:checked").parent().parent().addClass("selected");
+					$("#movie_table input:checkbox:checked").parent().parent().addClass("selected");
 					
 					if ($("#confirm").text() != "확인") {
 						$("#my_menu").append("<button id='confirm' style='background:#E9ECF2; border:none;'>확인</button>");
@@ -171,11 +199,21 @@
 						for (var i = 0; i < length; i++) {
 							$.ajax(context + "/admin/insert",{
 	                            data : {
-	                                 "name" : $(".selected:first .member_name input").text(),
-	                                 "id" : $(".selected:first .member_id").text(),
-	                                 "password" : $(".selected:first .member_password input").val(),
-	                                 "email" : $(".selected:first .member_email input").val(),
-	                                 "phone" : $(".selected:first .member_phone input").val()
+	                                 "filmNumber" : $(".selected:first .movie_filmNumber input").text(),
+	                                 "filmName" : $(".selected:first .movie_filmName input").text(),
+	                                 "password" : $(".selected:first .movie_password input").val(),
+	                                 "director" : $(".selected:first .movie_director input").val(),
+	                                 "actor" : $(".selected:first .movie_actor input").val(),
+	                                 "rate" : $(".selected:first .movie_rate input").val(),
+	                                 "runtime" : $(".selected:first .movie_runtime input").val(),
+	                                 "price" : $(".selected:first .movie_price input").val(),
+	                                 "genre" : $(".selected:first .movie_genre input").val(),
+	                                 "country" : $(".selected:first .movie_country input").val(),
+	                                 "releaseDate" : $(".selected:first .movie_releaseDate input").val(),
+	                                 "endDate" : $(".selected:first .movie_endDate input").val(),
+	                                 "story" : $(".selected:first .movie_story input").val(),
+	                                 "cut" : $(".selected:first .movie_cut input").val(),
+	                                 "trailer" : $(".selected:first .movie_trailer input").val()
 	                            },
 	                            success : function(data) {
 	                            	alert(data.result);
@@ -200,7 +238,7 @@
 					for (var i = 0; i < length; i++) {
 						$.ajax(context + "/admin/delete",{
 							data : {
-								"id" : $(".selected:first .member_id").text()
+								"filmNumber" : $(".selected:first .movie_filmNumber").text()
 							},
 							async : false,
 							success : function(data) {
