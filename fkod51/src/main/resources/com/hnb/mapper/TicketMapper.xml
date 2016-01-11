@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 	
 <mapper namespace="com.hnb.mapper.TicketMapper">
 	<insert id="book" parameterType="com.hnb.ticket.TicketVO">
-		INSERT INTO TICKET (ID,PASSWORD,NAME,BIRTH,GENDER,PHONE,ADDR,EMAIL,REGDATE) 
+		INSERT INTO TICKET (TICKET_NUMBER,ID,FILM_NUMBER,THEATER_SEQ,ROOM_NAME,TODAY,SEAT_NUMBER,START_TIME,TICKET_DATE,ADULT,OLD_MAN,TEENAGER,PRICE) 
 		VALUES (
+			#{ticketNumber},
 			#{id},
-			#{password},
-			#{name},
-			#{birth},
-			#{gender},
-			#{phone},
-			#{addr},
-			#{email},
-			now()
+			#{filmNumber},
+			#{theaterSeq},
+			#{roomName},
+			now(),
+			#{seatNumber},
+			#{startTime},
+			#{date},
+			#{adult},
+			#{oldMan},
+			#{teenager},
+			#{price}
 		)
 	</insert>
+	<insert id="insertSeatNumber" parameterType="string">
+		INSERT INTO SEAT2 (SEAT_NUMBER) 
+		VALUES (#{seatNumber})
+	</insert>
+	<update id="updateSeatStatus" parameterType="map">
+		UPDATE SCHEDULE 
+		SET SEAT_STATUS = SEAT_STATUS - #{quantity} 
+		WHERE FILM_NUMBER = #{filmNumber} 
+		AND THEATER_SEQ = #{theaterSeq} 
+		AND ROOM_NAME = #{roomName} 
+		AND SHOW_DATE = #{showDate} 
+		AND SHOW_TIME = #{showTime}
+	</update>
 </mapper>

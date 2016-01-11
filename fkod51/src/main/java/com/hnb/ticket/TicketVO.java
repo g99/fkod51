@@ -7,7 +7,7 @@ public class TicketVO {
 	private String ticketNumber;
 	private String id;
 	private String filmNumber;
-	private String theaterName;
+	private int theaterSeq;
 	private String roomName;
 	private String seatNumber;
 	private String startTime;
@@ -25,9 +25,7 @@ public class TicketVO {
 	public String getFilmNumber() {
 		return filmNumber;
 	}
-	public String getTheaterName() {
-		return theaterName;
-	}
+	
 	public String getRoomName() {
 		return roomName;
 	}
@@ -55,9 +53,7 @@ public class TicketVO {
 	public void setFilmNumber(String filmNumber) {
 		this.filmNumber = filmNumber;
 	}
-	public void setTheaterName(String theaterName) {
-		this.theaterName = theaterName;
-	}
+	
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
@@ -87,6 +83,12 @@ public class TicketVO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public int getTheaterSeq() {
+		return theaterSeq;
+	}
+	public void setTheaterSeq(int theaterSeq) {
+		this.theaterSeq = theaterSeq;
 	}
 	
 }

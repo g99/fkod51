@@ -308,11 +308,11 @@ var Ticket = {
 								$('#seat_num').empty();
 							});
 							$('#book').click(function() {
-								//var ticket_data = data;
-								$.getJSON(project + '/ticket/getId', function(data) {
-									alert(data.id);
-									if (data.id!=null) {
-										Seats.book(project,ticket_data,data.id);
+								var ticket_data = data;
+								$.getJSON(project + '/ticket/getId', function(dataId) {
+									alert("룸네임 : "+ticket_data.ticket.roomName+"시작시간 : "+ticket_data.ticket.startTime);
+									if (dataId.id!=null) {
+										Seats.book(project,ticket_data,dataId.id);
 									} else {
 										alert("로그인을 해주세요.");
 									}
@@ -374,8 +374,8 @@ var Ticket = {
 								});
 								}
 							});
-							date_list += '</dl></div>';
-							$(date_list).appendTo($('#date_list').empty());
+						date_list += '</dl></div>';
+						$(date_list).appendTo($('#date_list').empty());
 						$('#times_list').empty();
 						
 						$('.ticket_sub').change(function() {Ticket.ticket_sub(context);});

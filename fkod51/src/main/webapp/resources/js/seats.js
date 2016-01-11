@@ -6,7 +6,7 @@ var Seats = {
 				price : null,
 				
 				initSeats : function(project,ticket_data) {
-					alert(ticket_data.movie+"|||"+ticket_data.date+"|||"+ticket_data.time+"|||"+ticket_data.ticket.theaterName);
+					alert("이닛시트 - 룸네임 :"+ticket_data.ticket.roomName);
 					$.ajax(project+'/schedule/initSeats', {
 						type : 'get',
 						data : {
@@ -14,7 +14,7 @@ var Seats = {
 							date : ticket_data.date,
 							time : ticket_data.time,
 							filmNumber : ticket_data.ticket.filmNumber,
-							theater : ticket_data.ticket.theaterName,
+							theater : ticket_data.theater,
 							roomName : ticket_data.ticket.roomName,
 							startTime : ticket_data.ticket.startTime
 						},
@@ -197,11 +197,12 @@ var Seats = {
 					var date = info.date;
 					var time = info.time;
 					var filmNumber = info.ticket.filmNumber;
-					var theater = info.ticket.theaterName;
-					var roomName = info.ticket.rooName;
+					var theater = info.theater;
+					var roomName = info.ticket.roomName;
 					var startTime = info.ticket.startTime;
 					var id = mem_id;
-					alert(info+"  "+info.movie+""+info.ticket.filmNumber);
+					alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
+					alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
 					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
@@ -222,8 +223,14 @@ var Seats = {
 						async : true,
 						dataType : 'json',
 						success : function(data) {
-							alert("예매!!");
 							//location.href="${context}/ticket/Ticket.do?page=Confirm";
+							var confirm = '<div class="container"><div class="row"><div class="col-lg-12 text-center"><h2 class="margin-top-0 text-primary">예매가 성공적으로 완료되었습니다.</h2></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><h4>예매번호 : '+data.ticketNumber+'</h4></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><div><label id="continue" style="font-size: 20px">계속하기</label></div></div></div></div>';
+							$(confirm).appendTo($('#three').empty());
+							$('#continue').click(function() {
+								tabs.make();
+						    	Ticket.main();
+								Ticket.initList(project);
+								});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상태 : '+status+',내용:'+msg);

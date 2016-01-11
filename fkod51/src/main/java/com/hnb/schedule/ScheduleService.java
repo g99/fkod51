@@ -25,4 +25,5 @@ public interface ScheduleService {
 	public List<?> getSelectedSeats(String scheduleSeq);
 	
 	public RoomVO getSeatList(String theater, String room);
+	public int getTheaterSeq(String theater);
 }

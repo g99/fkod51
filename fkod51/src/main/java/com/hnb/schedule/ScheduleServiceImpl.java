@@ -144,7 +144,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	@Override
 	public RoomVO getSeatList(String theater, String room) {
-		logger.info("TicketServiceImpl : getSeatList()");
+		logger.info("ScheduleServiceImpl : getSeatList()");
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("theater", theater);
 		parameters.put("room", room);
@@ -152,7 +152,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return mapper.getSeatList(parameters);
 	}
 	public String getScheduleSeq(String filmNumber, String theater, String roomName, String date, String startTime) {
-		logger.info("TicketServiceImpl : getScheduleSeq()");
+		logger.info("ScheduleServiceImpl : getScheduleSeq()");
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("filmNumber", filmNumber);
 		parameters.put("theaterName", theater);
@@ -168,4 +168,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
 		return mapper.getSelectedSeats(scheduleSeq);
 	}
+	@Override
+	public int getTheaterSeq(String theater) {
+		logger.info("ScheduleServiceImpl : getTheaterSeq()");
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterSeq(theater);
+	}
+	
 }

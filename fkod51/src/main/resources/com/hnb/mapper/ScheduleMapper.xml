@@ -96,4 +96,10 @@
 		 FROM SEAT2
 		 WHERE SEAT_NUMBER LIKE #{scheduleSeq}
 	 </select>
+	 
+	 <select id="getTheaterSeq" resultType="int" parameterType="string">
+		 SELECT THEATER_SEQ 
+		 FROM THEATER
+		 WHERE THEATER_NAME = #{theaterName}
+	 </select>
  </mapper>

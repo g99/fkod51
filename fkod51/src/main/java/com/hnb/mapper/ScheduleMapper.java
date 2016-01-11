@@ -44,7 +44,7 @@ public interface ScheduleMapper {
 		public String getScheduleSeq(Map<String, String> parameters);
 		
 		public List<?> getSelectedSeats(String scheduleSeq);
-		
+		public int getTheaterSeq(String theaterName);
 		
 		// U
 		public int update(ScheduleVO o);

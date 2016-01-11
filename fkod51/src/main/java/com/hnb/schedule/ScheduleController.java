@@ -152,19 +152,21 @@ public class ScheduleController {
 			){
 		logger.info("ScheduleController-choiceseat() 진입");
 		String filmNumber = scheduleService.getFilmNumberBy(movie);
+		int theaterSeq = scheduleService.getTheaterSeq(theater);
 		ticket.setFilmNumber(filmNumber);
-		ticket.setTheaterName(theater);
+		ticket.setTheaterSeq(theaterSeq);
 		ticket.setDate(date);
 		ticket.setRoomName(time.split(" ")[0]);
 		ticket.setStartTime(time.split(" ")[1]);
 		logger.info("영화번호 : {}", ticket.getFilmNumber());
-		logger.info("영화관 : {}", ticket.getTheaterName());
+		logger.info("영화관 : {}", ticket.getTheaterSeq());
 		logger.info("날짜 : {}", ticket.getDate());
 		logger.info("관번호 : {}", ticket.getRoomName());
 		logger.info("시작시간 : {}", ticket.getStartTime());
 		model.addAttribute("movie", movie);
 		model.addAttribute("date", date);
 		model.addAttribute("time", time);
+		model.addAttribute("theater", theater);
 		model.addAttribute("ticket", ticket);
 		return model;
 	}
@@ -228,7 +230,8 @@ public class ScheduleController {
 			String startTime,
 			Model model){
 		logger.info("ScheduleController-initSeats() 진입");
-		logger.info("ScheduleController-initSeats() 진입======room scale : {}",scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
+		logger.info("ScheduleController-initSeats() 극장이름 : {}",theater);
+		logger.info("ScheduleController-initSeats() 진입======room scale : {}",scheduleService.getSeatList(theater,ticket.getRoomName()));
 		String scheduleSeqTemp = scheduleService.getScheduleSeq(filmNumber,theater,roomName,date,startTime);
 		String scheduleSeq = scheduleSeqTemp+"-%";
 		logger.info("ScheduleController-initSeats() 스케줄번호 : {}", scheduleSeq);
@@ -244,7 +247,7 @@ public class ScheduleController {
 		List<Boolean> hArr = new ArrayList<>();
 		List<Boolean> iArr = new ArrayList<>();
 		List<Boolean> jArr = new ArrayList<>();
-		RoomVO selectedRoom = scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName());
+		RoomVO selectedRoom = scheduleService.getSeatList(theater,ticket.getRoomName());
 		//seatsList 만드는 for문
 		for (int i = 0; i < selectedSeatsList.size(); i++) {
 			String temp = (String) selectedSeatsList.get(i);
@@ -334,7 +337,7 @@ public class ScheduleController {
 		}
 		logger.info("dArr : {}",dArr);
 		
-		model.addAttribute("seatList", scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
+		model.addAttribute("seatList", scheduleService.getSeatList(theater,ticket.getRoomName()));
 		//model.addAttribute("selectedSeats", seatsList);
 		model.addAttribute("aArr", aArr);
 		model.addAttribute("bArr", bArr);

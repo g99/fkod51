@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.hnb.member.MemberVO;
+import com.hnb.schedule.ScheduleServiceImpl;
 
 @Controller
 @SessionAttributes("user")
@@ -21,6 +22,7 @@ import com.hnb.member.MemberVO;
 public class TicketController {
 	private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 	@Autowired TicketServiceImpl ticketService;
+	@Autowired ScheduleServiceImpl scheduleService;
 	@Autowired TicketVO ticket;
 	
 	@RequestMapping("/book")
@@ -40,9 +42,11 @@ public class TicketController {
 			String seat_number,
 			Model model){
 		logger.info("TicketController-book() 진입");
-		Date nowdate = new Date();
+		logger.info("TicketController-book() roomName : {}",roomName);
+		logger.info("TicketController-book() startTime: {}", startTime);
+		logger.info("TicketController-book() date: {}", date);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
-		String ticketSeq = String.format("%02X", Long.parseLong(sdf.format(nowdate))); // 16진수 문자열로 변환
+		String ticketSeq = String.format("%02X", Long.parseLong(sdf.format(new Date()))); // 16진수 문자열로 변환
 		logger.info("데이트 {}",ticketSeq);
 		logger.info("좌석번호 {}",seat_number);
 		int ad = Integer.parseInt(adult);
@@ -54,7 +58,8 @@ public class TicketController {
 		ticket.setTicketNumber(ticketNumber);
 		ticket.setId(id);
 		ticket.setFilmNumber(filmNumber);
-		ticket.setTheaterName(theater);
+		int theaterSeq = scheduleService.getTheaterSeq(theater);
+		ticket.setTheaterSeq(theaterSeq);
 		ticket.setRoomName(roomName);
 		ticket.setSeatNumber(seat_number);
 		ticket.setStartTime(time);
@@ -63,7 +68,16 @@ public class TicketController {
 		ticket.setOldMan(ol);
 		ticket.setTeenager(te);
 		ticket.setPrice(Integer.parseInt(price));
+		ticketService.book(ticket);
+		String scheduleSeq = scheduleService.getScheduleSeq(filmNumber,theater,roomName,date,startTime)+"-";
+		int quantity =seat_number.split(",").length;
+		for (int i = 0; i < quantity; i++) {
+			String seatNumber = scheduleSeq+seat_number.split(",")[i];
+			ticketService.insertSeatNumber(seatNumber);
+		}
+		ticketService.updateSeatStatus(quantity,filmNumber,theaterSeq,roomName,date,startTime);
 		
+		model.addAttribute("ticketNumber", ticketNumber);
 		//model.addAttribute("seatList", ticketService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
 		return model;
 	}

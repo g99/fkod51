@@ -1,6 +1,8 @@
 package com.hnb.ticket;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -21,4 +23,33 @@ public class TicketServiceImpl implements TicketService {
 		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
 		return mapper.getSeatList(theater,room);
 	}
+
+	@Override
+	public int book(TicketVO ticket) {
+		logger.info("TicketServiceImpl : book()");
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.book(ticket);
+	}
+
+	@Override
+	public int insertSeatNumber(String seatNumber) {
+		logger.info("TicketServiceImpl : insertSeatNumber()");
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.insertSeatNumber(seatNumber);
+	}
+
+	@Override
+	public int updateSeatStatus(int quantity, String filmNumber, int theaterSeq, String roomName, String date, String startTime) {
+		logger.info("TicketServiceImpl : updateSeatStatus()");
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("quantity", quantity);
+		parameters.put("filmNumber", filmNumber);
+		parameters.put("theaterSeq", theaterSeq);
+		parameters.put("roomName", roomName);
+		parameters.put("showDate", date);
+		parameters.put("showTime", startTime);
+		return mapper.updateSeatStatus(parameters);
+	}
+	
 }

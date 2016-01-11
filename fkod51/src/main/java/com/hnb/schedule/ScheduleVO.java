@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class ScheduleVO {
 	private int seq;
 	private String filmNumber;
-	private String theaterName;
+	private int theaterSeq;
 	private String roomName;
 	private String showDate;
 	private String showTime;
@@ -16,9 +16,6 @@ public class ScheduleVO {
 	}
 	public String getFilmNumber() {
 		return filmNumber;
-	}
-	public String getTheaterName() {
-		return theaterName;
 	}
 	public String getRoomName() {
 		return roomName;
@@ -38,9 +35,6 @@ public class ScheduleVO {
 	public void setFilmNumber(String filmNumber) {
 		this.filmNumber = filmNumber;
 	}
-	public void setTheaterName(String theaterName) {
-		this.theaterName = theaterName;
-	}
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
@@ -52,6 +46,12 @@ public class ScheduleVO {
 	}
 	public void setSeatStatus(int seatStatus) {
 		this.seatStatus = seatStatus;
+	}
+	public int getTheaterSeq() {
+		return theaterSeq;
+	}
+	public void setTheaterSeq(int theaterSeq) {
+		this.theaterSeq = theaterSeq;
 	}
 	
 }
