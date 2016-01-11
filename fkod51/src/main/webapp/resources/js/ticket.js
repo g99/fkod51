@@ -304,7 +304,7 @@ var Ticket = {
 								$('#seat_num').empty();
 								});
 							$('#reset_seats').click(function() {
-								Seats.initSeats(project);
+								Seats.initSeats(project,data);
 								$('#seat_num').empty();
 							});
 							$('#book').click(function() {
