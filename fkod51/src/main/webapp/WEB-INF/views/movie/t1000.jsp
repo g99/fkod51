@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 a{
  text-decoration: none;
 }
@@ -63,8 +62,11 @@ $(document).ready(function(){
  
  function requestAjax(searchWord){
 	  var uri = 'http://openapi.naver.com/search?key=1c798d8d3d140d28b3428cf1f2a7cd38&query='+searchWord+'&display=10&start='+num+'&target=movie'; 
+	  alert("머여 이건 : " + uri );
   $.ajax({
    url:encodeURI(uri),
+   jsonp : "callback",
+   dataType : "jsonp",
    type:'GET',
    success:function(data){
     display(data);
@@ -80,7 +82,6 @@ $(document).ready(function(){
   
  });
   
-
  
 });
 </script>
