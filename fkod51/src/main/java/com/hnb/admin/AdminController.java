@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.hnb.article.ArticleServiceImpl;
+import com.hnb.article.ArticleVO;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieServiceImpl;
 import com.hnb.movie.MovieVO;
+import com.hnb.ticket.TicketServiceImpl;
 
 
 @Controller
@@ -26,10 +29,12 @@ public class AdminController {
 	
 	@Autowired MemberVO member;
 	@Autowired MovieVO movie;
+	@Autowired ArticleVO article;
 	@Autowired MemberServiceImpl memberService;
 	@Autowired MovieServiceImpl movieService;
 	@Autowired AdminServiceImpl adminService;
-	
+	@Autowired ArticleServiceImpl articleService;
+	@Autowired TicketServiceImpl ticketService;
 	@RequestMapping("")
 	public String home(){
 		logger.info("AdminController-home() 진입");
@@ -63,8 +68,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/board")
-	public String board(){
+	public String board(Model model){
 		logger.info("AdminController-home() 진입");
+		List<ArticleVO> articles = articleService.getAllList();
+		model.addAttribute("list", articles);
 		return "admin/board.jsp";
 	}
 	
@@ -163,5 +170,35 @@ public class AdminController {
 				model.addAttribute("result", "fail");
 			}
 		}
+	}
+	
+	@RequestMapping("/notice")
+	public String notice() {
+		return "admin/notice.jsp";
+	}
+	
+	@RequestMapping("/write_notice")
+	public void writeNotice(
+			String title,
+			String content
+			) {
+		article.setUsrSubject(title);
+		article.setUsrContent(content);
+		article.setUsrName("관리자");
+		articleService.write(article);
+	}
+	
+	@RequestMapping("/delete_writing")
+	public void deleteWriting(String code) {
+		articleService.delete(Integer.parseInt(code));
+	}
+	
+	@RequestMapping("/line_chart")
+	public void lineChart(
+			String key,
+			Model model
+			) {
+		logger.info("라인차트 진입!!!");
+		model.addAttribute("count", ticketService.getCountByKey(Integer.parseInt(key)));
 	}
 }

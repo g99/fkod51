@@ -52,7 +52,7 @@
 				
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">게시판관리</h1>
+				<h1 class="page-header">공지글쓰기</h1>
 			</div>
 		</div><!--/.row-->
 				
@@ -60,36 +60,17 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default" style="position:relative;">
-					<div class="panel-heading">게시글 목록</div>
-					<div class="panel-body">
-					<div id="my_menu" style="position:absolute; top:11%;">
-						<button id="notice" style="background:#E9ECF2; border:none;">공지글 쓰기</button>&nbsp;
-						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
+					<div class="panel-heading"></div>
+					<div id="my_menu" style="position:absolute; top:6%; left:1%;">
+						<button id="cancel" style="background:#E9ECF2; border:none;">취소</button>&nbsp;
+						<button id="confirm" style="background:#E9ECF2; border:none;">확인</button>&nbsp;
 					</div>
-						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-						    <thead>
-							    <tr>
-							        <th data-field="check" data-checkbox="true" ></th>
-							        <th data-field="name" data-sortable="true">번호</th>
-							        <th data-field="id" data-sortable="true">제목</th>
-							        <th data-field="password"  data-sortable="true">아이디</th>
-							        <th data-field="email" data-sortable="true">작성일</th>
-							        <th data-field="phone" data-sortable="true">조회수</th>
-							    </tr>
-						    </thead>
-						    <tbody>
-						    	<c:forEach items="${list}" var="article">
-						    		<tr>
-						    			<td></td>
-						    			<td class="article_no">${article.rcdNo}</td>
-						    			<td class="article_subject">${article.usrSubject}</td>
-						    			<td class="article_userid">${article.usrName}</td>
-						    			<td class="article_regdate">${article.usrDate}</td>
-						    			<td class="article_refer">${article.usrRefer}</td>
-						    		</tr>
-						    	</c:forEach>
-						    </tbody>
-						</table>
+					<div class="panel-body">
+						<label for="subject" style="display:block;">제목</label>
+						<input type="text" name="subject" style="width:60%"/>
+						<br />
+						<label for="content" style="display:block;">내용</label>
+						<textarea name="content" id="content" cols="30" rows="10" style="width:60%; height:60%;"></textarea>
 					</div>
 				</div>
 			</div>
@@ -120,35 +101,25 @@
 		})
 		
 		$(function() {
-			/* 공지글 쓰기 */
-			$("#notice").click(function() {
-				location.href = context + "/admin/notice";
+			/* 취소 버튼 */
+			$("#cancel").click(function() {
+				location.href = context + "/admin/board";
 			});
 			
-			/* 삭제 하기 */
-			$("#delete").click(function() {
-				/* 선택된 항목이있을 경우에만 실행 */
-				var length = $(".selected").length;
-				if (length != 0) {
-					/* 선택된 항목수만큼 반복 */
-					for (var i = 0; i < length; i++) {
-						$.ajax(context + "/admin/delete_writing",{
-							data : {
-								"code" : $(".selected:first .article_no").text()
-							},
-							async : false,
-							success : function() {
-								$(".selected:first").removeClass("selected");
-							},
-							error : function() {
-								
-							}
-						});	
+			/* 확인 버튼 */
+			$("#confirm").click(function() {
+				$.ajax(context + "/admin/write_notice",{
+					data : {
+						"title" : $("input:text[name=subject]").val(),
+						"content" : $("textarea[name=content]").val()
+					},
+					success : function(data) {
+						location.href = context + "/admin/board";
+					},
+					error : function() {
+						
 					}
-					location.reload();
-				} else {
-					alert("삭제할 항목을 선택해주세요.");
-				}
+				});
 			});
 		});
 	</script>	

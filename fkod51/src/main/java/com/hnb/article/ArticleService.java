@@ -27,4 +27,6 @@ public interface ArticleService {
 
 	public List<ArticleVO> selectByGrp(int grpNo);
 
+	public List<ArticleVO> getAllList();
+
 }

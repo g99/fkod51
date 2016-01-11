@@ -1,7 +1,30 @@
 var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
-	
+var lineChartFactor = function(key) {
+	$.ajax(context + "/admin/line_chart",{
+		data : {
+			"key" : key
+		},
+		async : false,
+		success : function(data) {
+			var a = parseInt(data.count);
+			console.log("결과값" + a);
+			return a;
+		},
+		error : function() {
+			
+		}
+	});
+};
+var aa = function() {
+	var a = '3';
+	a = parseInt(a);
+	alert(a);
+	return a;
+}
+	// 위에가 회색
+	// 아래가 파란색
 	var lineChartData = {
-			labels : ["January","February","March","April","May","June","July"],
+			labels : ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
 			datasets : [
 				{
 					label: "My First dataset",
@@ -11,7 +34,7 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					data : [20,40,30,40,15,12,100]
 				},
 				{
 					label: "My Second dataset",

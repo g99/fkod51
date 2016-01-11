@@ -9,7 +9,10 @@
              SELECT * FROM user WHERE name = #{name}  
      </select>
  
-     <select id="getUser" resultType="com.hnb.ticket.TicketVO">
-             SELECT * FROM user
+     <select id="getCountByKey" parameterType="int" resultType="int">
+         SELECT 
+         	COUNT(TICKET_NUMBER)
+         FROM TICKET
+         WHERE DAYOFWEEK(TODAY) = #{key}
      </select>
  </mapper>

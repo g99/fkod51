@@ -65,4 +65,9 @@ public class ArticleServiceImpl implements ArticleService{
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
 		return mapper.readReply(grpNo);
 	}
+	@Override
+	public List<ArticleVO> getAllList() {
+		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
+		return mapper.getAllList();
+	}
 }

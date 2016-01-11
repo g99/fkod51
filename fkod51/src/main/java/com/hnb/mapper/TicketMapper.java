@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TicketMapper {
 	public List<?> getSeatList(String theater, String room);
+	public int getCountByKey(int key);
 }

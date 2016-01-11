@@ -5,13 +5,21 @@
 
  <mapper namespace="com.hnb.mapper.ArticleMapper">
  	 <insert id="write" parameterType="com.hnb.article.ArticleVO">
- 	 	INSERT INTO BOARD(USR_SUBJECT,USR_CONTENT,USR_NAME,USR_DATE)
- 	 	VALUES(#{usrSubject}, #{usrContent}, #{usrName}, now())
+ 	 <choose>
+ 	 	<when test="usrName == '관리자'">
+ 	 		INSERT INTO BOARD(RCD_LEVEL, USR_SUBJECT, USR_CONTENT, USR_NAME, USR_DATE)
+ 	 		VALUES(10, #{usrSubject}, #{usrContent}, #{usrName}, now())
+ 	 	</when>
+ 	 	<when test="usrName != '관리자'">
+ 	 		INSERT INTO BOARD(RCD_LEVEL, USR_SUBJECT, USR_CONTENT, USR_NAME, USR_DATE)
+ 	 		VALUES(5, #{usrSubject}, #{usrContent}, #{usrName}, now())
+ 	 	</when>
+ 	 </choose>
  	 </insert>
  	 
  	 <insert id="reply" parameterType="com.hnb.article.ArticleVO">
  	 	INSERT INTO BOARD(GRP_NO,USR_CONTENT,USR_NAME,USR_DATE,RCD_LEVEL)
- 	 	VALUES(#{grpNo}, #{usrContent}, #{usrName}, now(), #{rcdLevel})
+ 	 	VALUES(#{grpNo}, #{usrContent}, #{usrName}, now(), 1)
  	 </insert>
 	 
 	 <select id="readReply" parameterType="int" resultType="com.hnb.article.ArticleVO">
@@ -33,6 +41,25 @@
      	ORDER BY USR_DATE
 	 </select>
 	 
+	 <select id="getAllList" resultType="com.hnb.article.ArticleVO">
+	 	SELECT
+     		RCD_NO AS rcdNo,
+     		GRP_NO AS grpNo,
+     		USR_NAME AS usrName,
+     		USR_SUBJECT AS usrSubject,
+     		USR_CONTENT AS usrContent,
+     		USR_PASS AS usrPass,
+     		USR_FILENAME AS usrFileName,
+     		USR_FILESIZE AS usrFileSize,
+     		USR_DATE AS usrDate,
+     		USR_REFER AS usrRefer,
+     		RCD_LEVEL AS rcdLevel,
+     		RCD_ORDER AS rcdOrder
+     	FROM BOARD
+     	WHERE RCD_LEVEL != 1
+     	ORDER BY RCD_LEVEL DESC, RCD_NO DESC
+	 </select>
+	 
      <select id="selectAll" parameterType="com.hnb.global.Command" resultType="com.hnb.article.ArticleVO">
      	SELECT
      		RCD_NO AS rcdNo,
@@ -49,7 +76,7 @@
      		RCD_ORDER AS rcdOrder
      	FROM BOARD
      	WHERE RCD_LEVEL != 1
-     	ORDER BY rcdNo DESC
+     	ORDER BY  RCD_LEVEL DESC, RCD_NO DESC
      	LIMIT #{start}, 15
      	
      </select>
@@ -71,7 +98,7 @@
  		FROM BOARD 
  		WHERE ${column} LIKE CONCAT('%',#{keyword},'%')
  		AND RCD_LEVEL != 1
- 		ORDER BY rcdNo DESC LIMIT #{start}, 15
+ 		ORDER BY RCD_NO DESC LIMIT #{start}, 15
      </select>
      
      <select id="selectByRcdNo" parameterType="int" resultType="com.hnb.article.ArticleVO">
