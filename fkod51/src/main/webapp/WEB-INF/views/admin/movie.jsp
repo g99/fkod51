@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FKOD - member</title>
+<title>FKOD - movie</title>
 
 <link href="${admin_css}/bootstrap.min.css" rel="stylesheet">
 <link href="${admin_css}/datepicker3.css" rel="stylesheet">
@@ -49,13 +49,7 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-		</div><!--/.row-->
-		
+				
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">영화관리</h1>
@@ -65,89 +59,61 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="position:relative;">
 					<div class="panel-heading">영화 목록</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+					<div id="my_menu" style="position:absolute; top:11%;">
+						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
+						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
+					</div>
+						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
-						    <tr>
-						        <th data-field="state" data-checkbox="true" >Item ID</th>
-						        <th data-field="id" data-sortable="true">Item ID</th>
-						        <th data-field="name"  data-sortable="true">Item Name</th>
-						        <th data-field="price" data-sortable="true">Item Price</th>
-						    </tr>
+							    <tr>
+							        <th data-field="check" data-checkbox="true" ></th>
+							        <th data-field="filmNumber" data-sortable="true">영화번호</th>
+							        <th data-field="filmName" data-sortable="true">영화이름</th>
+							        <th data-field="director" data-sortable="true">감독</th>
+							        <th data-field="actor" data-sortable="true">배우</th>
+							        <th data-field="rate" data-sortable="true">날짜</th>
+							        <th data-field="runtime" data-sortable="true">상영시간</th>
+							        <th data-field="price" data-sortable="true">등급</th>
+							        <th data-field="genre" data-sortable="true">장르</th>
+							        <th data-field="country" data-sortable="true">나라</th>
+							        <th data-field="releaseDate" data-sortable="true">시작시간</th>
+							        <th data-field="endDate" data-sortable="true">종료시간</th>
+							        <th data-field="story" data-sortable="true">스토리</th>
+							        <th data-field="cut" data-sortable="true">스틸컷</th>
+							        <th data-field="trailer" data-sortable="true">트레일러</th>
+							        <th data-field="tRate" data-sortable="true">..</th>
+							    </tr>
 						    </thead>
+						    <tbody>
+						    	<c:forEach items="${list}" var="movie">
+						    		<tr>
+						    			<td></td>
+						    			<td class="movie_filmNumber">${movie.filmNumber}</td>
+						    			<td class="movie_filmName">${movie.filmName}</td>
+						    			<td class="movie_director">${movie.director}</td>
+						    			<td class="movie_actor">${movie.actor}</td>
+						    			<td class="movie_rate">${movie.rate}</td>
+						    			<td class="movie_runtime">${movie.runtime}</td>
+						    			<td class="movie_price">${movie.price}</td>
+						    			<td class="movie_genre">${movie.genre}</td>
+						    			<td class="movie_country">${movie.country}</td>
+						    			<td class="movie_releaseDate">${movie.releaseDate}</td>
+						    			<td class="movie_endDate">${movie.endDate}</td>
+						    			<td class="movie_story">${movie.story}</td>
+						    			<td class="movie_cut">${movie.cut}</td>
+						    			<td class="movie_trailer">${movie.trailer}</td>
+						    			<td class="movie_tRate">${movie.tRate}</td>
+						    		</tr>
+						    	</c:forEach>
+						    </tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->	
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Basic Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" >
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right">Item ID</th>
-						        <th data-field="name">Item Name</th>
-						        <th data-field="price">Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Styled Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right" >Item ID</th>
-						        <th data-field="name" >Item Name</th>
-						        <th data-field="price" >Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-						<script>
-						    $(function () {
-						        $('#hover, #striped, #condensed').click(function () {
-						            var classes = 'table';
-						
-						            if ($('#hover').prop('checked')) {
-						                classes += ' table-hover';
-						            }
-						            if ($('#condensed').prop('checked')) {
-						                classes += ' table-condensed';
-						            }
-						            $('#table-style').bootstrapTable('destroy')
-						                .bootstrapTable({
-						                    classes: classes,
-						                    striped: $('#striped').prop('checked')
-						                });
-						        });
-						    });
-						
-						    function rowStyle(row, index) {
-						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-						
-						        if (index % 2 === 0 && index / 2 < classes.length) {
-						            return {
-						                classes: classes[index / 2]
-						            };
-						        }
-						        return {};
-						    }
-						</script>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->	
-		
-		
 	</div><!--/.main-->
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
@@ -172,6 +138,84 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		
+		$(function() {
+			// 수정버튼 클릭시
+			$("#modify").click(function() {
+				var length = $(".selected").length;
+				/* 선택된겂이 없으면 수행하지 않는다. */
+				if (length != 0) {
+					/* 선택된 갯수만큼 반복수행 */
+					for (var i = 0; i < length; i++) {
+						var id = $(".selected:first .member_id").text();
+						var name = $(".selected:first .member_name").text();
+						var password = $(".selected:first .member_password").text();
+						var email = $(".selected:first .member_email").text();
+						var phone = $(".selected:first .member_phone").text();
+						console.log(id + name + password + email + phone);
+						$(".selected:first .member_password").html('<input type="text" value="'+ password +'">');
+						$(".selected:first .member_email").html('<input type="text" value="'+ email +'">');
+						$(".selected:first .member_phone").html('<input type="text" value="'+ phone +'">');
+						$(".selected:first").removeClass("selected");
+					}
+					
+					$("#member_table input:checkbox:checked").parent().parent().addClass("selected");
+					
+					if ($("#confirm").text() != "확인") {
+						$("#my_menu").append("<button id='confirm' style='background:#E9ECF2; border:none;'>확인</button>");
+					} 
+					
+					$("#confirm").click(function() {
+						/* 선택된 것들만큼 반복할 예정 */
+						var length = $(".selected").length;
+						for (var i = 0; i < length; i++) {
+							$.ajax(context + "/admin/insert",{
+	                            data : {
+	                                 "name" : $(".selected:first .member_name input").text(),
+	                                 "id" : $(".selected:first .member_id").text(),
+	                                 "password" : $(".selected:first .member_password input").val(),
+	                                 "email" : $(".selected:first .member_email input").val(),
+	                                 "phone" : $(".selected:first .member_phone input").val()
+	                            },
+	                            success : function(data) {
+	                            	alert(data.result);
+	                            	$(".selected:first").removeClass("selected");
+	                            },
+	                            async : false,
+	                            error : function() {
+	                                
+	                            }
+	                       });
+						}
+						location.reload();
+					});
+				}
+			});
+			
+			// 삭제버튼 클릭시 
+			$("#delete").click(function() {
+				var length = $(".selected").length;
+				/* 선택된 체크박스가 있는 경우에만 실행 */
+				if (length!=0) {
+					for (var i = 0; i < length; i++) {
+						$.ajax(context + "/admin/delete",{
+							data : {
+								"id" : $(".selected:first .member_id").text()
+							},
+							async : false,
+							success : function(data) {
+								alert(data.result);
+								$(".selected:first").removeClass("selected");
+							},
+							error : function() {
+								
+							}
+						});
+					}
+				}
+				location.reload();
+			});
+		});
 	</script>	
 </body>
 
