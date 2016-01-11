@@ -69,6 +69,9 @@ var Movie = {
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
 							function(data) {
+		 						var story = data.story;
+		 						var sdiv = story.replace(/\[/g,'<h3>');
+		 						var ediv = sdiv.replace(/\]/g,'</h3>');
 								var movieInfom = 
 									'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'
@@ -77,7 +80,7 @@ var Movie = {
 									+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+', '+data.country+'분 '+'</td></tr><tr><th>개봉</th>'
 									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" class="movie_font_20 movie_bold movie_bg_color_purple movie_txt_color_white "></a></td></tr></table>'
 									+'</div>'
-									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20"><img src="'+context+'/resources//images/'+data.story+'.JPG;" alt="" /></div></div><hr/>'
+									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><br><div class="movie_story movie_margin_a10 movie_margin_b20">'+ediv+'</div></div><hr/>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" class="movie_bold movie_bg_color_purple movie_txt_color_white "></h2>'
 									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
 									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'2.jpg;" alt="" width="250" height="161" /></a></div>'
