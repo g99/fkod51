@@ -14,8 +14,6 @@
 	</div>
 </section>
 
-
-
 <!-- 극장, 극장별 설명 - main -->
 <section id="two" class="no-padding">
 	<div id="movielay" class="container-fluid" style="height: 705px;">
@@ -125,11 +123,10 @@
 </section>
 
 <!-- 사용하지 않음 참고용 -->
-<!-- <aside >
+<aside style="height:100%;">
     <div class="container text-center">
         <div class="call-to-action">
-            <h2 class="text-primary">Get Started</h2>
-            <a href="http://www.bootstrapzero.com/bootstrap-template/landing-zero" target="ext" class="btn btn-default btn-lg wow flipInX">Free Download</a>
+            <h2 class="text-primary">FKOD 팀 소개</h2>
         </div>
         <br>
         <hr/>
@@ -137,24 +134,24 @@
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <div class="row">
-                    <h6 class="wide-space text-center">BOOTSTRAP IS BASED ON THESE STANDARDS</h6>
-                    <div class="col-sm-3 col-xs-6 text-center">
-                        <i class="icon-lg ion-social-html5-outline" title="html 5"></i>
-                    </div>
-                    <div class="col-sm-3 col-xs-6 text-center">
-                        <i class="icon-lg ion-social-sass" title="sass"></i>
-                    </div>
-                    <div class="col-sm-3 col-xs-6 text-center">
-                        <i class="icon-lg ion-social-javascript-outline" title="javascript"></i>
-                    </div>
-                    <div class="col-sm-3 col-xs-6 text-center">
-                        <i class="icon-lg ion-social-css3-outline" title="css 3"></i>
-                    </div>
+                	팀장 : 박준규	
+                </div>
+                <div class="row">
+                	영화담당 : 김찬호
+                </div>
+                <div class="row">
+                	예매담당 : 강인석
+                </div>
+                <div class="row">
+                	로그인 및 회원관리 : 이성한
+                </div>
+                <div class="row">
+                	관리자 : 김순환
                 </div>
             </div>
         </div>
     </div>
-</aside> -->
+</aside>
 
 
 <!-- Contact Us -->
@@ -164,7 +161,7 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="margin-top-0 wow fadeIn">Contact Us</h2>
                 <hr class="primary">
-                <p>불편사항이 있으시면 연락바랍니다.</p>
+                <p>2016.02월까지 개발중인 사이트입니다. 계속해서 업데이트될 예정입니다.</p>
             </div>
             <div class="col-lg-10 col-lg-offset-1 text-center">
                 <form class="contact-form row">

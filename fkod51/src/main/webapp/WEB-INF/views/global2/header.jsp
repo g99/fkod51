@@ -31,6 +31,9 @@
                 <li>
                     <a class="page-scroll" href="#last" style="font-size:1.5em;" id="contact_btn">Contact us</a>
                 </li>
+                <li>
+                    <a class="page-scroll" href="${context}/admin" style="font-size:1.5em;" id="contact_btn">관리자</a>
+                </li>
 
                 
                 <!-- 로그인을 하지 않았을 때 -->
