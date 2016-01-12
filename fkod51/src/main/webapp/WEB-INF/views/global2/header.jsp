@@ -37,14 +37,15 @@
                 <c:if test= "${empty sessionScope.user}">
 					<li><a class="page-scroll" data-toggle="modal" href="#joinModal" style="font-size: 1.5em;">회원가입</a>
 					</li>
-					
-				<!-- 로그인 한 후, 로그아웃 버튼 (클릭시, 현재 서버의 logout을 타고 완전 메인으로 리다이렉트 하도록 설정함.) -->
 				</c:if>
-				  <c:if test= "${not empty sessionScope.user}">
+				
+				<!-- 로그인 한 후, 로그아웃 버튼 (클릭시, 현재 서버의 logout을 타고 완전 메인으로 리다이렉트 하도록 설정함.) => 현재 이 기능은 마이페이지에서 구현하고 있음
+				<c:if test= "${not empty sessionScope.user}">
 					<li><a class="page-scroll" href="${context}/member/logout" 
 					style="font-size: 1.5em;">로그아웃</a>
 					</li>
 				</c:if>
+				-->
 				
             </ul>
             <!-- 로그인을 하지 않았을 때 -->
@@ -56,13 +57,12 @@
             	</ul>
             </c:if>
             
-             <!-- 로그인을 하였을 때, 현재는 loginModal로 보내고 있으나, 위와는 다른 주소로 보내야함(마이페이지, 내정보수정). -->
+             <!-- 로그인을 하였을 때, 마이페이지와 내정보수정페이지 띄우기. -->
             <c:if test= "${not empty sessionScope.user}">
             	<ul class="nav navbar-nav navbar-right">
                		 <li>
                  	   <a class="page-scroll" data-toggle="modal" 
-                 	   title="A free Bootstrap video landing theme" 
-                 	   href="#loginModal" 
+                 	   href="#mypage_Modal" 
                  	   style="font-size:1.5em;">${user.id}</a>
               	 	</li>
             	</ul>

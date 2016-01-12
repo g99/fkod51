@@ -1,3 +1,4 @@
+
 .table {
     margin-bottom: 0 !important;
     border-bottom: 1px solid #dddddd;
@@ -40,6 +41,7 @@
 
 .fixed-table-container thead th:first-child {
     border-left: none;
+    text-align: center;
 }
 
 .fixed-table-container thead th .th-inner {
@@ -53,6 +55,8 @@
 
 .fixed-table-container thead th .sortable {
     cursor: pointer;
+    text-align: center;
+    width: 100px;
 }
 
 .fixed-table-container tbody td {

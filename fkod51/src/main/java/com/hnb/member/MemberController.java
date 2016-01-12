@@ -58,6 +58,7 @@ public class MemberController {
 		logger.info("가입 이름 : {}",param.getName());
 		logger.info("가입 전화번호 : {}",param.getPhone());
 		logger.info("가입 인증번호 : {}",param.getConfirm_num());
+		
 		int confirm_Num = Integer.parseInt(param.getConfirm_num());
 		if (auth_Num == confirm_Num) {
 			member.setId(param.getId());
@@ -75,7 +76,6 @@ public class MemberController {
 				model.addAttribute("result", "fail");
 			}
 		} 
-		
 		else {
 			model.addAttribute("result", "not_Agreement");
 		}
@@ -91,17 +91,28 @@ public class MemberController {
  		    Model model) throws Exception {
 			Email email = new Email();
 		logger.info("멤버컨트롤러 joinAuth() - 진입");
-        
-		auth_Num = (int) (Math.random()*9999) + 1000;
+		logger.info("넘어온 id는?"+id);
+		logger.info("넘어온 email은?"+e_mail);
+		logger.info("넘어온 name은?"+name);
+        MemberVO member_Id_check = service.selectById(id);
+        MemberVO member_Email_check = service.selectByEmail(e_mail);
+		if (member_Id_check != null) {
+			model.addAttribute("id_fail", "id_fail");
+		}
+		else if (member_Email_check != null) {
+			model.addAttribute("email_fail", "email_fail");
+		}
+		else {
+			auth_Num = (int) (Math.random()*9999) + 1000;
         	String reciver = e_mail;
         	String subject = "환영합니다.  "+name+"님, 인증번호 메일입니다.";
         	String content = name+" 님의 가입 인증번호는 "+auth_Num+"입니다.";
-        			
         	email.setReciver(reciver);
             email.setSubject(subject);
             email.setContent(content);
             emailSender.sendMail(email);
             model.addAttribute("success", "success");
+		}
         return model;
     }
 	
@@ -147,7 +158,7 @@ public class MemberController {
 	public String logout(Model model, SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
 		status.setComplete();
-		model.addAttribute("result", "success");
+		logger.info("멤버컨트롤러 logout() - 로그아웃 완료");
 		return "redirect:/"; /* 메인컨트롤러로 간다는 뜻 */ 
 	}
 	
@@ -203,11 +214,13 @@ public class MemberController {
 		}
 		return model;
 	}
+	
 	@RequestMapping("/mypage")
 	public String mypage(){
 		logger.info("멤버컨트롤러 mypage() - 진입");
 		return "member/mypage.tiles";
 	}
+	
 	@RequestMapping("/detail/{id}")
 	public @ResponseBody MemberVO detail(
 		@PathVariable("id")String id){
@@ -217,8 +230,8 @@ public class MemberController {
 		return member;
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public @ResponseBody MemberVO update(
+	@RequestMapping(value="/file_Update", method=RequestMethod.POST)
+	public @ResponseBody MemberVO file_Update(
 			@RequestParam(value="file", required=false)MultipartFile multipartFile,
 			@RequestParam("password")String password,
 			@RequestParam("addr")String addr,
@@ -226,7 +239,7 @@ public class MemberController {
 			@RequestParam("phone")String phone,
 			@RequestParam("id")String id
 			) {
-		logger.info("update() 진입");
+		logger.info("file_Update() 진입");
 		String path = Constants.IMAGE_DOMAIN + "resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
 		String fileName = multipartFile.getOriginalFilename();
@@ -245,6 +258,53 @@ public class MemberController {
 		}
 		return member;
 	}
+	
+	
+	/*내정보 수정*/
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public @ResponseBody Model update(
+			@RequestBody MemberVO param,
+			Model model
+			) {
+		logger.info("내정보 수정, Controller-update() 진입");
+		member.setPassword(param.getPassword());
+		member.setPhone(param.getPhone());
+		member.setId(param.getId());
+		int result = service.change(member);
+		if (result != 0) {
+			logger.info("회원정보 수정완료");
+			model.addAttribute("result","success");
+		} else {
+			logger.info("회원정보 수정실패");
+			model.addAttribute("result","fail");
+		}
+		return model;
+	}
+	
+	/*회원탈퇴*/
+	@RequestMapping("/delete")
+	public Model delete(
+			@RequestParam("delete_Id")String delete_Id,
+			SessionStatus status,
+			Model model
+			){
+		logger.info("멤버컨트롤러 delete() - 진입");
+		logger.info("삭제할 id는?  "+delete_Id);
+		int result = service.remove(delete_Id);
+		if (result != 0) {
+			logger.info("회원탈퇴 완료");
+			status.setComplete();
+			model.addAttribute("result","success");
+		} else {
+			logger.info("회원탈퇴 실패");
+			model.addAttribute("result","fail");
+		}
+		return model;
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("/headerReload")
 	public String headerReload() {

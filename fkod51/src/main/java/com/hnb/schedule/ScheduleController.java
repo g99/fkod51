@@ -18,6 +18,7 @@ public class ScheduleController {
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
 	@Autowired ScheduleServiceImpl scheduleService;
 	@Autowired TicketVO ticket;
+	@Autowired SeatsVO seats;
 	
 	@RequestMapping("/Ticket")
 	public String ticketMain(){
@@ -151,19 +152,22 @@ public class ScheduleController {
 			){
 		logger.info("ScheduleController-choiceseat() 진입");
 		String filmNumber = scheduleService.getFilmNumberBy(movie);
+		int theaterSeq = scheduleService.getTheaterSeq(theater);
 		ticket.setFilmNumber(filmNumber);
-		ticket.setTheaterName(theater);
+		ticket.setTheaterSeq(theaterSeq);
 		ticket.setDate(date);
 		ticket.setRoomName(time.split(" ")[0]);
 		ticket.setStartTime(time.split(" ")[1]);
 		logger.info("영화번호 : {}", ticket.getFilmNumber());
-		logger.info("영화관 : {}", ticket.getTheaterName());
+		logger.info("영화관 : {}", ticket.getTheaterSeq());
 		logger.info("날짜 : {}", ticket.getDate());
 		logger.info("관번호 : {}", ticket.getRoomName());
 		logger.info("시작시간 : {}", ticket.getStartTime());
 		model.addAttribute("movie", movie);
 		model.addAttribute("date", date);
-		model.addAttribute("time", time);
+		model.addAttribute("roomName", ticket.getRoomName());
+		model.addAttribute("time", ticket.getStartTime());
+		model.addAttribute("theater", theater);
 		model.addAttribute("ticket", ticket);
 		return model;
 	}
@@ -217,11 +221,136 @@ public class ScheduleController {
 		return model;
 	}
 	@RequestMapping("/initSeats")
-	public Model initSeats(Model model){
+	public Model initSeats(
+			String movie,
+			String date,
+			String time,
+			String filmNumber,
+			String theater,
+			String roomName,
+			String startTime,
+			Model model){
 		logger.info("ScheduleController-initSeats() 진입");
-		logger.info("ScheduleController-initSeats() 진입======seatList : {}",scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
-		model.addAttribute("seatList", scheduleService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
-		logger.info("ScheduleController-initSeats() 진입{}",model);
+		logger.info("ScheduleController-initSeats() 극장이름 : {}",theater);
+		logger.info("ScheduleController-initSeats() 진입======room scale : {}",scheduleService.getSeatList(theater,ticket.getRoomName()));
+		String scheduleSeqTemp = scheduleService.getScheduleSeq(filmNumber,theater,roomName,date,startTime);
+		String scheduleSeq = scheduleSeqTemp+"-%";
+		logger.info("ScheduleController-initSeats() 스케줄번호 : {}", scheduleSeq);
+		List<?> selectedSeatsList = scheduleService.getSelectedSeats(scheduleSeq);
+		List<SeatsVO> seatsList = new ArrayList<>();
+		List<Boolean> aArr = new ArrayList<>();
+		List<Boolean> bArr = new ArrayList<>();
+		List<Boolean> cArr = new ArrayList<>();
+		List<Boolean> dArr = new ArrayList<>();
+		List<Boolean> eArr = new ArrayList<>();
+		List<Boolean> fArr = new ArrayList<>();
+		List<Boolean> gArr = new ArrayList<>();
+		List<Boolean> hArr = new ArrayList<>();
+		List<Boolean> iArr = new ArrayList<>();
+		List<Boolean> jArr = new ArrayList<>();
+		RoomVO selectedRoom = scheduleService.getSeatList(theater,ticket.getRoomName());
+		//seatsList 만드는 for문
+		for (int i = 0; i < selectedSeatsList.size(); i++) {
+			String temp = (String) selectedSeatsList.get(i);
+			String hoo = temp.replace((scheduleSeqTemp+"-"), "");
+			SeatsVO seats = new SeatsVO();
+			seats.setRow(Integer.parseInt(hoo.split("열 ")[0]));
+			seats.setCol(Integer.parseInt(hoo.split("열 ")[1]));
+			seatsList.add(seats);
+		}
+		//초기화
+		for (int i = 0; i < selectedRoom.getA(); i++) {
+			aArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getB(); i++) {
+			bArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getC(); i++) {
+			cArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getD(); i++) {
+			dArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getE(); i++) {
+			eArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getF(); i++) {
+			fArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getG(); i++) {
+			gArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getH(); i++) {
+			hArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getI(); i++) {
+			iArr.add(false);
+		}
+		for (int i = 0; i < selectedRoom.getJ(); i++) {
+			jArr.add(false);
+		}
+		// 있는 좌석  true로 변경
+		for (int i = 0; i < seatsList.size(); i++) {
+			switch (seatsList.get(i).getRow()) {
+			case 1:
+				aArr.remove(seatsList.get(i).getCol()-1);
+				aArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 2:
+				bArr.remove(seatsList.get(i).getCol()-1);
+				bArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 3:
+				cArr.remove(seatsList.get(i).getCol()-1);
+				cArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 4:
+				dArr.remove(seatsList.get(i).getCol()-1);
+				dArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 5:
+				eArr.remove(seatsList.get(i).getCol()-1);
+				eArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 6:
+				fArr.remove(seatsList.get(i).getCol()-1);
+				fArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 7:
+				gArr.remove(seatsList.get(i).getCol()-1);
+				gArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 8:
+				hArr.remove(seatsList.get(i).getCol()-1);
+				hArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 9:
+				iArr.remove(seatsList.get(i).getCol()-1);
+				iArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			case 10:
+				jArr.remove(seatsList.get(i).getCol()-1);
+				jArr.add(seatsList.get(i).getCol()-1, true);
+				break;
+			default:
+				break;
+			}
+		}
+		logger.info("dArr : {}",dArr);
+		
+		model.addAttribute("seatList", scheduleService.getSeatList(theater,ticket.getRoomName()));
+		//model.addAttribute("selectedSeats", seatsList);
+		model.addAttribute("aArr", aArr);
+		model.addAttribute("bArr", bArr);
+		model.addAttribute("cArr", cArr);
+		model.addAttribute("dArr", dArr);
+		model.addAttribute("eArr", eArr);
+		model.addAttribute("fArr", fArr);
+		model.addAttribute("gArr", gArr);
+		model.addAttribute("hArr", hArr);
+		model.addAttribute("iArr", iArr);
+		model.addAttribute("jArr", jArr);
+		logger.info("ScheduleController-initSeats() 진입 좌석 리스트{}", selectedSeatsList.toString());
 		return model;
 	}
 }

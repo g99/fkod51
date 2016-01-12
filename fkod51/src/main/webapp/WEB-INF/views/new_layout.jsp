@@ -48,8 +48,9 @@
     <!-- 예매부분 -->
     <script type="text/javascript">
     $(function() {
-    	tabs.make();
+    	
     	Ticket.main();
+    	//tabs.make();
 		Ticket.initList("${context}");
     });
 	</script>

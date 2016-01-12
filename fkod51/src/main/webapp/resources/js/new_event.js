@@ -12,7 +12,7 @@
 						 	'<span style="margin-left:46%; font-size:4em; color:#9c27b0;">EVENT</span>'
 						 	+'<span style="margin-left:30%;">총 게시글: '+ data.count +'개</span>'
 						 	+'<table class="event_tab" style="margin-bottom:10px;">'
-							+'<tr>'
+							+'<tr style="border-bottom:solid;">'
 							+'<th style="width:10%;">번호</th>'
 							+'<th style="width:45%;">제목</th>'
 							+'<th style="width:15%;">아이디</th>'
@@ -265,7 +265,8 @@
 				$.ajax(context + "/article/write",{
 					data : {
 						"title" : $("input:text[name=title]").val(),
-						"content" : $("textarea[name=content]").val()
+						"content" : $("textarea[name=content]").val(),
+						"id" : $(".navbar-right a").text()
 					},
 					method : "post",
 					success : function() {

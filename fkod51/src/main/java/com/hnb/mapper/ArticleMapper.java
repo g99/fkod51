@@ -30,4 +30,5 @@ public interface ArticleMapper {
 	// D : 삭제 (회원탈퇴)
 	public int delete(int rcdNo);
 	public List<ArticleVO> readReply(int grpNo);
+	public List<ArticleVO> getAllList();
 }

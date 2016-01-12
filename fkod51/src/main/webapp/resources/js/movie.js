@@ -4,8 +4,8 @@ var Movie = {
 				},
 				ranking : function() {
 					var arr = [];
-					var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
-					var test = '<a href="'+context+'/movie/t1000"><button id="test" style="color: black;">검색테스트</button></a>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"></div>';
+					var test = '<a href="'+context+'/movie/t1000"><button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">네이버로 검색하기</button></a>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
@@ -78,10 +78,10 @@ var Movie = {
 									+'<table id="movie_tab"><tr><th style="font-size: 18px">예매율</th><td> '+data.tRate+'%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
 									+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+', '+data.country+'분 '+'</td></tr><tr><th>개봉</th>'
-									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" class="movie_font_20 movie_bold movie_bg_color_purple movie_txt_color_white "></a></td></tr></table>'
+									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html">&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" style="font-size: 12px; width: 100px; border-radius: 10px; float:right; margin-right: 150px;" class="btn btn-primary btn-block"></a></td></tr></table>'
 									+'</div>'
-									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><br><div class="movie_story movie_margin_a10 movie_margin_b20">'+ediv+'</div></div><hr/>'
-									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" class="movie_bold movie_bg_color_purple movie_txt_color_white "></h2>'
+									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20"><img src="'+context+'/resources//images/'+data.story+'.JPG;" alt="" /></div></div><hr/>'
+									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" style="font-size: 15px; float: right; width: 130px; border-radius: 10px; margin-right: 570px;" class="btn btn-primary btn-block"></h2>'
 									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
 									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'2.jpg;" alt="" width="250" height="161" /></a></div>'
 									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'3.jpg;" alt="" width="250" height="161" /></a></div>'
@@ -110,7 +110,7 @@ var Movie = {
 				movieBasic : function(data) {
 					$.getJSON(context + '/movie/movie_Basic/'+data, function(data) {
 						if ((data.cut.split("/").length)>6 && (data.cut.split("/").length)<9) {
-							var movieBasic ='<div class="cut_allcut_lay1"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+							var movieBasic ='<div class="cut_allcut_lay1"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" style="font-size: 17px; float: right; width: 130px; border-radius: 10px; margin-right: 480px;" class="btn btn-primary btn-block"></h1>';
 						    $.each(data.cut.split("/"), function(index,value){
 						    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
 					    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'
@@ -119,7 +119,7 @@ var Movie = {
 						    });
 						}
 						    if ((data.cut.split("/").length)>9 && (data.cut.split("/").length)<12) {
-						    	var movieBasic ='<div class="cut_allcut_lay2"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+						    	var movieBasic ='<div class="cut_allcut_lay2"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" style="font-size: 17px; float: right; width: 130px; border-radius: 10px; margin-right: 480px;" class="btn btn-primary btn-block"></h1>';
 							    $.each(data.cut.split("/"), function(index,value){
 							    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
 						    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'
@@ -128,7 +128,7 @@ var Movie = {
 							    });
 							}
 						    if ((data.cut.split("/").length)%3 == 0) {
-						    	var movieBasic ='<div class="cut_allcut_lay3"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" class="cut_bold cut_bg_color_purple cut_txt_color_white "></h1>';
+						    	var movieBasic ='<div class="cut_allcut_lay3"><h1>'+data.filmName+'&nbsp;&nbsp;&nbsp;<input type="button" value="영화정보" id="movie_home" style="font-size: 17px; float: right; width: 130px; border-radius: 10px; margin-right: 480px;" class="btn btn-primary btn-block"></h1>';
 							    $.each(data.cut.split("/"), function(index,value){
 							    		movieBasic += '<div class="cut_allcut cut_margin_l20 cut_margin_b20 cut_float">'
 						    				+'<a href="'+context+'/resources/images/'+value+'.jpg;">'

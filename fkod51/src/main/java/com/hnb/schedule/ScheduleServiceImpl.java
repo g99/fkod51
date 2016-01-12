@@ -144,11 +144,35 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 	@Override
 	public RoomVO getSeatList(String theater, String room) {
-		logger.info("TicketServiceImpl : getSeatList()");
+		logger.info("ScheduleServiceImpl : getSeatList()");
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("theater", theater);
 		parameters.put("room", room);
 		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
 		return mapper.getSeatList(parameters);
 	}
+	public String getScheduleSeq(String filmNumber, String theater, String roomName, String date, String startTime) {
+		logger.info("ScheduleServiceImpl : getScheduleSeq()");
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("filmNumber", filmNumber);
+		parameters.put("theaterName", theater);
+		parameters.put("roomName", roomName);
+		parameters.put("showDate", date);
+		parameters.put("showTime", startTime);
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		logger.info("TicketServiceImpl : getScheduleSeq(), 스케줄번호 : {}",mapper.getScheduleSeq(parameters));
+		return mapper.getScheduleSeq(parameters);
+	}
+	public List<?> getSelectedSeats(String scheduleSeq) {
+		logger.info("ScheduleServiceImpl : getSelectedSeats()");
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getSelectedSeats(scheduleSeq);
+	}
+	@Override
+	public int getTheaterSeq(String theater) {
+		logger.info("ScheduleServiceImpl : getTheaterSeq()");
+		ScheduleMapper mapper = sqlSession.getMapper(ScheduleMapper.class);
+		return mapper.getTheaterSeq(theater);
+	}
+	
 }

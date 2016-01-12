@@ -62,8 +62,11 @@
 				<div class="panel panel-default" style="position:relative;">
 					<div class="panel-heading">회원 목록</div>
 					<div class="panel-body">
-					<div style="position:absolute; top:11%;"><button style="background:#E9ECF2; border:none;">수정</button>&nbsp;<button style="background:#E9ECF2; border:none;">삭제</button></div>
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+					<div id="my_menu" style="position:absolute; top:11%;">
+						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
+						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
+					</div>
+						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
 							    <tr>
 							        <th data-field="check" data-checkbox="true" ></th>
@@ -78,11 +81,11 @@
 						    	<c:forEach items="${list}" var="member">
 						    		<tr>
 						    			<td></td>
-						    			<td>${member.name}</td>
-						    			<td>${member.id}</td>
-						    			<td>${member.password}</td>
-						    			<td>${member.email}</td>
-						    			<td>${member.phone}</td>
+						    			<td class="member_name">${member.name}</td>
+						    			<td class="member_id">${member.id}</td>
+						    			<td class="member_password">${member.password}</td>
+						    			<td class="member_email">${member.email}</td>
+						    			<td class="member_phone">${member.phone}</td>
 						    		</tr>
 						    	</c:forEach>
 						    </tbody>
@@ -95,10 +98,6 @@
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
-	<script src="${admin_js}/chart.min.js"></script>
-	<script src="${admin_js}/chart-data.js"></script>
-	<script src="${admin_js}/easypiechart.js"></script>
-	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
 	<script src="${admin_js}/bootstrap-table.js"></script>
 	<script>
@@ -115,6 +114,84 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		
+		$(function() {
+			// 수정버튼 클릭시
+			$("#modify").click(function() {
+				var length = $(".selected").length;
+				/* 선택된겂이 없으면 수행하지 않는다. */
+				if (length != 0) {
+					/* 선택된 갯수만큼 반복수행 */
+					for (var i = 0; i < length; i++) {
+						var id = $(".selected:first .member_id").text();
+						var name = $(".selected:first .member_name").text();
+						var password = $(".selected:first .member_password").text();
+						var email = $(".selected:first .member_email").text();
+						var phone = $(".selected:first .member_phone").text();
+						console.log(id + name + password + email + phone);
+						$(".selected:first .member_password").html('<input type="text" value="'+ password +'">');
+						$(".selected:first .member_email").html('<input type="text" value="'+ email +'">');
+						$(".selected:first .member_phone").html('<input type="text" value="'+ phone +'">');
+						$(".selected:first").removeClass("selected");
+					}
+					
+					$("#member_table input:checkbox:checked").parent().parent().addClass("selected");
+					
+					if ($("#confirm").text() != "확인") {
+						$("#my_menu").append("<button id='confirm' style='background:#E9ECF2; border:none;'>확인</button>");
+					} 
+					
+					$("#confirm").click(function() {
+						/* 선택된 것들만큼 반복할 예정 */
+						var length = $(".selected").length;
+						for (var i = 0; i < length; i++) {
+							$.ajax(context + "/admin/insert",{
+	                            data : {
+	                                 "name" : $(".selected:first .member_name input").text(),
+	                                 "id" : $(".selected:first .member_id").text(),
+	                                 "password" : $(".selected:first .member_password input").val(),
+	                                 "email" : $(".selected:first .member_email input").val(),
+	                                 "phone" : $(".selected:first .member_phone input").val()
+	                            },
+	                            success : function(data) {
+	                            	alert(data.result);
+	                            	$(".selected:first").removeClass("selected");
+	                            },
+	                            async : false,
+	                            error : function() {
+	                                
+	                            }
+	                       });
+						}
+						location.reload();
+					});
+				}
+			});
+			
+			// 삭제버튼 클릭시 
+			$("#delete").click(function() {
+				var length = $(".selected").length;
+				/* 선택된 체크박스가 있는 경우에만 실행 */
+				if (length!=0) {
+					for (var i = 0; i < length; i++) {
+						$.ajax(context + "/admin/delete",{
+							data : {
+								"id" : $(".selected:first .member_id").text()
+							},
+							async : false,
+							success : function(data) {
+								alert(data.result);
+								$(".selected:first").removeClass("selected");
+							},
+							error : function() {
+								
+							}
+						});
+					}
+				}
+				location.reload();
+			});
+		});
 	</script>	
 </body>
 

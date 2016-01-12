@@ -1,5 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="../css/common.css" type="text/css">
+<!-- ooooooooooooooooooooo    확인페이지           oooooooooooooooooooooooooooooo -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<h2 class="margin-top-0 text-primary">예매가 성공적으로 완료되었습니다.</h2>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<h4>예매번호 : 1235436246</h4>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<div>
+				<label id="continue" style="font-size: 20px">계속하기</label>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ -->
 	<div class="container">
         <div class="row">

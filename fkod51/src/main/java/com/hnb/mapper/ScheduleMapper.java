@@ -41,6 +41,10 @@ public interface ScheduleMapper {
 		public String getFilmNumberBy(String movie);
 		
 		public RoomVO getSeatList(Map<String, String> parameters);
+		public String getScheduleSeq(Map<String, String> parameters);
+		
+		public List<?> getSelectedSeats(String scheduleSeq);
+		public int getTheaterSeq(String theaterName);
 		
 		// U
 		public int update(ScheduleVO o);
