@@ -23,12 +23,6 @@ public class TicketServiceImpl implements TicketService {
 		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
 		return mapper.getSeatList(theater,room);
 	}
-	
-	@Override
-	public int getCountByKey(int key){
-		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
-		return mapper.getCountByKey(key);
-	}
 
 	@Override
 	public int book(TicketVO ticket) {
@@ -57,5 +51,9 @@ public class TicketServiceImpl implements TicketService {
 		parameters.put("showTime", startTime);
 		return mapper.updateSeatStatus(parameters);
 	}
-	
+	@Override
+	public int getCountByKey(int key){
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.getCountByKey(key);
+	}
 }

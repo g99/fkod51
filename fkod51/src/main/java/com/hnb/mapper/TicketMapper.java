@@ -10,8 +10,8 @@ import com.hnb.ticket.TicketVO;
 @Repository
 public interface TicketMapper {
 	public List<?> getSeatList(String theater, String room);
-	public int getCountByKey(int key);
 	public int book(TicketVO ticket);
 	public int insertSeatNumber(String seatNumber);
 	public int updateSeatStatus(Map<String, Object> parameters);
+	public int getCountByKey(int key);
 }

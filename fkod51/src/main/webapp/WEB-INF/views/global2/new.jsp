@@ -16,8 +16,6 @@
 							style="width: 400%; height: 100%; float: left; display: inline;"/>
 					</div>
 				</div>
-				
-				
     </div>
 </section>
 

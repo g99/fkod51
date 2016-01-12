@@ -165,7 +165,8 @@ public class ScheduleController {
 		logger.info("시작시간 : {}", ticket.getStartTime());
 		model.addAttribute("movie", movie);
 		model.addAttribute("date", date);
-		model.addAttribute("time", time);
+		model.addAttribute("roomName", ticket.getRoomName());
+		model.addAttribute("time", ticket.getStartTime());
 		model.addAttribute("theater", theater);
 		model.addAttribute("ticket", ticket);
 		return model;
