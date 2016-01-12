@@ -146,9 +146,6 @@
 		})
 		
 		$(function() {
-			$("#enter").click(function() {
-				alert("등록!!!"); 
-			});
 			// 수정버튼 클릭시
 			$("#modify").click(function() {
 				var length = $(".selected").length;
