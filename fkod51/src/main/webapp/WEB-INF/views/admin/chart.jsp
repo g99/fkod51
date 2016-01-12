@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FKOD - member</title>
+<title>FKOD - chart</title>
 
 <link href="${admin_css}/bootstrap.min.css" rel="stylesheet">
 <link href="${admin_css}/datepicker3.css" rel="stylesheet">
@@ -54,8 +54,12 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">Charts</h1>
 				
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">영화관리</h1>
 			</div>
 		</div><!--/.row-->
+				
 		
 		<div class="row">
 			<div class="col-lg-12">
