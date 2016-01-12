@@ -9,10 +9,10 @@ var Movie = {
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
-							rank += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+							rank += '<div style="float: left; width: 17%"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
 									+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+									+'alt="" width="15%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 							arr.push(this.filmNumber);
 						});
 						rank += '</div></div>';
