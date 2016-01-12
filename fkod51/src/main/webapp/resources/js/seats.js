@@ -5,116 +5,160 @@ var Seats = {
 				sum : null,
 				price : null,
 				
-				initSeats : function(project) {
-					$.getJSON(project+'/schedule/initSeats', function(data) {
-						var row = 1;
-						var seat_list = '<br>';
-							$.each(data, function(index,val) {
-								if (index==="seatList") {
-									if (val.a!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+				initSeats : function(project,ticket_data) {
+					alert("이닛시트 - 룸네임 :"+ticket_data.ticket.roomName);
+					$.ajax(project+'/schedule/initSeats', {
+						type : 'get',
+						data : {
+							movie : ticket_data.movie,
+							date : ticket_data.date,
+							time : ticket_data.time,
+							filmNumber : ticket_data.ticket.filmNumber,
+							theater : ticket_data.theater,
+							roomName : ticket_data.ticket.roomName,
+							startTime : ticket_data.ticket.startTime
+						},
+						async : true,
+						dataType : 'json',
+						success : function(data) {
+							var row = 1;
+							var seat_list = '<br>';
+							if (data.seatList.a!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.aArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.b!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.b!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.bArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.c!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.c!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.cArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.d!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.d!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.dArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.e!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.e!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.eArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.f!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.f!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.fArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.g!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.g!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.gArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.h!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.h!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.hArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.i!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.i!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.iArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									row++;
-									if (val.j!==0){
-										seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-										for (var int = 0; int < val.a; int++) {
-											var count = int+1;
-											seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-										}
-										seat_list += '<br>';
+								});
+								seat_list += '<br>';
+							}
+							row++;
+							if (data.seatList.j!==0) {
+								seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
+								$.each(data.jArr, function(index,val) {
+									var col = index+1;
+									if (val===false) {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'"><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
+									} else {
+										seat_list += '<input id="'+row+'_'+col+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+col+'" disabled><label class="seats_seatnum" for="'+row+'_'+col+'">'+col+'</label>';
 									}
-									
-								/*if (val!==0) {
-									seat_list += '<label class="seats_rownum" for="seats_">'+row+'열</label>';
-									for (var int = 0; int < val; int++) {
-										var count = int+1;
-										seat_list += '<input id="'+row+'_'+count+'" class="seats_check" name="chair" type="checkbox" value="'+row+'열 '+count+'"><label class="seats_seatnum" for="'+row+'_'+count+'">'+count+'</label>';
-									}
-									seat_list += '<br>';
-									row++;
-								}*/
-								
-								}
-							});
+								});
+								seat_list += '<br>';
+							}
+							row++;
 							$(seat_list).appendTo($('#seats_seatsblock').empty());
 							$('.seats_check').click(function() {Seats.selectSeats();});
+						},
+						error : function(xhr, status, msg) {
+							alert('에러발생상태 : '+status+',내용:'+msg);
+						}
 					});
 				},
 				selectSeats : function() {
@@ -148,18 +192,21 @@ var Seats = {
 					$(total_cal).appendTo($('#total_cal').empty());
 				},
 
-				book : function(project,info) {
+				book : function(project,info,mem_id) {
 					var movie = info.movie;
 					var date = info.date;
 					var time = info.time;
 					var filmNumber = info.ticket.filmNumber;
-					var theater = info.ticket.theaterName;
-					var roomName = info.ticket.rooName;
+					var theater = info.theater;
+					var roomName = info.ticket.roomName;
 					var startTime = info.ticket.startTime;
-					alert(info+"  "+info.movie+""+info.ticket.filmNumber);
+					var id = mem_id;
+					alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
+					alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
 					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
+							id : id,
 							movie : movie,
 							date : date,
 							time : time,
@@ -176,8 +223,14 @@ var Seats = {
 						async : true,
 						dataType : 'json',
 						success : function(data) {
-							alert("예매!!");
 							//location.href="${context}/ticket/Ticket.do?page=Confirm";
+							var confirm = '<div class="container"><div class="row"><div class="col-lg-12 text-center"><h2 class="margin-top-0 text-primary">예매가 성공적으로 완료되었습니다.</h2></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><h4>예매번호 : '+data.ticketNumber+'</h4></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><div><label id="continue" style="font-size: 20px">계속하기</label></div></div></div></div>';
+							$(confirm).appendTo($('#three').empty());
+							$('#continue').click(function() {
+								tabs.make();
+						    	Ticket.main();
+								Ticket.initList(project);
+								});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상태 : '+status+',내용:'+msg);

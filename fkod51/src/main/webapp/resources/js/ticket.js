@@ -13,8 +13,7 @@ var Ticket = {
 					$(main).appendTo($('#three').empty());
 				},
 				ticket_sub : function(project) {
-					alert("티켓서브실행중"+", 선택 : "+$("input:radio[name=movie]:checked").val());
-					
+					//alert("티켓서브실행중"+", 선택 : "+$("input:radio[name=movie]:checked").val());
 					$.ajax(project + '/schedule/movieSelect',{
 						type : 'get',
 						data : {
@@ -297,7 +296,7 @@ var Ticket = {
 						success : function(data) {
 							$('#three').empty();
 							$('#three').append('<div class="container"><div class="row"><div class="col-lg-15 text-center"><h2 class="margin-top-0 text-primary">인원 / 좌석 선택</h2></div></div></div><div class="container"><div class="row"><div class="col-lg-2 col-md-8 text-center"><div class="feature"><h3>인원</h3><hr class="primary"><div class="seats_number"><div><label class="seats_ratelist">일반</label><select name="normal"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></div><div><label class="seats_ratelist">청소년</label><select name="teenager"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></div><div><label class="seats_ratelist">우대</label><select name="treatment"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></div></div></div></div><div class="col-lg-6 col-md-8 text-center"><div class="feature"><div class="seats_seats"><div class="seats_screenborder"><label class="seats_screen">SCREEN</label></div><div class="seats_seatsblock" id="seats_seatsblock"></div><div><label id="reset_seats">다시선택하기</label></div></div></div></div><div class="col-lg-4 col-md-8 text-center"><div class="feature"><h3>결제 정보</h3><div class="seats_info"><div class="seats_movieinfo"><div class="seats_infoline" id="movie_info"><label class="seats_infotitle">영화</label><h6 style="display: inline-block;margin: 0;">'+data.movie+'</h6></div><div class="seats_infoline"><label class="seats_infotitle">일시</label><h5 style="display: inline-block;margin: 0;">'+data.date+'</h5><h5 style="display: inline-block;margin: 0;">'+data.time+'</h5></div><div class="seats_infoline"><label class="seats_infotitle">인원</label><div id="ea"></div></div><div class="seats_infoline"><label class="seats_infotitle">좌석번호</label><div id="seat_num"></div></div></div><div class="seats_cal"><div id="seats_normal"><label class="seats_infotitle">일반</label><div id="normal_cal"></div></div><div id="seats_teenager"><label class="seats_infotitle">청소년</label><div id="teenager_cal"></div></div><div id="seats_treatment"><label class="seats_infotitle">우대</label><div id="treatment_cal"></div></div><div id="seats_sum"><label class="seats_infotitle">총금액</label><div id="total_cal"></div></div></div></div></div></div></div></div><div class="container"><div class="row"><div class="col-lg-11 text-right"><input id="book" type="button" value="좌석선택" style="display: none;"><label for="book" class="button" style="font-size: 20px;">예매하기</label></div></div></div>');
-							Seats.initSeats(project);
+							Seats.initSeats(project,data);
 							$('.seats_number').change(function() {
 								Seats.seats_number();
 								Seats.seats_cal();
@@ -305,11 +304,21 @@ var Ticket = {
 								$('#seat_num').empty();
 								});
 							$('#reset_seats').click(function() {
-								Seats.initSeats(project);
+								Seats.initSeats(project,data);
 								$('#seat_num').empty();
 							});
 							$('#book').click(function() {
-								Seats.book(project,data);});
+								var ticket_data = data;
+								$.getJSON(project + '/ticket/getId', function(dataId) {
+									alert("룸네임 : "+ticket_data.ticket.roomName+"시작시간 : "+ticket_data.ticket.startTime);
+									if (dataId.id!=null) {
+										Seats.book(project,ticket_data,dataId.id);
+									} else {
+										alert("로그인을 해주세요.");
+									}
+								
+								});
+								});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상테 : '+status+',내용:'+msg);
@@ -365,8 +374,8 @@ var Ticket = {
 								});
 								}
 							});
-							date_list += '</dl></div>';
-							$(date_list).appendTo($('#date_list').empty());
+						date_list += '</dl></div>';
+						$(date_list).appendTo($('#date_list').empty());
 						$('#times_list').empty();
 						
 						$('.ticket_sub').change(function() {Ticket.ticket_sub(context);});
