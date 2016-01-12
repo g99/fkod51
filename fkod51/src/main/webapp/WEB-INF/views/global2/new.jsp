@@ -301,6 +301,139 @@
     </div>
 </div>
 
+
+
+<!-- 마이페이지 -->
+<div id="mypage_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
+    	<div class="modal-body">
+    		<h2 class="text-center">My Page</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		  마이페이지(My Page)
+    		</h5>
+    		<br />
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+                
+                	<div class="col-md-4" style="width: 300px;">
+                        <input type="text" class="form-control" value="${user.id}" id="mypage_Id" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="email" class="form-control" value="${user.email}" id="mypage_email" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="password" class="form-control" value="${user.password}" id="mypage_Password" readonly="readonly" style="color: black;">
+                   		<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.name}" id="mypage_name" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.phone}" id="mypage_Phone" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <button type="button" id="btn_Logout"
+                    style="margin-top:6px; margin-left: 45px; 
+                    width: 100px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block" data-dismiss="modal">로그아웃</button>
+                    
+                 	  	 <a class="btn btn-primary btn-block" data-toggle="modal"
+                 	  	 data-dismiss="modal"
+                 	  	 style="margin-top:6px; width: 100px; margin-left: 10px;
+                   		 border-radius: 10px; float: left;"
+                 	  	 title="Mypage Update" 
+                 	  	 href="#update_Modal">
+                 	  	 내정보수정</a>
+                    
+                </form>
+            </div>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+<!-- 업데이트 페이지 - 정보수정 버튼 클릭했을 때 -->
+<div id="update_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
+    	<div class="modal-body">
+    		<h2 class="text-center">My Page - 정보수정</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		  내 정보수정 페이지(Update Page)
+    		</h5>
+    		<br />
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+                
+                	<div class="col-md-4" style="width: 300px;">
+                        <input type="text" class="form-control" value="${user.id}" id="update_Id" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="email" class="form-control" value="${user.email}" id="update_Email" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="password" class="form-control" value="${user.password}" id="update_Password" style="color: black;">
+                   		<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.name}" id="update_Name"  readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="${user.phone}" id="update_Phone" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <button type="button" id="btn_Update"
+                    style="margin-top:6px; margin-left: 45px; 
+                    width: 100px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block" data-dismiss="modal">정보수정</button>
+                    
+                    <button type="button" id="btn_Delete"
+                    style="margin-top:6px; width: 100px; margin-left: 10px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block" data-dismiss="modal">회원탈퇴</button>
+                    
+                    
+                </form>
+            </div>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <!-- alert 경고창은 이걸로 대체할 것 -->
 <div id="alertModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -463,11 +596,6 @@
 $(function() {
 	Movie.ranking();
 	
-	/* 로그인 */
-	$("#login").click(function(){
-		Members.login();
-	});
-	
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
 	//----------------------//
@@ -516,12 +644,22 @@ $(function() {
 		}
 	});
 	
-	/* 읽은글 종료버튼  */
+	/* 읽은글 종료버튼 */
 	$("#read_btn").click(function() {
 		$("#reply_area").empty();
 	});
+	
 }); 
 
+
+
+/* ======== 멤버 ========= */
+/* 로그인 */
+$("#login").click(function(){
+	Members.login();
+});
+
+/* 이메일 인증 */
 $("#btn_confirm").click(function(){
 	var check_Confirm_Email = $("#email").val();
 	if(check_Confirm_Email === ""){
@@ -532,6 +670,7 @@ $("#btn_confirm").click(function(){
 	}
 });
 
+/* 회원가입 */
 $("#join").click(function(){
 	var check_id = $("#join_Id").val();
 	var check_email = $("#email").val();
@@ -562,6 +701,26 @@ $("#join").click(function(){
 	
 });
 
+/* 로그아웃 */
+$("#btn_Logout").click(function(){
+	location.href = context + "/member/logout";
+});
+
+
+/* 정보수정 버튼 */
+$("#btn_Update").click(function(){
+	if(confirm('정보수정을 하시겠습니까?')) {
+		Members.update();
+	}
+});
+
+$("#btn_Delete").click(function(){
+	if(confirm('정말 회원탈퇴를 하시겠습니까?')) {
+		Members.delete_Member();
+	}
+});
+
+
 
 
 var Members = {
@@ -575,6 +734,7 @@ var Members = {
 					//로그인 결과가 성공이면
 					if(data.id != null){
 						$("#bs-navbar").load(context + "/member/headerReload #bs-navbar");
+						location.reload();
 					} else{
 					//로그인 결과가 실패면 (데이터가 널이면,)
 						alert("아이디 혹은 패스워드를 다시한번 확인해주세요");
@@ -645,6 +805,56 @@ var Members = {
 				error : function(xhr, status, msg) {
 				}
 			});
-		}
+		},
+		
+		update : function() {
+			// 앞의 id는 MemberVO의 빈객체 네임과 같아야함.
+			var update_Mem = {
+				"id" :$("#update_Id").val(),
+				"password" :$("#update_Password").val(),
+				"phone" :$("#update_Phone").val(),
+			};
+			$.ajax(context + "/member/update",{
+				data : JSON.stringify(update_Mem),
+				dataType : "json",
+				type : 'post',
+				contentType : "application/json;",
+				mimeType: "application/json;",
+				async : false,
+				success : function(data) {
+					if(data.result == "success"){
+						alert("회원정보수정이 완료되었습니다.");
+					}
+					if(data.result == "fail"){
+						alert("정보수정을 실패하였습니다. 다시 시도해주세요.");
+					}
+				},
+				error : function(xhr, status, msg) {
+					alert('에러발생, 다시시도해주세요. 다시 시도하셔도 에러가 발생하면 관리자에게 문의해주세요.');
+				}
+			});
+		},
+		
+		delete_Member : function() {
+			$.ajax(context + "/member/delete",{
+				data : {"delete_Id" : $("#update_Id").val(),
+				},
+				type : "post",
+				success : function(data) {
+					if(data.result == "success"){
+						location.reload();
+						alert("회원탈퇴가 완료되었습니다.");
+					}
+					if(data.result == "fail"){
+						alert("회원탈퇴를 실패하였습니다.");
+					}
+				},
+				error : function(xhr, status, msg) {
+					alert('에러발생, 다시시도해주세요. 다시 시도하셔도 에러가 발생하면 관리자에게 문의해주세요.');
+				}
+			});
+		},
+		
+		
 };
 </script>
