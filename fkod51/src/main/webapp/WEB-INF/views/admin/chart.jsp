@@ -147,7 +147,7 @@
 			}
 		};
 
-	    function drawLineChart() {
+	   function drawLineChart() {
 	        var data = google.visualization.arrayToDataTable([
 	          ['요일',    '판매량',       '매출액'],
 	          ['월요일',  lineFactor[0],      20],
