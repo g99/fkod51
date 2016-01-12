@@ -245,8 +245,9 @@
                 
                 	<div class="col-md-4" style="width: 300px;">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="ID" id="join_Id">
-                    	<div style="height:12px;"></div>
+                        <input type="text" class="form-control" placeholder="ID" id="join_Id" onkeyup="Members.checking_Id()">
+                        <label style="float: left; color: red;" id="check_Msg">아이디를 입력해주세요 ♬</label>
+                    	<div style="height:20px;"></div>
                     </div>
                     
                 	<div class="col-md-4" style="width: 300px;">
@@ -643,6 +644,10 @@ $(function() {
 		$("#reply_area").empty();
 	});
 	
+	
+	/* 아이디 실시간 체크 */
+	
+	
 }); 
 
 
@@ -693,7 +698,10 @@ $("#join").click(function(){
 		Members.join();	
 	}
 	
+	
 });
+
+
 
 /* 로그아웃 */
 $("#btn_Logout").click(function(){
@@ -713,7 +721,6 @@ $("#btn_Delete").click(function(){
 		Members.delete_Member();
 	}
 });
-
 
 
 
@@ -849,6 +856,29 @@ var Members = {
 			});
 		},
 		
+		checking_Id : function() {
+			$.ajax(context + "/member/checking_Id",{
+				data : {"id" : $("#join_Id").val(),
+					},
+				type : "post",
+				success : function(data) {
+					// 아이디가 이미 존재할경우.
+					if (data.id_fail == "id_fail") {
+						document.getElementById('check_Msg').style.color = "red";
+						document.getElementById('check_Msg').innerHTML = "가입되어있는 아이디입니다.";
+					}
+					// 아이디 사용가능할 경우.
+					if (data.id_Confirm == "id_Confirm") {
+						document.getElementById('check_Msg').style.color = "green";
+						document.getElementById('check_Msg').innerHTML = "가능한 아이디입니다.";
+					}
+				},
+				error : function() {
+					document.getElementById('check_Msg').style.color = "red";
+					document.getElementById('check_Msg').innerHTML = "아이디를 입력하세요.";
+				}
+			});
+		},
 		
 };
 </script>
