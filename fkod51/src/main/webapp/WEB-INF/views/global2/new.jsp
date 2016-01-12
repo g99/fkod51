@@ -2,66 +2,17 @@
 
 <!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one" style="">
-
-    <div class="container" style="background: rgba(180, 181, 168, 0.19);">
-	<div class="row">
-		<div class="box">
-			<div class="col-lg-12 text-center">
-				<div id="carousel-example-generic" class="carousel slide">
-					<!-- Indicators -->
-					<ol class="carousel-indicators hidden-xs">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="3"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="4"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="5"></li>
-					</ol>
-
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" style="height: 610px;">
-						<div class="item active">
-								<div>
-									<iframe
-										style="width: 70%; height: 90%; float: left; border: none;"
-										src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
-								</div>
-								<div
-									style="width: 10%; height: 90%; float: left; margin-left: 15px;">
-									<img src="${img}/naebuja_Main.jpg" alt="sample_img"
-										style="width: 350%; height: 100%; float: left; display: inline;" />
-								</div>
-						</div>
-							
-						<div class="item">
-							<img class="img-responsive img-full" style="height: 100%; width: 100%;"
-								src="${img}/movie-slide1-1.jpg" alt="">
-						</div>
-						<div class="item">
-							<img class="img-responsive img-full" style="height: 100%; width: 100%;"
-								src="${img}/movie-slide3.jpg" alt="">
-						</div>
-						<div class="item">
-							<img class="img-responsive img-full" style="height: 100%; width: 100%;"
-								src="${img}/movie-slide4.jpg" alt="">
-						</div>
-						<div class="item">
-							<img class="img-responsive img-full" style="height: 100%; width: 100%;"
-								src="${img}/movie-slide5.jpg" alt="">
-						</div>
-					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic"
-						data-slide="prev"> <span class="icon-prev"></span>
-					</a> <a class="right carousel-control" href="#carousel-example-generic"
-						data-slide="next"> <span class="icon-next"></span>
-					</a>
-				</div>
-			</div>
+	<div style="width: 95%; height: 95%; margin: auto;">
+		<div>
+			<iframe style="width: 70%; height: 90%; float: left; border: none;"
+				src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
+		</div>
+		<div style="width: 10%; height: 90%; float: left; margin-left: 15px;">
+			<img src="${img}/naebuja_Main.jpg" alt="sample_img"
+				style="width: 300%; height: 100%; float: left; display: inline;" />
 		</div>
 	</div>
-</div>
+
 </section>
 
 
