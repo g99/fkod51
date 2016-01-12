@@ -1,22 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 트레일러&이벤트 -->
-<section class="bg-primary" id="one" style="height:100%; padding-top:5%;">
-    <div class="container" style="padding-right: 200px;">
-                
-                <!-- 트레일러 영상 -->
-				<div>
-					<div>
-						<iframe style="width: 80%; height: 75%; float: left; border: none;"
-								src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
-					</div>
-					<div style="width: 10%; height: 75%; float: left; margin-left: 15px;">
-							<!-- 포스터, 이미지에 링크 걸어주기 -->
-							<img src="${img}/naebuja_Main.jpg" alt="sample_img" 
-							style="width: 400%; height: 100%; float: left; display: inline;"/>
-					</div>
-				</div>
-    </div>
+<section class="bg-primary" id="one" style="">
+
 </section>
 
 
@@ -33,7 +19,7 @@
 </section>
 
 <!-- 예매 -->
-<section id="three">
+<section id="three" style="height:100%;">
     
 </section>
 
