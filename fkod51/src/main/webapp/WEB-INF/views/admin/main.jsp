@@ -49,86 +49,23 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Dashboard</h1>
-			</div>
-		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-blue panel-widget ">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">120</div>
-							<div class="text-muted">New Orders</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-orange panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">52</div>
-							<div class="text-muted">Comments</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-teal panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
-							<div class="text-muted">New Users</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-6 col-lg-3">
-				<div class="panel panel-red panel-widget">
-					<div class="row no-padding">
-						<div class="col-sm-3 col-lg-5 widget-left">
-							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
-						</div>
-						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">25.2k</div>
-							<div class="text-muted">Page Views</div>
-						</div>
-					</div>
-				</div>
+				<h1 class="page-header">관리자 홈</h1>
 			</div>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Site Traffic Overview</div>
+					<div class="panel-heading">방문자 수</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-						</div>
+						<div id="chart_div"></div>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->
+		</div><!--/.row-->	
 		
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
@@ -320,15 +257,10 @@
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
-	<script src="${admin_js}/chart.min.js"></script>
-	<script src="${admin_js}/chart-data.js"></script>
-	<script src="${admin_js}/easypiechart.js"></script>
-	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
+	<!-- 막대차트 -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
-		$('#calendar').datepicker({
-		});
-
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
 		        $(this).find('em:first').toggleClass("glyphicon-minus");      
@@ -342,7 +274,58 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+		
+		$(function() {
+			google.charts.load('current', {packages: ['corechart', 'bar']});
+			google.charts.setOnLoadCallback(drawBasic);
+		});
+		function drawBasic() {
+
+		      var data = new google.visualization.DataTable();
+		      data.addColumn('timeofday', 'Time of Day');
+		      data.addColumn('number', '방문자 수');
+
+		      data.addRows([
+		        [{v: [9, 0, 0], f: '9 am'}, 2],
+		        [{v: [10, 0, 0], f:'10 am'}, 3],
+		        [{v: [11, 0, 0], f: '11 am'}, 4],
+		        [{v: [12, 0, 0], f: '12 pm'}, 5],
+		        [{v: [13, 0, 0], f: '1 pm'}, 10],
+		        [{v: [14, 0, 0], f: '2 pm'}, 12],
+		        [{v: [15, 0, 0], f: '3 pm'}, 7],
+		        [{v: [16, 0, 0], f: '4 pm'}, 15],
+		        [{v: [17, 0, 0], f: '5 pm'}, 18],
+		        [{v: [18, 0, 0], f: '6 pm'}, 24],
+		        [{v: [19, 0, 0], f: '7 pm'}, 20],
+		        [{v: [20, 0, 0], f: '8 pm'}, 15],
+		        [{v: [21, 0, 0], f: '9 pm'}, 10],
+		        [{v: [22, 0, 0], f: '10 pm'}, 7],
+		        [{v: [23, 0, 0], f: '11 pm'}, 5],
+		        [{v: [24, 0, 0], f: '12 pm'}, 2],
+		      ]);
+
+		      var options = {
+		        title: '',
+		        hAxis: {
+		          format: 'h:mm a',
+		          viewWindow: {
+		            min: [8, 30, 0],
+		            max: [24, 30, 0]
+		          }
+		        },
+		        vAxis: {
+		        	title : ""
+		        },
+		        width : '100%',
+		        height : '500'
+		      };
+
+		      var chart = new google.visualization.ColumnChart(
+		        document.getElementById('chart_div'));
+
+		      chart.draw(data, options);
+		    }
+	</script>
 </body>
 
 </html>

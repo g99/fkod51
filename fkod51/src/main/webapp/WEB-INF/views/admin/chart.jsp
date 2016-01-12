@@ -48,13 +48,7 @@
 		</ul>
 	</div><!--/.sidebar-->
 		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-		</div><!--/.row-->
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -66,86 +60,28 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">월별 판매량</div>
+					<div class="panel-heading">일별 판매량</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-						</div>
+						<div id="curve_chart"></div>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">방문자 수</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="bar-chart" height="200" width="600"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->		
 		
 		<div class="row">
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">예매율</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="pie-chart" ></canvas>
-						</div>
+						<div id="piechart"></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Doughnut Chart</div>
+					<div class="panel-heading">연령별</div>
 					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="chart" id="doughnut-chart" ></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Label:</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
-						</div>
+						<div id="donutchart"></div>
 					</div>
 				</div>
 			</div>
@@ -154,12 +90,16 @@
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
-	<script src="${admin_js}/chart.min.js"></script>
-	<script src="${admin_js}/chart-data.js"></script>
-	<script src="${admin_js}/easypiechart.js"></script>
-	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
 	<script src="${admin_js}/bootstrap-table.js"></script>
+	<!-- 라인차트 -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- 파이차트 -->
+	<script type="text/javascript" src="https://www.google.com/jsapi?autoload= 
+{'modules':[{'name':'visualization','version':'1.1','packages':
+['corechart']}]}"></script>
+	
+	<!-- 구현부분 -->
 	<script>
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
@@ -176,8 +116,96 @@
 		})
 		
 		$(function() {
+			lineChartFactor();
+			/* 라인차트 그리기 */
+			google.charts.load('current', {'packages':['corechart']});
+		    google.charts.setOnLoadCallback(drawLineChart);
+		    /* 파이차트 그리기 */
+		    google.setOnLoadCallback(drawPieChart);
+		    google.setOnLoadCallback(drawDonutChart);
 		});
-	</script>	
+		
+		var lineFactor = [];
+    	var lineChartFactor = function() {
+    		for (var i = 0; i < 7; i++) {
+    			$.ajax(context + "/admin/line_chart",{
+    		       	 data : {
+    		       		 "key" : i+1
+    		       	 },
+    		       	 async : false,
+    		       	 success : function(data) {
+    		       		lineFactor.push(parseInt(data.count));
+    		   		 },
+    		   		 error : function() {
+    		   			
+    		   		 }
+    		         });
+			}
+		};
+
+	    function drawLineChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['요일',    '판매량',       '매출액'],
+	          ['월요일',  lineFactor[0],      20],
+	          ['화요일',  lineFactor[1],      40],
+	          ['수요일',  lineFactor[2],      60],
+	          ['목요일',  lineFactor[3],      20],
+	          ['금요일',  lineFactor[4],      35],
+	          ['토요일',  lineFactor[5],      32],
+	          ['일요일',  lineFactor[6],      12]
+	        ]);
+	
+	        var options = {
+	          curveType: 'function',
+	          legend: { position: 'bottom' },
+	          width : '100%',
+	          height : '500'
+	        };
+	
+	        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+	
+	        chart.draw(data, options);
+        }
+	    
+	    function drawPieChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['영화',    '예매율'],
+	          ['마션',         50],
+	          ['내부자들',      25],
+	          ['검은사제들',    10],
+	          ['헝거게임',       5],
+	          ['도리화가',      10]
+	        ]);
+
+	        var options = {
+	        	width : '100%',
+	   	        height : '400'
+	        };
+
+	        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+	        chart.draw(data, options);
+	    }
+	    
+	    function drawDonutChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['연령',  '비율'],
+	          ['노인',     15],
+	          ['청소년',    30],
+	          ['일반',     55],
+	        ]);
+
+	        var options = {
+	          pieHole: 0.4,
+	          width : '100%',
+	   	      height : '400'
+	        };
+
+	        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+	        chart.draw(data, options);
+	    }
+	</script>
+    
 </body>
 
 </html>

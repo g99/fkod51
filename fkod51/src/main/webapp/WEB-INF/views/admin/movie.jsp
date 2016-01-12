@@ -49,12 +49,6 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -152,10 +146,6 @@
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
-	<script src="${admin_js}/chart.min.js"></script>
-	<script src="${admin_js}/chart-data.js"></script>
-	<script src="${admin_js}/easypiechart.js"></script>
-	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
 	<script src="${admin_js}/bootstrap-table.js"></script>
 	<script>
