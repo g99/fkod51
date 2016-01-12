@@ -2,7 +2,16 @@
 
 <!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one" style="">
-
+	<div style="width: 95%; height: 95%; margin: auto;">
+		<div>
+			<iframe style="width: 70%; height: 90%; float: left; border: none;"
+				src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
+		</div>
+		<div style="width: 10%; height: 90%; float: left; margin-left: 15px;">
+			<img src="${img}/naebuja_Main.jpg" alt="sample_img"
+				style="width: 300%; height: 100%; float: left; display: inline;" />
+		</div>
+	</div>
 </section>
 
 
@@ -116,7 +125,7 @@
 </section>
 
 <!-- 사용하지 않음 참고용 -->
-<aside >
+<!-- <aside >
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">Get Started</h2>
@@ -145,7 +154,7 @@
             </div>
         </div>
     </div>
-</aside>
+</aside> -->
 
 
 <!-- Contact Us -->
@@ -153,27 +162,27 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="margin-top-0 wow fadeIn">Get in Touch</h2>
+                <h2 class="margin-top-0 wow fadeIn">Contact Us</h2>
                 <hr class="primary">
-                <p>We love feedback. Fill out the form below and we'll get back to you as soon as possible.</p>
+                <p>불편사항이 있으시면 연락바랍니다.</p>
             </div>
             <div class="col-lg-10 col-lg-offset-1 text-center">
                 <form class="contact-form row">
                     <div class="col-md-4">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input type="text" class="form-control" placeholder="이름">
                     </div>
                     <div class="col-md-4">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="이메일">
                     </div>
                     <div class="col-md-4">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="Phone">
+                        <input type="text" class="form-control" placeholder="핸드폰">
                     </div>
                     <div class="col-md-12">
                         <label></label>
-                        <textarea class="form-control" rows="9" placeholder="Your message here.."></textarea>
+                        <textarea class="form-control" rows="9" placeholder="내용"></textarea>
                     </div>
                     <div class="col-md-4 col-md-offset-4">
                         <label></label>
