@@ -66,7 +66,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Line Chart</div>
+					<div class="panel-heading">월별 판매량</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
 							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
@@ -79,7 +79,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Bar Chart</div>
+					<div class="panel-heading">방문자 수</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
 							<canvas class="main-chart" id="bar-chart" height="200" width="600"></canvas>
@@ -92,7 +92,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="panel panel-default">
-					<div class="panel-heading">Pie Chart</div>
+					<div class="panel-heading">예매율</div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
 							<canvas class="chart" id="pie-chart" ></canvas>
@@ -150,9 +150,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-											
-	</div>	<!--/.main-->
-	  
+	</div><!--/.main-->
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
@@ -161,12 +159,13 @@
 	<script src="${admin_js}/easypiechart.js"></script>
 	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
+	<script src="${admin_js}/bootstrap-table.js"></script>
 	<script>
 		!function ($) {
-		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-		        $(this).find('em:first').toggleClass("glyphicon-minus");      
-		    }); 
-		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
+				$(this).find('em:first').toggleClass("glyphicon-minus");	  
+			}); 
+			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 
 		$(window).on('resize', function () {
@@ -175,6 +174,9 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		
+		$(function() {
+		});
 	</script>	
 </body>
 

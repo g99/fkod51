@@ -34,4 +34,15 @@
 		AND SHOW_DATE = #{showDate} 
 		AND SHOW_TIME = #{showTime}
 	</update>
+	<select id="getOne" resultType="com.hnb.ticket.TicketVO">
+             SELECT * FROM user WHERE name = #{name}  
+     </select>
+ 
+     <select id="getCountByKey" parameterType="int" resultType="int">
+         SELECT 
+         	COUNT(TICKET_NUMBER)
+         FROM TICKET
+         WHERE DAYOFWEEK(TODAY) = #{key}
+     </select>
+
 </mapper>

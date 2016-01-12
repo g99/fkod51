@@ -13,4 +13,5 @@ public interface TicketMapper {
 	public int book(TicketVO ticket);
 	public int insertSeatNumber(String seatNumber);
 	public int updateSeatStatus(Map<String, Object> parameters);
+	public int getCountByKey(int key);
 }

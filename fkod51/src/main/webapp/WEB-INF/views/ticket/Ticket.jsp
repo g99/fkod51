@@ -1,4 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<ul class="nav nav-tabs">
+	<li class="active"><a data-toggle="tab" href="#tab1">예매율</a></li>
+	<li><a data-toggle="tab" href="#tab2">가나다</a></li>
+</ul>
+<div class="tab-content">
+	<form action="" id="movie_list" class="ticket_sub" onsubmit="return false;">
+		<div id="tab1" class="tab-pane fade in active">
+			<h3>예매율순</h3>
+		</div>
+		<div id="tab2" class="tab-pane fade">
+			<h3>가나다순</h3>
+		</div>  
+	</form>
+</div>
+
+
+
 <style>
 	* {padding:0; margin:0;}
 	.tabs li {

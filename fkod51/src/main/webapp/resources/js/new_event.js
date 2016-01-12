@@ -265,7 +265,8 @@
 				$.ajax(context + "/article/write",{
 					data : {
 						"title" : $("input:text[name=title]").val(),
-						"content" : $("textarea[name=content]").val()
+						"content" : $("textarea[name=content]").val(),
+						"id" : $(".navbar-right a").text()
 					},
 					method : "post",
 					success : function() {

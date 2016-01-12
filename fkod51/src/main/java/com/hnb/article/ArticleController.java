@@ -138,14 +138,15 @@ public class ArticleController {
 	public void write(
 			Model model,
 			String title,
-			String content
+			String content,
+			String id
 			) {
 		logger.info("write() 진입");
 		/*System.out.println("title : " + title);
 		System.out.println("content : " + content);*/
 		article.setUsrSubject(title);
 		article.setUsrContent(content);
-		article.setUsrName("임시");
+		article.setUsrName(id);
 		articleService.write(article);
 	}
 	
@@ -181,7 +182,6 @@ public class ArticleController {
 		article.setGrpNo(Integer.parseInt(code));
 		article.setUsrName(id);
 		article.setUsrContent(content);
-		article.setRcdLevel(1);
 		articleService.reply(article);
 	}
 }

@@ -52,4 +52,10 @@ public class TicketServiceImpl implements TicketService {
 		return mapper.updateSeatStatus(parameters);
 	}
 	
+	
+	@Override
+	public int getCountByKey(int key){
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.getCountByKey(key);
+	}
 }

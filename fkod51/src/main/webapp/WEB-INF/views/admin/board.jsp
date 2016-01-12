@@ -49,13 +49,7 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Icons</li>
-			</ol>
-		</div><!--/.row-->
-		
+				
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">게시판관리</h1>
@@ -65,89 +59,41 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">게시판 목록</div>
+				<div class="panel panel-default" style="position:relative;">
+					<div class="panel-heading">게시글 목록</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+					<div id="my_menu" style="position:absolute; top:11%;">
+						<button id="notice" style="background:#E9ECF2; border:none;">공지글 쓰기</button>&nbsp;
+						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
+					</div>
+						<table id="member_table" data-toggle="table" data-url="tables/data1.json"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 						    <thead>
-						    <tr>
-						        <th data-field="state" data-checkbox="true" >Item ID</th>
-						        <th data-field="id" data-sortable="true">Item ID</th>
-						        <th data-field="name"  data-sortable="true">Item Name</th>
-						        <th data-field="price" data-sortable="true">Item Price</th>
-						    </tr>
+							    <tr>
+							        <th data-field="check" data-checkbox="true" ></th>
+							        <th data-field="name" data-sortable="true">번호</th>
+							        <th data-field="id" data-sortable="true">제목</th>
+							        <th data-field="password"  data-sortable="true">아이디</th>
+							        <th data-field="email" data-sortable="true">작성일</th>
+							        <th data-field="phone" data-sortable="true">조회수</th>
+							    </tr>
 						    </thead>
+						    <tbody>
+						    	<c:forEach items="${list}" var="article">
+						    		<tr>
+						    			<td></td>
+						    			<td class="article_no">${article.rcdNo}</td>
+						    			<td class="article_subject">${article.usrSubject}</td>
+						    			<td class="article_userid">${article.usrName}</td>
+						    			<td class="article_regdate">${article.usrDate}</td>
+						    			<td class="article_refer">${article.usrRefer}</td>
+						    		</tr>
+						    	</c:forEach>
+						    </tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div><!--/.row-->	
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Basic Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" >
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right">Item ID</th>
-						        <th data-field="name">Item Name</th>
-						        <th data-field="price">Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Styled Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right" >Item ID</th>
-						        <th data-field="name" >Item Name</th>
-						        <th data-field="price" >Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-						<script>
-						    $(function () {
-						        $('#hover, #striped, #condensed').click(function () {
-						            var classes = 'table';
-						
-						            if ($('#hover').prop('checked')) {
-						                classes += ' table-hover';
-						            }
-						            if ($('#condensed').prop('checked')) {
-						                classes += ' table-condensed';
-						            }
-						            $('#table-style').bootstrapTable('destroy')
-						                .bootstrapTable({
-						                    classes: classes,
-						                    striped: $('#striped').prop('checked')
-						                });
-						        });
-						    });
-						
-						    function rowStyle(row, index) {
-						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-						
-						        if (index % 2 === 0 && index / 2 < classes.length) {
-						            return {
-						                classes: classes[index / 2]
-						            };
-						        }
-						        return {};
-						    }
-						</script>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->	
-		
-		
 	</div><!--/.main-->
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
@@ -172,6 +118,39 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		
+		$(function() {
+			/* 공지글 쓰기 */
+			$("#notice").click(function() {
+				location.href = context + "/admin/notice";
+			});
+			
+			/* 삭제 하기 */
+			$("#delete").click(function() {
+				/* 선택된 항목이있을 경우에만 실행 */
+				var length = $(".selected").length;
+				if (length != 0) {
+					/* 선택된 항목수만큼 반복 */
+					for (var i = 0; i < length; i++) {
+						$.ajax(context + "/admin/delete_writing",{
+							data : {
+								"code" : $(".selected:first .article_no").text()
+							},
+							async : false,
+							success : function() {
+								$(".selected:first").removeClass("selected");
+							},
+							error : function() {
+								
+							}
+						});	
+					}
+					location.reload();
+				} else {
+					alert("삭제할 항목을 선택해주세요.");
+				}
+			});
+		});
 	</script>	
 </body>
 

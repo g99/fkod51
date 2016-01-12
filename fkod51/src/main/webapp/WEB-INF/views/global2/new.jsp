@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 트레일러&이벤트 -->
-<section class="bg-primary" id="one">
+<section class="bg-primary" id="one" style="height:100%; padding-top:5%;">
     <div class="container" style="padding-right: 200px;">
                 
                 <!-- 트레일러 영상 -->
@@ -17,7 +17,21 @@
 					</div>
 				</div>
 				
-				
+				<label style="background-color: red;" >하하</label>
+				<table>
+				<tr>
+				<td></td>
+				<td></td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				</table>
     </div>
 </section>
 
@@ -40,7 +54,7 @@
 </section>
 
 <!-- 극장 -->
-    <section id="four" class="no-padding">
+    <section id="four" class="no-padding" style="height:100%; padding-top:5%;">
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
@@ -128,7 +142,7 @@
     </section>
 
 <!-- 이벤트 -->
-<section class="bg-dark" id="five">
+<section class="bg-dark" id="five" style="height:100%; padding-top:5%;">
 </section>
 
 <!-- 사용하지 않음 참고용 -->
@@ -523,12 +537,43 @@ $(function() {
 }); 
 
 $("#btn_confirm").click(function(){
-	Members.join_Auth();
-	$("#btn_confirm").remove();
+	var check_Confirm_Email = $("#email").val();
+	if(check_Confirm_Email === ""){
+		alert('이메일 입력란을 채워주세요.');
+	}
+	else{
+		Members.join_Auth();
+	}
 });
 
 $("#join").click(function(){
-	Members.join();
+	var check_id = $("#join_Id").val();
+	var check_email = $("#email").val();
+	var check_password = $("#join_Password").val();
+	var check_name = $("#name").val();
+	var check_phone = $("#phone").val();
+	var check_confirm_num = $("#confirm_num").val();
+	if (check_id === "") {
+		alert('공란을 채워주세요.');
+	} 
+	else if(check_email === "") {
+		alert('공란을 채워주세요.');
+	} 
+	else if(check_password === "") {
+		alert('공란을 채워주세요.');
+	} 
+	else if(check_name === "") {
+		alert('공란을 채워주세요.');
+	} 
+	else if(check_phone === "") {
+		alert('공란을 채워주세요.');
+	} 
+	else if(check_confirm_num === "") {
+		alert('공란을 채워주세요.');
+	} else {
+		Members.join();	
+	}
+	
 });
 
 
@@ -557,21 +602,29 @@ var Members = {
 		
 		join_Auth : function() {
 			$.ajax(context + "/member/join_auth",{
-				data : {"id" : $("#id").val(),
+				data : {"id" : $("#join_Id").val(),
 						"e_mail" :$("#email").val(),
 						"name" :$("#name").val()
 				},
 				type : "post",
 				success : function(data) {
 					//이메일이 발송.
+					//아이디, 이메일이 전부 없을경우
 					if(data.success == "success"){
 						alert("인증번호가 이메일로 발송되었습니다.");
-					} else{
-					//이미 가입되어 있는 아이디일 경우(컨트롤러에서 체크)
-						alert("이미 가입되어 있는 아이디 입니다.");
 					}
+					// 아이디가 이미 존재할경우.
+					else if (data.id_fail == "id_fail") {
+						alert("이미 가입되어 있는 아이디 입니다. 아이디/비밀번호 찾기를 이용해주세요.");
+					}
+					// 이메일이 이미 존재할경우.
+					else if (data.email_fail == "email_fail"){
+						alert("이미 가입되어 있는 이메일 입니다. 아이디/비밀번호 찾기를 이용해주세요.");
+					}
+					
 				},
 				error : function() {
+					alert('이메일을 입력하고 눌러주세요.');
 				}
 			});
 		},
@@ -595,7 +648,6 @@ var Members = {
 				success : function(data) {
 					if(data.result == "success"){
 						alert(data.name+"님 회원가입이 완료되었습니다.");
-						
 					}
 					if(data.result == "fail"){
 						alert("회원가입을 실패하였습니다. 다시 시도해주세요.");

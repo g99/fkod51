@@ -7,4 +7,6 @@ public interface TicketService {
 	public int book(TicketVO ticket);
 	public int insertSeatNumber(String seatNumber);
 	public int updateSeatStatus(int quantity, String filmNumber, int theaterSeq, String roomName, String date, String startTime);
+
+	public int getCountByKey(int key);
 }
