@@ -120,7 +120,7 @@
 }
 .chart_rank_lay{border : 1px solid black;
 			width: 100%;
-			height:1000px;}
+			}
 div.chart_rank {
     margin: 5px;
     padding: 5px;
@@ -149,11 +149,11 @@ div.chart_rank a:hover img {
 div.chart_desc {
   text-align: center;
   font-weight: NO.rmal;
-  width: 250px;
+  width: 15%;
   margin: 5px;
 }
 div.chart_ranking{ text-align: center;
-  width: 250px;
+  width: 15%;
   height : auto;
   margin: 0px;}
   

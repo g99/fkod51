@@ -9,10 +9,10 @@ var Movie = {
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
-							rank += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+							rank += '<div style="float: left; width: 19%"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
 									+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+									+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 							arr.push(this.filmNumber);
 						});
 						rank += '</div></div>';
@@ -41,9 +41,9 @@ var Movie = {
 							var arr = [];
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
 							$.each(data, function(index, value) {
-								result += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+								result += '<div style="float: left; width: 17%"><div class="chart_rank" id="chart_rank'+index+'">'
 										+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-										+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+										+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 								arr.push(this.filmNumber);
 							});
 							result += '</div></div>';
@@ -69,6 +69,9 @@ var Movie = {
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
 							function(data) {
+		 						var story = data.story;
+		 						var sdiv = story.replace(/\[/g,'<h3>');
+		 						var ediv = sdiv.replace(/\]/g,'</h3>');
 								var movieInfom = 
 									'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'

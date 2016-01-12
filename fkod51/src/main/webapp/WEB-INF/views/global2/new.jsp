@@ -15,8 +15,8 @@
 </section>
 
 <!-- 극장, 극장별 설명 - main -->
-<section id="two" class="no-padding">
-	<div id="movielay" class="container-fluid" style="height: 705px;">
+<section id="two" class="no-padding" style="height: 100%;">
+	<div id="movielay" class="container-fluid" style="height: 95%;">
 		<div class="row no-gutter">
 		</div>
 	</div>
