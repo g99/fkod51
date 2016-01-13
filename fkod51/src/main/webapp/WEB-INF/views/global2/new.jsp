@@ -146,13 +146,25 @@
 	         	<label></label>
 	        	<input type="text" class="form-control" value="영화 : 김찬호" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>같이 개발한 팀원들 모두
+
+고생많았고 앞으로 힘내자.	            
+	            </textarea>
 	        </div>
 	        <div id="inseok" style="float:left; width:30%; margin-left:3%;">
 	         	<label></label>
 	        	<input type="text" class="form-control" value="예매 : 강인석" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>좋은 강사님, 좋은 팀원들을 만나서
+	             
+그간의 배움이 잘 녹아든 결과물을 
+
+만들어 낼 수 있었던 것 같다.
+
+팀장 준규와, 찬호 형, 순환이 형, 성한이 
+
+모두 책임감 있게 잘 해줘서 고맙습니다~
+	            </textarea>
 	        </div>
         </div>
 	 	<div class="row">
@@ -160,13 +172,28 @@
 	         	<label></label>
 	        	<input type="text" class="form-control" value="로그인/회원관리 : 이성한" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>프로젝트 초기 단계에는 여러기능을
+	             
+코딩하며 발생한 문제도 많았지만,
+
+구글링도 해가며 하나씩 해결하고 
+
+이렇게 팀원들과 함께 프로젝트를 
+
+완성할 수 있어서 정말 기쁘네요. 
+				</textarea>
 	        </div>
 	        <div id="soonhwan" style="float:left; width:30%; margin-left:4%;">
 	         	<label></label>
 	        	<input type="text" class="form-control" value="관리자 : 김순환" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>프로젝트 기간동안 어려운점도 있었지만
+	            
+팀원들과 협심하여 부족한 개념들을
+
+많이 습득하였습니다.
+
+모든 팀원들한테 감사합니다.	            
 	            
 	            </textarea>
 	        </div>

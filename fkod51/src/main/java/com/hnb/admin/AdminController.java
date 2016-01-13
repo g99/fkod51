@@ -203,4 +203,9 @@ public class AdminController {
 		logger.info("라인차트 진입!!!");
 		model.addAttribute("count", ticketService.getCountByKey(Integer.parseInt(key)));
 	}
+	
+	@RequestMapping("/add_movie")
+	public String addMovie() {
+		return "admin/add_movie.jsp";
+	}
 }
