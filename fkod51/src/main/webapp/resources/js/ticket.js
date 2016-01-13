@@ -9,7 +9,7 @@ var Ticket = {
 				$datelist : null,
 				
 				main : function() {
-					tabs.make();
+					//tabs.make();
 					/*var sheet = document.createElement('style');
 					sheet.innerHTML = '.tabs li{list-style:none;display:inline}.tabs a{padding:5px 10px;display:inline-block;background:#666;color:#fff;text-decoration:none}.tabs a.active{background:#fff;color:#000}';
 					document.body.appendChild(sheet);*/

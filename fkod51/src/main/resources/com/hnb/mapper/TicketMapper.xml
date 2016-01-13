@@ -36,6 +36,10 @@
 		AND SHOW_TIME = #{showTime}
 	</update>
 	
+	<select id="getTicketVO" resultType="com.hnb.ticket.TicketVO" parameterType="string">
+             SELECT * FROM TICKET WHERE ID = #{id}
+    </select>
+    
 	<select id="getOne" resultType="com.hnb.ticket.TicketVO">
              SELECT * FROM user WHERE name = #{name}  
      </select>

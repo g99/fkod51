@@ -153,7 +153,9 @@ var Seats = {
 							}
 							row++;
 							$(seat_list).appendTo($('#seats_seatsblock').empty());
-							$('.seats_check').click(function() {Seats.selectSeats();});
+							$('.seats_check').click(function() {
+								Seats.selectSeats();
+								});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상태 : '+status+',내용:'+msg);
