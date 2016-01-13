@@ -346,20 +346,95 @@
                     width: 100px; border-radius: 10px; float: left;" 
                     class="btn btn-primary btn-block" data-dismiss="modal">로그아웃</button>
                     
-                 	  	 <a class="btn btn-primary btn-block" data-toggle="modal"
-                 	  	 data-dismiss="modal"
-                 	  	 style="margin-top:6px; width: 100px; margin-left: 10px;
-                   		 border-radius: 10px; float: left;"
-                 	  	 title="Mypage Update" 
-                 	  	 href="#update_Modal">
-                 	  	 내정보수정</a>
+                 	<a class="btn btn-primary btn-block" data-toggle="modal"
+                 	data-dismiss="modal"
+                 	style="margin-top:6px; width: 100px; margin-left: 10px;
+                   	border-radius: 10px; float: left;"
+                 	title="Mypage Update" 
+                 	href="#update_Modal">
+                 	내정보수정</a>
                     
+                     <a class="btn btn-primary btn-block" data-toggle="modal"
+                 	 data-dismiss="modal"
+                 	 style="margin-top:12px; width: 130px; border-radius: 10px; float: left; margin-left: 81px;"
+                 	 title="Ticket Page"
+              	  	 href="#ticket_Modal">
+                 	 예매 상세페이지</a>
                 </form>
             </div>
     	</div>
     </div>
     </div>
 </div>
+
+
+
+
+
+<!-- 예매 상세 페이지 (마이페이지에서 볼 수 있음) -->
+<div id="ticket_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
+    	<div class="modal-body">
+    		<h2 class="text-center">Ticket Page</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		  예매 상세페이지 (Ticket Page)
+    		</h5>
+    		<br />
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+                
+                	<div class="col-md-4" style="width: 300px;">
+                        <input type="text" class="form-control" value="${ticket.ticketNumber}" id="my_TicketNumber" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                	<div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px;">
+                        <label></label>
+                        <input type="password" class="form-control" value="${user.password}" id="mypage_Password" readonly="readonly" style="color: black;">
+                   		<div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.name}" id="mypage_name" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" value="${user.phone}" id="mypage_Phone" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                    <div class="col-md-4" style="width: 300px; float: left;">
+                        <label></label>
+                        <input type="text" class="form-control" placeholder="내 예매번호" id="mypage_Ticket" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    </div>
+                    
+                 	  	 <a class="btn btn-primary btn-block" data-toggle="modal"
+                 	  	 data-dismiss="modal"
+                 	  	 style="margin-top:6px; width: 100px; margin-left: 16px;
+                   		 border-radius: 10px; float: left;"
+                 	  	 title="close"
+                 	  	 href="#">
+                 	  	 닫기</a>
+                </form>
+            </div>
+    	</div>
+    </div>
+    </div>
+</div>
+
+
 
 
 

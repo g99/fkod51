@@ -21,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
+import com.hnb.ticket.TicketServiceImpl;
+import com.hnb.ticket.TicketVO;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user","ticket"})
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -31,6 +33,11 @@ public class MemberController {
 	MemberServiceImpl service;
 	@Autowired
 	MemberVO member;
+	
+	@Autowired
+	TicketServiceImpl ticketService;
+	@Autowired
+	TicketVO ticket;
 	@Autowired
 	private EmailSender emailSender;
 	
@@ -198,9 +205,11 @@ public class MemberController {
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저 비밀번호: {}", pw);
 		member = service.login(id, pw);
+		/*ticket = ticketService.가져올 메서드(id)*/
 		if (member != null) {
 		logger.info("로그인 성공!!!!!!!");
 		session.setAttribute("user", member);
+		session.setAttribute("ticket", ticket);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}
