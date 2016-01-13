@@ -56,8 +56,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/movie")
-	public String movie(){
-		logger.info("AdminController-home() 진입");
+	public String movie(Model model){
+		logger.info("영화목록 진입");
+		List<MovieVO> movies = movieService.getList();
+		model.addAttribute("list", movies);
 		return "admin/movie.jsp";
 	}	
 	
