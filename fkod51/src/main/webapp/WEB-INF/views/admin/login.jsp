@@ -18,12 +18,10 @@
 	<br />
 	<button id="confirm" style="margin-left:15%;">확인</button>
 </div>
-<div>
-	<button id="account">관리자 계정보기</button>
-	<div id="account_info" style="visibility:hidden;">
-		관리자 계정 : choa
+<br />
+<div style="text-align:center; background:white;">
+		관리자 계정 : choa <br />
 		비 밀 번 호 : 1  
-	</div>
 </div>
 <script>
 	$(function() {
@@ -44,9 +42,6 @@
 					
 				}
 			});
-		});
-		$("#account").click(function() {
-			$("account_info").removeAttr("visibility");
 		});
 	});
 </script>

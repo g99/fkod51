@@ -24,3 +24,7 @@
 #pagination {
 	margin : auto;
 }
+
+#teamate, #teamate tr, #teamate td {
+	border : 1px solid white;
+}
