@@ -24,7 +24,7 @@ public interface MemberMapper {
 	public MemberVO login(String id, String pass); //로그인
 	public int countByKeyword(Command command); // 검색결과 갯수만 조회
 	
-	// U : 업데이트
+	// U : 업데이트 - 수정
 	public int update(MemberVO member);
 	
 	// D : 삭제 (회원탈퇴)

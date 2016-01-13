@@ -51,8 +51,6 @@ public class TicketServiceImpl implements TicketService {
 		parameters.put("showTime", startTime);
 		return mapper.updateSeatStatus(parameters);
 	}
-	
-	
 	@Override
 	public int getCountByKey(int key){
 		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);

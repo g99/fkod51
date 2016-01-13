@@ -98,10 +98,6 @@
 
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
-	<script src="${admin_js}/chart.min.js"></script>
-	<script src="${admin_js}/chart-data.js"></script>
-	<script src="${admin_js}/easypiechart.js"></script>
-	<script src="${admin_js}/easypiechart-data.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
 	<script src="${admin_js}/bootstrap-table.js"></script>
 	<script>

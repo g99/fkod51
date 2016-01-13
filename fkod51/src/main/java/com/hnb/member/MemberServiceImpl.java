@@ -108,7 +108,7 @@ public class MemberServiceImpl  implements MemberService{
 	// 회원탈퇴
 	@Override
 	public int remove(String id) {
-		logger.info("MemberServiceImpl : remove");
+		logger.info("MemberServiceImpl : remove() 진입");
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 		return mapper.delete(id);
 	}

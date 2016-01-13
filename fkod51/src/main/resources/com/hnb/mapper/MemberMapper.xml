@@ -91,15 +91,14 @@
 	 	now()
  	)
  </insert>
+ 
  <update id="update" parameterType="com.hnb.member.MemberVO">
 	UPDATE MEMBER SET 
 		PASSWORD = #{password}, 
-		ADDR = #{addr}, 
-		PHONE = #{phone}, 
-		EMAIL = #{email},
-		PROFILE = #{profile}
-	WHERE ID = #{id}	
+		PHONE = #{phone}
+		WHERE ID = #{id}	
  </update>
+ 
  <delete id="delete" parameterType="string">
  	DELETE FROM MEMBER WHERE ID = #{id}
  </delete>
