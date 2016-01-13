@@ -32,7 +32,7 @@
 
 <!-- 극장 -->
     <section id="four" class="no-padding" style="height:100%; padding-top:5%;">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height: 95%;">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
                     <a href="#starium" class="gallery-box" data-toggle="modal" data-src="${img}/starium_main.jpg">

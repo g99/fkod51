@@ -67,8 +67,8 @@
 						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
 						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
-					<div id="my_menu" style="position:absolute; top:15%;">
-					<input type="file" style="background:#E9ECF2; border:none;">
+					<div id="my_menu" style="position:absolute; top:11%;">
+					<input type="file" style= "border:none; padding-left: 46%;">
 					</div>
 
 					</div>
