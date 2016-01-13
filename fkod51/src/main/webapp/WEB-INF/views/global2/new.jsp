@@ -36,7 +36,7 @@
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
                     <a href="#starium" class="gallery-box" data-toggle="modal" data-src="${img}/starium_main.jpg">
-                        <img src="${img}/starium_main.jpg" class="img-responsive" alt="Image 1" style ="width: 527px; height: 340px;">
+                        <img src="${img}/starium_main.jpg" class="img-responsive" alt="Image 1" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -49,7 +49,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#sound_X" class="gallery-box" data-toggle="modal" data-src="${img}/sound_X_Main.PNG">
-                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 527px; height: 340px;">
+                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                <div>
@@ -62,7 +62,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#screen_X" class="gallery-box" data-toggle="modal" data-src="${img}/screen_X_Main.PNG">
-                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 527px; height: 340px;">
+                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -75,7 +75,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#i_Max" class="gallery-box" data-toggle="modal" data-src="${img}/i_Max_Main.jpg">
-                        <img src="${img}/i_Max_Main.jpg" class="img-responsive" alt="Image 4" style ="width: 527px; height: 340px;">
+                        <img src="${img}/i_Max_Main.jpg" class="img-responsive" alt="Image 4" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -88,7 +88,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#sweetbox" class="gallery-box" data-toggle="modal" data-src="${img}/sweetbox_Main.PNG">
-                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 527px; height: 340px;">
+                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                  <div>
@@ -101,7 +101,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#tempur_Cinema" class="gallery-box" data-toggle="modal" data-src="${img}/tempur_Cinema_Main.PNG">
-                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 527px; height: 340px;">
+                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
