@@ -135,7 +135,11 @@
 	            <label></label>
 	            <input type="text" class="form-control" value="팀장 : 박준규" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" style="width:80%; height:35%; background:#36333D;" readOnly>안녕하세요
+	            <textarea class="form-control" rows="9" style="width:80%; height:35%; background:#36333D;" readOnly>같이하는 코딩이 너무 재미있고,
+	             
+아직 개발중인만큼 디테일한 부분들을 
+
+계속해서 개선해 나가겠습니다.
 	            </textarea>
 	        </div>
 	        <div id="chanho" style="float:left; width:30%; margin-left:4%;">
@@ -162,7 +166,9 @@
 	         	<label></label>
 	        	<input type="text" class="form-control" value="관리자 : 김순환" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>
+	            
+	            </textarea>
 	        </div>
         </div>
     </div>
