@@ -116,6 +116,29 @@ public class MemberController {
         return model;
     }
 	
+	/*아이디 유효성 체크*/
+	@RequestMapping("/checking_Id")
+	public Model checking_Id(
+			@RequestParam("id")String id,
+ 		    Model model) throws Exception {
+		logger.info("멤버컨트롤러 checking_Id() - 진입");
+		logger.info("넘어온 id는?"+id);
+        MemberVO member_Id_check = service.selectById(id);
+		if (member_Id_check != null) {
+			model.addAttribute("id_fail", "id_fail");
+		}
+		else {
+            model.addAttribute("id_Confirm", "id_Confirm");
+		}
+        return model;
+    }
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * if(service.selectById(id).getId()==null) {} => 이 구문 에러발생.
 	 *  

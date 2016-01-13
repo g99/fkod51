@@ -123,32 +123,53 @@
 </section>
 
 <!-- 사용하지 않음 참고용 -->
-<aside style="height:100%;">
+<aside  id="six" style="height:100%;">
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">FKOD 팀 소개</h2>
         </div>
-        <br>
         <hr/>
         <br>
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div class="row">
-                	팀장 : 박준규	
-                </div>
-                <div class="row">
-                	영화담당 : 김찬호
-                </div>
-                <div class="row">
-                	예매담당 : 강인석
-                </div>
-                <div class="row">
-                	로그인 및 회원관리 : 이성한
-                </div>
-                <div class="row">
-                	관리자 : 김순환
-                </div>
-            </div>
+        <div class="row" style="margin-bottom:3%;">
+	        <div id="junekyu" style="float:left; width:30%; margin-left:3%;">
+	            <label></label>
+	            <input type="text" class="form-control" value="팀장 : 박준규" style="width:60%; background:#36333D;" readOnly>
+	            <label></label>
+	            <textarea class="form-control" rows="9" style="width:80%; height:35%; background:#36333D;" readOnly>같이하는 코딩이 너무 재미있고,
+	             
+아직 개발중인만큼 디테일한 부분들을 
+
+계속해서 개선해 나가겠습니다.
+	            </textarea>
+	        </div>
+	        <div id="chanho" style="float:left; width:30%; margin-left:4%;">
+	         	<label></label>
+	        	<input type="text" class="form-control" value="영화 : 김찬호" style="width:60%; background:#36333D;" readOnly>
+	            <label></label>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	        </div>
+	        <div id="inseok" style="float:left; width:30%; margin-left:3%;">
+	         	<label></label>
+	        	<input type="text" class="form-control" value="예매 : 강인석" style="width:60%; background:#36333D;" readOnly>
+	            <label></label>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	        </div>
+        </div>
+	 	<div class="row">
+	        <div id="sunghan" style="clear:both; float:left; width:30%; margin-left:3%;">
+	         	<label></label>
+	        	<input type="text" class="form-control" value="로그인/회원관리 : 이성한" style="width:60%; background:#36333D;" readOnly>
+	            <label></label>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	        </div>
+	        <div id="soonhwan" style="float:left; width:30%; margin-left:4%;">
+	         	<label></label>
+	        	<input type="text" class="form-control" value="관리자 : 김순환" style="width:60%; background:#36333D;" readOnly>
+	            <label></label>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>
+	            
+	            </textarea>
+	        </div>
         </div>
     </div>
 </aside>
@@ -241,8 +262,9 @@
                 
                 	<div class="col-md-4" style="width: 300px;">
                         <label></label>
-                        <input type="text" class="form-control" placeholder="ID" id="join_Id">
-                    	<div style="height:12px;"></div>
+                        <input type="text" class="form-control" placeholder="ID" id="join_Id" onkeyup="Members.checking_Id()">
+                        <label style="float: left; color: red;" id="check_Msg">아이디를 입력해주세요 ♬</label>
+                    	<div style="height:20px;"></div>
                     </div>
                     
                 	<div class="col-md-4" style="width: 300px;">
@@ -639,6 +661,10 @@ $(function() {
 		$("#reply_area").empty();
 	});
 	
+	
+	/* 아이디 실시간 체크 */
+	
+	
 }); 
 
 
@@ -689,7 +715,10 @@ $("#join").click(function(){
 		Members.join();	
 	}
 	
+	
 });
+
+
 
 /* 로그아웃 */
 $("#btn_Logout").click(function(){
@@ -709,7 +738,6 @@ $("#btn_Delete").click(function(){
 		Members.delete_Member();
 	}
 });
-
 
 
 
@@ -845,6 +873,29 @@ var Members = {
 			});
 		},
 		
+		checking_Id : function() {
+			$.ajax(context + "/member/checking_Id",{
+				data : {"id" : $("#join_Id").val(),
+					},
+				type : "post",
+				success : function(data) {
+					// 아이디가 이미 존재할경우.
+					if (data.id_fail == "id_fail") {
+						document.getElementById('check_Msg').style.color = "red";
+						document.getElementById('check_Msg').innerHTML = "가입되어있는 아이디입니다.";
+					}
+					// 아이디 사용가능할 경우.
+					if (data.id_Confirm == "id_Confirm") {
+						document.getElementById('check_Msg').style.color = "green";
+						document.getElementById('check_Msg').innerHTML = "가능한 아이디입니다.";
+					}
+				},
+				error : function() {
+					document.getElementById('check_Msg').style.color = "red";
+					document.getElementById('check_Msg').innerHTML = "아이디를 입력하세요.";
+				}
+			});
+		},
 		
 };
 </script>

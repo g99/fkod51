@@ -44,14 +44,17 @@ public class MemberServiceImpl  implements MemberService{
 		return mapper.selectSomeBy(command);
 	}
 	
-	// ID로 회원검색 - 유효성 체크 1
+	// ID로 회원검색 - 아이디 유효성 체크 1
 	@Override
 	public MemberVO selectById(String id) { // 이부분은 서비스 인터페이스에서 정해준 이름이자, 틀이 됨.
 		logger.info("MemberServiceImpl : selectById");
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 		MemberVO member = mapper.selectOneBy(id); //실제로 mapper에 담겨있는 sql문을 실행시켜 주는 부분
-		logger.info("selectById는?"+member);
-		return member;
+		if (member != null) {
+			return member;
+		} else {
+			return null;
+		}
 	}
 	
 	
