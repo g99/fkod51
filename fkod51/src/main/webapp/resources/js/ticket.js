@@ -43,37 +43,37 @@ var Ticket = {
 
 							//alert("Ticket tl :"+Ticket.$theaterlist+"   가져온tl :"+$tl);
 							if (String(Ticket.$theaterlist)!==String($tl)) {
-								alert("다름");
 								var theater_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="theaterList") {
 											Ticket.$theaterlist = $tl;
 										$.each(val, function() {
-											theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label class="theater" for="'+this+'">'+this+'</label></dt>';
+											theater_list += '<dt><input class="theater" id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									theater_list += '</dl></div>';
 									$(theater_list).appendTo($('#theater_list').empty());
+									$('#times_list').empty();
 							}
 							//alert("Ticket dl :"+Ticket.$datelist+"   가져온dl :"+$dl);
 							if (String(Ticket.$datelist)!==String($dl)) {
-								alert("다름");
 								var date_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="dateList") {
 											Ticket.$datelist = val;
 										$.each(val, function() {
-											date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label class="date" for="'+this+'">'+this+'</label></dt>';
+											date_list += '<dt><input class="date" id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									date_list += '</dl></div>';
 									$(date_list).appendTo($('#date_list').empty());
+									$('#times_list').empty();
 							}
-							if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
+							if ($("input:radio[name=movie]:checked").val()!=null&&$("input:radio[name=theater]:checked").val()!=null&&$("input:radio[name=date]:checked").val()!=null) {
 								var times_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
@@ -92,6 +92,8 @@ var Ticket = {
 									times_list += '</dl></div>';
 									$(times_list).appendTo($('#times_list').empty());
 							}
+							$('.theater').click(function() {Ticket.theater_list(context);});
+							$('.date').click(function() {Ticket.date_list(context);});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상테 : '+status+',내용:'+msg);
@@ -127,31 +129,32 @@ var Ticket = {
 							});
 							//alert("Ticket mrl :"+Ticket.$movieratelist+"   가져온mrl :"+$mrl+"Ticket.mal :"+Ticket.$movieasclist+"가져온mal"+$mal);
 							if (String(Ticket.$movieratelist)!==String($mrl)||String(Ticket.$movieasclist)!==String($mal)) {
-								alert("다름");
 								var movie_rate_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="movieListRate") {
 											Ticket.$movieratelist = val;
 										$.each(val, function() {
-										movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+										movie_rate_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									movie_rate_list += '</dl></div>';
 									$(movie_rate_list).appendTo($('#tab1').empty());
+									$('#times_list').empty();
 								var movie_asc_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="movieListAsc") {
 											Ticket.$movieasclist = val;
 										$.each(val, function() {
-											movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+											movie_asc_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									movie_asc_list += '</dl></div>';
 									$(movie_asc_list).appendTo($('#tab2').empty());
+									$('#times_list').empty();
 							}
 							//alert("Ticket dl :"+Ticket.$datelist+"   가져온dl :"+$dl);
 							if (String(Ticket.$datelist)!==String($dl)) {
@@ -161,14 +164,15 @@ var Ticket = {
 									if (index==="dateList") {
 										Ticket.$datelist = val;
 									$.each(val, function() {
-										date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label class="date" for="'+this+'">'+this+'</label></dt>';
+										date_list += '<dt><input class="date" id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
 								date_list += '</dl></div>';
 								$(date_list).appendTo($('#date_list').empty());
+								$('#times_list').empty();
 							}
-							if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
+							if ($("input:radio[name=movie]:checked").val()!=null&&$("input:radio[name=theater]:checked").val()!=null&&$("input:radio[name=date]:checked").val()!=null) {
 								var times_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
@@ -186,6 +190,8 @@ var Ticket = {
 									times_list += '</dl></div>';
 									$(times_list).appendTo($('#times_list').empty());
 							}
+							$('.mov').click(function() {Ticket.ticket_sub(context);});
+							$('.date').click(function() {Ticket.date_list(context);});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상테 : '+status+',내용:'+msg);
@@ -227,24 +233,26 @@ var Ticket = {
 										if (index==="movieListRate") {
 											Ticket.$movieratelist = val;
 										$.each(val, function() {
-										movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+										movie_rate_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									movie_rate_list += '</dl></div>';
 									$(movie_rate_list).appendTo($('#tab1').empty());
+									$('#times_list').empty();
 								var movie_asc_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
 										if (index==="movieListAsc") {
 											Ticket.$movieasclist = val;
 										$.each(val, function() {
-											movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+											movie_asc_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 										});
 										}
 									});
 									movie_asc_list += '</dl></div>';
 									$(movie_asc_list).appendTo($('#tab2').empty());
+									$('#times_list').empty();
 							}
 							//alert("Ticket tl :"+Ticket.$theaterlist+"   가져온tl :"+$tl);
 							if (String(Ticket.$theaterlist)!==String($tl)) {
@@ -254,14 +262,15 @@ var Ticket = {
 									if (index==="theaterList") {
 										Ticket.$theaterlist = val;
 									$.each(val, function() {
-										theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label class="theater" for="'+this+'">'+this+'</label></dt>';
+										theater_list += '<dt><input class="theater" id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 									});
 									}
 								});
 								theater_list += '</dl></div>';
 								$(theater_list).appendTo($('#theater_list').empty());
+								$('#times_list').empty();
 							}
-							if (Ticket.movie!=null&&Ticket.theater!=null&&Ticket.date!=null) {
+							if ($("input:radio[name=movie]:checked").val()!=null&&$("input:radio[name=theater]:checked").val()!=null&&$("input:radio[name=date]:checked").val()!=null) {
 								var times_list = 
 									'<div><dl>';
 									$.each(data, function(index,val) {
@@ -279,6 +288,8 @@ var Ticket = {
 									times_list += '</dl></div>';
 									$(times_list).appendTo($('#times_list').empty());
 							}
+							$('.mov').click(function() {Ticket.ticket_sub(context);});
+							$('.theater').click(function() {Ticket.theater_list(context);});
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상테 : '+status+',내용:'+msg);
@@ -339,7 +350,7 @@ var Ticket = {
 								if (index==="movieListRate") {
 									Ticket.$movieratelist = val;
 								$.each(val, function() {
-									movie_rate_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+									movie_rate_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -351,7 +362,7 @@ var Ticket = {
 								if (index==="movieListAsc") {
 									Ticket.$movieasclist = val;
 								$.each(val, function() {
-									movie_asc_list += '<dt><input id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label class="mov" for="'+this+'">'+this+'</label></dt>';
+									movie_asc_list += '<dt><input class="mov" id="'+this+'" type="radio" name="movie" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -363,7 +374,7 @@ var Ticket = {
 								if (index==="theaterList") {
 									Ticket.$theaterlist = val;
 								$.each(val, function() {
-									theater_list += '<dt><input id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label class="theater" for="'+this+'">'+this+'</label></dt>';
+									theater_list += '<dt><input class="theater" id="'+this+'" type="radio" name="theater" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -376,7 +387,7 @@ var Ticket = {
 								if (index==="dateList") {
 									Ticket.$datelist = val;
 								$.each(val, function() {
-									date_list += '<dt><input id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label class="date" for="'+this+'">'+this+'</label></dt>';
+									date_list += '<dt><input class="date" id="'+this+'" type="radio" name="date" value="'+this+'" style="display: none;"><label for="'+this+'">'+this+'</label></dt>';
 								});
 								}
 							});
@@ -384,9 +395,9 @@ var Ticket = {
 						$(date_list).appendTo($('#date_list').empty());
 						$('#times_list').empty();
 						
-						$('.ticket_sub').change(function() {Ticket.ticket_sub(context);});
-						$('#theater_list').change(function() {Ticket.theater_list(context);});
-						$('#date_list').change(function() {Ticket.date_list(context);});
+						$('.mov').click(function() {Ticket.ticket_sub(context);});
+						$('.theater').click(function() {Ticket.theater_list(context);});
+						$('.date').click(function() {Ticket.date_list(context);});
 						
 						$('#choiceseat').click(function() {Ticket.ticket_choiceseat(context);});
 					});
