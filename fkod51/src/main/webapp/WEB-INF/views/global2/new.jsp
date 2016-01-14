@@ -124,6 +124,11 @@
 
 <!-- 구글맵 -->
 <section id="six" style="height:100%;">
+	<div class="container text-center">
+	  <div class="call-to-action">
+            <h2 class="text-primary">오시는길</h2>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
         	<div id="map-canvas" style="width: 100%; height: 100%;"></div>
@@ -641,7 +646,7 @@
          
         // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
         var infowindow = new google.maps.InfoWindow({ content: content});
- 
+        infowindow.open(map,marker);
         google.maps.event.addListener(marker, "click", function() {
             infowindow.open(map,marker);
         });

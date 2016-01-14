@@ -234,13 +234,12 @@
 				/* 선택된 체크박스가 있는 경우에만 실행 */
 				if (length!=0) {
 					for (var i = 0; i < length; i++) {
-						$.ajax(context + "/admin/delete",{
+						$.ajax(context + "/admin/delete_movie",{
 							data : {
 								"filmNumber" : $(".selected:first .movie_filmNumber").text()
 							},
 							async : false,
-							success : function(data) {
-								alert(data.result);
+							success : function() {
 								$(".selected:first").removeClass("selected");
 							},
 							error : function() {

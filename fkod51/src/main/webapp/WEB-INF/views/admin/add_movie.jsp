@@ -152,7 +152,7 @@
 							contentType : false,
 							processData : false,
 							success : function() {
-								alert("수정성공");
+								location.href= context + "/admin/movie";
 							},
 							error : function() {
 								

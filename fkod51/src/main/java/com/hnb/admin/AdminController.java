@@ -217,18 +217,10 @@ public class AdminController {
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public void add(
 			MultipartHttpServletRequest multipartHSR,
-			String subject,
-			String number,
-			String director,
-			String actor,
-			String country,
-			String rate,
-			String genre,
-			String runtime,
-			String price,
-			String release,
-			String end,
-			String story,
+			String subject,	String number, String director,
+			String actor, String country, String rate,
+			String genre, String runtime, String price,
+			String release, String end, String story,
 			String trailer
 			) {
 		// 파일업로드를 할 절대경로
@@ -236,14 +228,24 @@ public class AdminController {
 		String path = "C:\\Users\\HB\\git\\fkod51\\fkod51\\src\\main\\webapp\\resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
 		List<MultipartFile> fileList = multipartHSR.getFiles("poster");
+		StringBuffer fileName = new StringBuffer();
+		String file = null;
 		// 파일이 없는경우를 제외하고
 		if (!(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals(""))) {
 			logger.info("반목문 수행중");
 			for (int i = 0; i < fileList.size(); i++) {
-				fileUpload.uploadFile(fileList.get(i), path, fileList.get(i).getOriginalFilename());
+				file = fileList.get(i).getOriginalFilename();
+				fileUpload.uploadFile(fileList.get(i), path, file);
+				fileName.append(file);
+				if (i != fileList.size()-1) {
+					fileName.append("/");
+				}
 			}
+			file = fileName.toString();
+			file = file.replace(".jpg", "");
 		}
-		/*movie.setFilmName(subject);
+		
+		movie.setFilmName(subject);
 		movie.setFilmNumber(number);
 		movie.setDirector(director);
 		movie.setActor(actor);
@@ -256,7 +258,16 @@ public class AdminController {
 		movie.setEndDate(end);
 		movie.setStory(story);
 		movie.setTrailer(trailer);
-		movie.setCut(fileName);
-		movie.settRate(0);*/
+		movie.setCut(file);
+		movie.settRate(0);
+		
+		movieService.register(movie);
+	}
+	
+	
+	@RequestMapping("/delete_movie")
+	public void deleteMovie(String filmNumber) {
+		logger.info("deleteMovie() 진입");
+		movieService.remove(filmNumber);
 	}
 }
