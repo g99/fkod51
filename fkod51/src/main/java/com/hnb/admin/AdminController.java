@@ -1,19 +1,24 @@
 package com.hnb.admin;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hnb.article.ArticleServiceImpl;
 import com.hnb.article.ArticleVO;
+import com.hnb.global.FileUpload;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieServiceImpl;
@@ -207,5 +212,51 @@ public class AdminController {
 	@RequestMapping("/add_movie")
 	public String addMovie() {
 		return "admin/add_movie.jsp";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public void add(
+			MultipartHttpServletRequest multipartHSR,
+			String subject,
+			String number,
+			String director,
+			String actor,
+			String country,
+			String rate,
+			String genre,
+			String runtime,
+			String price,
+			String release,
+			String end,
+			String story,
+			String trailer
+			) {
+		// 파일업로드를 할 절대경로
+		logger.info("add() 진입");
+		String path = "C:\\Users\\HB\\git\\fkod51\\fkod51\\src\\main\\webapp\\resources\\images\\";
+		FileUpload fileUpload = new FileUpload();
+		List<MultipartFile> fileList = multipartHSR.getFiles("poster");
+		// 파일이 없는경우를 제외하고
+		if (!(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals(""))) {
+			logger.info("반목문 수행중");
+			for (int i = 0; i < fileList.size(); i++) {
+				fileUpload.uploadFile(fileList.get(i), path, fileList.get(i).getOriginalFilename());
+			}
+		}
+		/*movie.setFilmName(subject);
+		movie.setFilmNumber(number);
+		movie.setDirector(director);
+		movie.setActor(actor);
+		movie.setCountry(country);
+		movie.setRate(rate);
+		movie.setGenre(genre);
+		movie.setRuntime(Integer.parseInt(runtime));
+		movie.setPrice(Integer.parseInt(price));
+		movie.setReleaseDate(release);
+		movie.setEndDate(end);
+		movie.setStory(story);
+		movie.setTrailer(trailer);
+		movie.setCut(fileName);
+		movie.settRate(0);*/
 	}
 }

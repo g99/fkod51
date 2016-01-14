@@ -66,48 +66,50 @@
 						<button id="confirm" style="background:#E9ECF2; border:none;">확인</button>&nbsp;
 					</div>
 					<div class="panel-body">
-						<label for="subject" style="display:block;">영화명</label>
-						<input type="text" name="subject" style="width:60%" required="required"/>
-						<br />
-						<label for="number" style="display:block;">영화번호</label>
-						<input type="text" name="number" style="width:60%" required="required"/>
-						<br />
-						<label for=""director"" style="display:block;">감독</label>
-						<input type="text" name="director" style="width:60%" required="required"/>
-						<br />
-						<label for="actor" style="display:block;">배우</label>
-						<input type="text" name="actor" style="width:60%" required="required"/>
-						<br />
-						<label for="country" style="display:block;">국가</label>
-						<input type="text" name="country" style="width:60%" required="required"/>
-						<br />
-						<label for="rate" style="display:block;">등급</label>
-						<input type="text" name="rate" style="width:60%" required="required"/>
-						<br />
-						<label for=""genre"" style="display:block;">장르</label>
-						<input type="text" name="genre" style="width:60%" required="required"/>
-						<br />
-						<label for="runtime" style="display:block;">상영시간</label>
-						<input type="text" name="runtime" style="width:60%" required="required"/>
-						<br />
-						<label for="price" style="display:block;">가격</label>
-						<input type="text" name="price" style="width:60%" required="required"/>
-						<br />
-						<label for=""release"" style="display:block;">개봉일</label>
-						<input type="text" name="release" style="width:60%" required="required"/>
-						<br />
-						<label for="end" style="display:block;">종료일</label>
-						<input type="text" name="end" style="width:60%" required="required"/>
-						<br />
-						<label for="story" style="display:block;">스토리</label>
-						<input type="text" name="story" style="width:60%" required="required"/>
-						<br />
-						<label for="trailer" style="display:block;">트레일러</label>
-						<input type="text" name="trailer" style="width:60%" required="required"/>
-						<br />
-						<label for="cut" style="display:block;">스틸컷</label>
-						<input type="file" name="cut" style="width:60%" required="required"/>
-						<br />
+						<form id="stillcut">
+							<label for="subject" style="display:block;">영화명</label>
+							<input type="text" name="subject" style="width:60%" />
+							<br />
+							<label for="number" style="display:block;">영화번호</label>
+							<input type="text" name="number" style="width:60%" />
+							<br />
+							<label for="director" style="display:block;">감독</label>
+							<input type="text" name="director" style="width:60%" />
+							<br />
+							<label for="actor" style="display:block;">배우</label>
+							<input type="text" name="actor" style="width:60%" />
+							<br />
+							<label for="country" style="display:block;">국가</label>
+							<input type="text" name="country" style="width:60%" />
+							<br />
+							<label for="rate" style="display:block;">등급</label>
+							<input type="text" name="rate" style="width:60%" />
+							<br />
+							<label for="genre" style="display:block;">장르</label>
+							<input type="text" name="genre" style="width:60%" />
+							<br />
+							<label for="runtime" style="display:block;">상영시간</label>
+							<input type="text" name="runtime" style="width:60%" />
+							<br />
+							<label for="price" style="display:block;">가격</label>
+							<input type="text" name="price" style="width:60%" />
+							<br />
+							<label for="release" style="display:block;">개봉일</label>
+							<input type="text" name="release" style="width:60%" />
+							<br />
+							<label for="end" style="display:block;">종료일</label>
+							<input type="text" name="end" style="width:60%" />
+							<br />
+							<label for="story" style="display:block;">스토리</label>
+							<input type="text" name="story" style="width:60%" />
+							<br />
+							<label for="trailer" style="display:block;">트레일러</label>
+							<input type="text" name="trailer" style="width:60%" />
+							<br />
+						
+							<label for="poster" style="display:block;">스틸컷</label>
+							<input type="file" name="poster" style="width:60%" multiple/>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -141,16 +143,21 @@
 			
 			/* 확인 버튼 */
 			$("#confirm").click(function() {
-				$.ajax(context + "/admin/add",{
-					data : {
-					},
-					success : function(data) {
-						location.href = context + "/admin/board";
-					},
-					error : function() {
-						
-					}
-				});
+				var postData = new FormData($("#stillcut")[0]);
+				/* 공란이 없으면 수행 */
+						$.ajax(context + "/admin/add",{
+							data : postData,
+							type : "post",
+							mimeType : 'multipart/form-data',
+							contentType : false,
+							processData : false,
+							success : function() {
+								alert("수정성공");
+							},
+							error : function() {
+								
+							}
+						});
 			});
 		});
 	</script>	
