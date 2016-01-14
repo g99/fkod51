@@ -36,7 +36,7 @@
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
                     <a href="#starium" class="gallery-box" data-toggle="modal" data-src="${img}/starium_main.jpg">
-                        <img src="${img}/starium_main.jpg" class="img-responsive" alt="Image 1" style ="width: 527px; height: 340px;">
+                        <img src="${img}/starium_main.jpg" class="img-responsive" alt="Image 1" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -49,7 +49,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#sound_X" class="gallery-box" data-toggle="modal" data-src="${img}/sound_X_Main.PNG">
-                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 527px; height: 340px;">
+                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                <div>
@@ -62,7 +62,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#screen_X" class="gallery-box" data-toggle="modal" data-src="${img}/screen_X_Main.PNG">
-                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 527px; height: 340px;">
+                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -75,7 +75,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#i_Max" class="gallery-box" data-toggle="modal" data-src="${img}/i_Max_Main.jpg">
-                        <img src="${img}/i_Max_Main.jpg" class="img-responsive" alt="Image 4" style ="width: 527px; height: 340px;">
+                        <img src="${img}/i_Max_Main.jpg" class="img-responsive" alt="Image 4" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -88,7 +88,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#sweetbox" class="gallery-box" data-toggle="modal" data-src="${img}/sweetbox_Main.PNG">
-                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 527px; height: 340px;">
+                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                  <div>
@@ -101,7 +101,7 @@
                 
                 <div class="col-lg-4 col-sm-6">
                     <a href="#tempur_Cinema" class="gallery-box" data-toggle="modal" data-src="${img}/tempur_Cinema_Main.PNG">
-                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 527px; height: 340px;">
+                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -146,13 +146,25 @@
 	         	<label></label>
 	        	<input type="text" class="form-control" value="영화 : 김찬호" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>같이 개발한 팀원들 모두
+
+고생많았고 앞으로 힘내자.	            
+	            </textarea>
 	        </div>
 	        <div id="inseok" style="float:left; width:30%; margin-left:3%;">
 	         	<label></label>
 	        	<input type="text" class="form-control" value="예매 : 강인석" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>좋은 강사님, 좋은 팀원들을 만나서
+	             
+그간의 배움이 잘 녹아든 결과물을 
+
+만들어 낼 수 있었던 것 같다.
+
+팀장 준규와, 찬호 형, 순환이 형, 성한이 
+
+모두 책임감 있게 잘 해줘서 고맙습니다~
+	            </textarea>
 	        </div>
         </div>
 	 	<div class="row">
@@ -160,13 +172,28 @@
 	         	<label></label>
 	        	<input type="text" class="form-control" value="로그인/회원관리 : 이성한" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly></textarea>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>프로젝트 초기 단계에는 여러기능을
+	             
+코딩하며 발생한 문제도 많았지만,
+
+구글링도 해가며 하나씩 해결하고 
+
+이렇게 팀원들과 함께 프로젝트를 
+
+완성할 수 있어서 정말 기쁘네요. 
+				</textarea>
 	        </div>
 	        <div id="soonhwan" style="float:left; width:30%; margin-left:4%;">
 	         	<label></label>
 	        	<input type="text" class="form-control" value="관리자 : 김순환" style="width:60%; background:#36333D;" readOnly>
 	            <label></label>
-	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>
+	            <textarea class="form-control" rows="9" placeholder="내용" style="width:80%; height:35%; background:#36333D;" readOnly>프로젝트 기간동안 어려운점도 있었지만
+	            
+팀원들과 협심하여 부족한 개념들을
+
+많이 습득하였습니다.
+
+모든 팀원들한테 감사합니다.	            
 	            
 	            </textarea>
 	        </div>
@@ -179,35 +206,7 @@
 <section id="last">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="margin-top-0 wow fadeIn">Contact Us</h2>
-                <hr class="primary">
-                <p>2016.02월까지 개발중인 사이트입니다. 계속해서 업데이트될 예정입니다.</p>
-            </div>
-            <div class="col-lg-10 col-lg-offset-1 text-center">
-                <form class="contact-form row">
-                    <div class="col-md-4">
-                        <label></label>
-                        <input type="text" class="form-control" placeholder="이름">
-                    </div>
-                    <div class="col-md-4">
-                        <label></label>
-                        <input type="text" class="form-control" placeholder="이메일">
-                    </div>
-                    <div class="col-md-4">
-                        <label></label>
-                        <input type="text" class="form-control" placeholder="핸드폰">
-                    </div>
-                    <div class="col-md-12">
-                        <label></label>
-                        <textarea class="form-control" rows="9" placeholder="내용"></textarea>
-                    </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <label></label>
-                        <button type="button" data-toggle="modal" data-target="#alertModal" class="btn btn-primary btn-block btn-lg">Send <i class="ion-android-arrow-forward"></i></button>
-                    </div>
-                </form>
-            </div>
+        	<div id="map-canvas" style="width: 100%; height: 100%"></div>
         </div>
     </div>
 </section>
@@ -602,11 +601,58 @@
     </div>
     </div>
 </div>
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+	      function initialize() {
+        var mapLocation = new google.maps.LatLng('37.499200', '127.029239'); // 지도에서 가운데로 위치할 위도와 경도
+        var markLocation = new google.maps.LatLng('37.499492', '127.029239'); // 마커가 위치할 위도와 경도
+        var mapOptions = {
+        		height: "500px",
+          center: mapLocation, // 지도에서 가운데로 위치할 위도와 경도(변수)
+          zoom: 18, // 지도 zoom단계
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), // id: map-canvas, body에 있는 div태그의 id와 같아야 함
+            mapOptions);
+         
+        var size_x = 60; // 마커로 사용할 이미지의 가로 크기
+        var size_y = 60; // 마커로 사용할 이미지의 세로 크기
+         
+        // 마커로 사용할 이미지 주소
+        var image = new google.maps.MarkerImage( 'http://www.larva.re.kr/home/img/boximage3.png',
+                            new google.maps.Size(size_x, size_y),
+                            '',
+                            '',
+                            new google.maps.Size(size_x, size_y));
+         
+        var marker;
+        marker = new google.maps.Marker({
+               position: markLocation, // 마커가 위치할 위도와 경도(변수)
+               map: map,
+               icon: image, // 마커로 사용할 이미지(변수)
+//             info: '말풍선 안에 들어갈 내용',
+               title: 'MTB BOX' // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+        });
+         
+        var content = "MTB BOX"; // 말풍선 안에 들어갈 내용
+         
+        // 마커를 클릭했을 때의 이벤트. 말풍선 뿅~
+        var infowindow = new google.maps.InfoWindow({ content: content});
+ 
+        google.maps.event.addListener(marker, "click", function() {
+            infowindow.open(map,marker);
+        });
+         
+ 
+         
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
 <script type="text/javascript">
 
 $(function() {
 	Movie.ranking();
+
 	
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //

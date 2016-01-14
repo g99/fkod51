@@ -63,12 +63,13 @@
 					<div class="panel-heading">영화 목록</div>
 					<div class="panel-body">
 					<div id="my_menu" style="position:absolute; top:11%;">
-					<button id="enter" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
+						<button id="add" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
 						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
 						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
-					<div id="my_menu" style="position:absolute; top:11%;">
-					<input type="file" style= "border:none; padding-left: 46%;">
+
+					<div id="my_menu" style="position:absolute; top:15%;">
+
 					</div>
 
 					</div>
@@ -142,6 +143,10 @@
 		})
 		
 		$(function() {
+			/* 등록버튼 클릭시 */
+			$("#add").click(function() {
+				location.href = context + "/admin/add_movie";
+			});
 			// 수정버튼 클릭시
 			$("#modify").click(function() {
 				var length = $(".selected").length;
