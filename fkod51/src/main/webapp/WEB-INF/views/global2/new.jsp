@@ -904,66 +904,68 @@ $("#btn_My_Ticket").click(function(){
 	        $('#close').click(function(){
 				location.reload();
 			});
+	        $(".ticket_info").click(function() {
+	        	/* 인덱스값 받아와서 컨트롤러로 전송, 인덱스에 해당하는 영화정보를 세션에서 불러옴. */
+	        	if(confirm('티켓정보를 확인하시겠습니까?')) {
+	        		var indexNum = $("input:radio[name=tickets]:checked").val();
+	            	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
+	            	var ticket = '<h2 class="text-center">Ticket Page</h2>'
+	            		+'<hr />'
+	            		+'<h5 class="text-center">'
+	            		+'예매 상세페이지 (Ticket Page)'
+	            		+'</h5>'
+	            		+'<br />'
+	            		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
+	                        +'<form class="contact-form row">'
+	            				+'<div class="col-md-4" style="width: 300px;">'
+	                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
+	                   	        	+'<div style="height:12px;"></div>'
+	                           +'</div>'
+	                        		+'<div class="col-md-4" style="width: 300px;">'
+	                                	+'<label></label>'
+	                                	+'<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">'
+	                            	+'<div style="height:12px;"></div>'
+	                            	+'</div>'
+	                            	+'<div class="col-md-4" style="width: 300px;">'
+	                             	   +'<label></label>'
+	                             	   +'<input type="text" class="form-control" value="'+data.roomName+'" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">'
+	                           		+'<div style="height:12px;"></div>'
+	                           		+'</div>'
+	                           		+'<div class="col-md-4" style="width: 300px; float: left;">'
+	                              		+'<label></label>'
+	                               		+'<input type="text" class="form-control" value="'+data.seatNumber+'" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">'
+	                                +'<div style="height:12px;"></div>'
+	                            	+'</div>'
+	                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
+	                                	+'<label></label>'
+	                                	+'<input type="text" class="form-control" value="'+data.date+'" id="my_Ticket_Date" readonly="readonly" style="color: black;">'
+	                                	+'<div style="height:12px;"></div>'
+	                            	+'</div>'
+	                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
+	                                	+'<label></label>'
+	                                	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
+	                                	+'<div style="height:12px;"></div>'
+	                            	+'</div>'
+	                         	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+	                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
+	                         	  	+'id="close">닫기</button>'
+	                        +'</form>'
+	                    +'</div>'
+	                    $('#mypage').empty();		
+	                    $('#mypage').html(ticket);		
+	            		$('#close').click(function(){
+	            			location.reload();
+	            		});		
+	            	});
+	            }
+	        });
+	        
+	        
 	});
-	
 	
         
 
-        $(".ticket_info").click(function() {
-        	/* 인덱스값 받아와서 컨트롤러로 전송, 인덱스에 해당하는 영화정보를 세션에서 불러옴. */
-        	if(confirm('티켓정보를 확인하시겠습니까?')) {
-        		var indexNum = $("input:radio[name=tickets]:checked").val();
-            	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
-            	var ticket = '<h2 class="text-center">Ticket Page</h2>'
-            		+'<hr />'
-            		+'<h5 class="text-center">'
-            		+'예매 상세페이지 (Ticket Page)'
-            		+'</h5>'
-            		+'<br />'
-            		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
-                        +'<form class="contact-form row">'
-            				+'<div class="col-md-4" style="width: 300px;">'
-                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
-                   	        	+'<div style="height:12px;"></div>'
-                           +'</div>'
-                        		+'<div class="col-md-4" style="width: 300px;">'
-                                	+'<label></label>'
-                                	+'<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">'
-                            	+'<div style="height:12px;"></div>'
-                            	+'</div>'
-                            	+'<div class="col-md-4" style="width: 300px;">'
-                             	   +'<label></label>'
-                             	   +'<input type="text" class="form-control" value="'+data.roomName+'" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">'
-                           		+'<div style="height:12px;"></div>'
-                           		+'</div>'
-                           		+'<div class="col-md-4" style="width: 300px; float: left;">'
-                              		+'<label></label>'
-                               		+'<input type="text" class="form-control" value="'+data.seatNumber+'" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">'
-                                +'<div style="height:12px;"></div>'
-                            	+'</div>'
-                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
-                                	+'<label></label>'
-                                	+'<input type="text" class="form-control" value="'+data.date+'" id="my_Ticket_Date" readonly="readonly" style="color: black;">'
-                                	+'<div style="height:12px;"></div>'
-                            	+'</div>'
-                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
-                                	+'<label></label>'
-                                	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
-                                	+'<div style="height:12px;"></div>'
-                            	+'</div>'
-                         	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
-                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
-                         	  	+'id="close">닫기</button>'
-                        +'</form>'
-                    +'</div>'
-                    $('#mypage').empty();		
-                    $('#mypage').html(ticket);		
-            		$('#close').click(function(){
-            			location.reload();
-            		});		
-            	});
-            }
-        });   
+       
         	
         
         
