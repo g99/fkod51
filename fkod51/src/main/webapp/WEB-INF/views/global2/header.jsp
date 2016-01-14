@@ -29,7 +29,10 @@
                     <a class="page-scroll" href="#five" style="font-size:1.5em;" id="event_btn">이벤트</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#six" style="font-size:1.5em;" id="contact_btn">팀원소개</a>
+                    <a class="page-scroll" href="#six" style="font-size:1.5em;" id="contact_btn">오시는길</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#last" style="font-size:1.5em;" id="contact_btn">팀원소개</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="${context}/admin" style="font-size:1.5em;" id="contact_btn">관리자</a>

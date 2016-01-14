@@ -122,8 +122,17 @@
 <section class="bg-dark" id="five" style="height:100%; padding-top:5%;">
 </section>
 
-<!-- 사용하지 않음 참고용 -->
-<aside  id="six" style="height:100%;">
+<!-- 구글맵 -->
+<section id="six" style="height:100%;">
+    <div class="container">
+        <div class="row">
+        	<div id="map-canvas" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 팀원소개 -->
+<aside  id="last" style="height:100%;">
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">FKOD 팀 소개</h2>
@@ -201,15 +210,9 @@
     </div>
 </aside>
 
-
-<!-- Contact Us -->
-<section id="last">
-    <div class="container">
-        <div class="row">
-        	<div id="map-canvas" style="width: 100%; height: 100%"></div>
-        </div>
-    </div>
-</section>
+<!--////////////////////////////////////////////////////////////////////////  -->
+<!--////////////////////////////////////////////////////////////////////////  -->
+<!--////////////////////////////////////////////////////////////////////////  -->
 
 <!-- 영화 팝업 페이지 -->
 <div id="movieGalleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
