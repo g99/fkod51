@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hnb.article.ArticleServiceImpl;
 import com.hnb.article.ArticleVO;
@@ -215,7 +216,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public void add(
-			@RequestParam(value="poster", required=false)MultipartFile multipartFile,
+			MultipartHttpServletRequest multipartHSR,
 			String subject,
 			String number,
 			String director,
@@ -231,12 +232,18 @@ public class AdminController {
 			String trailer
 			) {
 		// 파일업로드를 할 절대경로
+		logger.info("add() 진입");
 		String path = "C:\\Users\\HB\\git\\fkod51\\fkod51\\src\\main\\webapp\\resources\\images\\";
 		FileUpload fileUpload = new FileUpload();
-		String fileName = multipartFile.getOriginalFilename();
-		String fullPath = fileUpload.uploadFile(multipartFile, path, fileName);
-		logger.info("풀패스 : {}", fullPath);
-		movie.setFilmName(subject);
+		List<MultipartFile> fileList = multipartHSR.getFiles("poster");
+		// 파일이 없는경우를 제외하고
+		if (!(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals(""))) {
+			logger.info("반목문 수행중");
+			for (int i = 0; i < fileList.size(); i++) {
+				fileUpload.uploadFile(fileList.get(i), path, fileList.get(i).getOriginalFilename());
+			}
+		}
+		/*movie.setFilmName(subject);
 		movie.setFilmNumber(number);
 		movie.setDirector(director);
 		movie.setActor(actor);
@@ -250,5 +257,6 @@ public class AdminController {
 		movie.setStory(story);
 		movie.setTrailer(trailer);
 		movie.setCut(fileName);
+		movie.settRate(0);*/
 	}
 }

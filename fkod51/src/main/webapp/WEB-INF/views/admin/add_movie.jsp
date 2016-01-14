@@ -107,8 +107,8 @@
 							<input type="text" name="trailer" style="width:60%" />
 							<br />
 						
-							<label for="poster" style="display:block;">포스터</label>
-							<input type="file" name="poster" style="width:60%" />
+							<label for="poster" style="display:block;">스틸컷</label>
+							<input type="file" name="poster" style="width:60%" multiple/>
 						</form>
 					</div>
 				</div>
@@ -145,10 +145,6 @@
 			$("#confirm").click(function() {
 				var postData = new FormData($("#stillcut")[0]);
 				/* 공란이 없으면 수행 */
-				if (subject!="" && number!="" && director !="" && actor !="" && country !="" && 
-					rate !="" && genre!="" && runtime!="" && price!="" && release!="" &&
-					end!="" && story!="" && trailer!="" && poster!=""
-					) {
 						$.ajax(context + "/admin/add",{
 							data : postData,
 							type : "post",
@@ -162,9 +158,6 @@
 								
 							}
 						});
-				} else {
-					alert("공란을 채워주세요.");
-				}
 			});
 		});
 	</script>	
