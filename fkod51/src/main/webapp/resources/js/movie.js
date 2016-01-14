@@ -76,7 +76,7 @@ var Movie = {
 					var url = "https://apis.daum.net/contents/movie";
 					url += "?output=json";
 					url += "&apikey=7ceffb2166ac5a21e51fd4573ea1a17f"
-					url += "&q=(영화)" + query;
+					url += "&q=" + query;
 					url += "&result=10";
 					url += "&callback=?";
 					
