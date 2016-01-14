@@ -1,93 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-a{
- text-decoration: none;
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Daum 웹 검색 API</title>
+	<style type="text/css">	
+table
+{
+border-collapse:collapse;
 }
-table {
- 
- font-size:medium;
- }
-table>tbody>tr:nth-child(2n){
- 
+table,th, td
+{
+border: 1px solid black;
 }
- 
-table>tbody>tr:nth-child(2n+1){
- 
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript">
+function search_query() {      
+	var query = $("#query").val();
+	var category = $("#category").val();
+	var url = "https://apis.daum.net/search/"+category;
+	url += "?output=json";
+	url += "&apikey=7ceffb2166ac5a21e51fd4573ea1a17f"
+	url += "&q=" + query;
+	url += "&result=5";
+	url += "&callback=?";
+	
+	$.getJSON(url,function(data) {
+		result = "<table style='border:1px solid black;'>";
+		result += "<tr>";
+		result += "<th>제목</th><th>본문</th><th>링크</th>";
+		result += "</tr>";
+		for (var i in data.channel.item)
+		{
+			
+			result += "<tr>";
+			result += "<td>"+data.channel.item[i].title+"</td>";
+			result += "<td>"+data.channel.item[i].description+"</td>";
+			result += "<td>"+data.channel.item[i].link+"</td>";
+			result += "</tr>";
+		} 
+		result += "</table>";
+	}).error(function(XMLHttpRequest, textStatus, errorThrown)
+	{          
+		result = textStatus;
+	}).complete(function(){
+		$("#results").html(result);                                    
+	});
 }
-td:hover{
- background:black;
- color:white;
-}
-.s{
- background:black;
- color: white;
-}
-</style>
-<script src="http://code.jquery.com/jquery-1.7.js"></script>
-<script>
-$(document).ready(function(){
- 
- var num=1;
- 
- function display(data){
-  var output='<div>';
-  var items = $(data).find('item');
-  items.each(function(index,item){
-   with(item){
-   var title = $(this).find('title').text();
-   var link = $(this).find('link').text();
-   var img = $(this).find('image').text();
- 
-   output += '<table border = "1" style="float:left;">';
-   output += '<tr>';
-   output += '<td>';
-   output += '<img width=\"250\"height=\"300\"src=\"'+img+'\">';
-   output += '</td>';
-   output += '</tr>';
-   output += '<tr>';
-   output += '<td style="width:250px; height: auto;" align=\"center\">';
-   output += '<a href=\"'+link+'\">'+title+'</a>';
-   output += '</td>';
-   output += '</tr>';
-   output += '</table>';
-   }
-   output +='</div>';
-  });
-  $('body').append(output);
- };
- 
- function requestAjax(searchWord){
-	  var uri = 'http://openapi.naver.com/search?key=1c798d8d3d140d28b3428cf1f2a7cd38&query='+searchWord+'&display=10&start='+num+'&target=movie'; 
-	  alert("머여 이건 : " + uri );
-  $.ajax({
-   url:encodeURI(uri),
-   jsonp : "callback",
-   dataType : "jsonp",
-   type:'GET',
-   success:function(data){
-    display(data);
-   }
-  });
- };
- 
- $('#search').click(function(){
-  $('table').remove();
-  num=1;
-  var searchWord = $('#category').val();
-  requestAjax(searchWord);
-  
- });
-  
- 
-});
-</script>
-</head>
-<body>
-<h1>Naver 영화검색</h1>
-<span>검색입력:</span><input type="text" id="category"><input type="button" value="검색" id="search">
-</body>
+	</script>
+	</head>
+		<form id="search_form" action="javascript:search_query();" method="post">
+              <select id="category">
+                <option value="web">web</option>
+                <option value="board">board</option>
+                <option value="knowledge">knowledge</option>
+                <option value="blog">blog</option>
+                <option value="cafe">cafe</option>
+
+            </select>&nbsp; <input type="text" size="10" id="query" name="query"/>&nbsp;<input type="submit" >
+		</form>		
+		<div id="results"></div>
+	</body>
 </html>
