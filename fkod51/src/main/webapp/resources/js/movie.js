@@ -4,7 +4,7 @@ var Movie = {
 				},
 				ranking : function() {
 					var arr = [];
-					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"></div>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><button id="test" style="font-size: 13px; width: 130px; border-radius: 10px;float:left; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
@@ -18,7 +18,7 @@ var Movie = {
 						rank += '</div></div>';
 						
 					$('#movielay').empty().append(rank);
-					$('#sWindow').empty().append(test).append(fWindow);
+					$('#sWindow').empty().append(fWindow);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
 							Movie.movieName(arr[i]);
@@ -39,7 +39,8 @@ var Movie = {
 						},
 						dataType : "json",
 						success : function(data) {
-							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;"></div>';
+							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;float:left;">'
+										+'<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 							var arr = [];
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
 							$.each(data, function(index, value) {
@@ -69,13 +70,13 @@ var Movie = {
 					})
 				},
 				api : function(keyword) {
-					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;"></div>';
-					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float: left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; float: left; padding-left:5px;"><button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
+					var test = '<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					var query = keyword;
 					var url = "https://apis.daum.net/contents/movie";
 					url += "?output=json";
 					url += "&apikey=7ceffb2166ac5a21e51fd4573ea1a17f"
-					url += "&q=(영화)" + query;
+					url += "&q=" + query;
 					url += "&result=10";
 					url += "&callback=?";
 					
