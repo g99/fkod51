@@ -878,7 +878,10 @@ $("#btn_Delete").click(function(){
 
 $("#btn_My_Ticket").click(function(){
 	$.getJSON(context + '/member/ticket_List', function(data) {
-		var ticket_Page = '<h2 class="text-center">Ticket Page</h2>'
+		var ticket_Page_Main ='';
+		var ticket_Page_Footer ='';
+		
+		var ticket_Page_Header = '<h2 class="text-center">Ticket Page</h2>'
 			+'<hr />'
 			+'<h5 class="text-center">'
 			  +'예매 확인페이지<br/><br/>해당 예매 번호를 클릭하시면 상세 페이지로 이동합니다 ♪'
@@ -887,20 +890,22 @@ $("#btn_My_Ticket").click(function(){
 			+'<div class="col-lg-10 col-lg-offset-1 text-center">'
             +'<form class="contact-form row">'
             	+'<div class="col-md-4" style="width: 300px;">'
-                    +'<label></label>'
+                    +'<label></label>';
 		$.each(data, function(index,value){ //this = data[i]
-			ticket_Page += '<input type="radio" id="'+this.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;">'
-			+'<label style="margin-top:5px;" for="'+this.ticketNumber+'">['+(index+1)+'] &nbsp;'+this.ticketNumber+'</label><br/>'
+			ticket_Page_Main += '<input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;">'
+			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.ticketNumber+'</label><br/>'
 			+'<div style="height:5px;"></div>'
          });
-         	ticket_Page += '</div>'
-	            +'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
-	         	+'style="margin-top:10px; width: 100px; border-radius: 10px; float: left;" title="close&replace"'
-	         	+'id="close">닫기</button>'
+			ticket_Page_Footer += '</div>'
+	        +'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+	        +'style="margin-top:10px; width: 100px; border-radius: 10px; float: left;" title="close&replace"'
+	        +'id="close">닫기</button>'
 	        +'</form>'
 	    	+'</div>';
-	                
-	        $('#mypage').html(ticket_Page);
+	    	
+	    	ticket_Page_Header += ticket_Page_Main;
+	    	ticket_Page_Header += ticket_Page_Footer;
+	        $('#mypage').html(ticket_Page_Header);
 	        $('#close').click(function(){
 				location.reload();
 			});
