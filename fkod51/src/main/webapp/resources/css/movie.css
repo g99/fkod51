@@ -125,7 +125,7 @@ div.chart_rank {
     margin: 5px;
     padding: 5px;
     height: auto;
-    width: auto;
+    width: 100%;
     float: left;
     text-align: center;
     font-size: 17px;

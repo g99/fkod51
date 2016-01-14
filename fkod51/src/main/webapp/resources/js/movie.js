@@ -5,7 +5,7 @@ var Movie = {
 				ranking : function() {
 					var arr = [];
 					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"></div>';
-					var test = '<a href="'+context+'/movie/t1000"><button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">네이버로 검색하기</button></a>';
+					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
@@ -27,6 +27,9 @@ var Movie = {
 					$('#search').click(function name() {
 						Movie.find($("input:text[name=search]").val());
 					})
+					$('#test').click(function() {
+						Movie.api($("input:text[name=search]").val());
+					})
 					});
 				},
 				find : function(keyword) {
@@ -36,8 +39,7 @@ var Movie = {
 						},
 						dataType : "json",
 						success : function(data) {
-							var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
-							var reRank ='<img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="width:55px; height:55px;">';
+							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;"></div>';
 							var arr = [];
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
 							$.each(data, function(index, value) {
@@ -48,7 +50,7 @@ var Movie = {
 							});
 							result += '</div></div>';
 							$('#movielay').empty().append(result);
-							$('#sWindow').empty().append(fWindow).append(reRank);
+							$('#sWindow').empty().append(fWindow);
 							$.each(data, function(i, val) {
 								$('#'+arr[i]).click(function() {
 									Movie.movieName(arr[i]);
@@ -65,6 +67,41 @@ var Movie = {
 							alert("검색어를 입력하세요");
 						}
 					})
+				},
+				api : function(keyword) {
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;"></div>';
+					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
+					var query = keyword;
+					var url = "https://apis.daum.net/contents/movie";
+					url += "?output=json";
+					url += "&apikey=7ceffb2166ac5a21e51fd4573ea1a17f"
+					url += "&q=(영화)" + query;
+					url += "&result=10";
+					url += "&callback=?";
+					
+					$.getJSON(url,function(data) {
+						result = '<div class="container-fluid"><div class="row no-gutter">';
+						for (var i in data.channel.item)
+						{
+							result += '<div style="float:left; width: 19%"><div class="chart_rank">'
+								+'<div class="chart_font_17 chart_bold" style="width:100%">'+data.channel.item[i].title[0].content+'</div>'
+								+'<a href="'+data.channel.item[i].title[0].link+'" data-toggle="modal" class="gallery-box" data-src=""><img src="'+data.channel.item[i].thumbnail[0].content+'" '
+								+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+								+'</div></div>'
+							
+						} 
+						result += '</div></div>';
+					}).error(function(XMLHttpRequest, textStatus, errorThrown)
+					{          
+						result = textStatus;
+					}).complete(function(){
+						$('#movielay').empty().append(result);    
+						$('#sWindow').empty().append(fWindow);
+						$('#ranking').click(function() {
+							Movie.ranking();
+						})
+					});
+					
 				},
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
