@@ -8,4 +8,5 @@ public interface TicketService {
 	public int insertSeatNumber(String seatNumber);
 	public int updateSeatStatus(int quantity, String filmNumber, int theaterSeq, String roomName, String date, String startTime);
 	public int getCountByKey(int key);
+	public List<TicketVO> getTicketVO(String id);
 }

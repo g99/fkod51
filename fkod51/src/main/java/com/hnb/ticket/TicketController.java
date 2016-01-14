@@ -2,6 +2,7 @@ package com.hnb.ticket;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,6 +41,7 @@ public class TicketController {
 			String teenager,
 			String price,
 			String seat_number,
+			HttpSession session,
 			Model model){
 		logger.info("TicketController-book() 진입");
 		logger.info("TicketController-book() roomName : {}",roomName);
@@ -68,6 +70,7 @@ public class TicketController {
 		ticket.setOldMan(ol);
 		ticket.setTeenager(te);
 		ticket.setPrice(Integer.parseInt(price));
+		
 		ticketService.book(ticket);
 		String scheduleSeq = scheduleService.getScheduleSeq(filmNumber,theater,roomName,date,startTime)+"-";
 		int quantity =seat_number.split(",").length;
@@ -76,8 +79,15 @@ public class TicketController {
 			ticketService.insertSeatNumber(seatNumber);
 		}
 		ticketService.updateSeatStatus(quantity,filmNumber,theaterSeq,roomName,date,startTime);
+		List<TicketVO> ticketAdd = (List<TicketVO>) session.getAttribute("tickets");
+		ticketAdd.add(ticket);
+		session.setAttribute("tickets", ticketAdd);
 		
 		model.addAttribute("ticketNumber", ticketNumber);
+		
+		// 세션에 티켓 정보 추가.
+		
+		
 		//model.addAttribute("seatList", ticketService.getSeatList(ticket.getTheaterName(),ticket.getRoomName()));
 		return model;
 	}

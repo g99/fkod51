@@ -326,7 +326,7 @@
 <div id="mypage_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
     <div class="modal-dialog">
     <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
-    	<div class="modal-body">
+    	<div class="modal-body" id="mypage">
     		<h2 class="text-center">My Page</h2>
     		<hr />
     		<h5 class="text-center">
@@ -370,20 +370,102 @@
                     width: 100px; border-radius: 10px; float: left;" 
                     class="btn btn-primary btn-block" data-dismiss="modal">로그아웃</button>
                     
+                 	<a class="btn btn-primary btn-block" data-toggle="modal"
+                 	data-dismiss="modal"
+                 	style="margin-top:6px; width: 100px; margin-left: 10px;
+                   	border-radius: 10px; float: left;"
+                 	title="Mypage Update" 
+                 	href="#update_Modal">
+                 	내정보수정</a>
+             		
+             		<button type="button" id="btn_My_Ticket"
+                    style="margin-top:6px; margin-left: 81px; 
+                    width: 130px; border-radius: 10px; float: left;" 
+                    class="btn btn-primary btn-block">내 예매내역보기</button>
+              
+                   <%--  <c:forEach var="ticket" items="${tickets}" varStatus="status">
+                    <input type="radio" id="${ticket.ticketNumber}" name="tickets" class="ticket_info" value="${status.index}" style="display: none;">
+                    <label style="margin-top:5px;" for="${ticket.ticketNumber}">${ticket.ticketNumber}</label><br/>
+                    </c:forEach> --%>
+                </form>
+            </div>
+            
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- 예매 상세 페이지 (마이페이지에서 볼 수 있음) => 지금현재 이 화면은 에이작스로 옮겨놓음.
+<div id="ticket_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
+    	<div class="modal-body">
+    		
+    		
+    		<h2 class="text-center">Ticket Page</h2>
+    		<hr />
+    		<h5 class="text-center">
+    		  예매 상세페이지 (Ticket Page)
+    		</h5>
+    		<br />
+    		<div class="col-lg-10 col-lg-offset-1 text-center">
+                <form class="contact-form row">
+					<c:forEach var="ticket" items="${tickets}" varStatus="status">
+						<div class="col-md-4" style="width: 300px;">
+                    		<input type="text" class="form-control" value="${ticket.ticketNumber}" id="my_TicketNumber" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    	</div>
+                    
+                		<div class="col-md-4" style="width: 300px;">
+                        	<label></label>
+                        	<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">
+                    	<div style="height:12px;"></div>
+                    	</div>
+                    
+                    	<div class="col-md-4" style="width: 300px;">
+                     	   <label></label>
+                     	   <input type="text" class="form-control" value="${ticket.roomName}" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">
+                   		<div style="height:12px;"></div>
+                   		</div>
+                  	  
+                   		<div class="col-md-4" style="width: 300px; float: left;">
+                      		<label></label>
+                       		<input type="text" class="form-control" value="${ticket.seatNumber}" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">
+                        <div style="height:12px;"></div>
+                    	</div>
+                    
+                    	<div class="col-md-4" style="width: 300px; float: left;">
+                        	<label></label>
+                        	<input type="text" class="form-control" value="${ticket.date}" id="my_Ticket_Date" readonly="readonly" style="color: black;">
+                        	<div style="height:12px;"></div>
+                    	</div>
+                    
+                    	<div class="col-md-4" style="width: 300px; float: left;">
+                        	<label></label>
+                        	<input type="text" class="form-control" value="${ticket.startTime}" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">
+                        	<div style="height:12px;"></div>
+                    	</div>
+                    
                  	  	 <a class="btn btn-primary btn-block" data-toggle="modal"
                  	  	 data-dismiss="modal"
-                 	  	 style="margin-top:6px; width: 100px; margin-left: 10px;
+                 	  	 style="margin-top:6px; width: 100px; margin-left: 16px;
                    		 border-radius: 10px; float: left;"
-                 	  	 title="Mypage Update" 
-                 	  	 href="#update_Modal">
-                 	  	 내정보수정</a>
-                    
+                 	  	 title="close"
+                 	  	 href="#">
+                 	  	 닫기</a>
+						</c:forEach>
                 </form>
             </div>
     	</div>
     </div>
     </div>
 </div>
+-->
+
 
 
 
@@ -792,6 +874,159 @@ $("#btn_Delete").click(function(){
 		Members.delete_Member();
 	}
 });
+
+
+$("#btn_My_Ticket").click(function(){
+	$.getJSON(context + '/member/ticket_List', function(data) {
+		var ticket_Page = '<h2 class="text-center">Ticket Page</h2>'
+			+'<hr />'
+			+'<h5 class="text-center">'
+			  +'예매 확인페이지<br/><br/>해당 예매 번호를 클릭하시면 상세 페이지로 이동합니다 ♪'
+			+'</h5>'
+			+'<br />'
+			+'<div class="col-lg-10 col-lg-offset-1 text-center">'
+            +'<form class="contact-form row">'
+            	+'<div class="col-md-4" style="width: 300px;">'
+                    +'<label></label>'
+		$.each(data, function(index,value){ //this = data[i]
+			ticket_Page += '<input type="radio" id="'+this.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;">'
+			+'<label style="margin-top:5px;" for="'+this.ticketNumber+'">['+(index+1)+'] &nbsp;'+this.ticketNumber+'</label><br/>'
+			+'<div style="height:5px;"></div>'
+         });
+         	ticket_Page += '</div>'
+	            +'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+	         	+'style="margin-top:10px; width: 100px; border-radius: 10px; float: left;" title="close&replace"'
+	         	+'id="close">닫기</button>'
+	        +'</form>'
+	    	+'</div>';
+	                
+	        $('#mypage').html(ticket_Page);
+	        $('#close').click(function(){
+				location.reload();
+			});
+	});
+	
+	
+        
+
+        $(".ticket_info").click(function() {
+        	/* 인덱스값 받아와서 컨트롤러로 전송, 인덱스에 해당하는 영화정보를 세션에서 불러옴. */
+        	if(confirm('티켓정보를 확인하시겠습니까?')) {
+        		var indexNum = $("input:radio[name=tickets]:checked").val();
+            	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
+            	var ticket = '<h2 class="text-center">Ticket Page</h2>'
+            		+'<hr />'
+            		+'<h5 class="text-center">'
+            		+'예매 상세페이지 (Ticket Page)'
+            		+'</h5>'
+            		+'<br />'
+            		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
+                        +'<form class="contact-form row">'
+            				+'<div class="col-md-4" style="width: 300px;">'
+                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
+                   	        	+'<div style="height:12px;"></div>'
+                           +'</div>'
+                        		+'<div class="col-md-4" style="width: 300px;">'
+                                	+'<label></label>'
+                                	+'<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">'
+                            	+'<div style="height:12px;"></div>'
+                            	+'</div>'
+                            	+'<div class="col-md-4" style="width: 300px;">'
+                             	   +'<label></label>'
+                             	   +'<input type="text" class="form-control" value="'+data.roomName+'" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">'
+                           		+'<div style="height:12px;"></div>'
+                           		+'</div>'
+                           		+'<div class="col-md-4" style="width: 300px; float: left;">'
+                              		+'<label></label>'
+                               		+'<input type="text" class="form-control" value="'+data.seatNumber+'" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">'
+                                +'<div style="height:12px;"></div>'
+                            	+'</div>'
+                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
+                                	+'<label></label>'
+                                	+'<input type="text" class="form-control" value="'+data.date+'" id="my_Ticket_Date" readonly="readonly" style="color: black;">'
+                                	+'<div style="height:12px;"></div>'
+                            	+'</div>'
+                            	+'<div class="col-md-4" style="width: 300px; float: left;">'
+                                	+'<label></label>'
+                                	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
+                                	+'<div style="height:12px;"></div>'
+                            	+'</div>'
+                         	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
+                         	  	+'id="close">닫기</button>'
+                        +'</form>'
+                    +'</div>'
+                    $('#mypage').empty();		
+                    $('#mypage').html(ticket);		
+            		$('#close').click(function(){
+            			location.reload();
+            		});		
+            	});
+            }
+        });   
+        	
+        
+        
+        
+});
+
+
+
+
+/* 바로위의 메서드로 구문을 옮김
+   $(".ticket_info").click(function() {
+	var indexNum = $("input:radio[name=tickets]:checked").val();
+	
+	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
+	alert('밸류는?'+data.date);	      
+	var ticket = '<h2 class="text-center">Ticket Page</h2>'
+		+'<hr />'
+		+'<h5 class="text-center">'
+		+'예매 상세페이지 (Ticket Page)'
+		+'</h5>'
+		+'<br />'
+		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
+            +'<form class="contact-form row">'
+				+'<div class="col-md-4" style="width: 300px;">'
+                		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
+       	        	+'<div style="height:12px;"></div>'
+               +'</div>'
+            		+'<div class="col-md-4" style="width: 300px;">'
+                    	+'<label></label>'
+                    	+'<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">'
+                	+'<div style="height:12px;"></div>'
+                	+'</div>'
+                	+'<div class="col-md-4" style="width: 300px;">'
+                 	   +'<label></label>'
+                 	   +'<input type="text" class="form-control" value="'+data.roomName+'" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">'
+               		+'<div style="height:12px;"></div>'
+               		+'</div>'
+               		+'<div class="col-md-4" style="width: 300px; float: left;">'
+                  		+'<label></label>'
+                   		+'<input type="text" class="form-control" value="'+data.seatNumber+'" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">'
+                    +'<div style="height:12px;"></div>'
+                	+'</div>'
+                	+'<div class="col-md-4" style="width: 300px; float: left;">'
+                    	+'<label></label>'
+                    	+'<input type="text" class="form-control" value="'+data.date+'" id="my_Ticket_Date" readonly="readonly" style="color: black;">'
+                    	+'<div style="height:12px;"></div>'
+                	+'</div>'
+                	+'<div class="col-md-4" style="width: 300px; float: left;">'
+                    	+'<label></label>'
+                    	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
+                    	+'<div style="height:12px;"></div>'
+                	+'</div>'
+             	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+             	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
+             	  	+'id="close">닫기</button>'
+            +'</form>'
+        +'</div>'
+        $('#mypage').html(ticket);		
+		$('#close').click(function(){
+			location.reload();
+		});		
+	});
+}); */
 
 
 
