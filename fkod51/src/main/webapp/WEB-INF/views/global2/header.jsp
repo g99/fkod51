@@ -62,7 +62,7 @@
             	<ul class="nav navbar-nav navbar-right">
                		 <li>
                  	   <a class="page-scroll" data-toggle="modal" 
-                 	   href="#mypage_Modal" 
+                 	   href="#mypage_Modal" id="id_Click" 
                  	   style="font-size:1.5em;">${user.id}</a>
               	 	</li>
             	</ul>
@@ -96,7 +96,7 @@
 				},1200);
 				$("#open_Wrap").load(context + "/home");
 		 });
-		 
 		 newEvent.init(1);
+		 
 	 });
  </script>

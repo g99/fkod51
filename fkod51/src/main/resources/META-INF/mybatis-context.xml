@@ -17,23 +17,24 @@
 			</property>
 		</bean>
 		
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"/>
 		<property name="url" value="${jdbc.url}"></property>
 		<property name="username" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	
+	<!-- 
+	디비의 로거가 보이도록 해주는 소스.
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-	 	<constructor-arg ref="dataSourceSpied" />
+	 	<constructor-arg ref="dataSourceSpied" /> dataSourceSpied를 바로 위의 소스에 주면 로거가 실행된다.
 	 	<property name="logFormatter">
 	 		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
 	 			<property name="loggingType" value="MULTI_LINE"/>
 	 			<property name="sqlPrefix" value="SQL        :"/>
 	 		</bean>
-	 </property>
-		
-	</bean>
+	 </property> 
+	</bean>-->
 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

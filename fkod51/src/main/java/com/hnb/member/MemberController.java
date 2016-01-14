@@ -1,5 +1,7 @@
 package com.hnb.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,7 +27,7 @@ import com.hnb.ticket.TicketServiceImpl;
 import com.hnb.ticket.TicketVO;
 
 @Controller
-@SessionAttributes({"user","ticket"})
+@SessionAttributes({"user","tickets"})
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -37,7 +39,7 @@ public class MemberController {
 	@Autowired
 	TicketServiceImpl ticketService;
 	@Autowired
-	TicketVO ticket;
+	List<TicketVO> tickets;
 	@Autowired
 	private EmailSender emailSender;
 	
@@ -205,15 +207,44 @@ public class MemberController {
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저 비밀번호: {}", pw);
 		member = service.login(id, pw);
-		/*ticket = ticketService.가져올 메서드(id)*/
+		tickets = ticketService.getTicketVO(id);
+		logger.info("티켓 정보는?: {}", tickets);
 		if (member != null) {
 		logger.info("로그인 성공!!!!!!!");
 		session.setAttribute("user", member);
-		session.setAttribute("ticket", ticket);
+		session.setAttribute("tickets", tickets);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}
 		return member;
+	}
+	
+	
+	/*티켓 정보 페이징*/
+	@RequestMapping(value="/my_Ticket/{index}")
+	public @ResponseBody TicketVO myTicket(
+			@PathVariable("index")String index,
+			HttpSession session,
+			Model model){
+		int indexNum = Integer.parseInt(index);
+		logger.info("멤버컨트롤러 myTicket() - 진입");
+		logger.info("티켓인덱스는? : {}", indexNum);
+		List<TicketVO> temp = (List<TicketVO>) session.getAttribute("tickets");
+		logger.info("티켓브이오는?" + temp.get(indexNum).getDate());
+		/*model.addAttribute("ticket",temp);*/
+		return temp.get(indexNum);
+	}
+	
+	/*티켓 예매 내역 (상세페이지 들어가기전)*/
+	@RequestMapping(value="/ticket_List")
+	public @ResponseBody List<TicketVO> ticketList(
+			HttpSession session,
+			Model model){
+		logger.info("멤버컨트롤러 ticketList() - 진입");
+		List<TicketVO> ticketList = (List<TicketVO>) session.getAttribute("tickets");
+		System.out.println("스트링 값은?"+ticketList);
+		/*model.addAttribute("ticket",temp);*/
+		return ticketList;
 	}
 	
 	
