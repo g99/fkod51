@@ -20,7 +20,7 @@
 		<div class="row no-gutter">
 		</div>
 	</div>
-	<div style="width: 480px; margin: auto;" id="sWindow">
+	<div style="width: 600px; margin: auto;" id="sWindow">
 	
 	</div>
 </section>
