@@ -18,8 +18,8 @@ public class MovieVO implements Serializable {
 	private int price;
 	private String genre;
 	private String country;
-	private Date releaseDate;
-	private Date endDate;
+	private String releaseDate;
+	private String endDate;
 	private String story;
 	private String cut;
 	private String trailer;
@@ -28,7 +28,7 @@ public class MovieVO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	public MovieVO(String filmNumber, String filmName, String director, String actor, String rate, int runtime,
-			int price, String genre, Date releaseDate, Date endDate, String story, String cut,
+			int price, String genre, String releaseDate, String endDate, String story, String cut,
 			String trailer, int tRate) {
 		super();
 		this.filmNumber = filmNumber;
@@ -73,10 +73,10 @@ public class MovieVO implements Serializable {
 	public String getGenre() {
 		return genre;
 	}
-	public Date getReleaseDate() {
+	public String getReleaseDate() {
 		return releaseDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 	public String getStory() {
@@ -121,10 +121,10 @@ public class MovieVO implements Serializable {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public void setReleaseDate(Date date) {
+	public void setReleaseDate(String date) {
 		this.releaseDate = date;
 	}
-	public void setEndDate(Date date) {
+	public void setEndDate(String date) {
 		this.endDate = date;
 	}
 	public void setStory(String story) {

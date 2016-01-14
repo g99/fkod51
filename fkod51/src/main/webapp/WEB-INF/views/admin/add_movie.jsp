@@ -107,8 +107,8 @@
 							<input type="text" name="trailer" style="width:60%" />
 							<br />
 						
-							<label for="cut" style="display:block;">스틸컷</label>
-							<input type="file" name="cut" style="width:60%" />
+							<label for="poster" style="display:block;">포스터</label>
+							<input type="file" name="poster" style="width:60%" />
 						</form>
 					</div>
 				</div>
@@ -147,14 +147,14 @@
 				/* 공란이 없으면 수행 */
 				if (subject!="" && number!="" && director !="" && actor !="" && country !="" && 
 					rate !="" && genre!="" && runtime!="" && price!="" && release!="" &&
-					end!="" && story!="" && trailer!="" && cut!=""
+					end!="" && story!="" && trailer!="" && poster!=""
 					) {
 						$.ajax(context + "/admin/add",{
 							data : postData,
 							type : "post",
 							mimeType : 'multipart/form-data',
 							contentType : false,
-							processData : false
+							processData : false,
 							success : function() {
 								alert("수정성공");
 							},

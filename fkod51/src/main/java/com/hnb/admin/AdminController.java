@@ -1,8 +1,9 @@
 package com.hnb.admin;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,7 +215,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public void add(
-			@RequestParam(value="file", required=false)MultipartFile multipartFile,
+			@RequestParam(value="poster", required=false)MultipartFile multipartFile,
 			String subject,
 			String number,
 			String director,
@@ -227,8 +228,7 @@ public class AdminController {
 			String release,
 			String end,
 			String story,
-			String trailer,
-			String cut
+			String trailer
 			) {
 		// 파일업로드를 할 절대경로
 		String path = "C:\\Users\\HB\\git\\fkod51\\fkod51\\src\\main\\webapp\\resources\\images\\";
@@ -236,7 +236,19 @@ public class AdminController {
 		String fileName = multipartFile.getOriginalFilename();
 		String fullPath = fileUpload.uploadFile(multipartFile, path, fileName);
 		logger.info("풀패스 : {}", fullPath);
-		
-		
+		movie.setFilmName(subject);
+		movie.setFilmNumber(number);
+		movie.setDirector(director);
+		movie.setActor(actor);
+		movie.setCountry(country);
+		movie.setRate(rate);
+		movie.setGenre(genre);
+		movie.setRuntime(Integer.parseInt(runtime));
+		movie.setPrice(Integer.parseInt(price));
+		movie.setReleaseDate(release);
+		movie.setEndDate(end);
+		movie.setStory(story);
+		movie.setTrailer(trailer);
+		movie.setCut(fileName);
 	}
 }
