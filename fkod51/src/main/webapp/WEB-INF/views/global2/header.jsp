@@ -89,7 +89,7 @@
          </div>
      </div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-         <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+         <source src="https://drive.google.com/uc?export=download&id=0B_K1Ynnn_h7QMFdybTM0TTRacGM" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
      <div id = "open_Wrap"></div>
 </header>
