@@ -1,6 +1,7 @@
 package com.hnb.article;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -69,5 +70,11 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<ArticleVO> getAllList() {
 		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
 		return mapper.getAllList();
+	}
+	
+	@Override
+	public int updateRefer(Map<String, Integer> data) {
+		ArticleMapper mapper = sqlSession.getMapper(ArticleMapper.class);
+		return mapper.updateRefer(data);
 	}
 }

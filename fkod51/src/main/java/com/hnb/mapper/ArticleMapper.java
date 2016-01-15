@@ -1,6 +1,7 @@
 package com.hnb.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +27,7 @@ public interface ArticleMapper {
 	public ArticleVO descSelectByKeyword(Command command);
 	// U : 업데이트
 	public int update(ArticleVO article);
-	public int updateRefer(int rcdNo);
+	public int updateRefer(Map<String, Integer> data);
 	// D : 삭제 (회원탈퇴)
 	public int delete(int rcdNo);
 	public List<ArticleVO> readReply(int grpNo);

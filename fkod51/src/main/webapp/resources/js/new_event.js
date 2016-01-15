@@ -108,7 +108,7 @@
 					
 					//글쓰기 버튼을 클릭하면
 					$("#write").click(function(e) {
-						if($(".navbar-right a").text() != "로그인"){
+						if(userid != ""){
 							$("#write").attr("data-target","#writeModal");
 						} else {
 							alert("로그인을 먼저 해주세요");
@@ -120,6 +120,8 @@
 					$.each(data.list, function(index, value) {
 						$("#read" + arr[index]).click(function() {
 							newEvent.getData(arr[index]);
+							var temp = $("#"+this.id).parent().next().next().next().text();
+							$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
 						});
 					});
 				});
@@ -241,7 +243,7 @@
 						
 						//글쓰기 버튼을 클릭하면
 						$("#write").click(function() {
-							if($("#login").text() != "로그인"){
+							if(userid != ""){
 								location.href = "#writeModal";
 							} else {
 								alert("로그인을 먼저 해주세요");
@@ -252,6 +254,8 @@
 						$.each(data.list, function(index, value) {
 							$("#read" + arr[index]).click(function() {
 								newEvent.getData(arr[index]);
+								var temp = $("#"+this.id).parent().next().next().next().text();
+								$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
 							});
 						});
 					},
@@ -283,7 +287,6 @@
 			//////////// 여기서 data는 rcdNo을 의미함 //////////
 			getData : function(data) {
 				$("#code").html(data);
-				var index = 1;
 				$.ajax(context + "/article/read",{
 					data : {
 						"code" : data
@@ -291,14 +294,40 @@
 					success : function(data) {
 						$("#readModal input:text[name=title]").val(data.writing.usrSubject);
 						$("#readModal textarea[name=content]").val(data.writing.usrContent);
-						$.each(data.reply, function(index, value) {
-							$("#reply_area").append("<p style='border:solid; position:relative;'>" + this.usrName + " | " + this.usrContent + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
-						});
-						
+						newEvent.drawReply(data.reply);
 					},
 					error : function() {
 						alert("ajax 실패");
 					}
+				});
+			},
+			drawReply : function(data) {
+				
+				$("#reply_area").empty();
+				$.each(data, function(index, value) {
+					reply = "<p id='"+ this.rcdNo +"' style='border:solid; position:relative;'>" + this.usrName + " | " + this.usrContent;
+					if (userid === this.usrName) {
+						reply += "<button id='"+ this.rcdNo +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>";
+					} else {
+						reply += "</p>";
+					}
+					$("#reply_area").append(reply);
+					
+					 // 삭제버튼을 누르면
+					$("#" + this.rcdNo).click(function() {
+						$.ajax(context + "/article/remove_reply",{
+							data : {
+								code : $("#code").text(),
+								reply : this.id
+							},
+							success : function(data) {
+								newEvent.drawReply(data.reply)
+							},
+							error : function() {
+								
+							}
+						});
+					});
 				});
 			}
 	 };

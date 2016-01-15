@@ -16,7 +16,6 @@
 				<value>classpath:config/mysql.properties</value>
 			</property>
 		</bean>
-
 	
 	<!-- 디비보려면 id = dataSourceSpied로 변경할것 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -26,6 +25,12 @@
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	
+		
+	<!-- 트랜잭션 설정하기위해서 -->
+	<bean id="transactionManager"
+             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
 	<!-- <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 	 	<constructor-arg ref="dataSourceSpied" />

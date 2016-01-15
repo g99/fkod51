@@ -742,8 +742,6 @@
 
 $(function() {
 	Movie.ranking();
-
-	
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
 	//----------------------//
@@ -769,8 +767,8 @@ $(function() {
 	// 댓글달기 //
 	var index = 1;
 	$("#reply_btn").click(function() {
-		if($(".navbar-right a").text() === "로그인"){
-			alert("댓글을 달려면 로그인을 해주세요");
+		if(userid === ""){
+			alert("댓글을 달려면 먼저 로그인을 해주세요");
 		}else{
 			$.ajax(context + "/article/reply ",{
 				data : {
@@ -778,12 +776,8 @@ $(function() {
 					"id" : $(".navbar-right a").text(),
 					"content" : $("#readModal textarea[name=reply]").val()
 				},
-				success : function() {
-					$("#reply_area").append("<p style='border:solid; position:relative;'>" + $(".navbar-right a").text() + " | " +$("textarea[name=reply]").val() + "<button id='remove_reply"+ (index++) +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>");
-					// 댓글지우기 //
-					$("#remove_reply" + (index-1)).click(function() {
-						$("#" + this.id).parent().remove();
-					});	
+				success : function(data) {
+					newEvent.drawReply(data.reply);
 				},
 				error : function() {
 					

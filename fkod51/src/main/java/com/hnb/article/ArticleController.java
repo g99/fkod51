@@ -163,7 +163,15 @@ public class ArticleController {
 			Model model,
 			String code
 			) {
+		logger.info("read() 진입");
 		article = articleService.selectById(Integer.parseInt(code));
+		logger.info("이전 조회수 {}", article.getUsrRefer());
+		article.setUsrRefer(article.getUsrRefer()+1);
+		logger.info("갱신된 조회수 {}", article.getUsrRefer());
+		Map<String, Integer> data = new HashMap<String, Integer>();
+		data.put("rcdNo", Integer.parseInt(code));
+		data.put("usrRefer", article.getUsrRefer());
+		articleService.updateRefer(data);
 		List<ArticleVO> reply = articleService.selectByGrp(Integer.parseInt(code));
 		model.addAttribute("writing", article);
 		model.addAttribute("reply", reply);
@@ -183,5 +191,13 @@ public class ArticleController {
 		article.setUsrName(id);
 		article.setUsrContent(content);
 		articleService.reply(article);
+		model.addAttribute("reply", articleService.selectByGrp(Integer.parseInt(code)));
+	}
+	@RequestMapping("/remove_reply")
+	public void removeReply(
+			Model model,
+			String code, String reply) {
+		articleService.delete(Integer.parseInt(reply));
+		model.addAttribute("reply", articleService.selectByGrp(Integer.parseInt(code)));
 	}
 }

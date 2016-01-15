@@ -65,6 +65,7 @@
             
              <!-- 로그인을 하였을 때, 마이페이지와 내정보수정페이지 띄우기. -->
             <c:if test= "${not empty sessionScope.user}">
+            	<c:set var="userid" value="${user.id}"></c:set>
             	<ul class="nav navbar-nav navbar-right">
                		 <li>
                  	   <a class="page-scroll" data-toggle="modal" 
@@ -94,7 +95,9 @@
 </header>
 
 <script>
+	 var userid = "${userid}";
 	 $(function() {
+			
 		 $("#toggleVideo").click(function() {
 			 	$("#toggleVideo").remove();
 				$(".header-content").animate({
