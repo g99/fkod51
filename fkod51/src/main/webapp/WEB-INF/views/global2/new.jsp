@@ -50,8 +50,8 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#sound_X" class="gallery-box" data-toggle="modal" data-src="${img}/sound_X_Main.PNG">
-                        <img src="${img}/sound_X_Main.PNG" class="img-responsive" alt="Image 2" style ="width: 100%; height: 49%;">
+                    <a href="#sound_X" class="gallery-box" data-toggle="modal" data-src="${img}/sound_X_Main.jpg">
+                        <img src="${img}/sound_X_Main.jpg" class="img-responsive" alt="Image 2" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                <div>
@@ -63,8 +63,8 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#screen_X" class="gallery-box" data-toggle="modal" data-src="${img}/screen_X_Main.PNG">
-                        <img src="${img}/screen_X_Main.PNG" class="img-responsive" alt="Image 3" style ="width: 100%; height: 49%;">
+                    <a href="#screen_X" class="gallery-box" data-toggle="modal" data-src="${img}/screen_X_Main.jpg">
+                        <img src="${img}/screen_X_Main.jpg" class="img-responsive" alt="Image 3" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -89,8 +89,8 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#sweetbox" class="gallery-box" data-toggle="modal" data-src="${img}/sweetbox_Main.PNG">
-                        <img src="${img}/sweetbox_Main.PNG" class="img-responsive" alt="Image 5" style ="width: 100%; height: 49%;">
+                    <a href="#sweetbox" class="gallery-box" data-toggle="modal" data-src="${img}/sweetbox_Main.jpg">
+                        <img src="${img}/sweetbox_Main.jpg" class="img-responsive" alt="Image 5" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                  <div>
@@ -102,8 +102,8 @@
                 </div>
                 
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#tempur_Cinema" class="gallery-box" data-toggle="modal" data-src="${img}/tempur_Cinema_Main.PNG">
-                        <img src="${img}/tempur_Cinema_Main.PNG" class="img-responsive" alt="Image 6" style ="width: 100%; height: 49%;">
+                    <a href="#tempur_Cinema" class="gallery-box" data-toggle="modal" data-src="${img}/tempur_Cinema_Main.jpg">
+                        <img src="${img}/tempur_Cinema_Main.jpg" class="img-responsive" alt="Image 6" style ="width: 100%; height: 49%;">
                         <div class="gallery-box-caption">
                             <div class="gallery-box-content">
                                 <div>
@@ -615,7 +615,7 @@
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
     	<div class="modal-body">
-    		<img src="${img}/screen_X.PNG" id="galleryImage" class="img-responsive" />
+    		<img src="${img}/screen_X.jpg" id="galleryImage" class="img-responsive" />
     		<p>
     		    <br/>
     		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
@@ -657,7 +657,7 @@
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
     	<div class="modal-body">
-    		<img src="${img}/tempur_Cinema.PNG" id="galleryImage" class="img-responsive" />
+    		<img src="${img}/tempur_Cinema.jpg" id="galleryImage" class="img-responsive" />
     		<p>
     		    <br/>
     		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
@@ -819,7 +819,7 @@ $("#btn_My_Ticket").click(function(){
             +'<form class="contact-form row">'
             	+'<div class="col-md-4" style="width: 300px;">'
                     +'<label></label>';
-		$.each(data, function(index,value){ //this = data[i]
+		$.each(data, function(index,value){ //this, value = data[i]
 			ticket_Page_Main += '<input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;">'
 			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.ticketNumber+'</label><br/>'
 			+'<div style="height:5px;"></div>'
