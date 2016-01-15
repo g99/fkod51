@@ -19,7 +19,6 @@ var Ticket = {
 				},
 				ticket_sub : function(project) {
 					//alert("티켓서브실행중"+", 선택 : "+$("input:radio[name=movie]:checked").val());
-					alert($("input:radio[name=movie]:checked").attr('class'));
 					Ticket.mclass=$("input:radio[name=movie]:checked").attr('class');
 					$.ajax(project + '/schedule/movieSelect',{
 						type : 'get',
