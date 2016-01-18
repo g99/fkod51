@@ -5,11 +5,11 @@
 <div class="container">
 			<div class="slider_wrapper">
 				<ul id="image_slider">
-					<li><img src="${img}/movie-slide1.jpg"></li>
-					<li><img src="${img}/movie-slide2.jpg"></li>
-					<li><img src="${img}/movie-slide3.jpg"></li>
-					<li><img src="${img}/movie-slide4.jpg"></li>
-					<li><img src="${img}/movie-slide5.jpg"></li>
+					<li><img src="${img}/movie-slide1.jpg" style="width:100%; height:100%;"></li>
+					<li><img src="${img}/movie-slide2.jpg" style="width:100%; height:100%;"></li>
+					<li><img src="${img}/movie-slide3.jpg" style="width:100%; height:100%;"></li>
+					<li><img src="${img}/movie-slide4.jpg" style="width:100%; height:100%;"></li>
+					<li><img src="${img}/movie-slide5.jpg" style="width:100%; height:100%;"></li>
 				</ul>					
 				<span class="nvgt" id="prev"></span>
 				<span class="nvgt" id="next"></span>		
