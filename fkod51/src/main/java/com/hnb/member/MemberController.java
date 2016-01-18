@@ -210,9 +210,9 @@ public class MemberController {
 		tickets = ticketService.getTicketVO(id);
 		logger.info("티켓 정보는?: {}", tickets);
 		if (member != null) {
-		logger.info("로그인 성공!!!!!!!");
-		session.setAttribute("user", member);
-		session.setAttribute("tickets", tickets);
+			logger.info("로그인 성공!!!!!!!");
+			session.setAttribute("user", member);
+			session.setAttribute("tickets", tickets);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}

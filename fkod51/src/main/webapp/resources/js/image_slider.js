@@ -55,7 +55,7 @@ slideTo : function(imageToGo){
 	direction = currentImage > imageToGo ? 1 : -1;
 	currentPostion = -1 * currentImage * imageWidth;
 	var opts = {
-		duration:1000,
+		duration:500,
 		delta:function(p){return p;},
 		step:function(delta){
 			ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';

@@ -68,43 +68,43 @@
 					<div class="panel-body">
 						<form id="stillcut">
 							<label for="subject" style="display:block;">영화명</label>
-							<input type="text" name="subject" style="width:60%" />
+							<input type="text" name="subject" style="width:60%" placeholder="영화명"/>
 							<br />
 							<label for="number" style="display:block;">영화번호</label>
-							<input type="text" name="number" style="width:60%" />
+							<input type="text" name="number" style="width:60%" placeholder="A000"/>
 							<br />
 							<label for="director" style="display:block;">감독</label>
-							<input type="text" name="director" style="width:60%" />
+							<input type="text" name="director" style="width:60%" placeholder="감독"/>
 							<br />
 							<label for="actor" style="display:block;">배우</label>
-							<input type="text" name="actor" style="width:60%" />
+							<input type="text" name="actor" style="width:60%" placeholder="배우"/>
 							<br />
 							<label for="country" style="display:block;">국가</label>
-							<input type="text" name="country" style="width:60%" />
+							<input type="text" name="country" style="width:60%" placeholder="국가"/>
 							<br />
 							<label for="rate" style="display:block;">등급</label>
-							<input type="text" name="rate" style="width:60%" />
+							<input type="text" name="rate" style="width:60%" placeholder="등급"/>
 							<br />
 							<label for="genre" style="display:block;">장르</label>
-							<input type="text" name="genre" style="width:60%" />
+							<input type="text" name="genre" style="width:60%" placeholder="장르"/>
 							<br />
 							<label for="runtime" style="display:block;">상영시간</label>
-							<input type="text" name="runtime" style="width:60%" />
+							<input type="number" name="runtime" style="width:60%" placeholder="000"/>
 							<br />
 							<label for="price" style="display:block;">가격</label>
-							<input type="text" name="price" style="width:60%" />
+							<input type="number" name="price" style="width:60%" placeholder="000"/>
 							<br />
 							<label for="release" style="display:block;">개봉일</label>
-							<input type="text" name="release" style="width:60%" />
+							<input type="date" name="release" style="width:60%" placeholder="2016.01.18"/>
 							<br />
 							<label for="end" style="display:block;">종료일</label>
-							<input type="text" name="end" style="width:60%" />
+							<input type="date" name="end" style="width:60%" placeholder="2016.01.18"/>
 							<br />
 							<label for="story" style="display:block;">스토리</label>
-							<input type="text" name="story" style="width:60%" />
+							<input type="text" name="story" style="width:60%" placeholder="내용"/>
 							<br />
 							<label for="trailer" style="display:block;">트레일러</label>
-							<input type="text" name="trailer" style="width:60%" />
+							<input type="text" name="trailer" style="width:60%" placeholder="first/second/third"/>
 							<br />
 						
 							<label for="poster" style="display:block;">스틸컷</label>

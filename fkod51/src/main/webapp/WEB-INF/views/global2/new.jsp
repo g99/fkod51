@@ -1040,7 +1040,7 @@ var Members = {
 				success : function(data) {
 					//로그인 결과가 성공이면
 					if(data.id != null){
-						$("#bs-navbar").load(context + "/member/headerReload #bs-navbar");
+						$("#topNav").load(context + "/member/headerReload #topNav");
 						location.reload();
 					} else{
 					//로그인 결과가 실패면 (데이터가 널이면,)
@@ -1185,6 +1185,10 @@ var Members = {
 				}
 			});
 		},
+		
+		mypageData : function() {
+			alert("유저아이디" + userid);
+		}
 		
 };
 </script>

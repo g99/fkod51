@@ -119,9 +119,14 @@
 					// 각각의 글을 클릭하면
 					$.each(data.list, function(index, value) {
 						$("#read" + arr[index]).click(function() {
-							newEvent.getData(arr[index]);
-							var temp = $("#"+this.id).parent().next().next().next().text();
-							$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
+							var bool = false;
+							if (userid != $("#"+this.id).parent().next().text()) {
+								var temp = $("#"+this.id).parent().next().next().next().text();
+								$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
+							} else {
+								bool = true;
+							}
+							newEvent.getData(bool,arr[index]);
 						});
 					});
 				});
@@ -172,8 +177,8 @@
 						
 						var pagination = 
 								'<div style="; ">'
-								+ '<button id="list" style="float:left; margin-left:80px; color:black;">목록</button>'
-								+ '<button id="write" style="margin-right:80px; float:right; color:black;">글쓰기</button>'
+								+ '<button id="list" class="btn btn-primary" style="float:left; margin-left:80px;">목록</button>'
+								+ '<button id="write" class="btn btn-primary" data-toggle="modal" data-target="#writeModal" style="margin-right:80px; float:right;">글쓰기</button>'
 								+ '</div>'
 								+ '<table id="pagination">'
 								+ '<tr>'
@@ -253,9 +258,14 @@
 						// 각각의 글을 클릭하면
 						$.each(data.list, function(index, value) {
 							$("#read" + arr[index]).click(function() {
-								newEvent.getData(arr[index]);
-								var temp = $("#"+this.id).parent().next().next().next().text();
-								$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
+								var bool = false;
+								if (userid != $("#"+this.id).parent().next().text()) {
+									var temp = $("#"+this.id).parent().next().next().next().text();
+									$("#"+this.id).parent().next().next().next().text(parseInt(temp)+1);
+								} else {
+									bool = true;
+								}
+								newEvent.getData(bool,arr[index]);
 							});
 						});
 					},
@@ -285,10 +295,11 @@
 			},
 			//////////// 글의 내용을 읽어오는 역할 ///////////////
 			//////////// 여기서 data는 rcdNo을 의미함 //////////
-			getData : function(data) {
+			getData : function(bool, data) {
 				$("#code").html(data);
 				$.ajax(context + "/article/read",{
 					data : {
+						"myself" : bool, 
 						"code" : data
 					},
 					success : function(data) {

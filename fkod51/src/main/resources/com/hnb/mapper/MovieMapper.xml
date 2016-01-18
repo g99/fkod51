@@ -21,7 +21,7 @@
       	TRAILER AS trailer,
       	COUNTRY AS country,
    		T_RATE AS tRate
-      	FROM MOVIE ORDER BY T_RATE DESC LIMIT 10;
+      	FROM MOVIE ORDER BY T_RATE DESC;
       </select>
       <select id="selectNameBy" resultType="com.hnb.movie.MovieVO" parameterType="string">
       SELECT 
