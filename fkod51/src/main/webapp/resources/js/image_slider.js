@@ -13,7 +13,9 @@ var slider = {
 	ul = document.getElementById('image_slider');
 	liItems = ul.children;
 	imageNumber = liItems.length;
-	imageWidth = liItems[0].children[0].clientWidth;
+	imageWidth = $(".image_container").width();
+	imageWidth = imageWidth/2;
+	alert(imageWidth);
 	ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
 	prev = document.getElementById("prev");
 	next = document.getElementById("next");
@@ -24,6 +26,7 @@ var slider = {
 	next.onclick = function(){slide(1);};*/
 	prev.onclick = function(){ slider.onClickPrev();};
 	next.onclick = function(){ slider.onClickNext();};
+	$(".image_container img").css("width",imageWidth);
 },
 
 animate : function(opts){
