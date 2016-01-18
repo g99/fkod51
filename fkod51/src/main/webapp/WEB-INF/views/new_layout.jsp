@@ -31,11 +31,10 @@
     <!-- css추가 준규-->
     <link rel="stylesheet" href="${css}/new_event.css" />
     <link rel="stylesheet" href="${css}/image_slider.css" />
-    <script type="text/javascript" src="${js}/image_slider.js"></script>
-    
 
     <!-- js추가 준규 -->
     <script type="text/javascript" src="${js}/new_event.js"></script>
+    <script type="text/javascript" src="${js}/image_slider.js"></script>
 
     <!-- 커스텀 css -->
     <link rel="stylesheet" href="${css}/tab.css" />

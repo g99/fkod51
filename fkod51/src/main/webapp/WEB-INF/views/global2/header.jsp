@@ -82,7 +82,7 @@
 <header id="first">
      <div class="header-content">
          <div class="inner" style="padding-top:45%;">
-             <h1 class="cursive">MTB BOX</h1>
+             <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
              <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
@@ -116,9 +116,10 @@
 			this.remove();
 			slider.init();
 			$(".inner").animate({
-				"padding-top" : "0"
+				"padding-top" : "0",
 			},1000, function() {
 				$(".image_container").removeAttr("style");
+				$(".inner h1, .inner h4").css("color","bisque");
 			});
 			
 			});
