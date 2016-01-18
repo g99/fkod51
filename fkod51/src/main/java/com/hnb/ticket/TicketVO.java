@@ -7,6 +7,7 @@ public class TicketVO {
 	private String ticketNumber;
 	private String id;
 	private String filmNumber;
+	private String filmName;
 	private int theaterSeq;
 	private String roomName;
 	private String seatNumber;
@@ -90,5 +91,10 @@ public class TicketVO {
 	public void setTheaterSeq(int theaterSeq) {
 		this.theaterSeq = theaterSeq;
 	}
-	
+	public String getFilmName() {
+		return filmName;
+	}
+	public void setFilmName(String filmName) {
+		this.filmName = filmName;
+	}
 }

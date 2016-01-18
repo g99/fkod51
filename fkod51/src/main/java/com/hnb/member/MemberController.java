@@ -207,6 +207,7 @@ public class MemberController {
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저 비밀번호: {}", pw);
 		member = service.login(id, pw);
+		// 테이블을 조인시켜 예매자에 따른, 필름넘버를 기준으로 영화제목들을 가져옴.
 		tickets = ticketService.getTicketVO(id);
 		logger.info("티켓 정보는?: {}", tickets);
 		if (member != null) {
@@ -230,7 +231,7 @@ public class MemberController {
 		logger.info("멤버컨트롤러 myTicket() - 진입");
 		logger.info("티켓인덱스는? : {}", indexNum);
 		List<TicketVO> temp = (List<TicketVO>) session.getAttribute("tickets");
-		logger.info("티켓브이오는?" + temp.get(indexNum).getDate());
+		logger.info("티켓브이오는?" + temp.get(indexNum).getFilmName());
 		/*model.addAttribute("ticket",temp);*/
 		return temp.get(indexNum);
 	}
@@ -242,7 +243,7 @@ public class MemberController {
 			Model model){
 		logger.info("멤버컨트롤러 ticketList() - 진입");
 		List<TicketVO> ticketList = (List<TicketVO>) session.getAttribute("tickets");
-		System.out.println("스트링 값은?"+ticketList);
+		System.out.println("상세페이지에 줄 값들은?"+ticketList);
 		/*model.addAttribute("ticket",temp);*/
 		return ticketList;
 	}

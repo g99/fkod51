@@ -74,15 +74,15 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner">
+         <div class="inner" style="float: left; margin-bottom: 33%;">
              <h1 class="cursive">MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
-             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
+             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-block" style="font-size: 14px; width: 120px; margin: auto;">동영상 끄기</a>
          </div>
      </div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-         <source src="https://s3-us-west-2.amazonaws.com/coverr/mp4/Traffic-blurred2.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+         <source src="https://drive.google.com/uc?export=download&id=0B_3U5fUQs_8KQ0FBenlSUE9mc1U" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
      <div id = "open_Wrap"></div>
 </header>
@@ -92,7 +92,8 @@
 		 $("#toggleVideo").click(function() {
 			 	$("#toggleVideo").remove();
 				$(".header-content").animate({
-					"padding-bottom":"40%"
+					"padding-bottom":"20%",
+					"padding-left":"44%"
 				},1200);
 				$("#open_Wrap").load(context + "/home");
 		 });
