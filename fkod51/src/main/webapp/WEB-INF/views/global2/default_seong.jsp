@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 	
+	
+<div class="container">
+			<div class="slider_wrapper">
+				<ul id="image_slider">
+					<li><img src="${img}/movie-slide1.jpg"></li>
+					<li><img src="${img}/movie-slide2.jpg"></li>
+					<li><img src="${img}/movie-slide3.jpg"></li>
+					<li><img src="${img}/movie-slide4.jpg"></li>
+					<li><img src="${img}/movie-slide5.jpg"></li>
+				</ul>					
+				<span class="nvgt" id="prev"></span>
+				<span class="nvgt" id="next"></span>		
+			</div>
+			<ul id="pager">
+			</ul>
+</div>
+
+<%-- 	
 <div class="container" style="background: rgba(180, 181, 168, 0.19);">
 	<div class="row">
 		<div class="box">
@@ -52,4 +69,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --%>

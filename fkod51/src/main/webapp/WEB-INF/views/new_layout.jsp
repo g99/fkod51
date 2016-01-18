@@ -27,11 +27,11 @@
      <!-- 무비  -->
     <script src="${js}/movie.js"></script>
     <link rel="stylesheet" href="${css}/movie.css" />
-    <!-- css추가 -->
-    <link rel="stylesheet" href="" />
 
     <!-- css추가 준규-->
     <link rel="stylesheet" href="${css}/new_event.css" />
+    <link rel="stylesheet" href="${css}/image_slider.css" />
+    <script type="text/javascript" src="${js}/image_slider.js"></script>
     
 
     <!-- js추가 준규 -->

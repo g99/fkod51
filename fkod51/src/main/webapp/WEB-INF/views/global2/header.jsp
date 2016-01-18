@@ -81,30 +81,47 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner">
+         <div class="inner" style="padding-top:45%;">
              <h1 class="cursive">MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
              <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
          </div>
+         <div class="image_container" style="visibility:hidden;">
+			 <div class="slider_wrapper">
+				<ul id="image_slider">
+					<li><img src="${img}/movie-slide1.jpg"></li>
+					<li><img src="${img}/movie-slide2.jpg"></li>
+					<li><img src="${img}/movie-slide3.jpg"></li>
+					<li><img src="${img}/movie-slide4.jpg"></li>
+					<li><img src="${img}/movie-slide5.jpg"></li>
+					<li><img src="${img}/movie-slide6.jpg"></li>
+				</ul>					
+				<span class="nvgt" id="prev"></span>
+				<span class="nvgt" id="next"></span>		
+			 </div>
+			 <ul id="pager">
+			 </ul>
+	     </div>
      </div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.0s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
          <source src="https://drive.google.com/uc?export=download&id=0B_K1Ynnn_h7QMFdybTM0TTRacGM" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
-     <div id = "open_Wrap"></div>
 </header>
 
 <script>
 	 var userid = "${userid}";
 	 $(function() {
-			
 		 $("#toggleVideo").click(function() {
-			 	$("#toggleVideo").remove();
-				$(".header-content").animate({
-					"padding-bottom":"40%"
-				},1200);
-				$("#open_Wrap").load(context + "/home");
-		 });
+			this.remove();
+			slider.init();
+			$(".inner").animate({
+				"padding-top" : "0"
+			},1000, function() {
+				$(".image_container").removeAttr("style");
+			});
+			
+			});
 		 newEvent.init(1);
 		 
 	 });
