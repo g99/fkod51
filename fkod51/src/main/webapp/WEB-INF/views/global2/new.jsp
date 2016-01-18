@@ -355,7 +355,8 @@
              		
              		<button type="button" id="btn_My_Ticket"
                     style="margin-top:6px; margin-left: 81px; 
-                    width: 130px; border-radius: 10px; float: left;" 
+                    width: 130px; border-radius: 10px; float: left;"
+                    data-toggle="modal" data-dismiss="modal" 
                     class="btn btn-primary btn-block">내 예매내역보기</button>
               
                    <%--  <c:forEach var="ticket" items="${tickets}" varStatus="status">
@@ -365,6 +366,30 @@
                 </form>
             </div>
             
+    	</div>
+    </div>
+    </div>
+</div>
+
+
+
+
+<!-- 티켓 모달 & 티켓 리스트-->
+<div id="ticket_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
+    	<div class="modal-body" id="ticket_Booking_List">
+    		
+    	</div>
+    </div>
+    </div>
+</div>
+
+<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->
+<div id="ticket_Info_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+    <div class="modal-dialog">
+    <div class="modal-content" style="height:590px; width:400px; margin-left:100px;">
+    	<div class="modal-body" id="ticket_Info">
     	</div>
     </div>
     </div>
@@ -805,6 +830,7 @@ $("#btn_Delete").click(function(){
 
 
 $("#btn_My_Ticket").click(function(){
+	$('#btn_My_Ticket').attr("data-target","#ticket_Modal"); // btn_My_Ticket으로 가서 그곳에 있는 modal 데이터 타켓 속성을 ticket-Modal로 준다.
 	$.getJSON(context + '/member/ticket_List', function(data) {
 		var ticket_Page_Main ='';
 		var ticket_Page_Footer ='';
@@ -820,27 +846,26 @@ $("#btn_My_Ticket").click(function(){
             	+'<div class="col-md-4" style="width: 300px;">'
                     +'<label></label>';
 		$.each(data, function(index,value){ //this, value = data[i]
-			ticket_Page_Main += '<input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;">'
+			ticket_Page_Main += '<input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;" data-dismiss="modal" data-toggle="modal">'
 			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.ticketNumber+'</label><br/>'
 			+'<div style="height:5px;"></div>'
          });
 			ticket_Page_Footer += '</div>'
-	        +'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+	        +'<a class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
 	        +'style="margin-top:10px; width: 100px; border-radius: 10px; float: left;" title="close&replace"'
-	        +'id="close">닫기</button>'
+	        +'id="close" href="#mypage_Modal">닫기</a>'
 	        +'</form>'
 	    	+'</div>';
-	    	
 	    	ticket_Page_Header += ticket_Page_Main;
 	    	ticket_Page_Header += ticket_Page_Footer;
-	        $('#mypage').html(ticket_Page_Header);
-	        $('#close').click(function(){
-				location.reload();
-			});
+	        $('#ticket_Booking_List').html(ticket_Page_Header);
+	        
+	        
 	        $(".ticket_info").click(function() {
 	        	/* 인덱스값 받아와서 컨트롤러로 전송, 인덱스에 해당하는 영화정보를 세션에서 불러옴. */
 	        	if(confirm('티켓정보를 확인하시겠습니까?')) {
 	        		var indexNum = $("input:radio[name=tickets]:checked").val();
+	        		$('.ticket_info').attr("data-target","#ticket_Info_Modal");
 	            	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
 	            	var ticket = '<h2 class="text-center">Ticket Page</h2>'
 	            		+'<hr />'
@@ -883,16 +908,13 @@ $("#btn_My_Ticket").click(function(){
 	                                	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
 	                                	+'<div style="height:12px;"></div>'
 	                            	+'</div>'
-	                         	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
+	                         	  	+'<a class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
 	                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
-	                         	  	+'id="close">닫기</button>'
+	                         	  	+'href="#ticket_Modal">닫기</a>'
 	                        +'</form>'
 	                    +'</div>'
-	                    $('#mypage').empty();		
-	                    $('#mypage').html(ticket);		
-	            		$('#close').click(function(){
-	            			location.reload();
-	            		});		
+	                    $('#ticket_Info').empty();		
+	                    $('#ticket_Info').html(ticket);		
 	            	});
 	            }
 	        });
