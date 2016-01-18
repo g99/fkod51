@@ -27,7 +27,6 @@
 
 <!-- 예매 -->
 <section id="three" style="height:100%;">
-    
 </section>
 
 <!-- 극장 -->
