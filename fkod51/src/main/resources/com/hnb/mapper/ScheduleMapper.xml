@@ -78,9 +78,7 @@
      </select>
      
      <select id="getSeatList" resultType="com.hnb.schedule.RoomVO" parameterType="map">
-		SELECT ROOM.* 
-		FROM ROOM, THEATER 
-		WHERE THEATER.THEATER_NAME = #{theater} AND ROOM.ROOM_NAME = #{room}
+		SELECT ROOM.* FROM ROOM WHERE THEATER_SEQ = (SELECT THEATER_SEQ FROM THEATER WHERE THEATER_NAME = #{theater}) AND ROOM.ROOM_NAME = #{room};
      </select>
      <select id="getScheduleSeq" resultType="string" parameterType="map">
 		SELECT DISTINCT SCHEDULE.SEQ FROM SCHEDULE

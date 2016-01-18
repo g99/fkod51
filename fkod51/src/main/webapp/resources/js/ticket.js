@@ -42,6 +42,7 @@ var Ticket = {
 								$timel = val;
 								}
 							});
+							
 							//alert("Ticket tl :"+Ticket.$theaterlist+"   가져온tl :"+$tl);
 							if (String(Ticket.$theaterlist)!==String($tl)) {
 								var theater_list = 
