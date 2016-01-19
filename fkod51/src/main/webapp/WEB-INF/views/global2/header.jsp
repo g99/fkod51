@@ -85,7 +85,7 @@
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
-             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-xl">동영상 끄기</a>
+             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-block" style="font-size: 14px; width: 120px; margin: auto;">동영상 끄기</a>
          </div>
          <div class="image_container" style="visibility:hidden;">
 			 <div class="slider_wrapper">
@@ -104,8 +104,8 @@
 			 </ul>
 	     </div>
      </div>
-     <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.0s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-         <source src="https://drive.google.com/uc?export=download&id=0B_K1Ynnn_h7QMFdybTM0TTRacGM" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+     <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
+         <source src="https://drive.google.com/uc?export=download&id=0B_3U5fUQs_8KQ0FBenlSUE9mc1U" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
 </header>
 
@@ -123,7 +123,6 @@
 			});
 			
 			});
-		 newEvent.init(1);
-		 
+		 newEvent.init(1);		 
 	 });
  </script>

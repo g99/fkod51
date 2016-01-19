@@ -70,6 +70,7 @@ public class TicketController {
 		ticket.setOldMan(ol);
 		ticket.setTeenager(te);
 		ticket.setPrice(Integer.parseInt(price));
+		ticket.setFilmName(movie);
 		
 		ticketService.book(ticket);
 		String scheduleSeq = scheduleService.getScheduleSeq(filmNumber,theater,roomName,date,startTime)+"-";
