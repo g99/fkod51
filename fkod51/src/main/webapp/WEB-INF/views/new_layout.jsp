@@ -61,7 +61,7 @@
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div id="content">
-			<section class="sectionClass">
+			<section class="sectionClass" style="padding-top:0;">
 				<div class="mainView">
 					<tiles:insertAttribute name="content" />
 				</div>

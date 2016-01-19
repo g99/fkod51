@@ -1,4 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- 헤더 -->
+<header id="first">
+     <div class="header-content">
+         <div class="inner" style="padding-top:35%;">
+             <h1 class="cursive" >MTB BOX</h1>
+             <h4>세상을 바꾸는 힘.</h4>
+             <hr>
+             <a href="#video-background" id="toggleVideo" data-toggle="collapse" class="btn btn-primary btn-block" style="font-size: 14px; width: 120px; margin: auto;">동영상 끄기</a>
+         </div>
+         <div class="image_container" style="visibility:hidden;">
+			 <div class="slider_wrapper">
+				<ul id="image_slider">
+					<li><img src="${img}/movie-slide1.jpg" style="height:100%;"></li>
+					<li><img src="${img}/movie-slide2.jpg" style="height:100%;"></li>
+					<li><img src="${img}/movie-slide3.jpg" style="height:100%;"></li>
+					<li><img src="${img}/movie-slide4.jpg" style="height:100%;"></li>
+					<li><img src="${img}/movie-slide5.jpg" style="height:100%;"></li>
+					<li><img src="${img}/movie-slide6.jpg" style="height:100%;"></li>
+				</ul>					
+				<span class="nvgt" id="prev"></span>
+				<span class="nvgt" id="next"></span>		
+			 </div>
+			 <ul id="pager">
+			 </ul>
+	     </div>
+     </div>
+     <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="${img}/main.png" id="video-background">
+         <source src="${context}/resources/intro/intro.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+     </video>
+</header>
 
 <!-- 트레일러&이벤트 -->
 <section class="bg-primary" id="one" style="">
@@ -929,7 +959,7 @@ var Members = {
 				success : function(data) {
 					//로그인 결과가 성공이면
 					if(data.id != null){
-						$("#topNav").load(context + "/member/headerReload #topNav");
+						$("#bs-navbar").load(context + "/member/headerReload #bs-navbar");
 						$("#mypage_Id").val(data.id);
 						$("#mypage_email").val(data.email);
 						$("#mypage_Phone").val(data.phone);
@@ -949,7 +979,6 @@ var Members = {
 				error : function() {
 				}
 			});
-
 		},
 		
 		join_Auth : function() {
