@@ -5,7 +5,7 @@
 	<div style="width: 95%; height: 95%; margin: auto;">
 		<div>
 			<iframe style="width: 70%; height: 90%; float: left; border: none;"
-				src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
+				src="https://www.youtube.com/v/UZy8aopPmwE"> </iframe>
 		</div>
 		<div style="width: 10%; height: 90%; float: left; margin-left: 15px;">
 			<img src="${img}/naebuja_Main.jpg" alt="sample_img"
@@ -385,7 +385,7 @@
     </div>
 </div>
 
-<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->
+<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->"src/main/webapp/WEB-INF/views/global2/new3.jsp"
 <div id="ticket_Info_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
     <div class="modal-dialog">
     <div class="modal-content" style="height:590px; width:400px; margin-left:100px;">
@@ -470,7 +470,7 @@
 
 
 <!-- 업데이트 페이지 - 정보수정 버튼 클릭했을 때 -->
-<div id="update_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+<div id="update_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
     	<div class="modal-body">
@@ -512,10 +512,13 @@
                         <div style="height:12px;"></div>
                     </div>
                     
-                    <button type="button" id="btn_Update"
-                    style="margin-top:6px; margin-left: 45px; 
-                    width: 100px; border-radius: 10px; float: left;" 
-                    class="btn btn-primary btn-block" data-dismiss="modal">정보수정</button>
+                    <button type="button" id="btn_Update" 
+                    data-toggle="modal"
+                    data-dismiss="modal"
+                    style="margin-top:6px; margin-left: 45px;
+                    width: 100px; border-radius: 10px; float: left;"
+                    title="Update"
+                    class="btn btn-primary btn-block">정보수정</button>
                     
                     <button type="button" id="btn_Delete"
                     style="margin-top:6px; width: 100px; margin-left: 10px; border-radius: 10px; float: left;" 
@@ -933,64 +936,6 @@ $("#btn_My_Ticket").click(function(){
 
 
 
-
-/* 바로위의 메서드로 구문을 옮김
-   $(".ticket_info").click(function() {
-	var indexNum = $("input:radio[name=tickets]:checked").val();
-	
-	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
-	alert('밸류는?'+data.date);	      
-	var ticket = '<h2 class="text-center">Ticket Page</h2>'
-		+'<hr />'
-		+'<h5 class="text-center">'
-		+'예매 상세페이지 (Ticket Page)'
-		+'</h5>'
-		+'<br />'
-		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
-            +'<form class="contact-form row">'
-				+'<div class="col-md-4" style="width: 300px;">'
-                		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
-       	        	+'<div style="height:12px;"></div>'
-               +'</div>'
-            		+'<div class="col-md-4" style="width: 300px;">'
-                    	+'<label></label>'
-                    	+'<input type="text" class="form-control" value="강남" id="my_Ticket_Location" readonly="readonly" style="color: black;">'
-                	+'<div style="height:12px;"></div>'
-                	+'</div>'
-                	+'<div class="col-md-4" style="width: 300px;">'
-                 	   +'<label></label>'
-                 	   +'<input type="text" class="form-control" value="'+data.roomName+'" id="my_Ticket_RoomName" readonly="readonly" style="color: black;">'
-               		+'<div style="height:12px;"></div>'
-               		+'</div>'
-               		+'<div class="col-md-4" style="width: 300px; float: left;">'
-                  		+'<label></label>'
-                   		+'<input type="text" class="form-control" value="'+data.seatNumber+'" id="my_Ticket_SeatNumber" readonly="readonly" style="color: black;">'
-                    +'<div style="height:12px;"></div>'
-                	+'</div>'
-                	+'<div class="col-md-4" style="width: 300px; float: left;">'
-                    	+'<label></label>'
-                    	+'<input type="text" class="form-control" value="'+data.date+'" id="my_Ticket_Date" readonly="readonly" style="color: black;">'
-                    	+'<div style="height:12px;"></div>'
-                	+'</div>'
-                	+'<div class="col-md-4" style="width: 300px; float: left;">'
-                    	+'<label></label>'
-                    	+'<input type="text" class="form-control" value="'+data.startTime+'" id="my_Ticket_StartTime" readonly="readonly" style="color: black;">'
-                    	+'<div style="height:12px;"></div>'
-                	+'</div>'
-             	  	+'<button class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
-             	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
-             	  	+'id="close">닫기</button>'
-            +'</form>'
-        +'</div>'
-        $('#mypage').html(ticket);		
-		$('#close').click(function(){
-			location.reload();
-		});		
-	});
-}); */
-
-
-
 var Members = {
 		login : function() {
 			$.ajax(context + "/member/login",{
@@ -1088,7 +1033,6 @@ var Members = {
 				type : 'post',
 				contentType : "application/json;",
 				mimeType: "application/json;",
-				async : false,
 				success : function(data) {
 					if(data.result == "success"){
 						alert("회원정보수정이 완료되었습니다.");
@@ -1145,7 +1089,9 @@ var Members = {
 					document.getElementById('check_Msg').innerHTML = "아이디를 입력하세요.";
 				}
 			});
+			
 		},
 		
 };
+
 </script>
