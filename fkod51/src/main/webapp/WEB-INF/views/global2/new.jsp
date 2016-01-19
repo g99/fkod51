@@ -5,7 +5,7 @@
 	<div style="width: 95%; height: 95%; margin: auto;">
 		<div>
 			<iframe style="width: 70%; height: 90%; float: left; border: none;"
-				src="https://www.youtube.com/embed/UZy8aopPmwE"> </iframe>
+				src="https://www.youtube.com/v/UZy8aopPmwE"> </iframe>
 		</div>
 		<div style="width: 10%; height: 90%; float: left; margin-left: 15px;">
 			<img src="${img}/naebuja_Main.jpg" alt="sample_img"

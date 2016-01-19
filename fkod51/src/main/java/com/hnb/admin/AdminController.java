@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -42,7 +43,7 @@ public class AdminController {
 	@Autowired TicketServiceImpl ticketService;
 	@RequestMapping("")
 	public String home(){
-		logger.info("AdminController-home() 진입");
+		logger.info("AdminController-login() 진입");
 		return "admin/login.jsp";
 	}
 	
@@ -153,6 +154,11 @@ public class AdminController {
 		memberService.remove(id);
 		model.addAttribute("result",id+"님의 탈퇴를 완료했습니다.");
 		return model;
+	}
+	
+	@RequestMapping("/logout")
+	public void logout(SessionStatus status){
+		status.setComplete();
 	}
 	
 	@RequestMapping("/login")

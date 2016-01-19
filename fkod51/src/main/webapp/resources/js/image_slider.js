@@ -15,7 +15,6 @@ var slider = {
 	imageNumber = liItems.length;
 	imageWidth = $(".image_container").width();
 	imageWidth = imageWidth/2;
-	alert(imageWidth);
 	ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
 	prev = document.getElementById("prev");
 	next = document.getElementById("next");

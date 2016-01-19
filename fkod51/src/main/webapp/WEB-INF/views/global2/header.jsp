@@ -45,13 +45,6 @@
 					</li>
 				</c:if>
 				
-				<!-- 로그인 한 후, 로그아웃 버튼 (클릭시, 현재 서버의 logout을 타고 완전 메인으로 리다이렉트 하도록 설정함.) => 현재 이 기능은 마이페이지에서 구현하고 있음
-				<c:if test= "${not empty sessionScope.user}">
-					<li><a class="page-scroll" href="${context}/member/logout" 
-					style="font-size: 1.5em;">로그아웃</a>
-					</li>
-				</c:if>
-				-->
 				
             </ul>
             <!-- 로그인을 하지 않았을 때 -->
@@ -81,7 +74,7 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner" style="padding-top:45%;">
+         <div class="inner" style="padding-top:35%;">
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
@@ -104,8 +97,8 @@
 			 </ul>
 	     </div>
      </div>
-     <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="https://s3-us-west-2.amazonaws.com/coverr/poster/Traffic-blurred2.jpg" id="video-background">
-         <source src="https://drive.google.com/uc?export=download&id=0B_3U5fUQs_8KQ0FBenlSUE9mc1U" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+     <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="${img}/main.png" id="video-background">
+         <source src="${context}/resources/intro/bigshort.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
 </header>
 
@@ -113,6 +106,8 @@
 	 var userid = "${userid}";
 	 $(function() {
 		 $("#toggleVideo").click(function() {
+			var video = document.getElementById("video-background");
+			video.pause();
 			this.remove();
 			slider.init();
 			$(".inner").animate({

@@ -27,7 +27,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>MTB</span> 관리자 </a>
+				<a class="navbar-brand" href="${context}/admin/main"><span>MTB</span> 관리자 </a>
+				<a id="admin_logout" class="navbar-brand" href="#" style="float:right;">로그아웃</a>
 			</div>
 							
 		</div><!-- /.container-fluid -->
@@ -143,6 +144,21 @@
 		})
 		
 		$(function() {
+			/* 로그아웃 */
+			$("#admin_logout").click(function() {
+				$.ajax(context + "/admin/logout",{
+					data : {
+						
+					},
+					success : function() {
+						location.href = context + "/";
+					},
+					error : function() {
+						
+					}
+				});
+			});
+			
 			/* 등록버튼 클릭시 */
 			$("#add").click(function() {
 				location.href = context + "/admin/add_movie";

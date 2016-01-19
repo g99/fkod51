@@ -27,7 +27,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>MTB</span>관리자</a>
+				<a class="navbar-brand" href="${context}/admin/main"><span>MTB</span>관리자</a>
+				<a id="admin_logout" class="navbar-brand" href="#" style="float:right;">로그아웃</a>
 			</div>
 							
 		</div><!-- /.container-fluid -->
@@ -60,9 +61,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">방문자 수</div>
-					<div class="panel-body">
-						<div id="chart_div"></div>
-					</div>
+					<iframe src="https://calendar.google.com/calendar/embed?src=atoem2gqk6m2b38bijnko0b3ho%40group.calendar.google.com&ctz=Asia/Seoul" style="padding: 10px; border: 0;" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
 				</div>
 			</div>
 		</div><!--/.row-->	
@@ -99,8 +98,6 @@
 	<script src="${admin_js}/jquery-1.11.1.min.js"></script>
 	<script src="${admin_js}/bootstrap.min.js"></script>
 	<script src="${admin_js}/bootstrap-datepicker.js"></script>
-	<!-- 막대차트 -->
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script>
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
@@ -117,12 +114,26 @@
 		})
 		
 		$(function() {
-			google.charts.load('current', {packages: ['corechart', 'bar']});
-			google.charts.setOnLoadCallback(drawBasic);
+			/* 로그아웃 */
+			$("#admin_logout").click(function() {
+				$.ajax(context + "/admin/logout",{
+					data : {
+						
+					},
+					success : function() {
+						location.href = context + "/";
+					},
+					error : function() {
+						
+					}
+				});
+			});
 			
+			/* 체크리스트 */
 			$("#delete").click(function() {
 				$("#checkbox:checked").parent().parent().remove();
 			});
+			
 			$("#btn-todo").click(function() {
 				$(".todo-list").append(
 						'<li class="todo-list-item">'
@@ -135,52 +146,6 @@
 				$("#btn-input").val("");
 			});
 		});
-		function drawBasic() {
-
-		      var data = new google.visualization.DataTable();
-		      data.addColumn('timeofday', 'Time of Day');
-		      data.addColumn('number', '방문자 수');
-
-		      data.addRows([
-		        [{v: [9, 0, 0], f: '9 am'}, 2],
-		        [{v: [10, 0, 0], f:'10 am'}, 3],
-		        [{v: [11, 0, 0], f: '11 am'}, 4],
-		        [{v: [12, 0, 0], f: '12 pm'}, 5],
-		        [{v: [13, 0, 0], f: '1 pm'}, 10],
-		        [{v: [14, 0, 0], f: '2 pm'}, 12],
-		        [{v: [15, 0, 0], f: '3 pm'}, 7],
-		        [{v: [16, 0, 0], f: '4 pm'}, 15],
-		        [{v: [17, 0, 0], f: '5 pm'}, 18],
-		        [{v: [18, 0, 0], f: '6 pm'}, 24],
-		        [{v: [19, 0, 0], f: '7 pm'}, 20],
-		        [{v: [20, 0, 0], f: '8 pm'}, 15],
-		        [{v: [21, 0, 0], f: '9 pm'}, 10],
-		        [{v: [22, 0, 0], f: '10 pm'}, 7],
-		        [{v: [23, 0, 0], f: '11 pm'}, 5],
-		        [{v: [24, 0, 0], f: '12 pm'}, 2],
-		      ]);
-
-		      var options = {
-		        title: '',
-		        hAxis: {
-		          format: 'h:mm a',
-		          viewWindow: {
-		            min: [8, 30, 0],
-		            max: [24, 30, 0]
-		          }
-		        },
-		        vAxis: {
-		        	title : ""
-		        },
-		        width : '100%',
-		        height : '500'
-		      };
-
-		      var chart = new google.visualization.ColumnChart(
-		        document.getElementById('chart_div'));
-
-		      chart.draw(data, options);
-		    }
 	</script>
 </body>
 

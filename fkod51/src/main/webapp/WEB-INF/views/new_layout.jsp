@@ -4,6 +4,7 @@
 <html lang="kr">
 <head>
 <meta charset="UTF-8" />
+<LINK REL="SHORTCUT ICON" HREF="${img}/favicon.ico" />
 <title>FKOD51 THEATER</title>
   	<meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +48,6 @@
     <!-- 예매부분 -->
     <script type="text/javascript">
     $(function() {
-    	
     	Ticket.main();
     	//tabs.make();
 		Ticket.initList("${context}");
