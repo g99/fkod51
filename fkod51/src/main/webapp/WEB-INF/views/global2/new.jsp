@@ -2,7 +2,7 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner" style="float:left; margin-bottom:33%;">
+         <div class="inner" style="padding-top:45%;">
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
@@ -720,6 +720,7 @@
 <script type="text/javascript">
 
 $(function() {
+
 	Movie.ranking();
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
