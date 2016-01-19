@@ -2,7 +2,7 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner" style="padding-top:45%;">
+         <div class="inner" style="margin-right: 84%; margin-top: 2%">
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
@@ -720,7 +720,22 @@
 <script type="text/javascript">
 
 $(function() {
-
+	/* 메인 동영상 및 로고 */
+	 $("#toggleVideo").click(function() {
+				var video = document.getElementById("video-background");
+				video.pause();
+				this.remove();
+				slider.init();
+				$(".inner").animate({
+					"margin-right" : "16%"
+				},1000, function() {
+					$(".image_container").removeAttr("style");
+					$(".inner h1, .inner h4").css("color","bisque");
+				});
+				
+				});
+	
+	
 	Movie.ranking();
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //

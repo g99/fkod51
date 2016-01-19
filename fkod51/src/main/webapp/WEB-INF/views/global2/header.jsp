@@ -75,19 +75,6 @@
 <script>
 	 var userid = "${userid}";
 	 $(function() {
-		 $("#toggleVideo").click(function() {
-				var video = document.getElementById("video-background");
-				video.pause();
-				this.remove();
-				slider.init();
-				$(".inner").animate({
-					"padding-top" : "0",
-				},1000, function() {
-					$(".image_container").removeAttr("style");
-					$(".inner h1, .inner h4").css("color","bisque");
-				});
-				
-				});
 		 newEvent.init(1);		 
 	 });
  </script>
