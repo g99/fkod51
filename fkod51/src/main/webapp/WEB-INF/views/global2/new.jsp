@@ -2,7 +2,7 @@
 <!-- 헤더 -->
 <header id="first">
      <div class="header-content">
-         <div class="inner" style="padding-top:35%;">
+         <div class="inner" style="float:left; margin-bottom:33%;">
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
              <hr>
@@ -439,7 +439,7 @@
     </div>
 </div>
 
-<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->
+<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->"src/main/webapp/WEB-INF/views/global2/new3.jsp"
 <div id="ticket_Info_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
     <div class="modal-dialog">
     <div class="modal-content" style="height:590px; width:400px; margin-left:100px;">
@@ -451,7 +451,7 @@
 
 
 <!-- 업데이트 페이지 - 정보수정 버튼 클릭했을 때 -->
-<div id="update_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
+<div id="update_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content" style="height:540px; width:400px; margin-left:100px;">
     	<div class="modal-body">
@@ -493,10 +493,13 @@
                         <div style="height:12px;"></div>
                     </div>
                     
-                    <button type="button" id="btn_Update"
-                    style="margin-top:6px; margin-left: 45px; 
-                    width: 100px; border-radius: 10px; float: left;" 
-                    class="btn btn-primary btn-block" data-dismiss="modal">정보수정</button>
+                    <button type="button" id="btn_Update" 
+                    data-toggle="modal"
+                    data-dismiss="modal"
+                    style="margin-top:6px; margin-left: 45px;
+                    width: 100px; border-radius: 10px; float: left;"
+                    title="Update"
+                    class="btn btn-primary btn-block">정보수정</button>
                     
                     <button type="button" id="btn_Delete"
                     style="margin-top:6px; width: 100px; margin-left: 10px; border-radius: 10px; float: left;" 
@@ -935,19 +938,8 @@ $("#btn_My_Ticket").click(function(){
 	            	});
 	            }
 	        });
-	        
-	        
 	});
-	
-        
-
-       
-        	
-        
-        
-        
 });
-
 
 var Members = {
 		login : function() {
@@ -1055,7 +1047,6 @@ var Members = {
 				type : 'post',
 				contentType : "application/json;",
 				mimeType: "application/json;",
-				async : false,
 				success : function(data) {
 					if(data.result == "success"){
 						alert("회원정보수정이 완료되었습니다.");
@@ -1114,11 +1105,7 @@ var Members = {
 					document.getElementById('check_Msg').innerHTML = "아이디를 입력하세요.";
 				}
 			});
-		},
-		
-		mypageData : function() {
-			alert("유저아이디" + userid);
 		}
-		
 };
+
 </script>
