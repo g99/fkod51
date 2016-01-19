@@ -98,7 +98,7 @@
 	     </div>
      </div>
      <video autoplay="" loop="" class="fillWidth fadeIn wow collapse in" data-wow-delay="0.5s" poster="${img}/main.png" id="video-background">
-         <source src="${context}/resources/intro/bigshort.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+         <source src="${context}/resources/intro/intro.mp4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
      </video>
 </header>
 
