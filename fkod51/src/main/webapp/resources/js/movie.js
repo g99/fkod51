@@ -4,21 +4,21 @@ var Movie = {
 				},
 				ranking : function() {
 					var arr = [];
-					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;"></div>';
-					var test = '<a href="'+context+'/movie/t1000"><button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">네이버로 검색하기</button></a>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><button id="test" style="font-size: 13px; width: 130px; border-radius: 10px;float:left; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
+					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
-							rank += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+							rank += '<div style="float: left; width: 19%"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
 									+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-									+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+									+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 							arr.push(this.filmNumber);
 						});
 						rank += '</div></div>';
 						
 					$('#movielay').empty().append(rank);
-					$('#sWindow').empty().append(test).append(fWindow);
+					$('#sWindow').empty().append(fWindow);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
 							Movie.movieName(arr[i]);
@@ -26,6 +26,9 @@ var Movie = {
 					});
 					$('#search').click(function name() {
 						Movie.find($("input:text[name=search]").val());
+					})
+					$('#test').click(function() {
+						Movie.api($("input:text[name=search]").val());
 					})
 					});
 				},
@@ -36,19 +39,19 @@ var Movie = {
 						},
 						dataType : "json",
 						success : function(data) {
-							var fWindow ='<input type="text" name="search" style="color: black; font-size:30px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="width:55px; height:55px;">';
-							var reRank ='<img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="width:55px; height:55px;">';
+							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;float:left;">'
+										+'<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 							var arr = [];
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
 							$.each(data, function(index, value) {
-								result += '<div style="float: left;"><div class="chart_rank" id="chart_rank'+index+'">'
+								result += '<div style="float: left; width: 17%"><div class="chart_rank" id="chart_rank'+index+'">'
 										+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
-										+'alt="" width="280" height="300"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+										+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
 								arr.push(this.filmNumber);
 							});
 							result += '</div></div>';
 							$('#movielay').empty().append(result);
-							$('#sWindow').empty().append(fWindow).append(reRank);
+							$('#sWindow').empty().append(fWindow);
 							$.each(data, function(i, val) {
 								$('#'+arr[i]).click(function() {
 									Movie.movieName(arr[i]);
@@ -66,18 +69,56 @@ var Movie = {
 						}
 					})
 				},
+				api : function(keyword) {
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float: left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; float: left; padding-left:5px;"><button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
+					var test = '<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
+					var query = keyword;
+					var url = "https://apis.daum.net/contents/movie";
+					url += "?output=json";
+					url += "&apikey=7ceffb2166ac5a21e51fd4573ea1a17f"
+					url += "&q=" + query;
+					url += "&result=10";
+					url += "&callback=?";
+					
+					$.getJSON(url,function(data) {
+						result = '<div class="container-fluid"><div class="row no-gutter">';
+						for (var i in data.channel.item)
+						{
+							result += '<div style="float:left; width: 19%"><div class="chart_rank">'
+								+'<div class="chart_font_17 chart_bold" style="width:100%">'+data.channel.item[i].title[0].content+'</div>'
+								+'<a href="'+data.channel.item[i].title[0].link+'" data-toggle="modal" class="gallery-box" data-src=""><img src="'+data.channel.item[i].thumbnail[0].content+'" '
+								+'alt="" width="90%" height="40%"><div class="gallery-box-caption"><div class="gallery-box-content"><div><i class="icon-lg ion-ios-search"></i></div></div></div></a></div></div>';
+								+'</div></div>'
+							
+						} 
+						result += '</div></div>';
+					}).error(function(XMLHttpRequest, textStatus, errorThrown)
+					{          
+						result = textStatus;
+					}).complete(function(){
+						$('#movielay').empty().append(result);    
+						$('#sWindow').empty().append(fWindow);
+						$('#ranking').click(function() {
+							Movie.ranking();
+						})
+					});
+					
+				},
 				movieName : function(filmNumber) {
 		 			$.getJSON(context + '/movie/movie_name/'+filmNumber, 
 							function(data) {
+		 						var story = data.story;
+		 						var sdiv = story.replace(/\[/g,'<h3>');
+		 						var ediv = sdiv.replace(/\]/g,'</h3>');
 								var movieInfom = 
 									'<div id="movie_info" class="movie_info"><div id="movie_poster"><img id="movie_float" src="'+context+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'
 									+'<table id="movie_tab"><tr><th style="font-size: 18px">예매율</th><td> '+data.tRate+'%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
 									+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+', '+data.country+'분 '+'</td></tr><tr><th>개봉</th>'
-									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html">&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" style="font-size: 12px; width: 100px; border-radius: 10px; float:right; margin-right: 150px;" class="btn btn-primary btn-block"></a></td></tr></table>'
+									+'<td>'+data.releaseDate+' <a href="#">&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" style="font-size: 12px; width: 100px; border-radius: 10px; float:right; margin-right: 150px;" class="btn btn-primary btn-block" id="booking"></a></td></tr></table>'
 									+'</div>'
-									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20"><img src="'+context+'/resources//images/'+data.story+'.JPG;" alt="" /></div></div><hr/>'
+									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20">'+ediv+'</div></div><hr/>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" style="font-size: 15px; float: right; width: 130px; border-radius: 10px; margin-right: 570px;" class="btn btn-primary btn-block"></h2>'
 									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
 									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+context+'/resources/images/'+data.filmNumber+'2.jpg;" alt="" width="250" height="161" /></a></div>'
@@ -98,6 +139,9 @@ var Movie = {
 								$('#movie_poster').css('float', 'left').css('border', '1px solid black').css('width', '250px').css('height', '350px').css('margin', 'auto').css('margin-right','30px');
 								$('#movie_float').css('float', 'left');
 								$('#movie_tab').css('width', '400px').css('height', '300px').css('border-collapse', 'collapse');
+								$('#booking').click(function(data) {
+									alert(this);
+								})
 								$('#cutmore').click(function() {
 									
 									Movie.movieBasic(data.filmNumber);

@@ -27,7 +27,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>MTB</span>관리자</a>
+				<a class="navbar-brand" href="${context}/admin/main"><span>MTB</span>관리자</a>
+				<a id="admin_logout" class="navbar-brand" href="#" style="float:right;">로그아웃</a>
 			</div>
 							
 		</div><!-- /.container-fluid -->
@@ -49,14 +50,9 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Charts</h1>
-				
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">영화관리</h1>
+				<h1 class="page-header">차트관리</h1>
 			</div>
 		</div><!--/.row-->
 				
@@ -64,7 +60,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">일별 판매량</div>
+					<div class="panel-heading">요일별 판매량</div>
 					<div class="panel-body">
 						<div id="curve_chart"></div>
 					</div>
@@ -120,12 +116,34 @@
 		})
 		
 		$(function() {
+			/* 로그아웃 */
+			$("#admin_logout").click(function() {
+				$.ajax(context + "/admin/logout",{
+					data : {
+						
+					},
+					success : function() {
+						location.href = context + "/";
+					},
+					error : function() {
+						
+					}
+				});
+			});
+			/* 라인차트값 저장 */
 			lineChartFactor();
+			/* 파이차트값 저장 */
+			pieChartFactor();
+			
+			/* 도넛차트값 저장 */
+			donutChartFactor();
+			
 			/* 라인차트 그리기 */
 			google.charts.load('current', {'packages':['corechart']});
 		    google.charts.setOnLoadCallback(drawLineChart);
 		    /* 파이차트 그리기 */
 		    google.setOnLoadCallback(drawPieChart);
+		    /* 도넛차트 그리기 */
 		    google.setOnLoadCallback(drawDonutChart);
 		});
 		
@@ -146,17 +164,55 @@
     		         });
 			}
 		};
+		
+		var pieFactor = [];
+    	var pieChartFactor = function() {
+    			$.ajax(context + "/admin/pie_chart",{
+    		       	 data : {
+    		       		 
+    		       	 },
+    		       	 success : function(data) {
+    		       		pieFactor.push(["영화","예매율"]);
+    		       		for (var i = 0; i < data.names.length; i++) {
+    		       			pieFactor.push([data.names[i], data.list[data.names[i]]*100]);
+						}
+    		   		 },
+    		   		 error : function() {
+    		   			
+    		   		 }
+    		         });
+		};
+		
+		var donutFactor = [];
+    	var donutChartFactor = function() {
+    			$.ajax(context + "/admin/donut_chart",{
+    		       	 data : {
+    		       		 
+    		       	 },
+    		       	 async : false,
+    		       	 success : function(data) {
+    		       		donutFactor.push(["연령", "비율"]);
+    		       		donutFactor.push(["노인", data.oldman]);
+    		       		donutFactor.push(["성인", data.adult]);
+    		       		donutFactor.push(["청소년", data.teenager]);
+    		   		 },
+    		   		 error : function() {
+    		   			
+    		   		 }
+    		         });
+			
+		};
 
-	    function drawLineChart() {
+	   function drawLineChart() {
 	        var data = google.visualization.arrayToDataTable([
-	          ['요일',    '판매량',       '매출액'],
-	          ['월요일',  lineFactor[0],      20],
-	          ['화요일',  lineFactor[1],      40],
-	          ['수요일',  lineFactor[2],      60],
-	          ['목요일',  lineFactor[3],      20],
-	          ['금요일',  lineFactor[4],      35],
-	          ['토요일',  lineFactor[5],      32],
-	          ['일요일',  lineFactor[6],      12]
+	          ['요일',    '판매량'],
+	          ['월요일',  lineFactor[0]],
+	          ['화요일',  lineFactor[1]],
+	          ['수요일',  lineFactor[2]],
+	          ['목요일',  lineFactor[3]],
+	          ['금요일',  lineFactor[4]],
+	          ['토요일',  lineFactor[5]],
+	          ['일요일',  lineFactor[6]]
 	        ]);
 	
 	        var options = {
@@ -172,14 +228,7 @@
         }
 	    
 	    function drawPieChart() {
-	        var data = google.visualization.arrayToDataTable([
-	          ['영화',    '예매율'],
-	          ['마션',         50],
-	          ['내부자들',      25],
-	          ['검은사제들',    10],
-	          ['헝거게임',       5],
-	          ['도리화가',      10]
-	        ]);
+	    	var data = google.visualization.arrayToDataTable(pieFactor);
 
 	        var options = {
 	        	width : '100%',
@@ -192,12 +241,7 @@
 	    }
 	    
 	    function drawDonutChart() {
-	        var data = google.visualization.arrayToDataTable([
-	          ['연령',  '비율'],
-	          ['노인',     15],
-	          ['청소년',    30],
-	          ['일반',     55],
-	        ]);
+	        var data = google.visualization.arrayToDataTable(donutFactor);
 
 	        var options = {
 	          pieHole: 0.4,

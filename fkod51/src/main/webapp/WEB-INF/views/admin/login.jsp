@@ -18,24 +18,30 @@
 	<br />
 	<button id="confirm" style="margin-left:15%;">확인</button>
 </div>
-
+<br />
+<div style="text-align:center; background:white;">
+		관리자 계정 : choa <br />
+		비 밀 번 호 : 1  
+</div>
 <script>
-	$("#confirm").click(function() {
-		$.ajax(context + "/admin/login",{
-			data : {
-				"id" : $("#id").val(),
-				"password" : $("#password").val()
-			},
-			success : function(data) {
-				if (data.result === "success") {
-					location.href = context + "/admin/main";
-				} else {
-					alert("아이디 비밀번호를 다시 확인해주세요");
+	$(function() {
+		$("#confirm").click(function() {
+			$.ajax(context + "/admin/login",{
+				data : {
+					"id" : $("#id").val(),
+					"password" : $("#password").val()
+				},
+				success : function(data) {
+					if (data.result === "success") {
+						location.href = context + "/admin/main";
+					} else {
+						alert("아이디 비밀번호를 다시 확인해주세요");
+					}
+				},
+				error : function() {
+					
 				}
-			},
-			error : function() {
-				
-			}
+			});
 		});
 	});
 </script>

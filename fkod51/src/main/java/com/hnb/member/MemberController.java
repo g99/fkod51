@@ -1,5 +1,7 @@
 package com.hnb.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -21,9 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hnb.global.Constants;
 import com.hnb.global.FileUpload;
+import com.hnb.ticket.TicketServiceImpl;
+import com.hnb.ticket.TicketVO;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user","tickets"})
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -31,6 +35,11 @@ public class MemberController {
 	MemberServiceImpl service;
 	@Autowired
 	MemberVO member;
+	
+	@Autowired
+	TicketServiceImpl ticketService;
+	@Autowired
+	List<TicketVO> tickets;
 	@Autowired
 	private EmailSender emailSender;
 	
@@ -116,6 +125,29 @@ public class MemberController {
         return model;
     }
 	
+	/*아이디 유효성 체크*/
+	@RequestMapping("/checking_Id")
+	public Model checking_Id(
+			@RequestParam("id")String id,
+ 		    Model model) throws Exception {
+		logger.info("멤버컨트롤러 checking_Id() - 진입");
+		logger.info("넘어온 id는?"+id);
+        MemberVO member_Id_check = service.selectById(id);
+		if (member_Id_check != null) {
+			model.addAttribute("id_fail", "id_fail");
+		}
+		else {
+            model.addAttribute("id_Confirm", "id_Confirm");
+		}
+        return model;
+    }
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * if(service.selectById(id).getId()==null) {} => 이 구문 에러발생.
 	 *  
@@ -175,13 +207,45 @@ public class MemberController {
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저 비밀번호: {}", pw);
 		member = service.login(id, pw);
+		// 테이블을 조인시켜 예매자에 따른, 필름넘버를 기준으로 영화제목들을 가져옴.
+		tickets = ticketService.getTicketVO(id);
+		logger.info("티켓 정보는?: {}", tickets);
 		if (member != null) {
-		logger.info("로그인 성공!!!!!!!");
-		session.setAttribute("user", member);
+			logger.info("로그인 성공!!!!!!!");
+			session.setAttribute("user", member);
+			session.setAttribute("tickets", tickets);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}
 		return member;
+	}
+	
+	
+	/*티켓 정보 페이징*/
+	@RequestMapping(value="/my_Ticket/{index}")
+	public @ResponseBody TicketVO myTicket(
+			@PathVariable("index")String index,
+			HttpSession session,
+			Model model){
+		int indexNum = Integer.parseInt(index);
+		logger.info("멤버컨트롤러 myTicket() - 진입");
+		logger.info("티켓인덱스는? : {}", indexNum);
+		List<TicketVO> temp = (List<TicketVO>) session.getAttribute("tickets");
+		logger.info("티켓브이오는?" + temp.get(indexNum).getFilmName());
+		/*model.addAttribute("ticket",temp);*/
+		return temp.get(indexNum);
+	}
+	
+	/*티켓 예매 내역 (상세페이지 들어가기전)*/
+	@RequestMapping(value="/ticket_List")
+	public @ResponseBody List<TicketVO> ticketList(
+			HttpSession session,
+			Model model){
+		logger.info("멤버컨트롤러 ticketList() - 진입");
+		List<TicketVO> ticketList = (List<TicketVO>) session.getAttribute("tickets");
+		System.out.println("상세페이지에 줄 값들은?"+ticketList);
+		/*model.addAttribute("ticket",temp);*/
+		return ticketList;
 	}
 	
 	

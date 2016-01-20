@@ -105,7 +105,8 @@
      	SELECT
      		USR_NAME AS usrName,
      		USR_SUBJECT AS usrSubject,
-     		USR_CONTENT AS usrContent
+     		USR_CONTENT AS usrContent,
+     		USR_REFER AS usrRefer
  		FROM BOARD WHERE RCD_NO = #{rcdNo}
      </select>
      
@@ -155,9 +156,9 @@
      	WHERE RCD_NO = #{rcdNo} 
      </update>
      
-     <update id="updateRefer" parameterType="int">
+     <update id="updateRefer" parameterType="hashmap" >
      	UPDATE BOARD 
-     	SET	USR_REFER=USR_REFER+1 
+     	SET	USR_REFER = #{usrRefer}
      	WHERE RCD_NO = #{rcdNo}
      </update>
      

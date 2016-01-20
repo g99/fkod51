@@ -4,6 +4,7 @@
 <html lang="kr">
 <head>
 <meta charset="UTF-8" />
+<LINK REL="SHORTCUT ICON" HREF="${img}/favicon.ico" />
 <title>FKOD51 THEATER</title>
   	<meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,15 +28,14 @@
      <!-- 무비  -->
     <script src="${js}/movie.js"></script>
     <link rel="stylesheet" href="${css}/movie.css" />
-    <!-- css추가 -->
-    <link rel="stylesheet" href="" />
 
     <!-- css추가 준규-->
     <link rel="stylesheet" href="${css}/new_event.css" />
-    
+    <link rel="stylesheet" href="${css}/image_slider.css" />
 
     <!-- js추가 준규 -->
     <script type="text/javascript" src="${js}/new_event.js"></script>
+    <script type="text/javascript" src="${js}/image_slider.js"></script>
 
     <!-- 커스텀 css -->
     <link rel="stylesheet" href="${css}/tab.css" />
@@ -48,7 +48,6 @@
     <!-- 예매부분 -->
     <script type="text/javascript">
     $(function() {
-    	
     	Ticket.main();
     	//tabs.make();
 		Ticket.initList("${context}");
@@ -62,7 +61,7 @@
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div id="content">
-			<section class="sectionClass">
+			<section class="sectionClass" style="padding-top:0;">
 				<div class="mainView">
 					<tiles:insertAttribute name="content" />
 				</div>

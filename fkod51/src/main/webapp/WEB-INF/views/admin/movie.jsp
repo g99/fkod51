@@ -27,7 +27,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>MTB</span> 관리자 </a>
+				<a class="navbar-brand" href="${context}/admin/main"><span>MTB</span> 관리자 </a>
+				<a id="admin_logout" class="navbar-brand" href="#" style="float:right;">로그아웃</a>
 			</div>
 							
 		</div><!-- /.container-fluid -->
@@ -63,12 +64,13 @@
 					<div class="panel-heading">영화 목록</div>
 					<div class="panel-body">
 					<div id="my_menu" style="position:absolute; top:11%;">
-					<button id="enter" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
+						<button id="add" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
 						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
 						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
+
 					<div id="my_menu" style="position:absolute; top:15%;">
-					<input type="file" style="background:#E9ECF2; border:none;">
+
 					</div>
 
 					</div>
@@ -142,6 +144,25 @@
 		})
 		
 		$(function() {
+			/* 로그아웃 */
+			$("#admin_logout").click(function() {
+				$.ajax(context + "/admin/logout",{
+					data : {
+						
+					},
+					success : function() {
+						location.href = context + "/";
+					},
+					error : function() {
+						
+					}
+				});
+			});
+			
+			/* 등록버튼 클릭시 */
+			$("#add").click(function() {
+				location.href = context + "/admin/add_movie";
+			});
 			// 수정버튼 클릭시
 			$("#modify").click(function() {
 				var length = $(".selected").length;
@@ -229,13 +250,12 @@
 				/* 선택된 체크박스가 있는 경우에만 실행 */
 				if (length!=0) {
 					for (var i = 0; i < length; i++) {
-						$.ajax(context + "/admin/delete",{
+						$.ajax(context + "/admin/delete_movie",{
 							data : {
 								"filmNumber" : $(".selected:first .movie_filmNumber").text()
 							},
 							async : false,
-							success : function(data) {
-								alert(data.result);
+							success : function() {
 								$(".selected:first").removeClass("selected");
 							},
 							error : function() {

@@ -15,4 +15,5 @@ public interface TicketMapper {
 	public int updateSeatStatus(Map<String, Object> parameters);
 	public int getCountByKey(int key);
 	public List<TicketVO> getTicketVO(String id);
+	public List<TicketVO> getAllTicketVO();
 }

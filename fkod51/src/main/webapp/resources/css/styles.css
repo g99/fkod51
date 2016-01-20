@@ -10,11 +10,13 @@ http://www.bootstrapzero.com
 
 html,
 body {
+	padding-right: 0 !important;
     width: 100%;
     height: 100%;
 }
 
 body {
+	padding-right: 0 !important;
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     background-color: #282828;
     color: #d3d3d3;
@@ -184,8 +186,8 @@ footer {
         color: #f4f4f4;
     }
 
-    .navbar-default .nav > li>a,
-    .navbar-default .nav>li>a:focus {
+    .navbar-default .nav > li>a
+    {
         color: rgba(255,255,255,0.8);
         padding: 20px;
         letter-spacing: 1.1px;
@@ -193,8 +195,9 @@ footer {
     }
 
     .navbar-default .nav > li>a:hover,
+    .navbar-default .nav>li>a:focus,
     .navbar-default .nav>li>a:focus:hover {
-        color: #fefefe;
+        color: red;
     }
 
     .navbar-default.affix {

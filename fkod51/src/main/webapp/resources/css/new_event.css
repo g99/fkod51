@@ -24,3 +24,16 @@
 #pagination {
 	margin : auto;
 }
+
+#teamate, #teamate tr, #teamate td {
+	border : 1px solid white;
+}
+
+
+.navbar-nav a:hover{
+	color:red;
+}
+
+.navbar-nav a:focus{
+	color:red;
+}

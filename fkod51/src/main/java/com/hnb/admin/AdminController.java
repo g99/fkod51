@@ -1,24 +1,34 @@
 package com.hnb.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hnb.article.ArticleServiceImpl;
 import com.hnb.article.ArticleVO;
+import com.hnb.global.FileUpload;
 import com.hnb.member.MemberServiceImpl;
 import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieServiceImpl;
 import com.hnb.movie.MovieVO;
 import com.hnb.ticket.TicketServiceImpl;
+import com.hnb.ticket.TicketVO;
 
 
 @Controller
@@ -37,7 +47,7 @@ public class AdminController {
 	@Autowired TicketServiceImpl ticketService;
 	@RequestMapping("")
 	public String home(){
-		logger.info("AdminController-home() 진입");
+		logger.info("AdminController-login() 진입");
 		return "admin/login.jsp";
 	}
 	
@@ -150,6 +160,11 @@ public class AdminController {
 		return model;
 	}
 	
+	@RequestMapping("/logout")
+	public void logout(SessionStatus status){
+		status.setComplete();
+	}
+	
 	@RequestMapping("/login")
 	public void login(
 			String id,
@@ -202,5 +217,115 @@ public class AdminController {
 			) {
 		logger.info("라인차트 진입!!!");
 		model.addAttribute("count", ticketService.getCountByKey(Integer.parseInt(key)));
+	}
+	
+	@RequestMapping("/donut_chart")
+	public void donutChart(
+			String key,
+			Model model
+			) {
+		logger.info("도넛차트 진입!!!");
+		List<TicketVO> list = ticketService.getAllTicketVO();
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		int adult = 0;
+		int teenager = 0;
+		int oldman = 0;
+		for (int i = 0; i < list.size(); i++) {
+			adult += list.get(i).getAdult();
+			teenager += list.get(i).getTeenager();
+			oldman += list.get(i).getOldMan();
+		}
+		System.out.println("성인" + adult);
+		System.out.println("노인" + oldman);
+		System.out.println("청소년" + teenager);
+		model.addAttribute("adult", adult);
+		model.addAttribute("teenager", teenager);
+		model.addAttribute("oldman", oldman);
+	}
+	
+	@RequestMapping("/pie_chart")
+	public void pieChart(
+			Model model
+			) {
+		logger.info("파이차트 진입!!!");
+		List<TicketVO> list = ticketService.getAllTicketVO();
+		Map<String, Double> result = new HashMap<String, Double>();
+		List<String> movieNames = new ArrayList<String>();
+		int movies = list.size();
+		for (int i = 0; i < list.size(); i++) {
+			String temp = list.get(i).getFilmName();
+			//해당 영화이름을 포함하고 있지 않으면
+			if (!result.containsKey(temp)) {
+				result.put(temp, 1.0/movies);
+				movieNames.add(temp);
+			} else {
+			//해당 영화를 이미 넣은상태이면
+				result.put(temp, result.get(temp) + (1.0/movies));
+			}
+		}
+		model.addAttribute("names", movieNames);
+		model.addAttribute("list", result);
+	}
+	
+	@RequestMapping("/add_movie")
+	public String addMovie() {
+		return "admin/add_movie.jsp";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	public void add(
+			MultipartHttpServletRequest multipartHSR,
+			String subject,	String number, String director,
+			String actor, String country, String rate,
+			String genre, String runtime, String price,
+			String release, String end, String story,
+			String trailer
+			) {
+		// 파일업로드를 할 절대경로
+		logger.info("add() 진입");
+		String path = "C:\\Users\\HB\\git\\fkod51\\fkod51\\src\\main\\webapp\\resources\\images\\";
+		FileUpload fileUpload = new FileUpload();
+		List<MultipartFile> fileList = multipartHSR.getFiles("poster");
+		StringBuffer fileName = new StringBuffer();
+		String file = null;
+		// 파일이 없는경우를 제외하고
+		if (!(fileList.size() == 1 && fileList.get(0).getOriginalFilename().equals(""))) {
+			logger.info("반목문 수행중");
+			for (int i = 0; i < fileList.size(); i++) {
+				file = fileList.get(i).getOriginalFilename();
+				fileUpload.uploadFile(fileList.get(i), path, file);
+				fileName.append(file);
+				if (i != fileList.size()-1) {
+					fileName.append("/");
+				}
+			}
+			file = fileName.toString();
+			file = file.replace(".jpg", "");
+		}
+		
+		movie.setFilmName(subject);
+		movie.setFilmNumber(number);
+		movie.setDirector(director);
+		movie.setActor(actor);
+		movie.setCountry(country);
+		movie.setRate(rate);
+		movie.setGenre(genre);
+		movie.setRuntime(Integer.parseInt(runtime));
+		movie.setPrice(Integer.parseInt(price));
+		movie.setReleaseDate(release);
+		movie.setEndDate(end);
+		movie.setStory(story);
+		movie.setTrailer(trailer);
+		movie.setCut(file);
+		movie.settRate(0);
+		
+		movieService.register(movie);
+	}
+	
+	
+	@RequestMapping("/delete_movie")
+	public void deleteMovie(String filmNumber) {
+		logger.info("deleteMovie() 진입");
+		movieService.remove(filmNumber);
 	}
 }

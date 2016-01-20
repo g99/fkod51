@@ -1,6 +1,7 @@
 package com.hnb.article;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hnb.global.Command;
 
@@ -19,6 +20,7 @@ public interface ArticleService {
 	
 	// U : 업데이트
 	public int update(ArticleVO article);
+	public int updateRefer(Map<String, Integer> data);
 	
 	// D : 삭제 (회원탈퇴)
 	public int delete(int rcdNo);
@@ -29,4 +31,5 @@ public interface ArticleService {
 
 	public List<ArticleVO> getAllList();
 
+	
 }

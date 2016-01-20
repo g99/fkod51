@@ -63,4 +63,10 @@ public class TicketServiceImpl implements TicketService {
 		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
 		return mapper.getTicketVO(id);
 	}
+	
+	@Override
+	public List<TicketVO> getAllTicketVO() {
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.getAllTicketVO();
+	}
 }

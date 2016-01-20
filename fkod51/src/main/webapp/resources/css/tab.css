@@ -26,6 +26,7 @@ input[type=radio]:checked + label {
 .seats_seatnum:hover {
 	background-color: white;
 }
+
 input[type=checkbox]:checked + label {
     background-color: black;
 }
