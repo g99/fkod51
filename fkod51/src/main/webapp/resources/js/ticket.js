@@ -435,7 +435,7 @@ var Ticket = {
 							$('#book').click(function() {
 								var ticket_data = data;
 								$.getJSON(project + '/ticket/getId', function(dataId) {
-									alert("룸네임 : "+ticket_data.ticket.roomName+"시작시간 : "+ticket_data.ticket.startTime);
+									//alert("룸네임 : "+ticket_data.ticket.roomName+"시작시간 : "+ticket_data.ticket.startTime);
 									if (dataId.id!=null) {
 										Seats.book(project,ticket_data,dataId.id);
 									} else {

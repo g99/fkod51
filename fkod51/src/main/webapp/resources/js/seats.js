@@ -202,8 +202,8 @@ var Seats = {
 					var roomName = info.ticket.roomName;
 					var startTime = info.ticket.startTime;
 					var id = mem_id;
-					alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
-					alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
+					//alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
+					//alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
 					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
