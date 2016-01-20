@@ -1,7 +1,10 @@
 package com.hnb.admin;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.slf4j.Logger;
@@ -25,6 +28,7 @@ import com.hnb.member.MemberVO;
 import com.hnb.movie.MovieServiceImpl;
 import com.hnb.movie.MovieVO;
 import com.hnb.ticket.TicketServiceImpl;
+import com.hnb.ticket.TicketVO;
 
 
 @Controller
@@ -213,6 +217,54 @@ public class AdminController {
 			) {
 		logger.info("라인차트 진입!!!");
 		model.addAttribute("count", ticketService.getCountByKey(Integer.parseInt(key)));
+	}
+	
+	@RequestMapping("/donut_chart")
+	public void donutChart(
+			String key,
+			Model model
+			) {
+		logger.info("도넛차트 진입!!!");
+		List<TicketVO> list = ticketService.getAllTicketVO();
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		int adult = 0;
+		int teenager = 0;
+		int oldman = 0;
+		for (int i = 0; i < list.size(); i++) {
+			adult += list.get(i).getAdult();
+			teenager += list.get(i).getTeenager();
+			oldman += list.get(i).getOldMan();
+		}
+		System.out.println("성인" + adult);
+		System.out.println("노인" + oldman);
+		System.out.println("청소년" + teenager);
+		model.addAttribute("adult", adult);
+		model.addAttribute("teenager", teenager);
+		model.addAttribute("oldman", oldman);
+	}
+	
+	@RequestMapping("/pie_chart")
+	public void pieChart(
+			Model model
+			) {
+		logger.info("파이차트 진입!!!");
+		List<TicketVO> list = ticketService.getAllTicketVO();
+		Map<String, Double> result = new HashMap<String, Double>();
+		List<String> movieNames = new ArrayList<String>();
+		int movies = list.size();
+		for (int i = 0; i < list.size(); i++) {
+			String temp = list.get(i).getFilmName();
+			//해당 영화이름을 포함하고 있지 않으면
+			if (!result.containsKey(temp)) {
+				result.put(temp, 1.0/movies);
+				movieNames.add(temp);
+			} else {
+			//해당 영화를 이미 넣은상태이면
+				result.put(temp, result.get(temp) + (1.0/movies));
+			}
+		}
+		model.addAttribute("names", movieNames);
+		model.addAttribute("list", result);
 	}
 	
 	@RequestMapping("/add_movie")

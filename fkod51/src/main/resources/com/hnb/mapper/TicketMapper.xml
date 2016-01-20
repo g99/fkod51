@@ -49,6 +49,22 @@
              ON T.FILM_NUMBER = M.FILM_NUMBER WHERE ID = #{id}
     </select>
     
+	<select id="getAllTicketVO" resultType="com.hnb.ticket.TicketVO" parameterType="string">
+             SELECT
+             	M.FILM_NAME AS filmName,
+             	T.TICKET_NUMBER AS ticketNumber,
+             	T.ROOM_NAME AS roomName,
+          	 	T.SEAT_NUMBER AS seatNumber,
+          	 	T.TICKET_DATE AS date,
+ 				T.START_TIME AS startTime,
+ 				T.FILM_NUMBER AS filmNumber,
+ 				T.ADULT AS adult,
+ 				T.OLD_MAN AS oldMan,
+ 				T.TEENAGER AS teenager
+             FROM TICKET T LEFT OUTER JOIN MOVIE M
+             ON T.FILM_NUMBER = M.FILM_NUMBER
+    </select>
+    
 	<select id="getOne" resultType="com.hnb.ticket.TicketVO">
              SELECT * FROM user WHERE name = #{name}  
      </select>
