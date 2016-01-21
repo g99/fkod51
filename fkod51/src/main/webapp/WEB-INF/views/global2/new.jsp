@@ -166,7 +166,7 @@
 </section>
 
 <!-- 팀원소개 -->
-<aside  id="last" style="height:100%;">
+<aside  id="last" style="height:100%; background: rgb(34, 34, 34);">
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">FKOD 팀 소개</h2>
