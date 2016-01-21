@@ -251,14 +251,14 @@ public class MemberController {
 	
 	
 	@RequestMapping("/login_mobile")
-	public String login_mobile(
+	public void login_mobile(
 			@RequestParam("id")String id,
  		    @RequestParam("pw")String pw,
  		    Model model
  		    ){
-		logger.info("아이디 {}",id);
-		logger.info("비이번 {}",pw);
-		return "member/mypage.tiles";
+		logger.info("login_mobile() 입장");
+		logger.info("아이디 : {}",id);
+		logger.info("비이번 : {}",pw);
 	}	
 	
 	
