@@ -80,7 +80,7 @@ public class TicketController {
 			ticketService.insertSeatNumber(seatNumber);
 		}
 		ticketService.updateSeatStatus(quantity,filmNumber,theaterSeq,roomName,date,startTime);
-		List<TicketVO> ticketAdd = (List<TicketVO>) session.getAttribute("tickets");
+		List<TicketVO> ticketAdd = ticketService.getTicketVO(((MemberVO)session.getAttribute("user")).getId());
 		ticketAdd.add(ticket);
 		session.setAttribute("tickets", ticketAdd);
 		
