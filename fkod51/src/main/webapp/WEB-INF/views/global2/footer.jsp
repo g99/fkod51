@@ -5,29 +5,28 @@
                 <div class="col-xs-6 col-sm-3 column">
                     <h4>Information</h4>
                     <ul class="list-unstyled">
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Services</a></li>
-                        <li><a href="">Benefits</a></li>
-                        <li><a href="">Developers</a></li>
+                        <li><a href="">상품</a></li>
+                        <li><a href="">서비스</a></li>
+                        <li><a href="">개발자</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-6 col-sm-3 column">
                     <h4>About</h4>
                     <ul class="list-unstyled">
                         <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">전달 정보</a></li>
+                        <li><a href="#">개인정보 보호정책</a></li>
+                        <li><a href="#">거래조건 &amp; 수수료율표</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-3 column">
                     <h4>Stay Posted</h4>
                     <form>
                         <div class="form-group">
-                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
+                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="이메일을 입력해주세요.">
                         </div>
                         <div class="form-group">
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">MTB 자선사업에 기부합니다</button>
                         </div>
                     </form>
                 </div>
