@@ -164,7 +164,7 @@ public class MemberController {
 	
 	/*로그인*/
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public @ResponseBody MemberVO login(
+	public void login(
 			@RequestParam("id")String id,
  		    @RequestParam("password")String pw,
  		    HttpSession session,
@@ -180,10 +180,10 @@ public class MemberController {
 			logger.info("로그인 성공!!!!!!!");
 			session.setAttribute("user", member);
 			session.setAttribute("tickets", tickets);
+			model.addAttribute("member", member);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
 		}
-		return member;
 	}
 	
 	

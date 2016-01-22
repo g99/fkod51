@@ -108,7 +108,7 @@
 					
 					//글쓰기 버튼을 클릭하면
 					$("#write").click(function(e) {
-						if(userid != ""){
+						if(userid != null){
 							$("#write").attr("data-target","#writeModal");
 						} else {
 							alert("로그인을 먼저 해주세요");
@@ -248,7 +248,7 @@
 						
 						//글쓰기 버튼을 클릭하면
 						$("#write").click(function() {
-							if(userid != ""){
+							if(userid != null){
 								location.href = "#writeModal";
 							} else {
 								alert("로그인을 먼저 해주세요");
@@ -316,9 +316,9 @@
 				
 				$("#reply_area").empty();
 				$.each(data, function(index, value) {
-					reply = "<p id='"+ this.rcdNo +"' style='border:solid; position:relative;'>" + this.usrName + " | " + this.usrContent;
+					reply = "<p style='position:relative;'><input class='form-control' style='background:#36333D;' readOnly value='"+ this.usrName + " | " + this.usrContent+"'>";
 					if (userid === this.usrName) {
-						reply += "<button id='"+ this.rcdNo +"' style='position:absolute; right:0; top:0; border:none; color:black; background:white;'>지우기</button></p>";
+						reply += "<button class='btn' id='"+ this.rcdNo +"' style='position:absolute; right:0; top:0; border:none; color:blueviolet; background:white;'>지우기</button></p>";
 					} else {
 						reply += "</p>";
 					}

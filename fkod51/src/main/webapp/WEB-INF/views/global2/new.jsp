@@ -718,9 +718,8 @@
       google.maps.event.addDomListener(window, 'load', initialize);
       </script>
 <script type="text/javascript">
-
+var userid = null;
 $(function() {
-
 	Movie.ranking();
 	//----------------------//
 	// 글쓰기 내부에 있는 버튼들 //
@@ -747,9 +746,7 @@ $(function() {
 	// 댓글달기 //
 	var index = 1;
 	$("#reply_btn").click(function() {
-		if(userid === ""){
-			alert("댓글을 달려면 먼저 로그인을 해주세요");
-		}else{
+		if(userid != null){
 			$.ajax(context + "/article/reply ",{
 				data : {
 					"code" : $("#code").text(),
@@ -763,6 +760,9 @@ $(function() {
 					
 				}
 			});
+			
+		}else{
+			alert("댓글을 달려면 먼저 로그인을 해주세요");
 		}
 	});
 	
@@ -951,21 +951,21 @@ var Members = {
 				type : "post",
 				success : function(data) {
 					//로그인 결과가 성공이면
-					if(data.id != null){
+					if(data.member != null){
 						$("#bs-navbar").load(context + "/member/headerReload #bs-navbar");
-						$("#mypage_Id").val(data.id);
-						$("#mypage_email").val(data.email);
-						$("#mypage_Phone").val(data.phone);
-						$("#mypage_Password").val(data.password);
-						$("#mypage_name").val(data.name);
-						$("#update_Id").val(data.id);
-						$("#update_Email").val(data.email);
-						$("#update_Phone").val(data.phone);
-						$("#update_Password").val(data.password);
-						$("#update_Name").val(data.name);
-						/* location.reload(); */
+						userid = data.member.id;
+						$("#mypage_Id").val(data.member.id);
+						$("#mypage_email").val(data.member.email);
+						$("#mypage_Phone").val(data.member.phone);
+						$("#mypage_Password").val(data.member.password);
+						$("#mypage_name").val(data.member.name);
+						$("#update_Id").val(data.member.id);
+						$("#update_Email").val(data.member.email);
+						$("#update_Phone").val(data.member.phone);
+						$("#update_Password").val(data.member.password);
+						$("#update_Name").val(data.member.name);
 					} else{
-					//로그인 결과가 실패면 (데이터가 널이면,)
+					//로그인 결과가 실패면 (데이터가 널이면)
 						alert("아이디 혹은 패스워드를 다시한번 확인해주세요");
 					}
 				},
