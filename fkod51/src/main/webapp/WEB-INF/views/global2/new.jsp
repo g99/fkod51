@@ -717,6 +717,7 @@
       }
       google.maps.event.addDomListener(window, 'load', initialize);
       </script>
+      <script src="${js}/seats.js"></script>
 <script type="text/javascript">
 var userid = null;
 $(function() {
@@ -867,9 +868,9 @@ $("#btn_My_Ticket").click(function(){
             	+'<div class="col-md-4" style="width: 300px;">'
                     +'<label></label>';
 		$.each(data, function(index,value){ //this, value = data[i]
-			ticket_Page_Main += '<input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;" data-dismiss="modal" data-toggle="modal">'
+			ticket_Page_Main += '<div><input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;" data-dismiss="modal" data-toggle="modal">'
 			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.ticketNumber+'</label><br/>'
-			+'<div style="height:5px;"></div>'
+			+'<div style="height:5px;"></div></div>'
          });
 			ticket_Page_Footer += '</div>'
 	        +'<a class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
@@ -884,7 +885,6 @@ $("#btn_My_Ticket").click(function(){
 	        
 	        $(".ticket_info").click(function() {
 	        	/* 인덱스값 받아와서 컨트롤러로 전송, 인덱스에 해당하는 영화정보를 세션에서 불러옴. */
-	        	if(confirm('티켓정보를 확인하시겠습니까?')) {
 	        		var indexNum = $("input:radio[name=tickets]:checked").val();
 	        		$('.ticket_info').attr("data-target","#ticket_Info_Modal");
 	            	$.getJSON(context + '/member/my_Ticket/'+indexNum, function(data) {
@@ -897,11 +897,11 @@ $("#btn_My_Ticket").click(function(){
 	            		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
 	                        +'<form class="contact-form row">'
 	            				+'<div class="col-md-4" style="width: 300px;">'
-	                            		+'<input type="text" class="form-control" value="'+data.filmName+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
+	                            		+'<input type="text" class="form-control" value="'+data.filmName+'"id="my_FilmName" readonly="readonly" style="color: black;">'
 	                   	        	+'<div style="height:12px;"></div>'
 	                           +'</div>'
 	            				+'<div class="col-md-4" style="width: 300px;">'
-	                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_FilmName" readonly="readonly" style="color: black;">'
+	                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
 	                   	        	+'<div style="height:12px;"></div>'
 	                           +'</div>'
 	                        		+'<div class="col-md-4" style="width: 300px;">'
@@ -931,13 +931,18 @@ $("#btn_My_Ticket").click(function(){
 	                            	+'</div>'
 	                         	  	+'<a class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
 	                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
-	                         	  	+'href="#ticket_Modal">닫기</a>'
+	                         	  	+'href="#ticket_Modal">닫기</a><a href="#ticket_Modal" class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal" id="cancel" style="margin-top:6px; width: 100px; margin-right: 18px; border-radius: 10px; float: right;">예매취소</a>'
 	                        +'</form>'
 	                    +'</div>'
 	                    $('#ticket_Info').empty();		
-	                    $('#ticket_Info').html(ticket);		
+	                    $('#ticket_Info').html(ticket);
+	                    $("#cancel").click(function(){
+	                    	if(confirm('예매를 취소하시겠습니까?')) {
+	                    		$("#ticket_Booking_List #"+data.ticketNumber).parent().remove();
+	                    		Seats.cancel(data.ticketNumber);
+	                    	}
+	                    });
 	            	});
-	            }
 	        });
 	});
 });

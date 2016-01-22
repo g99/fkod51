@@ -202,8 +202,8 @@ var Seats = {
 					var roomName = info.ticket.roomName;
 					var startTime = info.ticket.startTime;
 					var id = mem_id;
-					alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
-					alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
+					//alert(info+"  "+info.movie+""+info.ticket.filmNumber+"룸네임"+info.ticket.roomName+"날짜"+info.date+"시작시간"+info.ticket.startTime);
+					//alert($('input:checkbox:checked').map(function() {return this.value;}).get().join(','));
 					$.ajax(project+'/ticket/book',{
 						type : 'get',
 						data : {
@@ -237,5 +237,23 @@ var Seats = {
 							alert('에러발생상태 : '+status+',내용:'+msg);
 						}
 					});
+				},
+				cancel : function(ticketNumber) {
+					$.ajax(context + "/ticket/cancel",{
+        				data : {ticketNumber : ticketNumber},
+        				dataType : "json",
+        				type : 'get',
+        				success : function(data) {
+        					if(data.result == "success"){
+        						alert("예매가 취소되었습니다.");
+        					}
+        					if(data.result == "fail"){
+        						alert("예매취소를 실패하였습니다. 다시 시도해주세요.");
+        					}
+        				},
+        				error : function(xhr, status, msg) {
+        					alert('에러발생, 다시 시도해주세요. 다시 시도하셔도 에러가 발생하면 관리자에게 문의해주세요.');
+        				}
+        			});
 				}
 		};

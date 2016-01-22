@@ -1,5 +1,129 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="../css/common.css" type="text/css">
+
+<div class="container">
+<div class="row">
+<div class="col-lg-15 text-center">
+<h2 class="margin-top-0 text-primary" style="text-align: center;">인원 / 좌석 선택</h2>
+</div>
+</div>
+</div>
+<hr class="primary">
+
+<div class="container">
+	<div class="row" style="display: inline;">
+		<div class="col-lg-2 col-md-4 text-center" style="display: inline;">
+			<div class="feature">
+				<div class="seats_number">
+					<div>
+						<label class="seats_ratelist">일반</label>
+						<select name="normal">
+						<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+						</select>
+					</div>
+					<div>
+						<label class="seats_ratelist">청소년</label>
+						<select name="teenager">
+						<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+						</select>
+					</div>
+					<div>
+						<label class="seats_ratelist">우대</label>
+						<select name="treatment">
+						<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-4 col-md-8 text-center" style="display: inline;">
+			<div class="feature">
+			<div class="seats_info">
+			<div class="seats_movieinfo">
+			<div class="seats_infoline" id="movie_info">
+			<label class="seats_infotitle" style="margin-right: 10px;">영화</label>
+			<h5 style="display: inline;margin: 0;">'+data.movie+'</h5>
+			</div>
+			<div class="seats_infoline">
+			<label class="seats_infotitle" style="margin-right: 10px;">상영관</label>
+			<h5 style="display: inline;margin-right: 5;">'+data.theater+'</h5>&nbsp;
+			<h5 style="display: inline;margin: 0;">'+data.roomName+'</h5>
+			</div>
+			<div class="seats_infoline">
+			<label class="seats_infotitle" style="margin-right: 10px;">일시</label>
+			<h5 style="display: inline;margin-right: 5;">'+data.date+'</h5>&nbsp;
+			<h5 style="display: inline;margin: 0;">'+data.time+'</h5>
+			</div>
+			<div class="seats_infoline">
+			<label class="seats_infotitle">인원</label>
+			<div id="ea" style="height: 25px;">
+			</div>
+			</div>
+			</div>
+			
+			</div>
+			</div>
+		</div>
+		
+		<div class="col-lg-6 col-md-12 text-center">
+			<div class="feature">
+				<div class="seats_seats">
+					<div class="seats_screenborder">
+						<label class="seats_screen" style="text-align: center;">SCREEN</label>
+					</div>
+					<div class="seats_seatsblock" id="seats_seatsblock" style="text-align: center;overflow: scroll;">
+					</div>
+					<div>
+						<label id="reset_seats" style="text-align: center;">다시선택하기</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-11 text-right">
+		<div class="feature">
+			<div class="seats_infoline">
+			<label class="seats_infotitle">좌석번호</label>
+			<div id="seat_num">
+			</div>
+			</div>
+			<div class="seats_cal">
+			<div id="seats_normal">
+			<label class="seats_infotitle">일반</label>
+			<div id="normal_cal">
+			</div>
+			</div>
+			<div id="seats_teenager">
+			<label class="seats_infotitle">청소년</label>
+			<div id="teenager_cal">
+			</div>
+			</div>
+			<div id="seats_treatment">
+			<label class="seats_infotitle">우대</label>
+			<div id="treatment_cal">
+			</div>
+			</div>
+			<div id="seats_sum">
+			<label class="seats_infotitle">총금액</label>
+			<div id="total_cal">
+			</div>
+			</div>
+			</div>
+		</div>
+			<input id="book" type="button" value="예매하기" style="display: none;">
+			<label for="book" class="button" style="font-size: 20px;">예매하기</label>
+		</div>
+	</div>
+</div>
+
+
+
+
 <div class="seats_wrap">
 		<form action="confirm.html">
 		<!-- FLEX-CONTAINER -->

@@ -69,4 +69,24 @@ public class TicketServiceImpl implements TicketService {
 		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
 		return mapper.getAllTicketVO();
 	}
+
+	@Override
+	public TicketVO getTicketByTicketNumber(String ticketNumber) {
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.getTicketByTicketNumber(ticketNumber);
+	}
+
+	@Override
+	public int deleteSeatNumber(String seatNumber) {
+		logger.info("TicketServiceImpl : deleteSeatNumber()");
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.deleteSeatNumber(seatNumber);
+	}
+
+	@Override
+	public int cancel(String ticketNumber) {
+		logger.info("TicketServiceImpl : cancel()");
+		TicketMapper mapper = sqlSession.getMapper(TicketMapper.class);
+		return mapper.cancel(ticketNumber);
+	}
 }
