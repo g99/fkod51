@@ -22,10 +22,12 @@
 			#{price}
 		)
 	</insert>
+	
 	<insert id="insertSeatNumber" parameterType="string">
 		INSERT INTO SEAT2 (SEAT_NUMBER) 
 		VALUES (#{seatNumber})
 	</insert>
+	
 	<update id="updateSeatStatus" parameterType="map">
 		UPDATE SCHEDULE 
 		SET SEAT_STATUS = SEAT_STATUS - #{quantity} 
@@ -47,6 +49,20 @@
  				T.FILM_NUMBER AS filmNumber
              FROM TICKET T LEFT OUTER JOIN MOVIE M
              ON T.FILM_NUMBER = M.FILM_NUMBER WHERE ID = #{id}
+    </select>
+    
+    <select id="getTicketByTicketNumber" resultType="com.hnb.ticket.TicketVO" parameterType="string">
+             SELECT
+             	TICKET.FILM_NUMBER AS filmNumber,
+             	TICKET.THEATER_SEQ AS theaterSeq,
+             	THEATER.THEATER_NAME AS theaterName,
+             	TICKET.ROOM_NAME AS roomName,
+             	TICKET.TICKET_DATE AS date,
+             	TICKET.START_TIME AS startTime,
+          	 	TICKET.SEAT_NUMBER AS seatNumber
+             FROM TICKET LEFT OUTER JOIN THEATER
+             ON TICKET.THEATER_SEQ = THEATER.THEATER_SEQ
+             WHERE TICKET_NUMBER = #{ticketNumber}
     </select>
     
 	<select id="getAllTicketVO" resultType="com.hnb.ticket.TicketVO" parameterType="string">
@@ -75,5 +91,11 @@
          FROM TICKET
          WHERE DAYOFWEEK(TODAY) = #{key}
      </select>
-
+	
+	<delete id="deleteSeatNumber" parameterType="string">
+		DELETE FROM SEAT2 WHERE SEAT_NUMBER = #{seatNumber}
+	</delete>
+	<delete id="cancel" parameterType="string">
+		DELETE FROM TICKET WHERE TICKET_NUMBER = #{ticketNumber}
+	</delete>
 </mapper>

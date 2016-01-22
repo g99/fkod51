@@ -717,6 +717,7 @@
       }
       google.maps.event.addDomListener(window, 'load', initialize);
       </script>
+      <script src="${js}/seats.js"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -897,11 +898,11 @@ $("#btn_My_Ticket").click(function(){
 	            		+'<div class="col-lg-10 col-lg-offset-1 text-center">'
 	                        +'<form class="contact-form row">'
 	            				+'<div class="col-md-4" style="width: 300px;">'
-	                            		+'<input type="text" class="form-control" value="'+data.filmName+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
+	                            		+'<input type="text" class="form-control" value="'+data.filmName+'"id="my_FilmName" readonly="readonly" style="color: black;">'
 	                   	        	+'<div style="height:12px;"></div>'
 	                           +'</div>'
 	            				+'<div class="col-md-4" style="width: 300px;">'
-	                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_FilmName" readonly="readonly" style="color: black;">'
+	                            		+'<input type="text" class="form-control" value="'+data.ticketNumber+'"id="my_TicketNumber" readonly="readonly" style="color: black;">'
 	                   	        	+'<div style="height:12px;"></div>'
 	                           +'</div>'
 	                        		+'<div class="col-md-4" style="width: 300px;">'
@@ -931,11 +932,16 @@ $("#btn_My_Ticket").click(function(){
 	                            	+'</div>'
 	                         	  	+'<a class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal"'
 	                         	  	+'style="margin-top:6px; width: 100px; margin-left: 16px; border-radius: 10px; float: left;" title="close&replace"'
-	                         	  	+'href="#ticket_Modal">닫기</a>'
+	                         	  	+'href="#ticket_Modal">닫기</a><a href="#ticket_Modal" class="btn btn-primary btn-block" data-toggle="modal" data-dismiss="modal" id="cancel" style="margin-top:6px; width: 100px; margin-right: 18px; border-radius: 10px; float: right;">예매취소</a>'
 	                        +'</form>'
 	                    +'</div>'
 	                    $('#ticket_Info').empty();		
-	                    $('#ticket_Info').html(ticket);		
+	                    $('#ticket_Info').html(ticket);
+	                    $("#cancel").click(function(){
+	                    	if(confirm('예매를 취소하시겠습니까?')) {
+	                    		Seats.cancel(data.ticketNumber);
+	                    	}
+	                    });
 	            	});
 	            }
 	        });

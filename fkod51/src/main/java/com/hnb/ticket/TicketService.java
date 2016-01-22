@@ -10,4 +10,7 @@ public interface TicketService {
 	public int getCountByKey(int key);
 	public List<TicketVO> getTicketVO(String id);
 	public List<TicketVO> getAllTicketVO();
+	public TicketVO getTicketByTicketNumber(String ticketNumber);
+	public int deleteSeatNumber(String seatNumber);
+	public int cancel(String ticketNumber);
 }

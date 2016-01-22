@@ -102,4 +102,28 @@ public class TicketController {
 		}
 		return model;
 		}
+	
+	@RequestMapping("/cancel")
+	public Model cancel(
+			String ticketNumber,
+			Model model){
+		logger.info("TicketController-cancel() 진입");
+		TicketVO delTicket = ticketService.getTicketByTicketNumber(ticketNumber);
+		int quantity = delTicket.getSeatNumber().split(",").length;
+		String scheduleSeq = scheduleService.getScheduleSeq(delTicket.getFilmNumber(),delTicket.getTheaterName(),delTicket.getRoomName(),delTicket.getDate(),delTicket.getStartTime())+"-";
+		for (int i = 0; i < quantity; i++) {
+			String seatNumber = scheduleSeq+delTicket.getSeatNumber().split(",")[i];
+			ticketService.deleteSeatNumber(seatNumber);
+		}
+		ticketService.updateSeatStatus(-quantity,delTicket.getFilmNumber(),delTicket.getTheaterSeq(),delTicket.getRoomName(),delTicket.getDate(),delTicket.getStartTime());
+		int result = ticketService.cancel(ticketNumber);
+		if (result != 0) {
+			logger.info("취소 완료");
+			model.addAttribute("result","success");
+		} else {
+			logger.info("취소 실패");
+			model.addAttribute("result","fail");
+		}
+		return model;
+	}
 }
