@@ -143,40 +143,6 @@ public class MemberController {
     }
 	
 	
-	
-	
-	
-	
-	
-	/*
-	 * if(service.selectById(id).getId()==null) {} => 이 구문 에러발생.
-	 *  
-	 * @RequestMapping("/join_auth")
-	public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) 
-			throws Exception {
-			
-        ModelAndView mav;
-        String id=(String) paramMap.get("id");
-        String e_mail=(String) paramMap.get("email");
-        String pw=mainService.getPw(paramMap);
-        System.out.println(pw);
-        if(pw!=null) {
-            email.setContent("비밀번호는 "+pw+" 입니다.");
-            email.setReceiver(e_mail);
-            email.setSubject(id+"님 비밀번호 찾기 메일입니다.");
-            emailSender.SendEmail(email);
-            mav= new ModelAndView("redirect:/login.do");
-            return mav;
-        }else {
-            mav=new ModelAndView("redirect:/logout.do");
-            return mav;
-        }
-    }*/
-
-	
-	
-	
-	
 	@RequestMapping("/join_Result")
 	public String joinResult(){
 		logger.info("멤버컨트롤러 joinResult() - 진입");
@@ -230,7 +196,7 @@ public class MemberController {
 		int indexNum = Integer.parseInt(index);
 		logger.info("멤버컨트롤러 myTicket() - 진입");
 		logger.info("티켓인덱스는? : {}", indexNum);
-		List<TicketVO> temp = (List<TicketVO>) session.getAttribute("tickets");
+		List<TicketVO> temp = ticketService.getTicketVO(((MemberVO)session.getAttribute("user")).getId());
 		logger.info("티켓브이오는?" + temp.get(indexNum).getFilmName());
 		/*model.addAttribute("ticket",temp);*/
 		return temp.get(indexNum);
@@ -242,25 +208,23 @@ public class MemberController {
 			HttpSession session,
 			Model model){
 		logger.info("멤버컨트롤러 ticketList() - 진입");
-		List<TicketVO> ticketList = (List<TicketVO>) session.getAttribute("tickets");
+		List<TicketVO> ticketList = ticketService.getTicketVO(((MemberVO)session.getAttribute("user")).getId());
 		System.out.println("상세페이지에 줄 값들은?"+ticketList);
 		/*model.addAttribute("ticket",temp);*/
 		return ticketList;
 	}
 	
 	
-	
 	@RequestMapping("/login_mobile")
-	public String login_mobile(
+	public void login_mobile(
 			@RequestParam("id")String id,
  		    @RequestParam("pw")String pw,
  		    Model model
  		    ){
-		logger.info("아이디 {}",id);
-		logger.info("비이번 {}",pw);
-		return "member/mypage.tiles";
+		logger.info("login_mobile() 입장");
+		logger.info("아이디 : {}",id);
+		logger.info("비이번 : {}",pw);
 	}	
-	
 	
 	
 	@RequestMapping("/check_Overlap")
@@ -367,11 +331,9 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
 	@RequestMapping("/headerReload")
 	public String headerReload() {
 		return "global2/header.jsp";
 	}
+
 }

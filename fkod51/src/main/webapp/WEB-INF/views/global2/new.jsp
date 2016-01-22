@@ -166,7 +166,7 @@
 </section>
 
 <!-- 팀원소개 -->
-<aside  id="last" style="height:100%;">
+<aside  id="last" style="height:100%; background: rgb(34, 34, 34);">
     <div class="container text-center">
         <div class="call-to-action">
             <h2 class="text-primary">FKOD 팀 소개</h2>
@@ -439,7 +439,7 @@
     </div>
 </div>
 
-<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->"src/main/webapp/WEB-INF/views/global2/new3.jsp"
+<!-- 티켓 정보 상세 페이지 & 티켓 리스트 상세페이지-->
 <div id="ticket_Info_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="">
     <div class="modal-dialog">
     <div class="modal-content" style="height:590px; width:400px; margin-left:100px;">
