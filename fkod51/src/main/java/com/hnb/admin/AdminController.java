@@ -326,6 +326,7 @@ public class AdminController {
 	@RequestMapping("/delete_movie")
 	public void deleteMovie(String filmNumber) {
 		logger.info("deleteMovie() 진입");
+		logger.info("필름번호 "+filmNumber);
 		movieService.remove(filmNumber);
 	}
 }

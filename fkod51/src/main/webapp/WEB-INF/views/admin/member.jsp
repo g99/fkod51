@@ -146,7 +146,6 @@
 						var phone = $(".selected:first .member_phone").text();
 						console.log(id + name + password + email + phone);
 						$(".selected:first .member_password").html('<input type="text" value="'+ password +'">');
-						$(".selected:first .member_email").html('<input type="text" value="'+ email +'">');
 						$(".selected:first .member_phone").html('<input type="text" value="'+ phone +'">');
 						$(".selected:first").removeClass("selected");
 					}

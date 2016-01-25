@@ -18,15 +18,15 @@
     background-color: white;
 }
 input[type=radio]:checked + label {
-    background-color: black;
+    background-color: blueviolet;
 }
 .button:hover {
-    background-color: black;
+    background-color: white;
 }
 .seats_seatnum:hover {
 	background-color: white;
 }
 
 input[type=checkbox]:checked + label {
-    background-color: black;
+    background-color: blueviolet;
 }

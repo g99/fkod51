@@ -5,7 +5,7 @@ var Seats = {
 				sum : null,
 				price : null,
 				
-				initSeats : function(project,ticket_data) {
+				initSeats : function(project,ticket_data,flag) {
 					$.ajax(project+'/schedule/initSeats', {
 						type : 'get',
 						data : {
@@ -161,7 +161,14 @@ var Seats = {
 							alert('에러발생상태 : '+status+',내용:'+msg);
 						},
 						complete : function() {
-							$('#seats_seatsblock').children().prop('disabled',true);
+							// 처음 그리는 경우
+							if (flag === 0) {
+								$('#seats_seatsblock').children().prop('disabled',true);
+							} else {
+							// 리셋하는 경우
+								$('#seats_seatsblock').children().prop('disabled',false);
+							}
+							
 						}
 					});
 				},

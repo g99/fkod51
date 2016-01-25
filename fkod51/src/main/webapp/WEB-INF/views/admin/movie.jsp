@@ -65,7 +65,6 @@
 					<div class="panel-body">
 					<div id="my_menu" style="position:absolute; top:11%;">
 						<button id="add" style="background:#E9ECF2; border:none;">등록</button>&nbsp;
-						<button id="modify" style="background:#E9ECF2; border:none;">수정</button>&nbsp;
 						<button id="delete" style="background:#E9ECF2; border:none;">삭제</button>&nbsp;
 					</div>
 
@@ -163,86 +162,7 @@
 			$("#add").click(function() {
 				location.href = context + "/admin/add_movie";
 			});
-			// 수정버튼 클릭시
-			$("#modify").click(function() {
-				var length = $(".selected").length;
-				/* 선택된겂이 없으면 수행하지 않는다. */
-				if (length != 0) {
-					/* 선택된 갯수만큼 반복수행 */
-					for (var i = 0; i < length; i++) {
-						var filmNumber = $(".selected:first .movie.filmNumber").text();
-						var filmName = $(".selected:first .movie.filmName").text();
-						var password = $(".selected:first .movie_password").text();
-						var director = $(".selected:first .movie.director").text();
-						var actor = $(".selected:first .movie.actor").text();
-						var rate = $(".selected:first .movie.rate").text();
-						var runtime = $(".selected:first .movie.runtime").text();
-						var price = $(".selected:first .movie.price").text();
-						var genre = $(".selected:first .movie.genre").text();
-						var country = $(".selected:first .movie.country").text();
-						var releaseDate = $(".selected:first .movie.releaseDate").text();
-						var endDate = $(".selected:first .movie.endDate").text();
-						var story = $(".selected:first .movie.story").text();
-						var cut = $(".selected:first .movie.cut").text();
-						var trailer = $(".selected:first .movie.trailer").text();
-						console.log(filmNumber + filmName + password + director + actor + rate + runtime + price + genre + country 
-								  + releaseDate + endDate + story + cut + trailer);
-						$(".selected:first .movie_actor").html('<input type="text" value="'+ actor +'">');
-						$(".selected:first .movie_rate").html('<input type="text" value="'+ rate +'">');
-						$(".selected:first .movie_runtime").html('<input type="text" value="'+ runtime +'">');
-						$(".selected:first .movie_price").html('<input type="text" value="'+ price +'">');
-						$(".selected:first .movie_genre").html('<input type="text" value="'+ genre +'">');
-						$(".selected:first .movie_country").html('<input type="text" value="'+ country +'">');
-						$(".selected:first .movie_releaseDate").html('<input type="text" value="'+ releaseDate +'">');
-						$(".selected:first .movie_endDate").html('<input type="text" value="'+ endDate +'">');
-						$(".selected:first .movie_story").html('<input type="text" value="'+ story +'">');
-						$(".selected:first .movie_cut").html('<input type="text" value="'+ cut +'">');
-						$(".selected:first .movie_trailer").html('<input type="text" value="'+ trailer +'">');
-						$(".selected:first").removeClass("selected");
-					}
-					
-					$("#movie_table input:checkbox:checked").parent().parent().addClass("selected");
-					
-					if ($("#confirm").text() != "확인") {
-						$("#my_menu").append("<button id='confirm' style='background:#E9ECF2; border:none;'>확인</button>");
-					} 
-					
-					$("#confirm").click(function() {
-						/* 선택된 것들만큼 반복할 예정 */
-						var length = $(".selected").length;
-						for (var i = 0; i < length; i++) {
-							$.ajax(context + "/admin/insert",{
-	                            data : {
-	                                 "filmNumber" : $(".selected:first .movie_filmNumber input").text(),
-	                                 "filmName" : $(".selected:first .movie_filmName input").text(),
-	                                 "password" : $(".selected:first .movie_password input").val(),
-	                                 "director" : $(".selected:first .movie_director input").val(),
-	                                 "actor" : $(".selected:first .movie_actor input").val(),
-	                                 "rate" : $(".selected:first .movie_rate input").val(),
-	                                 "runtime" : $(".selected:first .movie_runtime input").val(),
-	                                 "price" : $(".selected:first .movie_price input").val(),
-	                                 "genre" : $(".selected:first .movie_genre input").val(),
-	                                 "country" : $(".selected:first .movie_country input").val(),
-	                                 "releaseDate" : $(".selected:first .movie_releaseDate input").val(),
-	                                 "endDate" : $(".selected:first .movie_endDate input").val(),
-	                                 "story" : $(".selected:first .movie_story input").val(),
-	                                 "cut" : $(".selected:first .movie_cut input").val(),
-	                                 "trailer" : $(".selected:first .movie_trailer input").val()
-	                            },
-	                            success : function(data) {
-	                            	alert(data.result);
-	                            	$(".selected:first").removeClass("selected");
-	                            },
-	                            async : false,
-	                            error : function() {
-	                                
-	                            }
-	                       });
-						}
-						location.reload();
-					});
-				}
-			});
+		
 			
 			// 삭제버튼 클릭시 
 			$("#delete").click(function() {

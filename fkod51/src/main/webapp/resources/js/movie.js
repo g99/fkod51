@@ -116,7 +116,7 @@ var Movie = {
 									+'<table id="movie_tab"><tr><th style="font-size: 18px">예매율</th><td> '+data.tRate+'%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
 									+'<tr><th>장르</th><td>'+data.genre+'</td></tr><tr><th>기본</th><td>'+data.rate+', '+data.runtime+', '+data.country+'분 '+'</td></tr><tr><th>개봉</th>'
-									+'<td>'+data.releaseDate+' <a href="#">&nbsp;&nbsp;&nbsp;<input type="button" value="바로 예매" style="font-size: 12px; width: 100px; border-radius: 10px; float:right; margin-right: 150px;" class="btn btn-primary btn-block" id="booking"></a></td></tr></table>'
+									+'<td>'+data.releaseDate+'</td></tr></table>'
 									+'</div>'
 									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10 movie_margin_b20">'+ediv+'</div></div><hr/>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷&nbsp;&nbsp;&nbsp;<input type="button" value="스틸컷 더보기" id="cutmore" style="font-size: 15px; float: right; width: 130px; border-radius: 10px; margin-right: 570px;" class="btn btn-primary btn-block"></h2>'
