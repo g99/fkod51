@@ -159,6 +159,9 @@ var Seats = {
 						},
 						error : function(xhr, status, msg) {
 							alert('에러발생상태 : '+status+',내용:'+msg);
+						},
+						complete : function() {
+							$('#seats_seatsblock').children().prop('disabled',true);
 						}
 					});
 				},

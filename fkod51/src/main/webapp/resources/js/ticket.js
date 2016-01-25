@@ -423,6 +423,13 @@ var Ticket = {
 							$('#three').append(initInfo);
 							Seats.initSeats(project,data);
 							$('.seats_number').change(function() {
+								alert($("select[name=normal] option:selected").val());
+								var normal = $("select[name=normal] option:selected").val();
+								var teenager = $("select[name=teenager] option:selected").val();
+								var treatment = $("select[name=treatment] option:selected").val();
+								if (normal != 0 || teenager!=0 || treatment!=0) {
+									$('#seats_seatsblock').children().prop('disabled',false);
+								}
 								Seats.seats_number();
 								Seats.seats_cal();
 								Seats.initSeats(project);
