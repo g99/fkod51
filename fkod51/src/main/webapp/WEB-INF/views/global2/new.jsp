@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- 헤더 -->
 <header id="first">
-     <div class="header-content">
+     <div class="header-content" style="background: url('');">
          <div class="inner" style="padding-top:45%;">
              <h1 class="cursive" >MTB BOX</h1>
              <h4>세상을 바꾸는 힘.</h4>
