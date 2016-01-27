@@ -33,13 +33,14 @@ public class EventController {
 	@Autowired ArticleVO article;
 	@Autowired ArticleServiceImpl articleService;
 	
-	/*RESTful 방식 (url 에 {}이 있어서 @PathVariable 사용한 경우)*/
+	
 	@RequestMapping("/boardhome")
 	public String boardList(){
 		logger.info("boardhome() 진입");
 		return "event/boardList.tiles";
 	}
 	
+	/*RESTful 방식 (url 에 {}이 있어서 @PathVariable 사용한 경우)*/
 	@RequestMapping("/boardList/{pageNo}")
 	public @ResponseBody Map boardList(
 			@PathVariable("pageNo")String pageNo,

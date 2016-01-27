@@ -27,7 +27,7 @@ import com.hnb.ticket.TicketServiceImpl;
 import com.hnb.ticket.TicketVO;
 
 @Controller
-@SessionAttributes({"user","tickets"})
+@SessionAttributes("user")
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -45,16 +45,6 @@ public class MemberController {
 	
 	int auth_Num = 0;
 	
-	@RequestMapping("/admin_home")
-	public String adminHome(){
-		logger.info("멤버컨트롤러 adminHome() - 진입");
-		return "member/admin_home";
-	}
-	@RequestMapping("/provision")
-	public String provision(){
-		logger.info("멤버컨트롤러 provision() - 진입");
-		return "member/provision";
-	}
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public Model joinMember(
 			@RequestBody MemberVO param,
@@ -142,16 +132,6 @@ public class MemberController {
         return model;
     }
 	
-	
-	@RequestMapping("/join_Result")
-	public String joinResult(){
-		logger.info("멤버컨트롤러 joinResult() - 진입");
-		
-		return "member/join_Result";
-	}
-	
-	
-	
 	@RequestMapping("/logout")
 	public String logout(Model model, SessionStatus status){
 		logger.info("멤버컨트롤러 logout() - 진입");
@@ -160,8 +140,7 @@ public class MemberController {
 		return "redirect:/"; /* 메인컨트롤러로 간다는 뜻 */ 
 	}
 	
-	
-	
+
 	/*로그인*/
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public void login(
@@ -173,13 +152,10 @@ public class MemberController {
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저 비밀번호: {}", pw);
 		member = service.login(id, pw);
-		// 테이블을 조인시켜 예매자에 따른, 필름넘버를 기준으로 영화제목들을 가져옴.
-		tickets = ticketService.getTicketVO(id);
 		logger.info("티켓 정보는?: {}", tickets);
 		if (member != null) {
 			logger.info("로그인 성공!!!!!!!");
 			session.setAttribute("user", member);
-			session.setAttribute("tickets", tickets);
 			model.addAttribute("member", member);
 		} else {
 			logger.info("로그인 실패!!!!!!!!");
@@ -215,18 +191,6 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/login_mobile")
-	public void login_mobile(
-			@RequestParam("id")String id,
- 		    @RequestParam("pw")String pw,
- 		    Model model
- 		    ){
-		logger.info("login_mobile() 입장");
-		logger.info("아이디 : {}",id);
-		logger.info("비이번 : {}",pw);
-	}	
-	
-	
 	@RequestMapping("/check_Overlap")
 	public Model checkOverlap(
 			String id,
@@ -243,47 +207,12 @@ public class MemberController {
 		return model;
 	}
 	
-	@RequestMapping("/mypage")
-	public String mypage(){
-		logger.info("멤버컨트롤러 mypage() - 진입");
-		return "member/mypage.tiles";
-	}
-	
 	@RequestMapping("/detail/{id}")
 	public @ResponseBody MemberVO detail(
 		@PathVariable("id")String id){
 		logger.info("디테일 id {}", id);
 		logger.info("멤버컨트롤러 detail() - 진입");
 		member = service.selectById(id);
-		return member;
-	}
-	
-	@RequestMapping(value="/file_Update", method=RequestMethod.POST)
-	public @ResponseBody MemberVO file_Update(
-			@RequestParam(value="file", required=false)MultipartFile multipartFile,
-			@RequestParam("password")String password,
-			@RequestParam("addr")String addr,
-			@RequestParam("email")String email,
-			@RequestParam("phone")String phone,
-			@RequestParam("id")String id
-			) {
-		logger.info("file_Update() 진입");
-		String path = Constants.IMAGE_DOMAIN + "resources\\images\\";
-		FileUpload fileUpload = new FileUpload();
-		String fileName = multipartFile.getOriginalFilename();
-		String fullPath = fileUpload.uploadFile(multipartFile, path, fileName);
-		logger.info("풀패스 : {}", fullPath);
-		member.setPassword(password);
-		member.setAddr(addr);
-		member.setEmail(email);
-		member.setPhone(phone);
-		member.setProfile(fileName);
-		int result = service.change(member);
-		if (result != 0) {
-			logger.info("업데이트 성공");
-		} else {
-			logger.info("업데이트 실패");
-		}
 		return member;
 	}
 	
@@ -329,11 +258,10 @@ public class MemberController {
 		}
 		return model;
 	}
-	
-	
+		
 	@RequestMapping("/headerReload")
 	public String headerReload() {
-		return "global2/header.jsp";
+		return "global/header.jsp";
 	}
 
 }
