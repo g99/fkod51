@@ -33,12 +33,6 @@ public class ArticleController {
 	@Autowired ArticleServiceImpl articleService;
 	
 	/*RESTful 방식 (url 에 {}이 있어서 @PathVariable 사용한 경우)*/
-	@RequestMapping("/home")
-	public String boardList(){
-		logger.info("boardhome() 진입");
-		return "article/boardList.tiles";
-	}
-	
 	@RequestMapping("/list/{pageNo}")
 	public @ResponseBody Map<String, Object> boardList(
 			@PathVariable("pageNo")String pageNo,
