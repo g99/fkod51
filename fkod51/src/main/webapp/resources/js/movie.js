@@ -4,11 +4,14 @@ var Movie = {
 				},
 				ranking : function() {
 					var arr = [];
-					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><button id="test" style="font-size: 13px; width: 130px; border-radius: 10px;float:left; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="color:black; width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><button id="test" style="font-size: 13px; width: 130px; border-radius: 10px;float:left; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 					var test = '<button id="test" style="font-size: 13px; float: right; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					$.getJSON(context + '/movie/movie_Chart', function(data) {
 						var rank = '<div class="container-fluid"><div class="row no-gutter">';
 						$.each(data, function(index, value) {
+							if (index >= 10) {
+								return;
+							}
 							rank += '<div style="float: left; width: 19%"><div class="chart_rank" id="chart_rank'+index+'">'
 									+'<div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
 									+'<a href="#movieGalleryModal" data-toggle="modal" class="gallery-box" id='+this.filmNumber+' data-src=""><img src="'+context+'/resources/images/'+this.filmNumber+'.jpg" '
@@ -26,10 +29,10 @@ var Movie = {
 					});
 					$('#search').click(function name() {
 						Movie.find($("input:text[name=search]").val());
-					})
+					});
 					$('#test').click(function() {
 						Movie.api($("input:text[name=search]").val());
-					})
+					});
 					});
 				},
 				find : function(keyword) {
@@ -39,7 +42,7 @@ var Movie = {
 						},
 						dataType : "json",
 						success : function(data) {
-							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;float:left;">'
+							var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="color:black; width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float:left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; padding-left:5px;float:left;">'
 										+'<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 							var arr = [];
 							var result = '<div class="container-fluid"><div class="row no-gutter">';
@@ -62,7 +65,10 @@ var Movie = {
 							});
 							$('#ranking').click(function() {
 								Movie.ranking();
-							})
+							});
+							$('#test').click(function() {
+								Movie.api($("input:text[name=search]").val());
+							});
 						},
 						error : function() {
 							alert("검색어를 입력하세요");
@@ -70,7 +76,7 @@ var Movie = {
 					})
 				},
 				api : function(keyword) {
-					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float: left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; float: left; padding-left:5px;"><button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
+					var fWindow ='<div><input type="text" class="form-control" name="search" placeholder="Search" style="color:black; width:250px; background: white; float:left; margin-left: 50px;"><img src="'+context+'/resources/images/searchimg.png" id="search" style="height:37px; padding-left:5px;float: left;"><img src="'+context+'/resources/images/cancelimg.png" id="ranking" style="height:37px; float: left; padding-left:5px;"><button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button></div>';
 					var test = '<button id="test" style="font-size: 13px; float: left; width: 130px; border-radius: 10px; " class="btn btn-primary btn-block">Daum 영화 검색</button>';
 					var query = keyword;
 					var url = "https://apis.daum.net/contents/movie";
@@ -100,7 +106,13 @@ var Movie = {
 						$('#sWindow').empty().append(fWindow);
 						$('#ranking').click(function() {
 							Movie.ranking();
-						})
+						});
+						$('#search').click(function name() {
+							Movie.find($("input:text[name=search]").val());
+						});
+						$('#test').click(function() {
+							Movie.api($("input:text[name=search]").val());
+						});
 					});
 					
 				},
