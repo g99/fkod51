@@ -169,7 +169,6 @@
 	                                 "phone" : $(".selected:first .member_phone input").val()
 	                            },
 	                            success : function(data) {
-	                            	alert(data.result);
 	                            	$(".selected:first").removeClass("selected");
 	                            },
 	                            async : false,
@@ -195,7 +194,6 @@
 							},
 							async : false,
 							success : function(data) {
-								alert(data.result);
 								$(".selected:first").removeClass("selected");
 							},
 							error : function() {

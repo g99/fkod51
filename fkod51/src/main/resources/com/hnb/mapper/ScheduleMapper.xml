@@ -7,7 +7,7 @@
      <select id="getRateList" resultType="string">
      	SELECT
 	     	DISTINCT MOVIE.FILM_NAME AS MOVIENAME
-     	FROM SCHEDULE, MOVIE WHERE SCHEDULE.FILM_NUMBER = MOVIE.FILM_NUMBER ORDER BY MOVIE.FILM_NAME ASC
+     	FROM SCHEDULE, MOVIE WHERE SCHEDULE.FILM_NUMBER = MOVIE.FILM_NUMBER ORDER BY MOVIE.T_RATE ASC
      </select>
      <select id="getAscList" resultType="string">
      	SELECT

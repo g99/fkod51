@@ -235,7 +235,7 @@ var Seats = {
 						dataType : 'json',
 						success : function(data) {
 							//location.href="${context}/ticket/Ticket.do?page=Confirm";
-							var confirm = '<div class="container"><div class="row"><div class="col-lg-12 text-center"><h2 class="margin-top-0 text-primary">예매가 성공적으로 완료되었습니다.</h2></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><h4>예매번호 : '+data.ticketNumber+'</h4></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><div><label id="continue" style="font-size: 20px">계속하기</label></div></div></div></div>';
+							var confirm = '<div class="container"><div class="row"><div class="col-lg-12 text-center"><h2 class="margin-top-0 text-primary">예매가 성공적으로 완료되었습니다.</h2><br><h3 class="margin-top-0 text-primary">우측 상단의 아이디를 눌러 확인해주세요.</h3></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><h4>예매번호 : '+data.ticketNumber+'</h4></div></div></div><div class="container"><div class="row"><div class="col-lg-12 text-center"><div><label id="continue" style="font-size: 20px">계속하기</label></div></div></div></div>';
 							$(confirm).appendTo($('#three').empty());
 							$('#continue').click(function() {
 								tabs.make();

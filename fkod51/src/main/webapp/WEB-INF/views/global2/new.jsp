@@ -869,7 +869,7 @@ $("#btn_My_Ticket").click(function(){
                     +'<label></label>';
 		$.each(data, function(index,value){ //this, value = data[i]
 			ticket_Page_Main += '<div><input type="radio" id="'+value.ticketNumber+'" class="form-control ticket_info" name="tickets" value="'+index+'" style="display: none;" style="color: black;" data-dismiss="modal" data-toggle="modal">'
-			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.ticketNumber+'</label><br/>'
+			+'<label style="margin-top:5px;" for="'+value.ticketNumber+'">['+(index+1)+'] &nbsp;'+value.filmName+'</label><br/>'
 			+'<div style="height:5px;"></div></div>'
          });
 			ticket_Page_Footer += '</div>'

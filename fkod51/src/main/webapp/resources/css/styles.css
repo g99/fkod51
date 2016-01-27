@@ -343,7 +343,7 @@ footer {
 
 .form-control:focus {
     color: lightpink;
-    background-color: #ccc;
+    background-color: #36333D;
     box-shadow: none;
 }
 
