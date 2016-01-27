@@ -17,42 +17,28 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" style="height:610px;">
 					<div class="item active">
-						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide1.jpg" alt="">
+						<img class="img-responsive img-full" style="margin:auto; height:100%;" src="${img}/movie-slide1.jpg" alt="">
 					</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide1-1.jpg" alt="">
+						<img class="img-responsive img-full" style="margin:auto; height:100%;" src="${img}/movie-slide1-1.jpg" alt="">
 					</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide3.jpg" alt="">
+						<img class="img-responsive img-full" style="margin:auto; height:100%;" src="${img}/movie-slide3.jpg" alt="">
 					</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide4.jpg" alt="">
+						<img class="img-responsive img-full" style="margin:auto; height:100%;" src="${img}/movie-slide4.jpg" alt="">
 					</div>
 					<div class="item">
-						<img class="img-responsive img-full" style="height:100%;" src="${img}/movie-slide5.jpg" alt="">
+						<img class="img-responsive img-full" style="margin:auto; height:100%;" src="${img}/movie-slide5.jpg" alt="">
 					</div>
 				</div>
-
-				<!-- Controls -->
+					<!-- Controls -->
 				<a class="left carousel-control" href="#carousel-example-generic"
 					data-slide="prev"> <span class="icon-prev"></span>
 				</a> <a class="right carousel-control" href="#carousel-example-generic"
 					data-slide="next"> <span class="icon-next"></span>
 				</a>
-			</div>
-			<h2 class="brand-before">
-				<small>Welcome to</small>
-			</h2>
-			<h1 class="brand-name">Business Casual</h1>
-			<hr class="tagline-divider">
-			<h2>
-				<small>By <strong>Start Bootstrap</strong>
-				</small>
-			</h2>
 		</div>
 	</div>
 </div>
 </div>
-<script src="../js/jquery.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/bootstrap.min.js"></script>

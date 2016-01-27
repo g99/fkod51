@@ -20,12 +20,6 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("메인컨트롤러 home 메소드 진입 {}.", locale);
-		return "global2/new.new";
-	}
-	
-	@RequestMapping("/home")
-	public String newHome() {
-		logger.info("새로운 홈 진입");
-		return "global2/default_seong.jsp";
+		return "global/new.user";
 	}
 }
