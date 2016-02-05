@@ -230,6 +230,7 @@ public class MemberController {
 		int indexNum = Integer.parseInt(index);
 		logger.info("멤버컨트롤러 myTicket() - 진입");
 		logger.info("티켓인덱스는? : {}", indexNum);
+		@SuppressWarnings("unchecked")
 		List<TicketVO> temp = (List<TicketVO>) session.getAttribute("tickets");
 		logger.info("티켓브이오는?" + temp.get(indexNum).getFilmName());
 		/*model.addAttribute("ticket",temp);*/
@@ -372,6 +373,6 @@ public class MemberController {
 	
 	@RequestMapping("/headerReload")
 	public String headerReload() {
-		return "global2/header.jsp";
+		return "global/header.jsp";
 	}
 }
